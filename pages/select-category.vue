@@ -8,8 +8,11 @@
       md="7"
     >
       <v-card @click="$router.push(category.link)">
-        <v-img contain height="100" :src="category.image"></v-img>
-        <v-card-title>{{ category.title }}</v-card-title>
+        <v-img contain height="200" :src="category.image">
+          <v-card-title class="">
+            <p class="ml-3">{{ category.title }}</p>
+          </v-card-title>
+        </v-img>
       </v-card>
     </v-col>
   </v-row>
