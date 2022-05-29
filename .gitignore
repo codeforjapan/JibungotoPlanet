@@ -40,7 +40,9 @@ yarn-error.log*
 amplify/team-provider-info.json
 
 # cliでデプロイしない場合は必要ない？gqlSchemaPathにローカルの絶対パスが書かれているためgit管理からは外す。
-amplify/backend/api/jibungotoplanet/cli-inputs.json 
+amplify/backend/api/jibungotoplanet/cli-inputs.json
+# resolversも必要ない？
+amplify/backend/api/jibungotoplanet/resolvers
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
