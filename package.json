@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-amplify/ui-react": "^2.18.3",
     "@chakra-ui/react": "^2.1.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "aws-amplify": "^4.3.24",
     "chart.js": "^3.7.1",
     "framer-motion": "^6",
     "next": "12.1.6",
