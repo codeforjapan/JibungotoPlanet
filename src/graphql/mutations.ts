@@ -13,6 +13,9 @@ export const createTodo = /* GraphQL */ `
       description
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -27,6 +30,9 @@ export const updateTodo = /* GraphQL */ `
       description
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -41,6 +47,63 @@ export const deleteTodo = /* GraphQL */ `
       description
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createFootprint = /* GraphQL */ `
+  mutation CreateFootprint(
+    $input: CreateFootprintInput!
+    $condition: ModelFootprintConditionInput
+  ) {
+    createFootprint(input: $input, condition: $condition) {
+      domain
+      itemAndType
+      value
+      unit
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateFootprint = /* GraphQL */ `
+  mutation UpdateFootprint(
+    $input: UpdateFootprintInput!
+    $condition: ModelFootprintConditionInput
+  ) {
+    updateFootprint(input: $input, condition: $condition) {
+      domain
+      itemAndType
+      value
+      unit
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteFootprint = /* GraphQL */ `
+  mutation DeleteFootprint(
+    $input: DeleteFootprintInput!
+    $condition: ModelFootprintConditionInput
+  ) {
+    deleteFootprint(input: $input, condition: $condition) {
+      domain
+      itemAndType
+      value
+      unit
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

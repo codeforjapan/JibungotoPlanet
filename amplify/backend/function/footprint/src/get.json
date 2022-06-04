@@ -1,0 +1,10 @@
+{
+  "httpMethod": "GET",
+  "path": "/footprints/Mobility/PrivateCarAmount",
+  "queryStringParameters": {
+    "limit": "10"
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}

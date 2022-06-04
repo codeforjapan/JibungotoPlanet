@@ -10,6 +10,9 @@ export const onCreateTodo = /* GraphQL */ `
       description
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -21,6 +24,9 @@ export const onUpdateTodo = /* GraphQL */ `
       description
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -32,6 +38,54 @@ export const onDeleteTodo = /* GraphQL */ `
       description
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateFootprint = /* GraphQL */ `
+  subscription OnCreateFootprint {
+    onCreateFootprint {
+      domain
+      itemAndType
+      value
+      unit
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateFootprint = /* GraphQL */ `
+  subscription OnUpdateFootprint {
+    onUpdateFootprint {
+      domain
+      itemAndType
+      value
+      unit
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteFootprint = /* GraphQL */ `
+  subscription OnDeleteFootprint {
+    onDeleteFootprint {
+      domain
+      itemAndType
+      value
+      unit
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

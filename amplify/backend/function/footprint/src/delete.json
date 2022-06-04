@@ -1,0 +1,7 @@
+{
+  "httpMethod": "DELETE",
+  "path": "/footprints/Mobility/PrivateCarAmount",
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
