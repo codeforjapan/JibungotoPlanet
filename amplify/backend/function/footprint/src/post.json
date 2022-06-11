@@ -4,5 +4,5 @@
   "headers": {
     "Content-Type": "application/json"
   },
-  "body": "{\"domain\":\"Mobility\", \"itemAndType\":\"PrivateCarAmount\", \"value\":4341.7}"
+  "body": "{\"domainAndDir\":\"mobility\", \"itemAndType\":\"private-car-driving-amount\", \"value\":4341.7}"
 }

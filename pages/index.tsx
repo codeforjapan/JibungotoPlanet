@@ -1,30 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import { Amplify, withSSRContext } from 'aws-amplify'
-import awsExports from '../src/aws-exports'
-import { listTodos } from '../src/graphql/queries'
-import { GetServerSideProps, GetServerSidePropsContext } from 'next'
-import { Todo } from '../src/API'
 
-Amplify.configure({ ...awsExports, ssr: true })
 
-export const getServerSideProps: GetServerSideProps = async ({ req }: GetServerSidePropsContext) => {
-  const SSR = withSSRContext({ req });
-  const response = await SSR.API.graphql({ query: listTodos });
-
-  return {
-    props: {
-      todos: response.data.listTodos.items
-    }
-  };
-}
-
-type Props = {
-  todos: Todo[]
-}
-
-const Home = ({ todos = []}: Props) => {
+const Home = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -42,8 +21,6 @@ const Home = ({ todos = []}: Props) => {
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
-        <h2>list TODOs</h2>
-        {todos.map((todo)=>(<div key={todo.id}>{todo.id}:{todo.name}:{todo.description}</div>))}
       </main>
 
       <footer className={styles.footer}>

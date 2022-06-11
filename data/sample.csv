@@ -1,0 +1,3 @@
+domainAndDir,itemAndType,value,unit,citation,createdAt,updatedAt
+mobility,private-car-driving-amount,4341.7,kgCO2e/year,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-11T09:13:56.900Z,2022-06-11T09:13:56.900Z
+mobility,private-car-driving-intensity,0.17,kgCO2e/km-passenger,Koide et al. 2021. Environmental Research Letters 16 084001,2022-06-11T09:13:56.900Z,2022-06-11T09:13:56.900Z
