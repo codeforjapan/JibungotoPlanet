@@ -1,6 +1,6 @@
 {
   "httpMethod": "GET",
-  "path": "/footprints/baseline/mobility/airplane/amount",
+  "path": "/footprints/baseline/mobility",
   "queryStringParameters": {
     "limit": "10"
   },

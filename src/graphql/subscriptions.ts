@@ -101,10 +101,27 @@ export const onDeleteParameter = /* GraphQL */ `
 export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile {
     onCreateProfile {
-      id
-      clientToken
-      answers
-      estimations {
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
         dir
         domain
         item
@@ -112,16 +129,22 @@ export const onCreateProfile = /* GraphQL */ `
         value
         unit
         citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
       }
       options {
-        dir
         domain
         item
         type
         value
         unit
-        citation
       }
+      id
       createdAt
       updatedAt
       _version
@@ -133,10 +156,27 @@ export const onCreateProfile = /* GraphQL */ `
 export const onUpdateProfile = /* GraphQL */ `
   subscription OnUpdateProfile {
     onUpdateProfile {
-      id
-      clientToken
-      answers
-      estimations {
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
         dir
         domain
         item
@@ -144,16 +184,22 @@ export const onUpdateProfile = /* GraphQL */ `
         value
         unit
         citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
       }
       options {
-        dir
         domain
         item
         type
         value
         unit
-        citation
       }
+      id
       createdAt
       updatedAt
       _version
@@ -165,10 +211,27 @@ export const onUpdateProfile = /* GraphQL */ `
 export const onDeleteProfile = /* GraphQL */ `
   subscription OnDeleteProfile {
     onDeleteProfile {
-      id
-      clientToken
-      answers
-      estimations {
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
         dir
         domain
         item
@@ -176,16 +239,22 @@ export const onDeleteProfile = /* GraphQL */ `
         value
         unit
         citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
       }
       options {
-        dir
         domain
         item
         type
         value
         unit
-        citation
       }
+      id
       createdAt
       updatedAt
       _version

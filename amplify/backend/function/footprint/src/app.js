@@ -6,6 +6,20 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
+const toComponent = (item) => {
+  const dirAndDomain = item.dirAndDomain.split('_')
+  const itemAndType = item.itemAndType.split('_')
+  return {
+    dir: dirAndDomain[0],
+    domain: dirAndDomain[1],
+    item: itemAndType[0],
+    type: itemAndType[1],
+    value: item.value,
+    unit: item.unit,
+    citation: item.citation
+  }
+}
+
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
@@ -36,7 +50,7 @@ if (
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
 
 const userIdPresent = false // TODO: update in case is required to use that definition
-const partitionKeyName = 'domainAndDir'
+const partitionKeyName = 'dirAndDomain'
 const partitionKeyType = 'String'
 
 const sortKeyName = 'itemAndType'
@@ -74,181 +88,54 @@ const convertUrlType = (param, type) => {
  * HTTP Get method for list objects *
  ********************************/
 
-app.get(path + hashKeyPath, function (req, res) {
-  const condition = {}
-  condition[partitionKeyName] = {
-    ComparisonOperator: 'EQ'
-  }
+app.get(path + '/:dir/:domain', async (req, res) => {
+  const dir = req.params.dir
+  const domain = req.params.domain
 
-  if (userIdPresent && req.apiGateway) {
-    condition[partitionKeyName]['AttributeValueList'] = [
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
-    ]
-  } else {
-    try {
-      condition[partitionKeyName]['AttributeValueList'] = [
-        convertUrlType(req.params[partitionKeyName], partitionKeyType)
-      ]
-    } catch (err) {
-      res.statusCode = 500
-      res.json({ error: 'Wrong column type ' + err })
-    }
-  }
-
-  let queryParams = {
+  const params = {
     TableName: tableName,
-    KeyConditions: condition
+    KeyConditions: {
+      dirAndDomain: {
+        ComparisonOperator: 'EQ',
+        AttributeValueList: [dir + '_' + domain]
+      }
+    }
   }
 
-  dynamodb.query(queryParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500
-      res.json({ error: 'Could not load items: ' + err })
-    } else {
-      res.json(data.Items)
-    }
-  })
+  try {
+    const data = await dynamodb.query(params).promise()
+    res.json(data.Items.map((item) => toComponent(item)))
+  } catch (err) {
+    res.statusCode = 500
+    res.json({ error: 'Could not load items: ' + err })
+  }
 })
 
 /*****************************************
  * HTTP Get method for get single object *
  *****************************************/
 
-app.get(path + hashKeyPath + sortKeyPath, function (req, res) {
-  const params = {}
-  if (userIdPresent && req.apiGateway) {
-    params[partitionKeyName] =
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
-  } else {
-    params[partitionKeyName] = req.params[partitionKeyName]
-    try {
-      params[partitionKeyName] = convertUrlType(
-        req.params[partitionKeyName],
-        partitionKeyType
-      )
-    } catch (err) {
-      res.statusCode = 500
-      res.json({ error: 'Wrong column type ' + err })
-    }
-  }
-  if (hasSortKey) {
-    try {
-      params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType)
-    } catch (err) {
-      res.statusCode = 500
-      res.json({ error: 'Wrong column type ' + err })
-    }
-  }
+app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
+  const dir = req.params.dir
+  const domain = req.params.domain
+  const item = req.params.item
+  const type = req.params.type
 
-  let getItemParams = {
+  const params = {
     TableName: tableName,
-    Key: params
-  }
-
-  dynamodb.get(getItemParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500
-      res.json({ error: 'Could not load items: ' + err.message })
-    } else {
-      if (data.Item) {
-        res.json(data.Item)
-      } else {
-        res.json(data)
-      }
-    }
-  })
-})
-
-/************************************
- * HTTP put method for insert object *
- *************************************/
-
-app.put(path, function (req, res) {
-  if (userIdPresent) {
-    req.body['userId'] =
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
-  }
-
-  let putItemParams = {
-    TableName: tableName,
-    Item: req.body
-  }
-  dynamodb.put(putItemParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500
-      res.json({ error: err, url: req.url, body: req.body })
-    } else {
-      res.json({ success: 'put call succeed!', url: req.url, data: data })
-    }
-  })
-})
-
-/************************************
- * HTTP post method for insert object *
- *************************************/
-
-app.post(path, function (req, res) {
-  if (userIdPresent) {
-    req.body['userId'] =
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
-  }
-
-  let putItemParams = {
-    TableName: tableName,
-    Item: req.body
-  }
-  dynamodb.put(putItemParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500
-      res.json({ error: err, url: req.url, body: req.body })
-    } else {
-      res.json({ success: 'post call succeed!', url: req.url, data: data })
-    }
-  })
-})
-
-/**************************************
- * HTTP remove method to delete object *
- ***************************************/
-
-app.delete(path + hashKeyPath + sortKeyPath, function (req, res) {
-  const params = {}
-  if (userIdPresent && req.apiGateway) {
-    params[partitionKeyName] =
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
-  } else {
-    params[partitionKeyName] = req.params[partitionKeyName]
-    try {
-      params[partitionKeyName] = convertUrlType(
-        req.params[partitionKeyName],
-        partitionKeyType
-      )
-    } catch (err) {
-      res.statusCode = 500
-      res.json({ error: 'Wrong column type ' + err })
-    }
-  }
-  if (hasSortKey) {
-    try {
-      params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType)
-    } catch (err) {
-      res.statusCode = 500
-      res.json({ error: 'Wrong column type ' + err })
+    Key: {
+      dirAndDomain: dir + '_' + domain,
+      itemAndType: item + '_' + type
     }
   }
 
-  let removeItemParams = {
-    TableName: tableName,
-    Key: params
+  try {
+    const data = await dynamodb.get(params).promise()
+    res.json(toComponent(data.Item))
+  } catch (err) {
+    res.statusCode = 500
+    res.json({ error: 'Could not load items: ' + err.message })
   }
-  dynamodb.delete(removeItemParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500
-      res.json({ error: err, url: req.url })
-    } else {
-      res.json({ url: req.url, data: data })
-    }
-  })
 })
 
 app.listen(3000, function () {

@@ -1,8 +1,0 @@
-{
-  "httpMethod": "PUT",
-  "path": "/footprints",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\"domain\":\"Mobility\", \"itemAndType\":\"PrivateCarAmount\", \"value\":100}"
-}

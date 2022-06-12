@@ -165,10 +165,27 @@ export const syncParameters = /* GraphQL */ `
 export const getProfile = /* GraphQL */ `
   query GetProfile($id: ID!) {
     getProfile(id: $id) {
-      id
-      clientToken
-      answers
-      estimations {
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
         dir
         domain
         item
@@ -176,16 +193,22 @@ export const getProfile = /* GraphQL */ `
         value
         unit
         citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
       }
       options {
-        dir
         domain
         item
         type
         value
         unit
-        citation
       }
+      id
       createdAt
       updatedAt
       _version
@@ -196,24 +219,33 @@ export const getProfile = /* GraphQL */ `
 `;
 export const listProfiles = /* GraphQL */ `
   query ListProfiles(
-    $id: ID
     $filter: ModelProfileFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listProfiles(
-      id: $id
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        id
-        clientToken
-        answers
-        estimations {
+        refId
+        mobilityAnswer {
+          hasPrivateCar
+          privateCarType
+          privateCarAnnualMileage
+          carCharging
+          carPassengers
+          train
+          trainUnit
+          bus
+          busUnit
+          motorbike
+          motorbikeUnit
+          airplane
+          airplaneUnit
+          otherCar
+          otherCarUnit
+          ferry
+          ferryUnit
+        }
+        baselines {
           dir
           domain
           item
@@ -221,16 +253,22 @@ export const listProfiles = /* GraphQL */ `
           value
           unit
           citation
+        }
+        estimations {
+          domain
+          item
+          type
+          value
+          unit
         }
         options {
-          dir
           domain
           item
           type
           value
           unit
-          citation
         }
+        id
         createdAt
         updatedAt
         _version
@@ -256,10 +294,27 @@ export const syncProfiles = /* GraphQL */ `
       lastSync: $lastSync
     ) {
       items {
-        id
-        clientToken
-        answers
-        estimations {
+        refId
+        mobilityAnswer {
+          hasPrivateCar
+          privateCarType
+          privateCarAnnualMileage
+          carCharging
+          carPassengers
+          train
+          trainUnit
+          bus
+          busUnit
+          motorbike
+          motorbikeUnit
+          airplane
+          airplaneUnit
+          otherCar
+          otherCarUnit
+          ferry
+          ferryUnit
+        }
+        baselines {
           dir
           domain
           item
@@ -267,16 +322,22 @@ export const syncProfiles = /* GraphQL */ `
           value
           unit
           citation
+        }
+        estimations {
+          domain
+          item
+          type
+          value
+          unit
         }
         options {
-          dir
           domain
           item
           type
           value
           unit
-          citation
         }
+        id
         createdAt
         updatedAt
         _version
@@ -288,26 +349,43 @@ export const syncProfiles = /* GraphQL */ `
     }
   }
 `;
-export const profilesByClientToken = /* GraphQL */ `
-  query ProfilesByClientToken(
-    $clientToken: String!
+export const profilesByRefId = /* GraphQL */ `
+  query ProfilesByRefId(
+    $refId: String!
     $sortDirection: ModelSortDirection
     $filter: ModelProfileFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    profilesByClientToken(
-      clientToken: $clientToken
+    profilesByRefId(
+      refId: $refId
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
       nextToken: $nextToken
     ) {
       items {
-        id
-        clientToken
-        answers
-        estimations {
+        refId
+        mobilityAnswer {
+          hasPrivateCar
+          privateCarType
+          privateCarAnnualMileage
+          carCharging
+          carPassengers
+          train
+          trainUnit
+          bus
+          busUnit
+          motorbike
+          motorbikeUnit
+          airplane
+          airplaneUnit
+          otherCar
+          otherCarUnit
+          ferry
+          ferryUnit
+        }
+        baselines {
           dir
           domain
           item
@@ -315,16 +393,22 @@ export const profilesByClientToken = /* GraphQL */ `
           value
           unit
           citation
+        }
+        estimations {
+          domain
+          item
+          type
+          value
+          unit
         }
         options {
-          dir
           domain
           item
           type
           value
           unit
-          citation
         }
+        id
         createdAt
         updatedAt
         _version

@@ -7,7 +7,9 @@
   "dependencies": {
     "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.19.1",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "shortid": "^2.2.16",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92",

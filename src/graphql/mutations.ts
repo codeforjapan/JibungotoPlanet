@@ -122,10 +122,27 @@ export const createProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     createProfile(input: $input, condition: $condition) {
-      id
-      clientToken
-      answers
-      estimations {
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
         dir
         domain
         item
@@ -133,16 +150,22 @@ export const createProfile = /* GraphQL */ `
         value
         unit
         citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
       }
       options {
-        dir
         domain
         item
         type
         value
         unit
-        citation
       }
+      id
       createdAt
       updatedAt
       _version
@@ -157,10 +180,27 @@ export const updateProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     updateProfile(input: $input, condition: $condition) {
-      id
-      clientToken
-      answers
-      estimations {
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
         dir
         domain
         item
@@ -168,16 +208,22 @@ export const updateProfile = /* GraphQL */ `
         value
         unit
         citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
       }
       options {
-        dir
         domain
         item
         type
         value
         unit
-        citation
       }
+      id
       createdAt
       updatedAt
       _version
@@ -192,10 +238,27 @@ export const deleteProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     deleteProfile(input: $input, condition: $condition) {
-      id
-      clientToken
-      answers
-      estimations {
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
         dir
         domain
         item
@@ -203,16 +266,22 @@ export const deleteProfile = /* GraphQL */ `
         value
         unit
         citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
       }
       options {
-        dir
         domain
         item
         type
         value
         unit
-        citation
       }
+      id
       createdAt
       updatedAt
       _version

@@ -1,8 +1,0 @@
-{
-  "httpMethod": "POST",
-  "path": "/footprints",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\"domainAndDir\":\"mobility\", \"itemAndType\":\"private-car-driving-amount\", \"value\":4341.7}"
-}

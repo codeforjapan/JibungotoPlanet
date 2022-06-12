@@ -1,0 +1,8 @@
+{
+  "httpMethod": "PUT",
+  "path": "/profiles/b2139e5a-bf83-4ca2-952d-641666de821b",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{}"
+}
