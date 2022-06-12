@@ -12,9 +12,6 @@ export const getFootprint = /* GraphQL */ `
       citation
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -43,42 +40,8 @@ export const listFootprints = /* GraphQL */ `
         citation
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncFootprints = /* GraphQL */ `
-  query SyncFootprints(
-    $filter: ModelFootprintFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncFootprints(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        dirAndDomain
-        itemAndType
-        value
-        unit
-        citation
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -92,9 +55,6 @@ export const getParameter = /* GraphQL */ `
       citation
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -123,42 +83,8 @@ export const listParameters = /* GraphQL */ `
         citation
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncParameters = /* GraphQL */ `
-  query SyncParameters(
-    $filter: ModelParameterFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncParameters(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        category
-        key
-        value
-        unit
-        citation
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -211,9 +137,6 @@ export const getProfile = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -279,81 +202,8 @@ export const listProfiles = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncProfiles = /* GraphQL */ `
-  query SyncProfiles(
-    $filter: ModelProfileFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncProfiles(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        refId
-        mobilityAnswer {
-          hasPrivateCar
-          privateCarType
-          privateCarAnnualMileage
-          carCharging
-          carPassengers
-          train
-          trainUnit
-          bus
-          busUnit
-          motorbike
-          motorbikeUnit
-          airplane
-          airplaneUnit
-          otherCar
-          otherCarUnit
-          ferry
-          ferryUnit
-        }
-        baselines {
-          dir
-          domain
-          item
-          type
-          value
-          unit
-          citation
-        }
-        estimations {
-          domain
-          item
-          type
-          value
-          unit
-        }
-        options {
-          domain
-          item
-          type
-          value
-          unit
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -419,12 +269,8 @@ export const profilesByRefId = /* GraphQL */ `
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
   }
 `;

@@ -16,10 +16,12 @@ const shortid = require('shortid')
 
 AWS.config.update({ region: process.env.TABLE_REGION })
 
+const suffix = '5kcplupfmvcadpi7xxrfiedakm'
+
 let dynamoParam = {}
-let footprintTableName = 'Footprint-dikfjlx7xncgpo5s3xzv5x56ie'
-let parameterTableName = 'Parameter-dikfjlx7xncgpo5s3xzv5x56ie'
-let profileTableName = 'Profile-dikfjlx7xncgpo5s3xzv5x56ie'
+let footprintTableName = 'Footprint-' + suffix
+let parameterTableName = 'Parameter-' + suffix
+let profileTableName = 'Profile-' + suffix
 if (process.env.ENV && process.env.ENV !== 'NONE') {
   footprintTableName = footprintTableName + '-' + process.env.ENV
   parameterTableName = parameterTableName + '-' + process.env.ENV

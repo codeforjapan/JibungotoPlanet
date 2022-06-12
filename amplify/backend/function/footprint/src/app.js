@@ -27,8 +27,9 @@ const toComponent = (item) => {
 
 AWS.config.update({ region: process.env.TABLE_REGION })
 
+const suffix = '5kcplupfmvcadpi7xxrfiedakm'
 let dynamoParam = {}
-let tableName = 'Footprint-dikfjlx7xncgpo5s3xzv5x56ie'
+let tableName = 'Footprint-' + suffix
 if (process.env.ENV && process.env.ENV !== 'NONE') {
   tableName = tableName + '-' + process.env.ENV
 }

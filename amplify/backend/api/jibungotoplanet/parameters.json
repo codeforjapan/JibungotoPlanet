@@ -1,6 +1,5 @@
 {
   "AppSyncApiName": "jibungotoplanet",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2022-06-04T02:19:40.515Z"
+  "DynamoDBEnableServerSideEncryption": false
 }

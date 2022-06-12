@@ -9,15 +9,12 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+              "apiKeyExpirationDays": 365,
+              "apiKeyExpirationDate": "2023-06-12T10:53:21.624Z",
+              "description": "JibungotoPlanet"
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
+          "additionalAuthenticationProviders": []
         }
       }
     },
@@ -51,19 +48,19 @@
     }
   },
   "storage": {
-    "Footprintdikfjlx7xncgpo5s3xzv5x56iedev": {
+    "Footprint5kcplupfmvcadpi7xxrfiedakmdev": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     },
-    "Parameterdikfjlx7xncgpo5s3xzv5x56iedev": {
+    "Parameter5kcplupfmvcadpi7xxrfiedakmdev": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     },
-    "Profiledikfjlx7xncgpo5s3xzv5x56iedev": {
+    "Profile5kcplupfmvcadpi7xxrfiedakmdev": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
@@ -78,7 +75,7 @@
       "dependsOn": [
         {
           "category": "storage",
-          "resourceName": "Footprintdikfjlx7xncgpo5s3xzv5x56iedev",
+          "resourceName": "Footprint5kcplupfmvcadpi7xxrfiedakmdev",
           "attributes": [
             "Name",
             "Arn"
@@ -97,7 +94,7 @@
       "dependsOn": [
         {
           "category": "storage",
-          "resourceName": "Profiledikfjlx7xncgpo5s3xzv5x56iedev",
+          "resourceName": "Profile5kcplupfmvcadpi7xxrfiedakmdev",
           "attributes": [
             "Name",
             "Arn"

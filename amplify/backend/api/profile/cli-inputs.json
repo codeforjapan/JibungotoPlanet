@@ -1,8 +1,8 @@
 {
   "version": 1,
   "paths": {
-    "/profiles/{id}": {
-      "name": "/profiles/{id}",
+    "/profiles": {
+      "name": "/profiles",
       "lambdaFunction": "profile",
       "permissions": {
         "setting": "open"

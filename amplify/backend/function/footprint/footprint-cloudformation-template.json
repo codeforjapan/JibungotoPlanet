@@ -16,13 +16,13 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageFootprintdikfjlx7xncgpo5s3xzv5x56iedevName": {
+    "storageFootprint5kcplupfmvcadpi7xxrfiedakmdevName": {
       "Type": "String",
-      "Default": "storageFootprintdikfjlx7xncgpo5s3xzv5x56iedevName"
+      "Default": "storageFootprint5kcplupfmvcadpi7xxrfiedakmdevName"
     },
-    "storageFootprintdikfjlx7xncgpo5s3xzv5x56iedevArn": {
+    "storageFootprint5kcplupfmvcadpi7xxrfiedakmdevArn": {
       "Type": "String",
-      "Default": "storageFootprintdikfjlx7xncgpo5s3xzv5x56iedevArn"
+      "Default": "storageFootprint5kcplupfmvcadpi7xxrfiedakmdevArn"
     }
   },
   "Conditions": {
@@ -97,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "jibungotoplanetLambdaRolee12c5c9e",
+            "jibungotoplanetLambdaRole70686e2d",
             {
               "Fn::Join": [
                 "",
                 [
-                  "jibungotoplanetLambdaRolee12c5c9e",
+                  "jibungotoplanetLambdaRole70686e2d",
                   "-",
                   {
                     "Ref": "env"
@@ -182,14 +182,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storageFootprintdikfjlx7xncgpo5s3xzv5x56iedevArn"
+                  "Ref": "storageFootprint5kcplupfmvcadpi7xxrfiedakmdevArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageFootprintdikfjlx7xncgpo5s3xzv5x56iedevArn"
+                        "Ref": "storageFootprint5kcplupfmvcadpi7xxrfiedakmdevArn"
                       },
                       "index/*"
                     ]

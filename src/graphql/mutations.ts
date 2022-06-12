@@ -15,9 +15,6 @@ export const createFootprint = /* GraphQL */ `
       citation
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -34,9 +31,6 @@ export const updateFootprint = /* GraphQL */ `
       citation
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -53,9 +47,6 @@ export const deleteFootprint = /* GraphQL */ `
       citation
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -72,9 +63,6 @@ export const createParameter = /* GraphQL */ `
       citation
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -91,9 +79,6 @@ export const updateParameter = /* GraphQL */ `
       citation
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -110,9 +95,6 @@ export const deleteParameter = /* GraphQL */ `
       citation
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -168,9 +150,6 @@ export const createProfile = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -226,9 +205,6 @@ export const updateProfile = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -284,9 +260,6 @@ export const deleteProfile = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"8.4.0\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Mac\",\"createdBy\":\"Amplify\",\"createdWith\":\"8.3.1\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,13 +16,13 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageProfiledikfjlx7xncgpo5s3xzv5x56iedevName": {
+    "storageProfile5kcplupfmvcadpi7xxrfiedakmdevName": {
       "Type": "String",
-      "Default": "storageProfiledikfjlx7xncgpo5s3xzv5x56iedevName"
+      "Default": "storageProfile5kcplupfmvcadpi7xxrfiedakmdevName"
     },
-    "storageProfiledikfjlx7xncgpo5s3xzv5x56iedevArn": {
+    "storageProfile5kcplupfmvcadpi7xxrfiedakmdevArn": {
       "Type": "String",
-      "Default": "storageProfiledikfjlx7xncgpo5s3xzv5x56iedevArn"
+      "Default": "storageProfile5kcplupfmvcadpi7xxrfiedakmdevArn"
     }
   },
   "Conditions": {
@@ -97,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "jibungotoplanetLambdaRole3cbfde0f",
+            "jibungotoplanetLambdaRole2664e505",
             {
               "Fn::Join": [
                 "",
                 [
-                  "jibungotoplanetLambdaRole3cbfde0f",
+                  "jibungotoplanetLambdaRole2664e505",
                   "-",
                   {
                     "Ref": "env"
@@ -182,14 +182,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storageProfiledikfjlx7xncgpo5s3xzv5x56iedevArn"
+                  "Ref": "storageProfile5kcplupfmvcadpi7xxrfiedakmdevArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageProfiledikfjlx7xncgpo5s3xzv5x56iedevArn"
+                        "Ref": "storageProfile5kcplupfmvcadpi7xxrfiedakmdevArn"
                       },
                       "index/*"
                     ]

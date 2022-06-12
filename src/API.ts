@@ -8,7 +8,6 @@ export type CreateFootprintInput = {
   value: number,
   unit?: string | null,
   citation?: string | null,
-  _version?: number | null,
 };
 
 export type ModelFootprintConditionInput = {
@@ -81,9 +80,6 @@ export type Footprint = {
   citation?: string | null,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type UpdateFootprintInput = {
@@ -92,13 +88,11 @@ export type UpdateFootprintInput = {
   value?: number | null,
   unit?: string | null,
   citation?: string | null,
-  _version?: number | null,
 };
 
 export type DeleteFootprintInput = {
   dirAndDomain: string,
   itemAndType: string,
-  _version?: number | null,
 };
 
 export type CreateParameterInput = {
@@ -107,7 +101,6 @@ export type CreateParameterInput = {
   value: number,
   unit?: string | null,
   citation?: string | null,
-  _version?: number | null,
 };
 
 export type ModelParameterConditionInput = {
@@ -128,9 +121,6 @@ export type Parameter = {
   citation?: string | null,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type UpdateParameterInput = {
@@ -139,13 +129,11 @@ export type UpdateParameterInput = {
   value?: number | null,
   unit?: string | null,
   citation?: string | null,
-  _version?: number | null,
 };
 
 export type DeleteParameterInput = {
   category: string,
   key: string,
-  _version?: number | null,
 };
 
 export type CreateProfileInput = {
@@ -155,7 +143,6 @@ export type CreateProfileInput = {
   baselines?: Array< ComponentInput > | null,
   estimations?: Array< ItemInput > | null,
   options?: Array< ItemInput > | null,
-  _version?: number | null,
 };
 
 export type MobilityAnswerInput = {
@@ -213,9 +200,6 @@ export type Profile = {
   options?:  Array<Item > | null,
   createdAt: string,
   updatedAt: string,
-  _version: number,
-  _deleted?: boolean | null,
-  _lastChangedAt: number,
 };
 
 export type MobilityAnswer = {
@@ -266,12 +250,10 @@ export type UpdateProfileInput = {
   baselines?: Array< ComponentInput > | null,
   estimations?: Array< ItemInput > | null,
   options?: Array< ItemInput > | null,
-  _version?: number | null,
 };
 
 export type DeleteProfileInput = {
   id: string,
-  _version?: number | null,
 };
 
 export type ModelStringKeyConditionInput = {
@@ -305,7 +287,6 @@ export type ModelFootprintConnection = {
   __typename: "ModelFootprintConnection",
   items:  Array<Footprint | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelParameterFilterInput = {
@@ -323,7 +304,6 @@ export type ModelParameterConnection = {
   __typename: "ModelParameterConnection",
   items:  Array<Parameter | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type ModelProfileFilterInput = {
@@ -354,7 +334,6 @@ export type ModelProfileConnection = {
   __typename: "ModelProfileConnection",
   items:  Array<Profile | null >,
   nextToken?: string | null,
-  startedAt?: number | null,
 };
 
 export type CreateFootprintMutationVariables = {
@@ -372,9 +351,6 @@ export type CreateFootprintMutation = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -393,9 +369,6 @@ export type UpdateFootprintMutation = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -414,9 +387,6 @@ export type DeleteFootprintMutation = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -435,9 +405,6 @@ export type CreateParameterMutation = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -456,9 +423,6 @@ export type UpdateParameterMutation = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -477,9 +441,6 @@ export type DeleteParameterMutation = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -541,9 +502,6 @@ export type CreateProfileMutation = {
     } > | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -605,9 +563,6 @@ export type UpdateProfileMutation = {
     } > | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -669,9 +624,6 @@ export type DeleteProfileMutation = {
     } > | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -690,9 +642,6 @@ export type GetFootprintQuery = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -717,40 +666,8 @@ export type ListFootprintsQuery = {
       citation?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncFootprintsQueryVariables = {
-  filter?: ModelFootprintFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncFootprintsQuery = {
-  syncFootprints?:  {
-    __typename: "ModelFootprintConnection",
-    items:  Array< {
-      __typename: "Footprint",
-      dirAndDomain: string,
-      itemAndType: string,
-      value: number,
-      unit?: string | null,
-      citation?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -769,9 +686,6 @@ export type GetParameterQuery = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -796,40 +710,8 @@ export type ListParametersQuery = {
       citation?: string | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncParametersQueryVariables = {
-  filter?: ModelParameterFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncParametersQuery = {
-  syncParameters?:  {
-    __typename: "ModelParameterConnection",
-    items:  Array< {
-      __typename: "Parameter",
-      category: string,
-      key: string,
-      value: number,
-      unit?: string | null,
-      citation?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -890,9 +772,6 @@ export type GetProfileQuery = {
     } > | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -959,83 +838,8 @@ export type ListProfilesQuery = {
       } > | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type SyncProfilesQueryVariables = {
-  filter?: ModelProfileFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncProfilesQuery = {
-  syncProfiles?:  {
-    __typename: "ModelProfileConnection",
-    items:  Array< {
-      __typename: "Profile",
-      id: string,
-      refId: string,
-      mobilityAnswer?:  {
-        __typename: "MobilityAnswer",
-        hasPrivateCar?: boolean | null,
-        privateCarType?: string | null,
-        privateCarAnnualMileage?: number | null,
-        carCharging?: string | null,
-        carPassengers?: string | null,
-        train?: number | null,
-        trainUnit?: string | null,
-        bus?: number | null,
-        busUnit?: string | null,
-        motorbike?: number | null,
-        motorbikeUnit?: string | null,
-        airplane?: number | null,
-        airplaneUnit?: string | null,
-        otherCar?: number | null,
-        otherCarUnit?: string | null,
-        ferry?: number | null,
-        ferryUnit?: string | null,
-      } | null,
-      baselines?:  Array< {
-        __typename: "Component",
-        dir: string,
-        domain: string,
-        item: string,
-        type: string,
-        value: number,
-        unit?: string | null,
-        citation?: string | null,
-      } > | null,
-      estimations?:  Array< {
-        __typename: "Item",
-        domain: string,
-        item: string,
-        type: string,
-        value: number,
-        unit?: string | null,
-      } > | null,
-      options?:  Array< {
-        __typename: "Item",
-        domain: string,
-        item: string,
-        type: string,
-        value: number,
-        unit?: string | null,
-      } > | null,
-      createdAt: string,
-      updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-    } | null >,
-    nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -1102,12 +906,8 @@ export type ProfilesByRefIdQuery = {
       } > | null,
       createdAt: string,
       updatedAt: string,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
     } | null >,
     nextToken?: string | null,
-    startedAt?: number | null,
   } | null,
 };
 
@@ -1121,9 +921,6 @@ export type OnCreateFootprintSubscription = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1137,9 +934,6 @@ export type OnUpdateFootprintSubscription = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1153,9 +947,6 @@ export type OnDeleteFootprintSubscription = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1169,9 +960,6 @@ export type OnCreateParameterSubscription = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1185,9 +973,6 @@ export type OnUpdateParameterSubscription = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1201,9 +986,6 @@ export type OnDeleteParameterSubscription = {
     citation?: string | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1260,9 +1042,6 @@ export type OnCreateProfileSubscription = {
     } > | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1319,9 +1098,6 @@ export type OnUpdateProfileSubscription = {
     } > | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
 
@@ -1378,8 +1154,5 @@ export type OnDeleteProfileSubscription = {
     } > | null,
     createdAt: string,
     updatedAt: string,
-    _version: number,
-    _deleted?: boolean | null,
-    _lastChangedAt: number,
   } | null,
 };
