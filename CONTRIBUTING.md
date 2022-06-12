@@ -50,3 +50,85 @@ cd data
 ./install.sh
 ./load.sh
 ```
+
+#### REST api の作り方
+
+```bash
+$ amplify import storage
+
+? Select from one of the below mentioned services: DynamoDB table - NoSQL Database
+✔ Select the DynamoDB Table you want to import: · Parameter-dikfjlx7xncgpo5s3xzv5x56ie-dev
+
+✅ DynamoDB Table 'Parameter-dikfjlx7xncgpo5s3xzv5x56ie-dev' was successfully imported.
+
+Next steps:
+- This resource can now be accessed from REST APIs (`amplify add api`) and Functions (`amplify add function`)
+
+$ amplify import storage
+
+? Select from one of the below mentioned services: DynamoDB table - NoSQL Database
+✔ Select the DynamoDB Table you want to import: · Profile-dikfjlx7xncgpo5s3xzv5x56ie-dev
+
+✅ DynamoDB Table 'Profile-dikfjlx7xncgpo5s3xzv5x56ie-dev' was successfully imported.
+
+Next steps:
+- This resource can now be accessed from REST APIs (`amplify add api`) and Functions (`amplify add function`)
+
+$ amplify add api
+
+? Select from one of the below mentioned services: REST
+✔ Would you like to add a new path to an existing REST API: (y/N) · no
+✔ Provide a friendly name for your resource to be used as a label for this category in the project: · profile
+
+✔ Provide a path (e.g., /book/{isbn}): · /profiles/{id}
+✔ Choose a Lambda source · Create a new Lambda function
+? Provide an AWS Lambda function name: profile
+? Choose the runtime that you want to use: NodeJS
+? Choose the function template that you want to use: CRUD function for DynamoDB (Integrati
+on with API Gateway)
+? Choose a DynamoDB data source option Use DynamoDB table configured in the current Amplif
+y project
+? Choose from one of the already configured DynamoDB tables Profiledikfjlx7xncgpo5s3xzv5x5
+6iedev
+
+Available advanced settings:
+- Resource access permissions
+- Scheduled recurring invocation
+- Lambda layers configuration
+- Environment variables configuration
+- Secret values configuration
+
+? Do you want to configure advanced settings? No
+? Do you want to edit the local lambda function now? No
+Successfully added resource profile locally.
+
+Next steps:
+Check out sample function code generated in <project-dir>/amplify/backend/function/profile/src
+"amplify function build" builds all of your functions currently in the project
+"amplify mock function <functionName>" runs your function locally
+To access AWS resources outside of this Amplify app, edit the /Users/naoto/Documents/projects/code-for-japan/Footprint-Jibungoto/amplify/backend/function/profile/custom-policies.json
+"amplify push" builds all of your local backend resources and provisions them in the cloud
+"amplify publish" builds all of your local backend and front-end resources (if you added hosting category) and provisions them in the cloud
+✅ Successfully added the Lambda function locally
+✔ Restrict API access? (Y/n) · no
+✔ Do you want to add another path? (y/N) · no
+✅ Successfully added resource profile locally
+
+✅ Some next steps:
+"amplify push" will build all your local backend resources and provision it in the cloud
+"amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+
+```
+
+#### テストのやり方
+
+```bash
+amplify mock # モック環境の起動
+
+# 以下は別shellで実施。テスト用のリクエストsrc/event.jsonを読み込んで実行。
+amplify mock function profile
+
+? Provide the path to the event JSON object relative to /Users/naoto/Documents/projects/c
+ode-for-japan/Footprint-Jibungoto/amplify/backend/function/profile src/event.json
+
+```

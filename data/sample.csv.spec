@@ -1,5 +1,5 @@
 [CSV_SPEC]
-domainAndDir=S
+dirAndDomain=S
 itemAndType=S
 value=D
 unit=S

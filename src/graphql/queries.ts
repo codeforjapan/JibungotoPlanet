@@ -3,9 +3,9 @@
 // this is an auto generated file. This will be overwritten
 
 export const getFootprint = /* GraphQL */ `
-  query GetFootprint($domainAndDir: String!, $itemAndType: String!) {
-    getFootprint(domainAndDir: $domainAndDir, itemAndType: $itemAndType) {
-      domainAndDir
+  query GetFootprint($dirAndDomain: String!, $itemAndType: String!) {
+    getFootprint(dirAndDomain: $dirAndDomain, itemAndType: $itemAndType) {
+      dirAndDomain
       itemAndType
       value
       unit
@@ -20,7 +20,7 @@ export const getFootprint = /* GraphQL */ `
 `;
 export const listFootprints = /* GraphQL */ `
   query ListFootprints(
-    $domainAndDir: String
+    $dirAndDomain: String
     $itemAndType: ModelStringKeyConditionInput
     $filter: ModelFootprintFilterInput
     $limit: Int
@@ -28,7 +28,7 @@ export const listFootprints = /* GraphQL */ `
     $sortDirection: ModelSortDirection
   ) {
     listFootprints(
-      domainAndDir: $domainAndDir
+      dirAndDomain: $dirAndDomain
       itemAndType: $itemAndType
       filter: $filter
       limit: $limit
@@ -36,7 +36,7 @@ export const listFootprints = /* GraphQL */ `
       sortDirection: $sortDirection
     ) {
       items {
-        domainAndDir
+        dirAndDomain
         itemAndType
         value
         unit
@@ -66,7 +66,7 @@ export const syncFootprints = /* GraphQL */ `
       lastSync: $lastSync
     ) {
       items {
-        domainAndDir
+        dirAndDomain
         itemAndType
         value
         unit
@@ -167,9 +167,25 @@ export const getProfile = /* GraphQL */ `
     getProfile(id: $id) {
       id
       clientToken
-      answer
-      estimation
-      options
+      answers
+      estimations {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      options {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
       createdAt
       updatedAt
       _version
@@ -196,9 +212,25 @@ export const listProfiles = /* GraphQL */ `
       items {
         id
         clientToken
-        answer
-        estimation
-        options
+        answers
+        estimations {
+          dir
+          domain
+          item
+          type
+          value
+          unit
+          citation
+        }
+        options {
+          dir
+          domain
+          item
+          type
+          value
+          unit
+          citation
+        }
         createdAt
         updatedAt
         _version
@@ -226,9 +258,25 @@ export const syncProfiles = /* GraphQL */ `
       items {
         id
         clientToken
-        answer
-        estimation
-        options
+        answers
+        estimations {
+          dir
+          domain
+          item
+          type
+          value
+          unit
+          citation
+        }
+        options {
+          dir
+          domain
+          item
+          type
+          value
+          unit
+          citation
+        }
         createdAt
         updatedAt
         _version
@@ -258,9 +306,25 @@ export const profilesByClientToken = /* GraphQL */ `
       items {
         id
         clientToken
-        answer
-        estimation
-        options
+        answers
+        estimations {
+          dir
+          domain
+          item
+          type
+          value
+          unit
+          citation
+        }
+        options {
+          dir
+          domain
+          item
+          type
+          value
+          unit
+          citation
+        }
         createdAt
         updatedAt
         _version

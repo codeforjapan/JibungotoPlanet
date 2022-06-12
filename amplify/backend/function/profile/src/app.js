@@ -6,17 +6,23 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
+const { estimateMobility } = require('./mobility')
 const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 const express = require('express')
+const { default: next } = require('next')
 
 AWS.config.update({ region: process.env.TABLE_REGION })
 
 let dynamoParam = {}
-let tableName = 'Footprint-dikfjlx7xncgpo5s3xzv5x56ie'
+let footprintTableName = 'Footprint-dikfjlx7xncgpo5s3xzv5x56ie'
+let parameterTableName = 'Parameter-dikfjlx7xncgpo5s3xzv5x56ie'
+let profileTableName = 'Profile-dikfjlx7xncgpo5s3xzv5x56ie'
 if (process.env.ENV && process.env.ENV !== 'NONE') {
-  tableName = tableName + '-' + process.env.ENV
+  footprintTableName = footprintTableName + '-' + process.env.ENV
+  parameterTableName = parameterTableName + '-' + process.env.ENV
+  profileTableName = profileTableName + '-' + process.env.ENV
 }
 
 if (
@@ -30,20 +36,20 @@ if (
     accessKeyId: 'fake',
     secretAccessKey: 'fake'
   }
-  tableName = 'FootprintTable'
+  footprintTableName = 'FootprintTable'
+  parameterTableName = 'ParameterTable'
+  profileTableName = 'Profile'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
 
 const userIdPresent = false // TODO: update in case is required to use that definition
-const partitionKeyName = 'domainAndDir'
-const partitionKeyType = 'String'
-
-const sortKeyName = 'itemAndType'
-const sortKeyType = 'String'
-
+const partitionKeyName = ''
+const partitionKeyType = ''
+const sortKeyName = ''
+const sortKeyType = ''
 const hasSortKey = sortKeyName !== ''
-const path = '/footprints'
+const path = '/profiles/:id'
 const UNAUTH = 'UNAUTH'
 const hashKeyPath = '/:' + partitionKeyName
 const sortKeyPath = hasSortKey ? '/:' + sortKeyName : ''
@@ -114,7 +120,7 @@ app.get(path + hashKeyPath, function (req, res) {
  * HTTP Get method for get single object *
  *****************************************/
 
-app.get(path + hashKeyPath + sortKeyPath, function (req, res) {
+app.get(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
   const params = {}
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] =
@@ -164,11 +170,6 @@ app.get(path + hashKeyPath + sortKeyPath, function (req, res) {
  *************************************/
 
 app.put(path, function (req, res) {
-  if (userIdPresent) {
-    req.body['userId'] =
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
-  }
-
   let putItemParams = {
     TableName: tableName,
     Item: req.body
@@ -187,31 +188,41 @@ app.put(path, function (req, res) {
  * HTTP post method for insert object *
  *************************************/
 
-app.post(path, function (req, res) {
-  if (userIdPresent) {
-    req.body['userId'] =
-      req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH
+app.post(path, async (req, res) => {
+  const params = {
+    TableName: footprintTableName,
+    KeyConditions: {
+      domainAndDir: {
+        ComparisonOperator: 'EQ',
+        AttributeValueList: ['mobility']
+      }
+    }
   }
 
-  let putItemParams = {
-    TableName: tableName,
-    Item: req.body
+  console.log(JSON.stringify(params))
+  try {
+    await estimateMobility(
+      dynamodb,
+      req.body,
+      null,
+      footprintTableName,
+      parameterTableName,
+      profileTableName,
+      res
+    )
+    res.json({ success: 'post call succeed!', url: req.url, data: 'data' })
+  } catch (err) {
+    res.statusCode = 500
+    res.json({ error: 'Could not load items: ' + err })
+    next(err)
   }
-  dynamodb.put(putItemParams, (err, data) => {
-    if (err) {
-      res.statusCode = 500
-      res.json({ error: err, url: req.url, body: req.body })
-    } else {
-      res.json({ success: 'post call succeed!', url: req.url, data: data })
-    }
-  })
 })
 
 /**************************************
  * HTTP remove method to delete object *
  ***************************************/
 
-app.delete(path + hashKeyPath + sortKeyPath, function (req, res) {
+app.delete(path + '/object' + hashKeyPath + sortKeyPath, function (req, res) {
   const params = {}
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] =

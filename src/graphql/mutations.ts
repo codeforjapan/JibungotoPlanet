@@ -8,7 +8,7 @@ export const createFootprint = /* GraphQL */ `
     $condition: ModelFootprintConditionInput
   ) {
     createFootprint(input: $input, condition: $condition) {
-      domainAndDir
+      dirAndDomain
       itemAndType
       value
       unit
@@ -27,7 +27,7 @@ export const updateFootprint = /* GraphQL */ `
     $condition: ModelFootprintConditionInput
   ) {
     updateFootprint(input: $input, condition: $condition) {
-      domainAndDir
+      dirAndDomain
       itemAndType
       value
       unit
@@ -46,7 +46,7 @@ export const deleteFootprint = /* GraphQL */ `
     $condition: ModelFootprintConditionInput
   ) {
     deleteFootprint(input: $input, condition: $condition) {
-      domainAndDir
+      dirAndDomain
       itemAndType
       value
       unit
@@ -124,9 +124,25 @@ export const createProfile = /* GraphQL */ `
     createProfile(input: $input, condition: $condition) {
       id
       clientToken
-      answer
-      estimation
-      options
+      answers
+      estimations {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      options {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
       createdAt
       updatedAt
       _version
@@ -143,9 +159,25 @@ export const updateProfile = /* GraphQL */ `
     updateProfile(input: $input, condition: $condition) {
       id
       clientToken
-      answer
-      estimation
-      options
+      answers
+      estimations {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      options {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
       createdAt
       updatedAt
       _version
@@ -162,9 +194,25 @@ export const deleteProfile = /* GraphQL */ `
     deleteProfile(input: $input, condition: $condition) {
       id
       clientToken
-      answer
-      estimation
-      options
+      answers
+      estimations {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      options {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
       createdAt
       updatedAt
       _version

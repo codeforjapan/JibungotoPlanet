@@ -4,9 +4,10 @@ import { schema } from './schema';
 
 
 
-const { Todo, Footprint } = initSchema(schema);
+const { Footprint, Parameter, Profile } = initSchema(schema);
 
 export {
-  Todo,
-  Footprint
+  Footprint,
+  Parameter,
+  Profile
 };

@@ -5,7 +5,7 @@
 export const onCreateFootprint = /* GraphQL */ `
   subscription OnCreateFootprint {
     onCreateFootprint {
-      domainAndDir
+      dirAndDomain
       itemAndType
       value
       unit
@@ -21,7 +21,7 @@ export const onCreateFootprint = /* GraphQL */ `
 export const onUpdateFootprint = /* GraphQL */ `
   subscription OnUpdateFootprint {
     onUpdateFootprint {
-      domainAndDir
+      dirAndDomain
       itemAndType
       value
       unit
@@ -37,7 +37,7 @@ export const onUpdateFootprint = /* GraphQL */ `
 export const onDeleteFootprint = /* GraphQL */ `
   subscription OnDeleteFootprint {
     onDeleteFootprint {
-      domainAndDir
+      dirAndDomain
       itemAndType
       value
       unit
@@ -103,9 +103,25 @@ export const onCreateProfile = /* GraphQL */ `
     onCreateProfile {
       id
       clientToken
-      answer
-      estimation
-      options
+      answers
+      estimations {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      options {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
       createdAt
       updatedAt
       _version
@@ -119,9 +135,25 @@ export const onUpdateProfile = /* GraphQL */ `
     onUpdateProfile {
       id
       clientToken
-      answer
-      estimation
-      options
+      answers
+      estimations {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      options {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
       createdAt
       updatedAt
       _version
@@ -135,9 +167,25 @@ export const onDeleteProfile = /* GraphQL */ `
     onDeleteProfile {
       id
       clientToken
-      answer
-      estimation
-      options
+      answers
+      estimations {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      options {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
       createdAt
       updatedAt
       _version

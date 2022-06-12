@@ -34,10 +34,36 @@
           ]
         }
       ]
+    },
+    "profile": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "profile",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "storage": {
     "Footprintdikfjlx7xncgpo5s3xzv5x56iedev": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    },
+    "Parameterdikfjlx7xncgpo5s3xzv5x56iedev": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    },
+    "Profiledikfjlx7xncgpo5s3xzv5x56iedev": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
@@ -53,6 +79,25 @@
         {
           "category": "storage",
           "resourceName": "Footprintdikfjlx7xncgpo5s3xzv5x56iedev",
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "attributeEnvMap": {
+            "Name": "TABLE_NAME",
+            "Arn": "TABLE_ARN"
+          }
+        }
+      ]
+    },
+    "profile": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "Profiledikfjlx7xncgpo5s3xzv5x56iedev",
           "attributes": [
             "Name",
             "Arn"

@@ -1,8 +1,6 @@
 # カーボンフットプリントの統計情報（物量、原単位、削減物量係数、削減原単位係数）
-type Footprint @model @auth(rules: [
-  {allow: public, operations: [read]}
-  ]) {
-  domainAndDir: String! @primaryKey(sortKeyFields: ["itemAndType"])
+type Footprint @model @auth(rules: [{ allow: public, operations: [read] }]) {
+  dirAndDomain: String! @primaryKey(sortKeyFields: ["itemAndType"])
   itemAndType: String!
   value: Float!
   unit: String
@@ -10,9 +8,7 @@ type Footprint @model @auth(rules: [
 }
 
 # カーボンフットプリント計算のための各種係数
-type Parameter  @model @auth(rules: [
-  {allow: public, operations: [read]}
-  ]) {
+type Parameter @model @auth(rules: [{ allow: public, operations: [read] }]) {
   category: String! @primaryKey(sortKeyFields: ["key"])
   key: String!
   value: Float!
@@ -20,14 +16,23 @@ type Parameter  @model @auth(rules: [
   citation: String
 }
 
-# カーボンフットプリントの計算結果
-type Profile  @model @auth(rules: [
-  {allow: public}
-  ]) {
-    id: ID! @primaryKey
-    clientToken: String! @index(name: "profilesByClientToken", queryField: "profilesByClientToken")
-    answer: String # JSON形式で回答を保存
-    estimation: String # JSON形式で計算結果を保存
-    options: [String!] # JSON形式で削減効果を保存
+# フットプリントの１レコード
+type FootprintItem {
+  dir: String!
+  domain: String!
+  item: String!
+  type: String!
+  value: Float!
+  unit: String
+  citation: String
 }
 
+# カーボンフットプリントの計算結果
+type Profile @model @auth(rules: [{ allow: public }]) {
+  id: ID! @primaryKey
+  clientToken: String!
+    @index(name: "profilesByClientToken", queryField: "profilesByClientToken")
+  answers: [String!] # JSON形式で回答を保存
+  estimations: [FootprintItem!] # JSON形式で計算結果を保存
+  options: [FootprintItem!] # JSON形式で削減効果を保存
+}
