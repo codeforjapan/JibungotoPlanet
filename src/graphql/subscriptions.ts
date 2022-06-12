@@ -101,6 +101,7 @@ export const onDeleteParameter = /* GraphQL */ `
 export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile {
     onCreateProfile {
+      id
       refId
       mobilityAnswer {
         hasPrivateCar
@@ -144,7 +145,6 @@ export const onCreateProfile = /* GraphQL */ `
         value
         unit
       }
-      id
       createdAt
       updatedAt
       _version
@@ -156,6 +156,7 @@ export const onCreateProfile = /* GraphQL */ `
 export const onUpdateProfile = /* GraphQL */ `
   subscription OnUpdateProfile {
     onUpdateProfile {
+      id
       refId
       mobilityAnswer {
         hasPrivateCar
@@ -199,7 +200,6 @@ export const onUpdateProfile = /* GraphQL */ `
         value
         unit
       }
-      id
       createdAt
       updatedAt
       _version
@@ -211,6 +211,7 @@ export const onUpdateProfile = /* GraphQL */ `
 export const onDeleteProfile = /* GraphQL */ `
   subscription OnDeleteProfile {
     onDeleteProfile {
+      id
       refId
       mobilityAnswer {
         hasPrivateCar
@@ -254,7 +255,6 @@ export const onDeleteProfile = /* GraphQL */ `
         value
         unit
       }
-      id
       createdAt
       updatedAt
       _version

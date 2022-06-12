@@ -122,6 +122,7 @@ export const createProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     createProfile(input: $input, condition: $condition) {
+      id
       refId
       mobilityAnswer {
         hasPrivateCar
@@ -165,7 +166,6 @@ export const createProfile = /* GraphQL */ `
         value
         unit
       }
-      id
       createdAt
       updatedAt
       _version
@@ -180,6 +180,7 @@ export const updateProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     updateProfile(input: $input, condition: $condition) {
+      id
       refId
       mobilityAnswer {
         hasPrivateCar
@@ -223,7 +224,6 @@ export const updateProfile = /* GraphQL */ `
         value
         unit
       }
-      id
       createdAt
       updatedAt
       _version
@@ -238,6 +238,7 @@ export const deleteProfile = /* GraphQL */ `
     $condition: ModelProfileConditionInput
   ) {
     deleteProfile(input: $input, condition: $condition) {
+      id
       refId
       mobilityAnswer {
         hasPrivateCar
@@ -281,7 +282,6 @@ export const deleteProfile = /* GraphQL */ `
         value
         unit
       }
-      id
       createdAt
       updatedAt
       _version

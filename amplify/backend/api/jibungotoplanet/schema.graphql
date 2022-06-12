@@ -59,7 +59,7 @@ type MobilityAnswer {
 
 # カーボンフットプリントの計算結果
 type Profile @model @auth(rules: [{ allow: public }]) {
-  # id: ID! @primaryKey # 更新時のuuid
+  id: ID! @primaryKey # 更新時のuuid
   refId: String! @index(name: "profilesByRefId", queryField: "profilesByRefId") # 参照時のuuid
   mobilityAnswer: MobilityAnswer # 移動に関する回答
   baselines: [Component!]

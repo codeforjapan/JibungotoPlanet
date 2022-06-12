@@ -165,6 +165,7 @@ export const syncParameters = /* GraphQL */ `
 export const getProfile = /* GraphQL */ `
   query GetProfile($id: ID!) {
     getProfile(id: $id) {
+      id
       refId
       mobilityAnswer {
         hasPrivateCar
@@ -208,7 +209,6 @@ export const getProfile = /* GraphQL */ `
         value
         unit
       }
-      id
       createdAt
       updatedAt
       _version
@@ -219,12 +219,21 @@ export const getProfile = /* GraphQL */ `
 `;
 export const listProfiles = /* GraphQL */ `
   query ListProfiles(
+    $id: ID
     $filter: ModelProfileFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listProfiles(
+      id: $id
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
+        id
         refId
         mobilityAnswer {
           hasPrivateCar
@@ -268,7 +277,6 @@ export const listProfiles = /* GraphQL */ `
           value
           unit
         }
-        id
         createdAt
         updatedAt
         _version
@@ -294,6 +302,7 @@ export const syncProfiles = /* GraphQL */ `
       lastSync: $lastSync
     ) {
       items {
+        id
         refId
         mobilityAnswer {
           hasPrivateCar
@@ -337,7 +346,6 @@ export const syncProfiles = /* GraphQL */ `
           value
           unit
         }
-        id
         createdAt
         updatedAt
         _version
@@ -365,6 +373,7 @@ export const profilesByRefId = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        id
         refId
         mobilityAnswer {
           hasPrivateCar
@@ -408,7 +417,6 @@ export const profilesByRefId = /* GraphQL */ `
           value
           unit
         }
-        id
         createdAt
         updatedAt
         _version

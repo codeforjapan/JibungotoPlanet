@@ -6,6 +6,11 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
+const AWS = require('aws-sdk')
+const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+const bodyParser = require('body-parser')
+const express = require('express')
+
 const toComponent = (item) => {
   const dirAndDomain = item.dirAndDomain.split('_')
   const itemAndType = item.itemAndType.split('_')
@@ -19,11 +24,6 @@ const toComponent = (item) => {
     citation: item.citation
   }
 }
-
-const AWS = require('aws-sdk')
-const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
-const bodyParser = require('body-parser')
-const express = require('express')
 
 AWS.config.update({ region: process.env.TABLE_REGION })
 
@@ -49,18 +49,7 @@ if (
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
 
-const userIdPresent = false // TODO: update in case is required to use that definition
-const partitionKeyName = 'dirAndDomain'
-const partitionKeyType = 'String'
-
-const sortKeyName = 'itemAndType'
-const sortKeyType = 'String'
-
-const hasSortKey = sortKeyName !== ''
 const path = '/footprints'
-const UNAUTH = 'UNAUTH'
-const hashKeyPath = '/:' + partitionKeyName
-const sortKeyPath = hasSortKey ? '/:' + sortKeyName : ''
 
 // declare a new express app
 const app = express()

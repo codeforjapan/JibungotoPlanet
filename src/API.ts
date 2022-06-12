@@ -149,12 +149,12 @@ export type DeleteParameterInput = {
 };
 
 export type CreateProfileInput = {
+  id?: string | null,
   refId: string,
   mobilityAnswer?: MobilityAnswerInput | null,
   baselines?: Array< ComponentInput > | null,
   estimations?: Array< ItemInput > | null,
   options?: Array< ItemInput > | null,
-  id?: string | null,
   _version?: number | null,
 };
 
@@ -205,12 +205,12 @@ export type ModelProfileConditionInput = {
 
 export type Profile = {
   __typename: "Profile",
+  id: string,
   refId: string,
   mobilityAnswer?: MobilityAnswer | null,
   baselines?:  Array<Component > | null,
   estimations?:  Array<Item > | null,
   options?:  Array<Item > | null,
-  id: string,
   createdAt: string,
   updatedAt: string,
   _version: number,
@@ -260,12 +260,12 @@ export type Item = {
 };
 
 export type UpdateProfileInput = {
+  id: string,
   refId?: string | null,
   mobilityAnswer?: MobilityAnswerInput | null,
   baselines?: Array< ComponentInput > | null,
   estimations?: Array< ItemInput > | null,
   options?: Array< ItemInput > | null,
-  id: string,
   _version?: number | null,
 };
 
@@ -327,10 +327,27 @@ export type ModelParameterConnection = {
 };
 
 export type ModelProfileFilterInput = {
+  id?: ModelIDInput | null,
   refId?: ModelStringInput | null,
   and?: Array< ModelProfileFilterInput | null > | null,
   or?: Array< ModelProfileFilterInput | null > | null,
   not?: ModelProfileFilterInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
 };
 
 export type ModelProfileConnection = {
@@ -474,6 +491,7 @@ export type CreateProfileMutationVariables = {
 export type CreateProfileMutation = {
   createProfile?:  {
     __typename: "Profile",
+    id: string,
     refId: string,
     mobilityAnswer?:  {
       __typename: "MobilityAnswer",
@@ -521,7 +539,6 @@ export type CreateProfileMutation = {
       value: number,
       unit?: string | null,
     } > | null,
-    id: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -538,6 +555,7 @@ export type UpdateProfileMutationVariables = {
 export type UpdateProfileMutation = {
   updateProfile?:  {
     __typename: "Profile",
+    id: string,
     refId: string,
     mobilityAnswer?:  {
       __typename: "MobilityAnswer",
@@ -585,7 +603,6 @@ export type UpdateProfileMutation = {
       value: number,
       unit?: string | null,
     } > | null,
-    id: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -602,6 +619,7 @@ export type DeleteProfileMutationVariables = {
 export type DeleteProfileMutation = {
   deleteProfile?:  {
     __typename: "Profile",
+    id: string,
     refId: string,
     mobilityAnswer?:  {
       __typename: "MobilityAnswer",
@@ -649,7 +667,6 @@ export type DeleteProfileMutation = {
       value: number,
       unit?: string | null,
     } > | null,
-    id: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -823,6 +840,7 @@ export type GetProfileQueryVariables = {
 export type GetProfileQuery = {
   getProfile?:  {
     __typename: "Profile",
+    id: string,
     refId: string,
     mobilityAnswer?:  {
       __typename: "MobilityAnswer",
@@ -870,7 +888,6 @@ export type GetProfileQuery = {
       value: number,
       unit?: string | null,
     } > | null,
-    id: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -880,9 +897,11 @@ export type GetProfileQuery = {
 };
 
 export type ListProfilesQueryVariables = {
+  id?: string | null,
   filter?: ModelProfileFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListProfilesQuery = {
@@ -890,6 +909,7 @@ export type ListProfilesQuery = {
     __typename: "ModelProfileConnection",
     items:  Array< {
       __typename: "Profile",
+      id: string,
       refId: string,
       mobilityAnswer?:  {
         __typename: "MobilityAnswer",
@@ -937,7 +957,6 @@ export type ListProfilesQuery = {
         value: number,
         unit?: string | null,
       } > | null,
-      id: string,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -961,6 +980,7 @@ export type SyncProfilesQuery = {
     __typename: "ModelProfileConnection",
     items:  Array< {
       __typename: "Profile",
+      id: string,
       refId: string,
       mobilityAnswer?:  {
         __typename: "MobilityAnswer",
@@ -1008,7 +1028,6 @@ export type SyncProfilesQuery = {
         value: number,
         unit?: string | null,
       } > | null,
-      id: string,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -1033,6 +1052,7 @@ export type ProfilesByRefIdQuery = {
     __typename: "ModelProfileConnection",
     items:  Array< {
       __typename: "Profile",
+      id: string,
       refId: string,
       mobilityAnswer?:  {
         __typename: "MobilityAnswer",
@@ -1080,7 +1100,6 @@ export type ProfilesByRefIdQuery = {
         value: number,
         unit?: string | null,
       } > | null,
-      id: string,
       createdAt: string,
       updatedAt: string,
       _version: number,
@@ -1191,6 +1210,7 @@ export type OnDeleteParameterSubscription = {
 export type OnCreateProfileSubscription = {
   onCreateProfile?:  {
     __typename: "Profile",
+    id: string,
     refId: string,
     mobilityAnswer?:  {
       __typename: "MobilityAnswer",
@@ -1238,7 +1258,6 @@ export type OnCreateProfileSubscription = {
       value: number,
       unit?: string | null,
     } > | null,
-    id: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -1250,6 +1269,7 @@ export type OnCreateProfileSubscription = {
 export type OnUpdateProfileSubscription = {
   onUpdateProfile?:  {
     __typename: "Profile",
+    id: string,
     refId: string,
     mobilityAnswer?:  {
       __typename: "MobilityAnswer",
@@ -1297,7 +1317,6 @@ export type OnUpdateProfileSubscription = {
       value: number,
       unit?: string | null,
     } > | null,
-    id: string,
     createdAt: string,
     updatedAt: string,
     _version: number,
@@ -1309,6 +1328,7 @@ export type OnUpdateProfileSubscription = {
 export type OnDeleteProfileSubscription = {
   onDeleteProfile?:  {
     __typename: "Profile",
+    id: string,
     refId: string,
     mobilityAnswer?:  {
       __typename: "MobilityAnswer",
@@ -1356,7 +1376,6 @@ export type OnDeleteProfileSubscription = {
       value: number,
       unit?: string | null,
     } > | null,
-    id: string,
     createdAt: string,
     updatedAt: string,
     _version: number,

@@ -11,7 +11,6 @@ const AWS = require('aws-sdk')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 const bodyParser = require('body-parser')
 const express = require('express')
-const { default: next } = require('next')
 const { v4: uuid } = require('uuid')
 const shortid = require('shortid')
 
