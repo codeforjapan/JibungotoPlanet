@@ -2,43 +2,262 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
+export const createFootprint = /* GraphQL */ `
+  mutation CreateFootprint(
+    $input: CreateFootprintInput!
+    $condition: ModelFootprintConditionInput
   ) {
-    createTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
+    createFootprint(input: $input, condition: $condition) {
+      dirAndDomain
+      itemAndType
+      value
+      unit
+      citation
       createdAt
       updatedAt
     }
   }
 `;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
+export const updateFootprint = /* GraphQL */ `
+  mutation UpdateFootprint(
+    $input: UpdateFootprintInput!
+    $condition: ModelFootprintConditionInput
   ) {
-    updateTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
+    updateFootprint(input: $input, condition: $condition) {
+      dirAndDomain
+      itemAndType
+      value
+      unit
+      citation
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
+export const deleteFootprint = /* GraphQL */ `
+  mutation DeleteFootprint(
+    $input: DeleteFootprintInput!
+    $condition: ModelFootprintConditionInput
   ) {
-    deleteTodo(input: $input, condition: $condition) {
+    deleteFootprint(input: $input, condition: $condition) {
+      dirAndDomain
+      itemAndType
+      value
+      unit
+      citation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createParameter = /* GraphQL */ `
+  mutation CreateParameter(
+    $input: CreateParameterInput!
+    $condition: ModelParameterConditionInput
+  ) {
+    createParameter(input: $input, condition: $condition) {
+      category
+      key
+      value
+      unit
+      citation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateParameter = /* GraphQL */ `
+  mutation UpdateParameter(
+    $input: UpdateParameterInput!
+    $condition: ModelParameterConditionInput
+  ) {
+    updateParameter(input: $input, condition: $condition) {
+      category
+      key
+      value
+      unit
+      citation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteParameter = /* GraphQL */ `
+  mutation DeleteParameter(
+    $input: DeleteParameterInput!
+    $condition: ModelParameterConditionInput
+  ) {
+    deleteParameter(input: $input, condition: $condition) {
+      category
+      key
+      value
+      unit
+      citation
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createProfile = /* GraphQL */ `
+  mutation CreateProfile(
+    $input: CreateProfileInput!
+    $condition: ModelProfileConditionInput
+  ) {
+    createProfile(input: $input, condition: $condition) {
       id
-      name
-      description
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
+      }
+      options {
+        domain
+        item
+        type
+        value
+        unit
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateProfile = /* GraphQL */ `
+  mutation UpdateProfile(
+    $input: UpdateProfileInput!
+    $condition: ModelProfileConditionInput
+  ) {
+    updateProfile(input: $input, condition: $condition) {
+      id
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
+      }
+      options {
+        domain
+        item
+        type
+        value
+        unit
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteProfile = /* GraphQL */ `
+  mutation DeleteProfile(
+    $input: DeleteProfileInput!
+    $condition: ModelProfileConditionInput
+  ) {
+    deleteProfile(input: $input, condition: $condition) {
+      id
+      refId
+      mobilityAnswer {
+        hasPrivateCar
+        privateCarType
+        privateCarAnnualMileage
+        carCharging
+        carPassengers
+        train
+        trainUnit
+        bus
+        busUnit
+        motorbike
+        motorbikeUnit
+        airplane
+        airplaneUnit
+        otherCar
+        otherCarUnit
+        ferry
+        ferryUnit
+      }
+      baselines {
+        dir
+        domain
+        item
+        type
+        value
+        unit
+        citation
+      }
+      estimations {
+        domain
+        item
+        type
+        value
+        unit
+      }
+      options {
+        domain
+        item
+        type
+        value
+        unit
+      }
       createdAt
       updatedAt
     }

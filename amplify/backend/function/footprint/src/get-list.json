@@ -1,0 +1,10 @@
+{
+  "httpMethod": "GET",
+  "path": "/footprints/baseline/mobility",
+  "queryStringParameters": {
+    "limit": "10"
+  },
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
