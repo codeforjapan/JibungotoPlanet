@@ -64,3 +64,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+# data import
+data/local/
+data/venv/

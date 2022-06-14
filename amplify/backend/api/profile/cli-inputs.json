@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/profiles": {
+      "name": "/profiles",
+      "lambdaFunction": "profile",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

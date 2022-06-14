@@ -1,9 +1,68 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+# カーボンフットプリントの統計情報（物量、原単位、削減物量係数、削減原単位係数）
+type Footprint @model @auth(rules: [{ allow: public, operations: [read] }]) {
+  dirAndDomain: String! @primaryKey(sortKeyFields: ["itemAndType"])
+  itemAndType: String!
+  value: Float!
+  unit: String
+  citation: String
+}
 
-type Todo @model {
-  id: ID!
-  name: String!
-  description: String
+# カーボンフットプリント計算のための各種係数
+type Parameter @model @auth(rules: [{ allow: public, operations: [read] }]) {
+  category: String! @primaryKey(sortKeyFields: ["key"])
+  key: String!
+  value: Float!
+  unit: String
+  citation: String
+}
+
+# フットプリントの１レコード
+type Component {
+  dir: String!
+  domain: String!
+  item: String!
+  type: String!
+  value: Float!
+  unit: String
+  citation: String
+}
+
+# 計算結果の１レコード
+type Item {
+  domain: String!
+  item: String!
+  type: String!
+  value: Float!
+  unit: String
+}
+
+# 移動に関する質問の回答
+type MobilityAnswer {
+  hasPrivateCar: Boolean
+  privateCarType: String
+  privateCarAnnualMileage: Float
+  carCharging: String
+  carPassengers: String
+  train: Float
+  trainUnit: String
+  bus: Float
+  busUnit: String
+  motorbike: Float
+  motorbikeUnit: String
+  airplane: Float
+  airplaneUnit: String
+  otherCar: Float
+  otherCarUnit: String
+  ferry: Float
+  ferryUnit: String
+}
+
+# カーボンフットプリントの計算結果
+type Profile @model @auth(rules: [{ allow: public }]) {
+  id: ID! @primaryKey # 更新時のuuid
+  refId: String! @index(name: "profilesByRefId", queryField: "profilesByRefId") # 参照時のuuid
+  mobilityAnswer: MobilityAnswer # 移動に関する回答
+  baselines: [Component!]
+  estimations: [Item!]
+  options: [Item!]
 }
