@@ -16,13 +16,13 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageProfile5kcplupfmvcadpi7xxrfiedakmdevName": {
+    "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevName": {
       "Type": "String",
-      "Default": "storageProfile5kcplupfmvcadpi7xxrfiedakmdevName"
+      "Default": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevName"
     },
-    "storageProfile5kcplupfmvcadpi7xxrfiedakmdevArn": {
+    "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn": {
       "Type": "String",
-      "Default": "storageProfile5kcplupfmvcadpi7xxrfiedakmdevArn"
+      "Default": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn"
     }
   },
   "Conditions": {
@@ -55,12 +55,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "profile",
+            "footprintf523f2c8",
             {
               "Fn::Join": [
                 "",
                 [
-                  "profile",
+                  "footprintf523f2c8",
                   "-",
                   {
                     "Ref": "env"
@@ -97,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "jibungotoplanetLambdaRole2664e505",
+            "jibungotoplanetLambdaRolec5738be4",
             {
               "Fn::Join": [
                 "",
                 [
-                  "jibungotoplanetLambdaRole2664e505",
+                  "jibungotoplanetLambdaRolec5738be4",
                   "-",
                   {
                     "Ref": "env"
@@ -182,14 +182,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storageProfile5kcplupfmvcadpi7xxrfiedakmdevArn"
+                  "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storageProfile5kcplupfmvcadpi7xxrfiedakmdevArn"
+                        "Ref": "storageFootprint3uyvqum6jrc4pf63cde7njsxeidevArn"
                       },
                       "index/*"
                     ]

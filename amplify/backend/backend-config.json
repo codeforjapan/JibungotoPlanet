@@ -1,6 +1,6 @@
 {
   "api": {
-    "jibungotoplanet": {
+    "JibungotoPlanetGql": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -10,101 +10,110 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2023-06-12T10:53:21.624Z",
-              "description": "JibungotoPlanet"
+              "apiKeyExpirationDate": "2023-06-17T10:42:46.638Z",
+              "description": "JibungotoPlanetGql"
             }
           },
           "additionalAuthenticationProviders": []
         }
       }
     },
-    "footprint": {
+    "JibungotoPlanetRest": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "footprint",
+          "resourceName": "footprintf523f2c8",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "profilea2218c7f",
           "attributes": [
             "Name",
             "Arn"
           ]
         }
       ]
-    },
-    "profile": {
-      "service": "API Gateway",
+    }
+  },
+  "function": {
+    "footprintf523f2c8": {
+      "build": true,
       "providerPlugin": "awscloudformation",
+      "service": "Lambda",
       "dependsOn": [
         {
-          "category": "function",
-          "resourceName": "profile",
+          "category": "storage",
+          "resourceName": "Footprint3uyvqum6jrc4pf63cde7njsxeidev",
           "attributes": [
             "Name",
             "Arn"
+          ],
+          "attributeEnvMap": {
+            "Name": "TABLE_NAME",
+            "Arn": "TABLE_ARN"
+          }
+        }
+      ]
+    },
+    "profilea2218c7f": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "Footprint3uyvqum6jrc4pf63cde7njsxeidev",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Parameter3uyvqum6jrc4pf63cde7njsxeidev",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "Profile3uyvqum6jrc4pf63cde7njsxeidev",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
           ]
         }
       ]
     }
   },
   "storage": {
-    "Footprint5kcplupfmvcadpi7xxrfiedakmdev": {
+    "Footprint3uyvqum6jrc4pf63cde7njsxeidev": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     },
-    "Parameter5kcplupfmvcadpi7xxrfiedakmdev": {
+    "Parameter3uyvqum6jrc4pf63cde7njsxeidev": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
     },
-    "Profile5kcplupfmvcadpi7xxrfiedakmdev": {
+    "Profile3uyvqum6jrc4pf63cde7njsxeidev": {
       "service": "DynamoDB",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": []
-    }
-  },
-  "function": {
-    "footprint": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "Footprint5kcplupfmvcadpi7xxrfiedakmdev",
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
-        }
-      ]
-    },
-    "profile": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "Profile5kcplupfmvcadpi7xxrfiedakmdev",
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
-        }
-      ]
     }
   }
 }

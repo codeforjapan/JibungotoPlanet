@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "storage": {
+      "Footprint3uyvqum6jrc4pf63cde7njsxeidev": [
+        "read"
+      ],
+      "Parameter3uyvqum6jrc4pf63cde7njsxeidev": [
+        "read"
+      ],
+      "Profile3uyvqum6jrc4pf63cde7njsxeidev": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

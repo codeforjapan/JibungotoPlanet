@@ -53,50 +53,46 @@ module.exports.estimateMobility = async (
   if (mobilityAnswer.hasPrivateCar) {
     if (mobilityAnswer.privateCarType) {
       // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
-      {
-        const params = {
-          TableName: parameterTableName,
-          Key: {
-            category: 'car-footprint',
-            key: mobilityAnswer.privateCarType + '_driving-ghg-intensity'
-          }
+      const params = {
+        TableName: parameterTableName,
+        Key: {
+          category: 'car-footprint',
+          key: mobilityAnswer.privateCarType + '_driving-ghg-intensity'
         }
-        let data = await dynamodb.get(params).promise()
-        const intensity = toItem(
-          baselines,
-          'mobility',
-          'private-car-driving',
-          'intensity'
-        )
-
-        // 人数補正値
-        const carPassengers = mobilityAnswer.carPassengers || 'unknown'
-        params.Key = {
-          category: 'car-passengers',
-          key:
-            carPassengers +
-            '_private-car-ghg-intensity-ratio-to-national-average'
-        }
-        data = await dynamodb.get(params).promise()
-        const ratio = data?.Item?.value || 1
-
-        console.log('ratio = ' + ratio)
-
-        // TODO: PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正が必要。
-        intensity.value = data.Item.value * ratio
-        estimations.push(intensity)
       }
+      let data = await dynamodb.get(params).promise()
+      const intensity = toItem(
+        baselines,
+        'mobility',
+        'private-car-driving',
+        'intensity'
+      )
+
+      // 人数補正値
+      const carPassengers = mobilityAnswer.carPassengers || 'unknown'
+      params.Key = {
+        category: 'car-passengers',
+        key:
+          carPassengers + '_private-car-ghg-intensity-ratio-to-national-average'
+      }
+      data = await dynamodb.get(params).promise()
+      const ratio = data?.Item?.value || 1
+
+      console.log('ratio = ' + ratio)
+
+      // TODO: PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正が必要。
+      intensity.value = data.Item.value * ratio
+      estimations.push(intensity)
+
       // 自家用車の移動距離を取得
-      {
-        const amount = toItem(
-          baselines,
-          'mobility',
-          'private-car-driving',
-          'amount'
-        )
-        amount.value = mobilityAnswer.privateCarAnnualMileage
-        estimations.push(amount)
-      }
+      const amount = toItem(
+        baselines,
+        'mobility',
+        'private-car-driving',
+        'amount'
+      )
+      amount.value = mobilityAnswer.privateCarAnnualMileage
+      estimations.push(amount)
 
       // TODO: 以下、未実装
       // --- per week ---

@@ -5,6 +5,19 @@ Licensed under the Apache License, Version 2.0 (the "License"). You may not use 
 or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 */
+/* Amplify Params - DO NOT EDIT
+	ENV
+	REGION
+	STORAGE_FOOTPRINT3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN
+	STORAGE_FOOTPRINT3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME
+	STORAGE_FOOTPRINT3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN
+	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN
+	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME
+	STORAGE_PARAMETER3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN
+	STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_ARN
+	STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_NAME
+	STORAGE_PROFILE3UYVQUM6JRC4PF63CDE7NJSXEIDEV_STREAMARN
+Amplify Params - DO NOT EDIT */
 
 const { estimateMobility } = require('./mobility')
 const AWS = require('aws-sdk')
@@ -16,7 +29,7 @@ const shortid = require('shortid')
 
 AWS.config.update({ region: process.env.TABLE_REGION })
 
-const suffix = '5kcplupfmvcadpi7xxrfiedakm'
+const suffix = '3uyvqum6jrc4pf63cde7njsxei'
 
 let dynamoParam = {}
 let footprintTableName = 'Footprint-' + suffix
