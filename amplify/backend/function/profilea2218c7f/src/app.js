@@ -78,23 +78,14 @@ app.use(function (req, res, next) {
  *****************************************/
 
 app.get(path + '/:id', async (req, res) => {
-  const id = req.params.id
   const params = {
     TableName: profileTableName,
-    IndexName: 'profilesByRefId',
-    KeyConditionExpression: 'refId = :refId',
-    ExpressionAttributeValues: { ':refId': id }
+    Key: { id: req.params.id }
   }
 
   try {
-    const data = await dynamodb.query(params).promise()
-    const profile = data.Items[0]
-    if (profile) {
-      profile.id = undefined
-      res.json(profile)
-    } else {
-      res.json({})
-    }
+    const data = await dynamodb.get(params).promise()
+    res.json(data.Item)
   } catch (err) {
     res.statusCode = 500
     res.json({ error: 'Could not load item: ' + err })
@@ -157,7 +148,7 @@ app.post(path, async (req, res) => {
 
     const profile = {
       id: uuid(),
-      refId: shortid.generate(),
+      shareId: shortid.generate(),
       mobilityAnswer,
       baselines,
       estimations,

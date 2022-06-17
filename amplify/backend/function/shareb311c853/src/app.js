@@ -11,25 +11,11 @@ const awsServerlessExpressMiddleware = require('aws-serverless-express/middlewar
 const bodyParser = require('body-parser')
 const express = require('express')
 
-const toComponent = (item) => {
-  const dirAndDomain = item.dirAndDomain.split('_')
-  const itemAndType = item.itemAndType.split('_')
-  return {
-    dir: dirAndDomain[0],
-    domain: dirAndDomain[1],
-    item: itemAndType[0],
-    type: itemAndType[1],
-    value: item.value,
-    unit: item.unit,
-    citation: item.citation
-  }
-}
-
 AWS.config.update({ region: process.env.TABLE_REGION })
 
 const suffix = '3uyvqum6jrc4pf63cde7njsxei'
 let dynamoParam = {}
-let tableName = 'Footprint-' + suffix
+let tableName = 'Profile-' + suffix
 if (process.env.ENV && process.env.ENV !== 'NONE') {
   tableName = tableName + '-' + process.env.ENV
 }
@@ -45,12 +31,12 @@ if (
     accessKeyId: 'fake',
     secretAccessKey: 'fake'
   }
-  tableName = 'FootprintTable'
+  tableName = 'ProfileTable'
 }
 
 const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoParam)
 
-const path = '/footprints'
+const path = '/shares'
 
 // declare a new express app
 const app = express()
@@ -64,57 +50,31 @@ app.use(function (req, res, next) {
   next()
 })
 
-/********************************
- * HTTP Get method for list objects *
- ********************************/
-
-app.get(path + '/:dir/:domain', async (req, res) => {
-  const dir = req.params.dir
-  const domain = req.params.domain
-
-  const params = {
-    TableName: tableName,
-    KeyConditions: {
-      dirAndDomain: {
-        ComparisonOperator: 'EQ',
-        AttributeValueList: [dir + '_' + domain]
-      }
-    }
-  }
-
-  try {
-    const data = await dynamodb.query(params).promise()
-    res.json(data.Items.map((item) => toComponent(item)))
-  } catch (err) {
-    res.statusCode = 500
-    res.json({ error: 'Could not load items: ' + err })
-  }
-})
-
 /*****************************************
  * HTTP Get method for get single object *
  *****************************************/
 
-app.get(path + '/:dir/:domain/:item/:type', async (req, res) => {
-  const dir = req.params.dir
-  const domain = req.params.domain
-  const item = req.params.item
-  const type = req.params.type
-
+app.get(path + '/:id', async (req, res) => {
+  const id = req.params.id
   const params = {
     TableName: tableName,
-    Key: {
-      dirAndDomain: dir + '_' + domain,
-      itemAndType: item + '_' + type
-    }
+    IndexName: 'profilesByShareId',
+    KeyConditionExpression: 'shareId = :shareId',
+    ExpressionAttributeValues: { ':shareId': id }
   }
 
   try {
-    const data = await dynamodb.get(params).promise()
-    res.json(toComponent(data.Item))
+    const data = await dynamodb.query(params).promise()
+    const profile = data.Items[0]
+    if (profile) {
+      profile.id = undefined
+      res.json(profile)
+    } else {
+      res.json({})
+    }
   } catch (err) {
     res.statusCode = 500
-    res.json({ error: 'Could not load items: ' + err.message })
+    res.json({ error: 'Could not load item: ' + err })
   }
 })
 
