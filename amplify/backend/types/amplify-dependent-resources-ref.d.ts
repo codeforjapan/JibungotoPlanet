@@ -1,29 +1,30 @@
 export type AmplifyDependentResourcesAttributes = {
     "api": {
-        "jibungotoplanet": {
+        "JibungotoPlanetGql": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         },
-        "footprint": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
-        },
-        "profile": {
+        "JibungotoPlanetRest": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"
         }
     },
     "function": {
-        "footprint": {
+        "footprintf523f2c8": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
             "LambdaExecutionRole": "string"
         },
-        "profile": {
+        "profilea2218c7f": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "shareb311c853": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",

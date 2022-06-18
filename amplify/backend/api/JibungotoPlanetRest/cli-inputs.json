@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "paths": {
+    "/footprints": {
+      "name": "/footprints",
+      "lambdaFunction": "footprintf523f2c8",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/profiles": {
+      "name": "/profiles",
+      "lambdaFunction": "profilea2218c7f",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/shares": {
+      "name": "/shares",
+      "lambdaFunction": "shareb311c853",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

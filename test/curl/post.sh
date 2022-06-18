@@ -1,0 +1,1 @@
+curl -X POST -H "Content-Type: application/json" -d '{}' ${JIBUNGOTO_PLANET_REST}/profiles

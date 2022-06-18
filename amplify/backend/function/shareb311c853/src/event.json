@@ -1,0 +1,7 @@
+{
+  "httpMethod": "get",
+  "path": "/shares/H7iPsRKVm",
+  "headers": {
+    "Content-Type": "application/json"
+  }
+}
