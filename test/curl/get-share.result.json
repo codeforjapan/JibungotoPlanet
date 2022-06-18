@@ -1,296 +1,295 @@
 {
-  "updatedAt": "2022-06-17T14:54:10.017Z",
-  "createdAt": "2022-06-17T14:54:10.017Z",
+  "updatedAt": "2022-06-18T11:16:33.834Z",
+  "createdAt": "2022-06-18T11:13:36.840Z",
   "baselines": [
     {
       "item": "airplane",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 1161.463556
+      "value": 1161.463556,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "airplane",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.124064635
+      "value": 0.124064635,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "bicycle-maintenance",
       "unit": "000JPY",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 0.406667749
+      "value": 0.406667749,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "bicycle-maintenance",
       "unit": "kgCO2e/000JPY",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 2.324385029
+      "value": 2.324385029,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "bicycle-purchase",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 264.0133354
+      "value": 264.0133354,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "bicycle-purchase",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.013134541
+      "value": 0.013134541,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "bus",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 430.6177624
+      "value": 430.6177624,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "bus",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.082993045
+      "value": 0.082993045,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "car-sharing-driving",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 60.7815956
+      "value": 60.7815956,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "car-sharing-driving",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.168721197
+      "value": 0.168721197,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "car-sharing-rental",
       "unit": "use",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 0.161272731
+      "value": 0.161272731,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "car-sharing-rental",
       "unit": "kgCO2e/use",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 8.698477742
+      "value": 8.698477742,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "ferry",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 20.10019321
+      "value": 20.10019321,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "ferry",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.424691332
+      "value": 0.424691332,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "motorbike-driving",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 254.458252
+      "value": 254.458252,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "motorbike-driving",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.057043135
+      "value": 0.057043135,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "motorbike-maintenance",
       "unit": "000JPY",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 0.446120353
+      "value": 0.446120353,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "motorbike-maintenance",
       "unit": "kgCO2e/000JPY",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 1.965801837
+      "value": 1.965801837,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "motorbike-purchase",
       "unit": "vehicle",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 0.002635317
+      "value": 0.002635317,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "motorbike-purchase",
       "unit": "kgCO2e/vehicle",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 979.6575783
+      "value": 979.6575783,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "private-car-driving",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 4341.744284
+      "value": 5000,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "private-car-driving",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.168396977
+      "value": 0.19778988757000002,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "private-car-maintenance",
       "unit": "000JPY",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 55.72777896
+      "value": 55.72777896,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "private-car-maintenance",
       "unit": "kgCO2e/000JPY",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 1.648088312
+      "value": 1.648088312,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "private-car-purchase",
       "unit": "vehicle",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 0.043510227
+      "value": 0.043510227,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "private-car-purchase",
       "unit": "kgCO2e/vehicle",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 5112.506479
+      "value": 5112.506479,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "taxi",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 48.16514973
+      "value": 48.16514973,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "taxi",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.429510033
+      "value": 0.429510033,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "train",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 2883.143695
+      "value": 2883.143695,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "train",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0.031326557
+      "value": 0.031326557,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "walking-walking",
       "unit": "km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "amount",
-      "value": 168.9344406
+      "value": 168.9344406,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     },
     {
       "item": "walking-walking",
       "unit": "kgCO2e/km-passenger",
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility",
-      "dir": "baseline",
       "type": "intensity",
-      "value": 0
+      "value": 0,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
+    },
+    {
+      "item": "walking",
+      "unit": "km-passenger",
+      "type": "amount",
+      "value": 168.9344406,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
+    },
+    {
+      "item": "walking",
+      "unit": "kgCO2e/km-passenger",
+      "type": "intensity",
+      "value": 0,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
     }
   ],
-  "shareId": "tK6YLaBiT",
-  "estimations": []
+  "shareId": "DtsjOx_Yy",
+  "estimations": [
+    {
+      "item": "private-car-driving",
+      "unit": "kgCO2e/km-passenger",
+      "type": "intensity",
+      "value": 0.19778988757000002,
+      "domain": "mobility"
+    },
+    {
+      "item": "private-car-driving",
+      "unit": "km-passenger",
+      "type": "amount",
+      "value": 5000,
+      "domain": "mobility"
+    }
+  ]
 }
