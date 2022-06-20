@@ -5,12 +5,14 @@
 export type CreateFootprintInput = {
   dirAndDomain: string,
   itemAndType: string,
+  subdomain: string,
   value: number,
   unit?: string | null,
   citation?: string | null,
 };
 
 export type ModelFootprintConditionInput = {
+  subdomain?: ModelStringInput | null,
   value?: ModelFloatInput | null,
   unit?: ModelStringInput | null,
   citation?: ModelStringInput | null,
@@ -18,32 +20,6 @@ export type ModelFootprintConditionInput = {
   or?: Array< ModelFootprintConditionInput | null > | null,
   not?: ModelFootprintConditionInput | null,
 };
-
-export type ModelFloatInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-};
-
-export enum ModelAttributeTypes {
-  binary = "binary",
-  binarySet = "binarySet",
-  bool = "bool",
-  list = "list",
-  map = "map",
-  number = "number",
-  numberSet = "numberSet",
-  string = "string",
-  stringSet = "stringSet",
-  _null = "_null",
-}
-
 
 export type ModelStringInput = {
   ne?: string | null,
@@ -61,6 +37,20 @@ export type ModelStringInput = {
   size?: ModelSizeInput | null,
 };
 
+export enum ModelAttributeTypes {
+  binary = "binary",
+  binarySet = "binarySet",
+  bool = "bool",
+  list = "list",
+  map = "map",
+  number = "number",
+  numberSet = "numberSet",
+  string = "string",
+  stringSet = "stringSet",
+  _null = "_null",
+}
+
+
 export type ModelSizeInput = {
   ne?: number | null,
   eq?: number | null,
@@ -71,10 +61,23 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
+export type ModelFloatInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type Footprint = {
   __typename: "Footprint",
   dirAndDomain: string,
   itemAndType: string,
+  subdomain: string,
   value: number,
   unit?: string | null,
   citation?: string | null,
@@ -85,6 +88,7 @@ export type Footprint = {
 export type UpdateFootprintInput = {
   dirAndDomain: string,
   itemAndType: string,
+  subdomain?: string | null,
   value?: number | null,
   unit?: string | null,
   citation?: string | null,
@@ -286,6 +290,7 @@ export type ModelStringKeyConditionInput = {
 export type ModelFootprintFilterInput = {
   dirAndDomain?: ModelStringInput | null,
   itemAndType?: ModelStringInput | null,
+  subdomain?: ModelStringInput | null,
   value?: ModelFloatInput | null,
   unit?: ModelStringInput | null,
   citation?: ModelStringInput | null,
@@ -363,6 +368,7 @@ export type CreateFootprintMutation = {
     __typename: "Footprint",
     dirAndDomain: string,
     itemAndType: string,
+    subdomain: string,
     value: number,
     unit?: string | null,
     citation?: string | null,
@@ -381,6 +387,7 @@ export type UpdateFootprintMutation = {
     __typename: "Footprint",
     dirAndDomain: string,
     itemAndType: string,
+    subdomain: string,
     value: number,
     unit?: string | null,
     citation?: string | null,
@@ -399,6 +406,7 @@ export type DeleteFootprintMutation = {
     __typename: "Footprint",
     dirAndDomain: string,
     itemAndType: string,
+    subdomain: string,
     value: number,
     unit?: string | null,
     citation?: string | null,
@@ -654,6 +662,7 @@ export type GetFootprintQuery = {
     __typename: "Footprint",
     dirAndDomain: string,
     itemAndType: string,
+    subdomain: string,
     value: number,
     unit?: string | null,
     citation?: string | null,
@@ -678,6 +687,7 @@ export type ListFootprintsQuery = {
       __typename: "Footprint",
       dirAndDomain: string,
       itemAndType: string,
+      subdomain: string,
       value: number,
       unit?: string | null,
       citation?: string | null,
@@ -933,6 +943,7 @@ export type OnCreateFootprintSubscription = {
     __typename: "Footprint",
     dirAndDomain: string,
     itemAndType: string,
+    subdomain: string,
     value: number,
     unit?: string | null,
     citation?: string | null,
@@ -946,6 +957,7 @@ export type OnUpdateFootprintSubscription = {
     __typename: "Footprint",
     dirAndDomain: string,
     itemAndType: string,
+    subdomain: string,
     value: number,
     unit?: string | null,
     citation?: string | null,
@@ -959,6 +971,7 @@ export type OnDeleteFootprintSubscription = {
     __typename: "Footprint",
     dirAndDomain: string,
     itemAndType: string,
+    subdomain: string,
     value: number,
     unit?: string | null,
     citation?: string | null,

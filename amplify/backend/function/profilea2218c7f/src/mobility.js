@@ -45,8 +45,8 @@ module.exports.estimateMobility = async (
       const params = {
         TableName: parameterTableName,
         Key: {
-          category: 'car-footprint',
-          key: mobilityAnswer.privateCarType + '_driving-ghg-intensity'
+          category: 'car-intensity-factor',
+          key: mobilityAnswer.privateCarType + '_driving-factor'
         }
       }
       let data = await dynamodb.get(params).promise()
@@ -58,18 +58,14 @@ module.exports.estimateMobility = async (
       const carPassengers = mobilityAnswer.carPassengers || 'unknown'
       params.Key = {
         category: 'car-passengers',
-        key:
-          carPassengers + '_private-car-ghg-intensity-ratio-to-national-average'
+        key: carPassengers + '_private-car-factor'
       }
       data = await dynamodb.get(params).promise()
       const ratio = data?.Item?.value || 1
 
       console.log('private-car-driving-intensity = ' + intensity.value)
       console.log(
-        'carPassengers = ' +
-          carPassengers +
-          ', private-car-ghg-intensity-ratio-to-national-average = ' +
-          ratio
+        'carPassengers = ' + carPassengers + ', private-car-factor = ' + ratio
       )
 
       // TODO: PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正が必要。

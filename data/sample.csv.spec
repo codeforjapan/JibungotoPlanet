@@ -1,6 +1,7 @@
 [CSV_SPEC]
 dirAndDomain=S
 itemAndType=S
+subdomain=S
 value=D
 unit=S
 citation=S

@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2022-06-18T11:16:33.834Z",
-  "createdAt": "2022-06-18T11:13:36.840Z",
+  "updatedAt": "2022-06-20T12:05:01.788Z",
+  "createdAt": "2022-06-20T12:04:09.413Z",
   "baselines": [
     {
       "item": "airplane",
@@ -19,6 +19,22 @@
       "domain": "mobility"
     },
     {
+      "item": "bicycle-driving",
+      "unit": "km-passenger",
+      "type": "amount",
+      "value": 264.0133354,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
+    },
+    {
+      "item": "bicycle-driving",
+      "unit": "kgCO2e/km-passenger",
+      "type": "intensity",
+      "value": 0.013134541,
+      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
+      "domain": "mobility"
+    },
+    {
       "item": "bicycle-maintenance",
       "unit": "000JPY",
       "type": "amount",
@@ -31,22 +47,6 @@
       "unit": "kgCO2e/000JPY",
       "type": "intensity",
       "value": 2.324385029,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
-    },
-    {
-      "item": "bicycle-purchase",
-      "unit": "km-passenger",
-      "type": "amount",
-      "value": 264.0133354,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
-    },
-    {
-      "item": "bicycle-purchase",
-      "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0.013134541,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
       "domain": "mobility"
     },
@@ -84,7 +84,7 @@
     },
     {
       "item": "car-sharing-rental",
-      "unit": "use",
+      "unit": "time",
       "type": "amount",
       "value": 0.161272731,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
@@ -92,7 +92,7 @@
     },
     {
       "item": "car-sharing-rental",
-      "unit": "kgCO2e/use",
+      "unit": "kgCO2e/time",
       "type": "intensity",
       "value": 8.698477742,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
@@ -148,7 +148,7 @@
     },
     {
       "item": "motorbike-purchase",
-      "unit": "vehicle",
+      "unit": "unit",
       "type": "amount",
       "value": 0.002635317,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
@@ -156,7 +156,7 @@
     },
     {
       "item": "motorbike-purchase",
-      "unit": "kgCO2e/vehicle",
+      "unit": "kgCO2e/unit",
       "type": "intensity",
       "value": 979.6575783,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
@@ -174,7 +174,7 @@
       "item": "private-car-driving",
       "unit": "kgCO2e/km-passenger",
       "type": "intensity",
-      "value": 0.19778988757000002,
+      "value": 1.4946960380199998,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
       "domain": "mobility"
     },
@@ -196,7 +196,7 @@
     },
     {
       "item": "private-car-purchase",
-      "unit": "vehicle",
+      "unit": "unit",
       "type": "amount",
       "value": 0.043510227,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
@@ -204,7 +204,7 @@
     },
     {
       "item": "private-car-purchase",
-      "unit": "kgCO2e/vehicle",
+      "unit": "kgCO2e/unit",
       "type": "intensity",
       "value": 5112.506479,
       "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
@@ -243,22 +243,6 @@
       "domain": "mobility"
     },
     {
-      "item": "walking-walking",
-      "unit": "km-passenger",
-      "type": "amount",
-      "value": 168.9344406,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
-    },
-    {
-      "item": "walking-walking",
-      "unit": "kgCO2e/km-passenger",
-      "type": "intensity",
-      "value": 0,
-      "citation": "Koide et al. 2021. Environmental Research Letters 16 084001",
-      "domain": "mobility"
-    },
-    {
       "item": "walking",
       "unit": "km-passenger",
       "type": "amount",
@@ -275,13 +259,13 @@
       "domain": "mobility"
     }
   ],
-  "shareId": "DtsjOx_Yy",
+  "shareId": "CpOFd3FjR",
   "estimations": [
     {
       "item": "private-car-driving",
       "unit": "kgCO2e/km-passenger",
       "type": "intensity",
-      "value": 0.19778988757000002,
+      "value": 1.4946960380199998,
       "domain": "mobility"
     },
     {

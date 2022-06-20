@@ -2,6 +2,7 @@
 type Footprint @model @auth(rules: [{ allow: public, operations: [read] }]) {
   dirAndDomain: String! @primaryKey(sortKeyFields: ["itemAndType"])
   itemAndType: String!
+  subdomain: String!
   value: Float!
   unit: String
   citation: String
@@ -54,7 +55,7 @@ type MobilityAnswer {
   #
   # 最も使用する自動車の種類を教えてください
   #
-  privateCarType: String # 自家用車の種類; gas-vehicle|minicar|hv|phv|ev|unknown
+  privateCarType: String # 自家用車の種類; gasoline|light|hv|phv|ev|unknown
   #
   # 電気自動車・プラグインハイブリッド車を自宅で充電しますか？
   #
@@ -62,7 +63,7 @@ type MobilityAnswer {
   #
   # 自動車に乗るとき、平均で何人が同じ車に乗リますか？
   #
-  carPassengers: String # 平均乗車人数; 1|1-2|2|2-3|3|3-4|4-or-more|unknown
+  carPassengers: String # 平均乗車人数; 1|1-2|2|2-3|3|3-4|4-more|unknown
   #
   # 年間の走行距離を教えてください
   #
@@ -90,12 +91,15 @@ type MobilityAnswer {
   ferryAnnualTravelingTime: Float # フェリーの移動時間 時間/年
 }
 
-# カーボンフットプリントの計算結果
-type Profile @model @auth(rules: [{ allow: public }]) {
-  id: ID! @primaryKey # 更新時のuuid
+# カーボンフットプリントの計算結果（念の為、AppSync経由でのアクセス不可に設定）
+type Profile @model @auth(rules: [{ allow: public, operations: [] }]) {
+  # uuid
+  id: ID! @primaryKey
+  # share時のuuid
   shareId: String!
-    @index(name: "profilesByShareId", queryField: "profilesByShareId") # 参照時のuuid
-  mobilityAnswer: MobilityAnswer # 移動に関する回答
+    @index(name: "profilesByShareId", queryField: "profilesByShareId")
+  # 移動に関する回答
+  mobilityAnswer: MobilityAnswer
   baselines: [Component!]
   estimations: [Estimation!]
   options: [Option!]

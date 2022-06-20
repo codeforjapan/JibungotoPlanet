@@ -10,6 +10,7 @@ export const createFootprint = /* GraphQL */ `
     createFootprint(input: $input, condition: $condition) {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -26,6 +27,7 @@ export const updateFootprint = /* GraphQL */ `
     updateFootprint(input: $input, condition: $condition) {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -42,6 +44,7 @@ export const deleteFootprint = /* GraphQL */ `
     deleteFootprint(input: $input, condition: $condition) {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation

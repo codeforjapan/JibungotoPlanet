@@ -7,6 +7,7 @@ export const getFootprint = /* GraphQL */ `
     getFootprint(dirAndDomain: $dirAndDomain, itemAndType: $itemAndType) {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -35,6 +36,7 @@ export const listFootprints = /* GraphQL */ `
       items {
         dirAndDomain
         itemAndType
+        subdomain
         value
         unit
         citation

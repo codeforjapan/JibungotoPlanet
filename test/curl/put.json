@@ -1,7 +1,7 @@
 {
   "mobilityAnswer": {
     "hasPrivateCar": true,
-    "privateCarType": "gas-vehicle",
+    "privateCarType": "gasoline",
     "carCharging": "unknown",
     "carPassengers": "1",
     "privateCarAnnualMileage": 5000,

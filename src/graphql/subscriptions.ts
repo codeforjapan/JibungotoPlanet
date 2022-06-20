@@ -7,6 +7,7 @@ export const onCreateFootprint = /* GraphQL */ `
     onCreateFootprint {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -20,6 +21,7 @@ export const onUpdateFootprint = /* GraphQL */ `
     onUpdateFootprint {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -33,6 +35,7 @@ export const onDeleteFootprint = /* GraphQL */ `
     onDeleteFootprint {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
