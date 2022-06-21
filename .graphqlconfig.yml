@@ -1,15 +1,4 @@
 projects:
-  jibungotoplanet:
-    schemaPath: amplify/backend/api/jibungotoplanet/build/schema.graphql
-    includes:
-      - src/graphql/**/*.ts
-    excludes:
-      - ./amplify/**
-    extensions:
-      amplify:
-        codeGenTarget: typescript
-        generatedFileName: src/API.ts
-        docsFilePath: src/graphql
   JibungotoPlanetGql:
     schemaPath: amplify/backend/api/JibungotoPlanetGql/build/schema.graphql
     includes:

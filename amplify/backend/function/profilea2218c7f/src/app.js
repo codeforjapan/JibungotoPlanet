@@ -161,9 +161,6 @@ app.post(path, async (req, res) => {
       Item: profile
     }
     const data = await dynamodb.put(params).promise()
-
-    console.log(JSON.stringify(data))
-
     res.json({ success: 'post call succeed!', url: req.url, data: profile })
   } catch (err) {
     res.statusCode = 500

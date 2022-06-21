@@ -7,6 +7,7 @@ export const onCreateFootprint = /* GraphQL */ `
     onCreateFootprint {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -20,6 +21,7 @@ export const onUpdateFootprint = /* GraphQL */ `
     onUpdateFootprint {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -33,6 +35,7 @@ export const onDeleteFootprint = /* GraphQL */ `
     onDeleteFootprint {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -84,28 +87,27 @@ export const onCreateProfile = /* GraphQL */ `
   subscription OnCreateProfile {
     onCreateProfile {
       id
-      refId
+      shareId
       mobilityAnswer {
         hasPrivateCar
         privateCarType
-        privateCarAnnualMileage
         carCharging
         carPassengers
-        train
-        trainUnit
-        bus
-        busUnit
-        motorbike
-        motorbikeUnit
-        airplane
-        airplaneUnit
-        otherCar
-        otherCarUnit
-        ferry
-        ferryUnit
+        privateCarAnnualMileage
+        trainWeeklyTravelingTime
+        busWeeklyTravelingTime
+        motorbikeWeeklyTravelingTime
+        otherCarWeeklyTravelingTime
+        weeklyDetailedMobilityUnknown
+        livingAreaSize
+        otherCarAnnualTravelingTime
+        trainAnnuallyTravelingTime
+        busAnnualTravelingTime
+        motorbikeAnnualTravelingTime
+        airplaneAnnualTravelingTime
+        ferryAnnualTravelingTime
       }
       baselines {
-        dir
         domain
         item
         type
@@ -121,6 +123,7 @@ export const onCreateProfile = /* GraphQL */ `
         unit
       }
       options {
+        option
         domain
         item
         type
@@ -136,28 +139,27 @@ export const onUpdateProfile = /* GraphQL */ `
   subscription OnUpdateProfile {
     onUpdateProfile {
       id
-      refId
+      shareId
       mobilityAnswer {
         hasPrivateCar
         privateCarType
-        privateCarAnnualMileage
         carCharging
         carPassengers
-        train
-        trainUnit
-        bus
-        busUnit
-        motorbike
-        motorbikeUnit
-        airplane
-        airplaneUnit
-        otherCar
-        otherCarUnit
-        ferry
-        ferryUnit
+        privateCarAnnualMileage
+        trainWeeklyTravelingTime
+        busWeeklyTravelingTime
+        motorbikeWeeklyTravelingTime
+        otherCarWeeklyTravelingTime
+        weeklyDetailedMobilityUnknown
+        livingAreaSize
+        otherCarAnnualTravelingTime
+        trainAnnuallyTravelingTime
+        busAnnualTravelingTime
+        motorbikeAnnualTravelingTime
+        airplaneAnnualTravelingTime
+        ferryAnnualTravelingTime
       }
       baselines {
-        dir
         domain
         item
         type
@@ -173,6 +175,7 @@ export const onUpdateProfile = /* GraphQL */ `
         unit
       }
       options {
+        option
         domain
         item
         type
@@ -188,28 +191,27 @@ export const onDeleteProfile = /* GraphQL */ `
   subscription OnDeleteProfile {
     onDeleteProfile {
       id
-      refId
+      shareId
       mobilityAnswer {
         hasPrivateCar
         privateCarType
-        privateCarAnnualMileage
         carCharging
         carPassengers
-        train
-        trainUnit
-        bus
-        busUnit
-        motorbike
-        motorbikeUnit
-        airplane
-        airplaneUnit
-        otherCar
-        otherCarUnit
-        ferry
-        ferryUnit
+        privateCarAnnualMileage
+        trainWeeklyTravelingTime
+        busWeeklyTravelingTime
+        motorbikeWeeklyTravelingTime
+        otherCarWeeklyTravelingTime
+        weeklyDetailedMobilityUnknown
+        livingAreaSize
+        otherCarAnnualTravelingTime
+        trainAnnuallyTravelingTime
+        busAnnualTravelingTime
+        motorbikeAnnualTravelingTime
+        airplaneAnnualTravelingTime
+        ferryAnnualTravelingTime
       }
       baselines {
-        dir
         domain
         item
         type
@@ -225,6 +227,7 @@ export const onDeleteProfile = /* GraphQL */ `
         unit
       }
       options {
+        option
         domain
         item
         type

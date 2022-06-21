@@ -1,1 +1,1 @@
-curl -X PUT -H "Content-Type: application/json" -d '@put.json' ${JIBUNGOTO_PLANET_REST}/profiles/4ab2607e-86f2-48dc-a6e6-609097085343
+curl -X PUT -H "Content-Type: application/json" -d '@put.json' ${JIBUNGOTO_PLANET_REST}/profiles/c8f3d796-9439-4976-9229-9ba4be18926d > put.result.json

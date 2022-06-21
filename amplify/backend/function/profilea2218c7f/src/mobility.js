@@ -1,32 +1,14 @@
+const { toComponent, findComponent, toEstimation } = require('./util')
+
 module.exports.estimateMobility = async (
   dynamodb,
   mobilityAnswer,
   footprintTableName,
   parameterTableName
 ) => {
-  // answerのデータイメージは下記（Typescript化時に型を定義しましょう・・・）、
-  //
-  //{
-  //  "domain": "mobility"
-  //  "hasPrivateCar": true,
-  //  "privateCarType": "gas-vehicle",
-  //  "privateCarAnnualMileage": 5000,
-  //  "carCharging": "charge-almost-at-home",
-  //  "carPassengers": "one",
-  //  "train": 100,
-  //  "trainUnit": "km/week",
-  //  "bus": 100,
-  //  "busUnit": "km/week",
-  //  "motorbike": 100,
-  //  "motorbikeUnit": "km/week",
-  //  "airplane": 100,
-  //  "airplaneUnit": "km/year",
-  //  "otherCar": 100,
-  //  "otherCarUnit": "km/week",
-  //  "ferry": 100,
-  //  "ferryUnit": "km/week"
-  //}
-  //
+  // mobilityAnswerのスキーマと取りうる値は
+  // amplify/backend/api/JibungotoPlanetGql/schema.graphql
+  // を参照。
 
   let estimations = []
 
@@ -52,47 +34,59 @@ module.exports.estimateMobility = async (
   // 答えに従ってestimationを計算
   if (mobilityAnswer.hasPrivateCar) {
     if (mobilityAnswer.privateCarType) {
-      // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
-      const params = {
-        TableName: parameterTableName,
-        Key: {
-          category: 'car-footprint',
-          key: mobilityAnswer.privateCarType + '_driving-ghg-intensity'
-        }
-      }
-      let data = await dynamodb.get(params).promise()
-      const intensity = toItem(
+      const intensity = findComponent(
         baselines,
         'mobility',
         'private-car-driving',
         'intensity'
       )
 
+      // 自家用車の場合は、自動車種類に応じて運転時GHG原単位を取得
+      const params = {
+        TableName: parameterTableName,
+        Key: {
+          category: 'car-intensity-factor',
+          key: mobilityAnswer.privateCarType + '_driving-factor'
+        }
+      }
+      let data = await dynamodb.get(params).promise()
+      if (data?.Item) {
+        intensity.value = data.Item.value
+      }
+
       // 人数補正値
       const carPassengers = mobilityAnswer.carPassengers || 'unknown'
       params.Key = {
         category: 'car-passengers',
-        key:
-          carPassengers + '_private-car-ghg-intensity-ratio-to-national-average'
+        key: carPassengers + '_private-car-factor'
       }
       data = await dynamodb.get(params).promise()
       const ratio = data?.Item?.value || 1
 
-      console.log('ratio = ' + ratio)
+      console.log('private-car-driving-intensity = ' + intensity.value)
+      console.log(
+        'carPassengers = ' + carPassengers + ', private-car-factor = ' + ratio
+      )
 
       // TODO: PHV, EVの場合は自宅での充電割合と再生エネルギー電力の割合で補正が必要。
-      intensity.value = data.Item.value * ratio
-      estimations.push(intensity)
+      intensity.value = intensity.value * ratio
+
+      console.log(
+        'private-car-driving-intensity after car passenger adjustment  = ' +
+          intensity.value
+      )
+
+      estimations.push(toEstimation(intensity))
 
       // 自家用車の移動距離を取得
-      const amount = toItem(
+      const amount = findComponent(
         baselines,
         'mobility',
         'private-car-driving',
         'amount'
       )
       amount.value = mobilityAnswer.privateCarAnnualMileage
-      estimations.push(amount)
+      estimations.push(toEstimation(amount))
 
       // TODO: 以下、未実装
       // --- per week ---
@@ -111,33 +105,5 @@ module.exports.estimateMobility = async (
   }
 
   console.log(JSON.stringify(estimations))
-
   return { baselines, estimations }
-}
-
-const toItem = (baselines, domain, item, type) => {
-  const fi = baselines.find(
-    (bl) => bl.domain === domain && bl.item === item && bl.type === type
-  )
-  return {
-    domain: fi.domain,
-    item: fi.item,
-    type: fi.type,
-    value: fi.value,
-    unit: fi.unit
-  }
-}
-
-const toComponent = (item) => {
-  const dirAndDomain = item.dirAndDomain.split('_')
-  const itemAndType = item.itemAndType.split('_')
-  return {
-    dir: dirAndDomain[0],
-    domain: dirAndDomain[1],
-    item: itemAndType[0],
-    type: itemAndType[1],
-    value: item.value,
-    unit: item.unit,
-    citation: item.citation
-  }
 }

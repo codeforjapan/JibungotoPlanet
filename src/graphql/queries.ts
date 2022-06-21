@@ -7,6 +7,7 @@ export const getFootprint = /* GraphQL */ `
     getFootprint(dirAndDomain: $dirAndDomain, itemAndType: $itemAndType) {
       dirAndDomain
       itemAndType
+      subdomain
       value
       unit
       citation
@@ -35,6 +36,7 @@ export const listFootprints = /* GraphQL */ `
       items {
         dirAndDomain
         itemAndType
+        subdomain
         value
         unit
         citation
@@ -92,28 +94,27 @@ export const getProfile = /* GraphQL */ `
   query GetProfile($id: ID!) {
     getProfile(id: $id) {
       id
-      refId
+      shareId
       mobilityAnswer {
         hasPrivateCar
         privateCarType
-        privateCarAnnualMileage
         carCharging
         carPassengers
-        train
-        trainUnit
-        bus
-        busUnit
-        motorbike
-        motorbikeUnit
-        airplane
-        airplaneUnit
-        otherCar
-        otherCarUnit
-        ferry
-        ferryUnit
+        privateCarAnnualMileage
+        trainWeeklyTravelingTime
+        busWeeklyTravelingTime
+        motorbikeWeeklyTravelingTime
+        otherCarWeeklyTravelingTime
+        weeklyDetailedMobilityUnknown
+        livingAreaSize
+        otherCarAnnualTravelingTime
+        trainAnnuallyTravelingTime
+        busAnnualTravelingTime
+        motorbikeAnnualTravelingTime
+        airplaneAnnualTravelingTime
+        ferryAnnualTravelingTime
       }
       baselines {
-        dir
         domain
         item
         type
@@ -129,6 +130,7 @@ export const getProfile = /* GraphQL */ `
         unit
       }
       options {
+        option
         domain
         item
         type
@@ -157,28 +159,27 @@ export const listProfiles = /* GraphQL */ `
     ) {
       items {
         id
-        refId
+        shareId
         mobilityAnswer {
           hasPrivateCar
           privateCarType
-          privateCarAnnualMileage
           carCharging
           carPassengers
-          train
-          trainUnit
-          bus
-          busUnit
-          motorbike
-          motorbikeUnit
-          airplane
-          airplaneUnit
-          otherCar
-          otherCarUnit
-          ferry
-          ferryUnit
+          privateCarAnnualMileage
+          trainWeeklyTravelingTime
+          busWeeklyTravelingTime
+          motorbikeWeeklyTravelingTime
+          otherCarWeeklyTravelingTime
+          weeklyDetailedMobilityUnknown
+          livingAreaSize
+          otherCarAnnualTravelingTime
+          trainAnnuallyTravelingTime
+          busAnnualTravelingTime
+          motorbikeAnnualTravelingTime
+          airplaneAnnualTravelingTime
+          ferryAnnualTravelingTime
         }
         baselines {
-          dir
           domain
           item
           type
@@ -194,6 +195,7 @@ export const listProfiles = /* GraphQL */ `
           unit
         }
         options {
+          option
           domain
           item
           type
@@ -207,16 +209,16 @@ export const listProfiles = /* GraphQL */ `
     }
   }
 `;
-export const profilesByRefId = /* GraphQL */ `
-  query ProfilesByRefId(
-    $refId: String!
+export const profilesByShareId = /* GraphQL */ `
+  query ProfilesByShareId(
+    $shareId: String!
     $sortDirection: ModelSortDirection
     $filter: ModelProfileFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    profilesByRefId(
-      refId: $refId
+    profilesByShareId(
+      shareId: $shareId
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -224,28 +226,27 @@ export const profilesByRefId = /* GraphQL */ `
     ) {
       items {
         id
-        refId
+        shareId
         mobilityAnswer {
           hasPrivateCar
           privateCarType
-          privateCarAnnualMileage
           carCharging
           carPassengers
-          train
-          trainUnit
-          bus
-          busUnit
-          motorbike
-          motorbikeUnit
-          airplane
-          airplaneUnit
-          otherCar
-          otherCarUnit
-          ferry
-          ferryUnit
+          privateCarAnnualMileage
+          trainWeeklyTravelingTime
+          busWeeklyTravelingTime
+          motorbikeWeeklyTravelingTime
+          otherCarWeeklyTravelingTime
+          weeklyDetailedMobilityUnknown
+          livingAreaSize
+          otherCarAnnualTravelingTime
+          trainAnnuallyTravelingTime
+          busAnnualTravelingTime
+          motorbikeAnnualTravelingTime
+          airplaneAnnualTravelingTime
+          ferryAnnualTravelingTime
         }
         baselines {
-          dir
           domain
           item
           type
@@ -261,6 +262,7 @@ export const profilesByRefId = /* GraphQL */ `
           unit
         }
         options {
+          option
           domain
           item
           type

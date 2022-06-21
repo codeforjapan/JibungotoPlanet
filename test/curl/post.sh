@@ -1,1 +1,1 @@
-curl -X POST -H "Content-Type: application/json" -d '{}' ${JIBUNGOTO_PLANET_REST}/profiles
+curl -X POST -H "Content-Type: application/json" -d '{}' ${JIBUNGOTO_PLANET_REST}/profiles > post.result.json

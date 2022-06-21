@@ -1,21 +1,21 @@
 {
   "mobilityAnswer": {
     "hasPrivateCar": true,
-    "privateCarType": "gas-vehicle",
+    "privateCarType": "gasoline",
+    "carCharging": "unknown",
+    "carPassengers": "1",
     "privateCarAnnualMileage": 5000,
-    "charging": "charge-almost-at-home",
-    "carPassengers": "one",
-    "train": 100,
-    "trainUnit": "km/week",
-    "bus": 100,
-    "busUnit": "km/week",
-    "motorbike": 100,
-    "motorbikeUnit": "km/week",
-    "airplane": 100,
-    "airplaneUnit": "km/year",
-    "otherCar": 100,
-    "otherCarUnit": "km/week",
-    "ferry": 100,
-    "ferryUnit": "km/week"
+    "trainWeeklyTravelingTime": 7,
+    "busWeeklyTravelingTime": 7,
+    "motorbikeWeeklyTravelingTime": 0,
+    "otherCarWeeklyTravelingTime": 0,
+    "weeklyDetailedMobilityUnknown": false,
+    "livingAreaSize": "unknown",
+    "otherCarAnnualTravelingTime": 10,
+    "trainAnnuallyTravelingTime": 100,
+    "busAnnualTravelingTime": 100,
+    "motorbikeAnnualTravelingTime": 0,
+    "airplaneAnnualTravelingTime": 100,
+    "ferryAnnualTravelingTime": 0
   }
 }
