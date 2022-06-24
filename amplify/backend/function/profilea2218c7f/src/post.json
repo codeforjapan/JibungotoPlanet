@@ -1,8 +1,0 @@
-{
-  "httpMethod": "POST",
-  "path": "/profiles",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\"mobilityAnswer\": {\"hasPrivateCar\": true, \"privateCarType\": \"gasoline\", \"carCharging\": \"unknown\", \"carPassengers\": \"1\", \"privateCarAnnualMileage\": 5000, \"trainWeeklyTravelingTime\": 7, \"busWeeklyTravelingTime\": 7, \"motorbikeWeeklyTravelingTime\": 0, \"otherCarWeeklyTravelingTime\": 0, \"weeklyDetailedMobilityUnknown\": false, \"livingAreaSize\": \"unknown\", \"otherCarAnnualTravelingTime\": 10, \"trainAnnuallyTravelingTime\": 100, \"busAnnualTravelingTime\": 100, \"motorbikeAnnualTravelingTime\": 0, \"airplaneAnnualTravelingTime\": 100, \"ferryAnnualTravelingTime\": 0}}"
-}
