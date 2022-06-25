@@ -2,7 +2,7 @@ import { Select } from '@chakra-ui/react'
 import { FC, useMemo } from 'react'
 
 type Props = {
-  options: { value: string; label: string }[]
+  options: { value: string | number; label: string }[]
   onChange: (v: string) => void
   defaultValue?: string
 }
