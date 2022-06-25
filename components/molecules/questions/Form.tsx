@@ -1,5 +1,5 @@
-import { Box, Container } from '@chakra-ui/react'
 import { FC } from 'react'
+import { Box, Container } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
 import BasicButton from '../../atoms/buttons/Basic'
 import SelectBox from '../../atoms/inputs/Select'
