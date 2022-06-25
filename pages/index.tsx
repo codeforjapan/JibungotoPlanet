@@ -1,6 +1,6 @@
+import { FC } from 'react'
 import BasicButton from '../components/atoms/buttons/Basic'
 import SelectBox from '../components/atoms/inputs/Select'
-import { FC } from 'react'
 
 const Home: FC = () => {
   return (
