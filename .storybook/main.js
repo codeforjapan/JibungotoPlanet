@@ -6,7 +6,8 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions"
+    "@storybook/addon-interactions",
+    "@chakra-ui/storybook-addon"
   ],
   framework: "@storybook/react",
   core: {
@@ -14,5 +15,8 @@ module.exports = {
   },
   typescript: {
     reactDocgen: false,
+  },
+  features: {
+    emotionAlias: false,
   },
 }

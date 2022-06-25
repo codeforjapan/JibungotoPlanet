@@ -1,3 +1,5 @@
+const theme = require('../utils/chakratheme')
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -7,4 +9,7 @@ export const parameters = {
     },
   },
   layout: 'centered',
+  chakra: {
+    theme,
+  },
 }
