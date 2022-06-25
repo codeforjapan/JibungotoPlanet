@@ -6,7 +6,6 @@ name: CD
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: ['main']
   pull_request:
     branches: ['main']
 
@@ -25,11 +24,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: build Next.js app
+      - name: Build app
         run: |
           yarn install --immutable --immutable-cache --check-cache
           yarn build
 
       - name: Deploy to production server
         run: |
-          echo 'please 'please build a production server'
+          echo 'please build a production server'
