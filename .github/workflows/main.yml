@@ -27,8 +27,8 @@ jobs:
 
       - name: build Next.js app
         run: |
-          npm ci  
-          npm run build
+          yarn install --immutable --immutable-cache --check-cache
+          yarn build
 
       - name: Deploy to production server
         run: |
