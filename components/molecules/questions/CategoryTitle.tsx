@@ -1,5 +1,5 @@
-import { Box } from '@chakra-ui/react'
 import { FC, useMemo } from 'react'
+import { Box } from '@chakra-ui/react'
 
 type Props = {
   category: Questions.QuestionCategory
@@ -20,6 +20,7 @@ const CategoryTitle: FC<Props> = ({ category }) => {
         return ''
     }
   }, [category])
+
   return (
     <Box
       color={`${category}.400`}

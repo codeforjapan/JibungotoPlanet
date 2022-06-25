@@ -1,6 +1,5 @@
-import { Container } from '@chakra-ui/react'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { ParsedUrlQuery } from 'querystring'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import CategoryTitle from '../../../components/molecules/questions/CategoryTitle'
 import QuestionForm from '../../../components/molecules/questions/Form'
 import QuestionContainer from '../../../components/organisms/questions/Container'

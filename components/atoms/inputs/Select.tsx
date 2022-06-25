@@ -1,5 +1,5 @@
-import { Select } from '@chakra-ui/react'
 import { FC, useMemo } from 'react'
+import { Select } from '@chakra-ui/react'
 
 type Props = {
   options: { value: string | number; label: string }[]
