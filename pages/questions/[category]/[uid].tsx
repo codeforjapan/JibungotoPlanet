@@ -26,6 +26,9 @@ const QuestionPage: NextPage<Params> = ({ category, uid }) => {
           <QuestionForm questionPage={questionPage} />
         </QuestionContainer>
       )}
+      {
+        //ToDo Render for no questionPage data
+      }
     </>
   )
 }

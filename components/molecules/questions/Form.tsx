@@ -34,7 +34,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
                 : String(option.value)
             return { value: val, label: option.label }
           }) || []
-        return <SelectBox onChange={onChange} options={options}></SelectBox>
+        return <SelectBox onChange={onChange} options={options} />
 
       default:
         return <></>
