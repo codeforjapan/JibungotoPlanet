@@ -1,9 +1,11 @@
 import { FC } from 'react'
-import { Box, Container } from '@chakra-ui/react'
+import { Box, Container, Heading } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
 import BasicButton from '../../atoms/buttons/Basic'
 import RadioGroups from '../../atoms/inputs/RadioGroup'
 import SelectBox from '../../atoms/inputs/Select'
+import QuestionHeader from './QuestionHeader'
+import { useRouter } from 'next/router'
 
 type Props = {
   questionPage: Questions.Page
@@ -11,6 +13,8 @@ type Props = {
 
 const QuestionForm: FC<Props> = ({ questionPage }) => {
   const defautValues: { [key: string]: string | number | boolean | null } = {}
+  const router = useRouter()
+
   for (const question of questionPage.questions) {
     defautValues[question.key] = ''
   }
@@ -18,7 +22,9 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const { control, handleSubmit } = useForm({ defaultValues: defautValues })
 
   const submit = (data: any) => {
+    let nextPageUid = questionPage.defaultNextPageUid
     console.log(data)
+    router.push(`/questions/${questionPage.category}/${nextPageUid}`)
   }
 
   const QuestionInput: FC<{
@@ -68,6 +74,10 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         bottom="0"
         borderRadius="10px 10px 0 0"
       >
+        <QuestionHeader numerator={1} denominator={2} />
+        <Heading as="h1" fontSize="24px" textAlign="center" mb={5}>
+          {questionPage.title}
+        </Heading>
         <form onSubmit={handleSubmit(submit)}>
           {questionPage.questions.map((question) => (
             <Box key={question.key}>
@@ -85,11 +95,17 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             </Box>
           ))}
 
-          <Box textAlign="center">
-            <BasicButton type="submit" isNext width={200}>
-              送信
+          <Container textAlign="center" position="fixed" bottom={10} left={0}>
+            <BasicButton
+              type="submit"
+              theme="brandPrimary"
+              isNext
+              width="90%"
+              margin="0 auto"
+            >
+              次の質問へ
             </BasicButton>
-          </Box>
+          </Container>
         </form>
       </Container>
     </Box>
