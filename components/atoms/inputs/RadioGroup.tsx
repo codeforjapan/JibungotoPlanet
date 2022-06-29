@@ -4,13 +4,13 @@ import style from './RadioGroup.module.scss'
 
 type Props = {
   onChange: (v: string) => void
-  value: string
+  value?: string | number
   options: { label: string; subLabel?: string; value: string }[]
 }
 
 const RadioGroups: FC<Props> = ({ onChange, value, options }) => {
   return (
-    <RadioGroup onChange={onChange}>
+    <RadioGroup onChange={onChange} value={value}>
       {options.map((option, index) => (
         <Box mb="2" className={style.radio} key={index}>
           <Radio
