@@ -1,5 +1,5 @@
-import { Box, Radio, RadioGroup, Text } from '@chakra-ui/react'
 import { FC } from 'react'
+import { Box, Radio, RadioGroup, Text } from '@chakra-ui/react'
 import style from './RadioGroup.module.scss'
 
 type Props = {
@@ -11,8 +11,8 @@ type Props = {
 const RadioGroups: FC<Props> = ({ onChange, value, options }) => {
   return (
     <RadioGroup onChange={onChange}>
-      {options.map((option) => (
-        <Box mb="2" className={style.radio}>
+      {options.map((option, index) => (
+        <Box mb="2" className={style.radio} key={index}>
           <Radio
             value={option.value}
             flexDirection="row-reverse"
