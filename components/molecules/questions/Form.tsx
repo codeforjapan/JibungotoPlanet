@@ -3,6 +3,7 @@ import { Box, Container } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
 import BasicButton from '../../atoms/buttons/Basic'
 import SelectBox from '../../atoms/inputs/Select'
+import RadioGroups from '../../atoms/inputs/RadioGroup'
 
 type Props = {
   questionPage: Questions.Page
@@ -23,10 +24,11 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const QuestionInput: FC<{
     question: Questions.Question
     onChange: () => void
-  }> = ({ question, onChange }) => {
+    value: any
+  }> = ({ question, onChange, value }) => {
     switch (question.answerType) {
       case 'select':
-        const options =
+        const selectOptions =
           question.options?.map((option) => {
             const val =
               typeof option.value === 'number'
@@ -34,8 +36,23 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
                 : String(option.value)
             return { value: val, label: option.label }
           }) || []
-        return <SelectBox onChange={onChange} options={options} />
-
+        return <SelectBox onChange={onChange} options={selectOptions} />
+      case 'radio':
+        const radioOptions =
+          question.options?.map((option) => {
+            return {
+              value: String(option.value),
+              label: option.label,
+              subLabel: option.subLabel
+            }
+          }) || []
+        return (
+          <RadioGroups
+            onChange={onChange}
+            options={radioOptions}
+            value={value}
+          />
+        )
       default:
         return <></>
     }
@@ -47,6 +64,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         background="white"
         position="fixed"
         height="80vh"
+        width="90%"
         bottom="0"
         borderRadius="10px 10px 0 0"
       >
@@ -57,7 +75,11 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
                 control={control}
                 name={question.key}
                 render={({ field: { value, onChange } }) => (
-                  <QuestionInput question={question} onChange={onChange} />
+                  <QuestionInput
+                    question={question}
+                    onChange={onChange}
+                    value={value}
+                  />
                 )}
               />
             </Box>
