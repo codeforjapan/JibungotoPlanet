@@ -21,7 +21,7 @@ declare namespace Questions {
   }
 
   type QuestionCategory = 'food' | 'mobility' | 'house' | 'consumption'
-  type AnswerType = 'text' | 'select' | 'checkbox' | 'radio' | 'number'
+  type AnswerType = 'text' | 'select' | 'checkbox' | 'radio' | 'numeric'
   interface QuestionOption {
     label: string //ラベル
     subLabel?: string //補足ラベル
