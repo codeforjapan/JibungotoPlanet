@@ -152,7 +152,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
         key: 'privateCarAnnualMileage',
         description: '入力例）自動車保険料の支払いで申告した距離',
         unitText: 'km/年',
-        answerType: 'number'
+        answerType: 'numeric'
       }
     ]
   },
@@ -168,25 +168,25 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
       {
         key: 'trainWeeklyTravelingTime',
         description: '鉄道（地下鉄、在来線など）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/週'
       },
       {
         key: 'busWeeklyTravelingTime',
         description: 'バス',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/週'
       },
       {
         key: 'motorbikeWeeklyTravelingTime',
         description: 'バイク（原付含む）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/週'
       },
       {
         key: 'otherCarWeeklyTravelingTime',
         description: 'タクシー、レンタカー、カーシェア',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/週'
       }
     ]
@@ -235,37 +235,37 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
       {
         key: 'trainAnnuallyTravelingTime',
         description: '鉄道（地下鉄、在来線など）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'busAnnualTravelingTime',
         description: 'バス',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'motorbikeAnnualTravelingTime',
         description: 'バイク（原付含む）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'otherCarAnnualTravelingTime',
         description: 'タクシー、レンタカー、カーシェア',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'airplaneAnnualTravelingTime',
         description: '飛行機（国内・国際線）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'ferryAnnualTravelingTime',
         description: 'フェリー路線',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       }
     ],

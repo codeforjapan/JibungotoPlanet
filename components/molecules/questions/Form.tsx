@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form'
 import BasicButton from '../../atoms/buttons/Basic'
 import RadioGroups from '../../atoms/inputs/RadioGroup'
 import SelectBox from '../../atoms/inputs/Select'
+import TextField from '../../atoms/inputs/TextField'
 
 type Props = {
   questionPage: Questions.Page
@@ -51,6 +52,26 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             onChange={onChange}
             options={radioOptions}
             value={value}
+          />
+        )
+      case 'text':
+        return (
+          <TextField
+            onChange={onChange}
+            value={value}
+            type="text"
+            description={question.description}
+            unitText={question.unitText}
+          />
+        )
+      case 'numeric':
+        return (
+          <TextField
+            onChange={onChange}
+            value={value}
+            type="numeric"
+            description={question.description}
+            unitText={question.unitText}
           />
         )
       default:
