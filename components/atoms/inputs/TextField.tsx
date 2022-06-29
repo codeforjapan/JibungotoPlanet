@@ -4,7 +4,7 @@ import { Box, Flex, Grid, Heading, Input, Text } from '@chakra-ui/react'
 type Props = {
   type: 'text' | 'numeric'
   onChange: (val: string) => void
-  value: string
+  value?: string | number
   description?: string
   unitText?: string
   placeholder?: string

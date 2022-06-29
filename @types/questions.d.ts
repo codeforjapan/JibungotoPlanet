@@ -28,4 +28,9 @@ declare namespace Questions {
     value: string | number | boolean | null //値
     nextPageUid?: string //回答によって分岐させたいときの遷移するページUID
   }
+
+  type lastAnsweredQuestion = {
+    category: string
+    uid: string
+  }
 }
