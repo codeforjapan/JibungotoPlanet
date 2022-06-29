@@ -1,5 +1,5 @@
-import { Box, Flex, Grid, Heading, Input, Text } from '@chakra-ui/react'
 import { FC } from 'react'
+import { Box, Flex, Grid, Heading, Input, Text } from '@chakra-ui/react'
 
 type Props = {
   type: 'text' | 'numeric'
