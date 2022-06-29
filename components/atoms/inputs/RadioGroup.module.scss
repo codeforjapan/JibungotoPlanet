@@ -1,0 +1,11 @@
+.radio {
+  :global .chakra-radio__control[data-checked] {
+    background-color: #99d9ef !important;
+    border-color: #99d9ef !important;
+  }
+  span {
+    &::before {
+      background: #333333 !important;
+    }
+  }
+}
