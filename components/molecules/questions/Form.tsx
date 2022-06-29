@@ -10,7 +10,7 @@ type Props = {
 }
 
 const QuestionForm: FC<Props> = ({ questionPage }) => {
-  const defautValues: { [key: string]: string | number | boolean | null } = {}
+  const defautValues: { [key: string]: string | number | undefined } = {}
   for (const question of questionPage.questions) {
     defautValues[question.key] = ''
   }
@@ -24,7 +24,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const QuestionInput: FC<{
     question: Questions.Question
     onChange: () => void
-    value: any
+    value: string | number | undefined
   }> = ({ question, onChange, value }) => {
     switch (question.answerType) {
       case 'select':
