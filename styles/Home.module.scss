@@ -1,0 +1,17 @@
+.home {
+  &__header {
+
+    &__item-container {
+     padding-left: 15%;
+    }
+
+    &__title-container {
+      padding: 1rem 0 2.5rem 0;
+    }
+
+    &__title {
+      padding-bottom: .3rem;
+      border-bottom: 5px solid black;
+    }
+  }
+}
