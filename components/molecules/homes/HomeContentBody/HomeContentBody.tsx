@@ -2,7 +2,6 @@ import { FC, ReactNode } from "react";
 import { Text } from '@chakra-ui/react'
 
 type Props = {
-  className?: string;
   body?: ReactNode;
 };
 
