@@ -9,7 +9,7 @@ export default {
 
 export const Index: ComponentStoryObj<typeof HomeContentBody> = {
   args: {
-    body: (
+    children: (
       <span>
         日本でも大型台風、集中豪雨、35℃以上の猛暑日などの異常気象が起きています。こうした気候変動による自然災害の増加、食料生産や経済システムへの悪影響を食い止めるには、産業革命後の気温上昇をできる限り1.5℃、少なくとも2℃未満に抑えることが必要です
         <sup>1</sup>。<br />

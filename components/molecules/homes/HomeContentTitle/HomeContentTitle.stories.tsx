@@ -9,6 +9,6 @@ export default {
 
 export const Index: ComponentStoryObj<typeof HomeContentTitle> = {
   args: {
-    title: '1. 知る'
+    children: '1. 知る'
   }
 }
