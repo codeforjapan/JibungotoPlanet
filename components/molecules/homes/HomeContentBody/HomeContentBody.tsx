@@ -1,9 +1,9 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode } from 'react'
 import { Text } from '@chakra-ui/react'
 
 type Props = {
-  body?: ReactNode;
-};
+  body?: ReactNode
+}
 
 const HomeContentBody: FC<Props> = (props) => {
   const baseStyle = {
@@ -14,9 +14,7 @@ const HomeContentBody: FC<Props> = (props) => {
     color: '#333333'
   }
 
-  return (
-    <Text style={ baseStyle }>{props.body}</Text>
-  );
-};
+  return <Text style={baseStyle}>{props.body}</Text>
+}
 
-export default HomeContentBody;
+export default HomeContentBody

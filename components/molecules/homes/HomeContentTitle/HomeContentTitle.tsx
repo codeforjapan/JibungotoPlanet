@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC } from 'react'
 import { Heading } from '@chakra-ui/react'
 
 type Props = {
-  title?: string;
-};
+  title?: string
+}
 
 const HomeContentTitle: FC<Props> = (props) => {
   const baseStyle = {
@@ -14,8 +14,10 @@ const HomeContentTitle: FC<Props> = (props) => {
   }
 
   return (
-    <Heading style={ baseStyle } as='h3'>{props.title}</Heading>
-  );
-};
+    <Heading style={baseStyle} as="h3">
+      {props.title}
+    </Heading>
+  )
+}
 
-export default HomeContentTitle;
+export default HomeContentTitle
