@@ -34,7 +34,7 @@ export const chakraTheme = extendTheme({
       200: '#fbebd4',
       400: '#ed9928'
     },
-    consumption: {
+    other: {
       200: '#f8e5e4',
       400: '#da7f79'
     }

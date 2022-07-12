@@ -26,34 +26,36 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     uid: 'mq2',
     title: '最も使用する自動車の種類を教えてください',
     category: 'mobility',
-    defaultNextPageUid: 'mq3',
+    defaultNextPageUid: 'mq4',
     questions: [
       {
         key: 'privateCarType',
         answerType: 'select',
         options: [
           {
-            value: 'gasoline',
+            value: 'gasoline_driving-factor',
             label: 'ガソリン車'
           },
           {
-            value: 'gas', //ToDo: input value
+            value: 'light_driving-factor',
             label: '軽自動車'
           },
           {
-            value: 'gas', //ToDo: input value
+            value: 'hv_driving-factor',
             label: 'ハイブリッド車'
           },
           {
-            value: 'gas', //ToDo: input value
-            label: 'プラグインハイブリッド車'
+            value: 'phv_driving-factor',
+            label: 'プラグインハイブリッド車',
+            nextPageUid: 'mq3'
           },
           {
-            value: 'gas', //ToDo: input value
-            label: '電気自動車'
+            value: 'ev_driving-factor',
+            label: '電気自動車',
+            nextPageUid: 'mq3'
           },
           {
-            value: 'gas', //ToDo: input value
+            value: 'unknown_driving-factor',
             label: '分からない'
           }
         ]
@@ -152,7 +154,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
         key: 'privateCarAnnualMileage',
         description: '入力例）自動車保険料の支払いで申告した距離',
         unitText: 'km/年',
-        answerType: 'number'
+        answerType: 'numeric'
       }
     ]
   },
@@ -168,25 +170,25 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
       {
         key: 'trainWeeklyTravelingTime',
         description: '鉄道（地下鉄、在来線など）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/週'
       },
       {
         key: 'busWeeklyTravelingTime',
         description: 'バス',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/週'
       },
       {
         key: 'motorbikeWeeklyTravelingTime',
         description: 'バイク（原付含む）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/週'
       },
       {
         key: 'otherCarWeeklyTravelingTime',
         description: 'タクシー、レンタカー、カーシェア',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/週'
       }
     ]
@@ -235,37 +237,37 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
       {
         key: 'trainAnnuallyTravelingTime',
         description: '鉄道（地下鉄、在来線など）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'busAnnualTravelingTime',
         description: 'バス',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'motorbikeAnnualTravelingTime',
         description: 'バイク（原付含む）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'otherCarAnnualTravelingTime',
         description: 'タクシー、レンタカー、カーシェア',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'airplaneAnnualTravelingTime',
         description: '飛行機（国内・国際線）',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       },
       {
         key: 'ferryAnnualTravelingTime',
         description: 'フェリー路線',
-        answerType: 'number',
+        answerType: 'numeric',
         unitText: '時間/年'
       }
     ],
