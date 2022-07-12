@@ -9,12 +9,16 @@ import { useRouter } from 'next/router'
 import TextField from '../../atoms/inputs/TextField'
 import { toBoolean } from '../../../utils/datatype'
 import { useAnswerController } from '../../../hooks/questions'
+import { useProfile } from '../../../hooks/profile'
+import api from '../../../utils/api'
 
 type Props = {
   questionPage: Questions.Page
 }
 
 const QuestionForm: FC<Props> = ({ questionPage }) => {
+  const { profile, setProfile } = useProfile()
+
   const router = useRouter()
   const { setNewAnswer, answers } = useAnswerController({
     category: questionPage.category
@@ -34,25 +38,33 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const submit = async (data: any) => {
     setNewAnswer(data)
 
+    await sendData(data)
+
     if (questionPage.isLast) {
-      await sendData()
+      console.log(profile)
+      // router.push(`/estimations/${questionPage.category}`)
     } else {
       let nextPageUid = nextQuestionUid(data)
       router.push(`/questions/${questionPage.category}/${nextPageUid}`)
     }
   }
 
-  const sendData = async () => {
-    console.log(answers)
+  const sendData = async (data: any) => {
+    if (!profile) return
+    const params: Profile.Profile = { ...profile, mobilityAnswer: data }
+    try {
+      const { data } = await api.put(`/profiles/${profile?.id}`, params)
+      setProfile(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const nextQuestionUid = (data: { [key: string]: string | number }) => {
     let questionValue = toBoolean(data[questionKeys[0]])
-    console.log(questionValue, questionKeys)
     const answeredNextPageUid = questionPage.questions[0].options?.find(
       (qo) => qo.value === questionValue
     )
-    console.log(answeredNextPageUid)
     const uid =
       answeredNextPageUid?.nextPageUid || questionPage.defaultNextPageUid
     return uid

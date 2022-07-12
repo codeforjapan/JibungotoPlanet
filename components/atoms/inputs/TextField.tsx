@@ -3,7 +3,7 @@ import { Box, Flex, Grid, Heading, Input, Text } from '@chakra-ui/react'
 
 type Props = {
   type: 'text' | 'numeric'
-  onChange: (val: string) => void
+  onChange: (val: string | number) => void
   value?: string | number
   description?: string
   unitText?: string
@@ -29,6 +29,14 @@ const TextField: FC<Props> = ({
     }
   }, [type])
 
+  const handleOnChange = (v: string) => {
+    if (Number(v) !== NaN) {
+      onChange(Number(v))
+    } else {
+      onChange(v)
+    }
+  }
+
   return (
     <Box>
       <Heading as="h2" fontSize="18px" mb={3}>
@@ -38,7 +46,7 @@ const TextField: FC<Props> = ({
         <Input
           type={inputType}
           inputMode={type}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => handleOnChange(e.target.value)}
           value={value}
           placeholder={placeholder}
         />

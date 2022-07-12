@@ -1,16 +1,25 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { Box, Radio, RadioGroup, Text } from '@chakra-ui/react'
 import style from './RadioGroup.module.scss'
+import { toBoolean } from '../../../utils/datatype'
 
 type Props = {
-  onChange: (v: string) => void
+  onChange: (v: string | number | boolean) => void
   value?: string | number
   options: { label: string; subLabel?: string; value: string | number }[]
 }
 
 const RadioGroups: FC<Props> = ({ onChange, value, options }) => {
+  const handleOnChange = (value: string) => {
+    onChange(toBoolean(value))
+  }
+
+  const convertedValue = useMemo(() => {
+    return String(value)
+  }, [value])
+
   return (
-    <RadioGroup onChange={onChange} value={value}>
+    <RadioGroup onChange={(v) => handleOnChange(v)} value={convertedValue}>
       {options.map((option, index) => (
         <Box mb="2" className={style.radio} key={index}>
           <Radio
