@@ -1,7 +1,7 @@
 import { FC } from 'react'
+import { useRouter } from 'next/router'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import { Flex, IconButton, Text } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
 import { useAnswerController } from '../../../hooks/questions'
 
 type Props = {
