@@ -2,7 +2,8 @@ import { FC, ReactNode } from 'react'
 import { Heading } from '@chakra-ui/react'
 
 type Props = {
-  catchPhrase?: ReactNode
+  className?: string
+  children: ReactNode
 }
 
 const HomeContentCatchPhrase: FC<Props> = (props) => {
@@ -14,8 +15,8 @@ const HomeContentCatchPhrase: FC<Props> = (props) => {
   }
 
   return (
-    <Heading style={baseStyle} as="h4">
-      {props.catchPhrase}
+    <Heading className={props.className} style={baseStyle} as="h4">
+      {props.children}
     </Heading>
   )
 }

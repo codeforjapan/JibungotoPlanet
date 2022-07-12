@@ -9,7 +9,7 @@ export default {
 
 export const Index: ComponentStoryObj<typeof HomeContentCatchPhrase> = {
   args: {
-    catchPhrase: (
+    children: (
       <span>
         まずはあなたの現状を知ることからはじめ、
         <br />
