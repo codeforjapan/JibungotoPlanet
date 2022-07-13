@@ -1,3 +1,4 @@
+import { PROFILE_ID } from 'constants/localstorageKeys'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { profileAtom } from '../store/profile'
@@ -10,12 +11,12 @@ export const useProfile = () => {
     const fetchProfile = async () => {
       if (profile) return
       try {
-        const profileId = localStorage.getItem('profileId')
+        const profileId = localStorage.getItem(PROFILE_ID)
 
         if (!profileId) {
           const data = await api.post('/profiles')
           setProfile(data)
-          localStorage.setItem('profileId', data.id)
+          localStorage.setItem(PROFILE_ID, data.id)
         } else {
           const data = await api.get(`/profiles/${profileId}`)
           setProfile(data)
