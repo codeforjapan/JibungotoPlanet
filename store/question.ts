@@ -1,9 +1,10 @@
-import { atom } from 'recoil'
+import { atomFamily } from 'recoil'
 import { AtomKeys } from './recoilKeys'
 
-export const lastAnsweredQuestion = atom<Questions.lastAnsweredQuestion | null>(
-  {
-    key: AtomKeys.lastAnsweredQuestion,
-    default: null
-  }
-)
+export const answersAtom = atomFamily<
+  { [key: string]: string | number | boolean },
+  Questions.QuestionCategory
+>({
+  key: AtomKeys.answersAtom,
+  default: {}
+})

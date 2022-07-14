@@ -20,17 +20,12 @@ declare namespace Questions {
     options?: Questions.QuestionOption[] //回答のオプション
   }
 
-  type QuestionCategory = 'food' | 'mobility' | 'house' | 'consumption'
+  type QuestionCategory = 'food' | 'mobility' | 'house' | 'other'
   type AnswerType = 'text' | 'select' | 'checkbox' | 'radio' | 'numeric'
   interface QuestionOption {
     label: string //ラベル
     subLabel?: string //補足ラベル
     value: string | number | boolean | null //値
     nextPageUid?: string //回答によって分岐させたいときの遷移するページUID
-  }
-
-  type lastAnsweredQuestion = {
-    category: string
-    uid: string
   }
 }

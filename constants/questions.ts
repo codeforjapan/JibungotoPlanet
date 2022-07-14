@@ -26,34 +26,36 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     uid: 'mq2',
     title: '最も使用する自動車の種類を教えてください',
     category: 'mobility',
-    defaultNextPageUid: 'mq3',
+    defaultNextPageUid: 'mq4',
     questions: [
       {
         key: 'privateCarType',
         answerType: 'select',
         options: [
           {
-            value: 'gasoline',
+            value: 'gasoline_driving-factor',
             label: 'ガソリン車'
           },
           {
-            value: 'gas', //ToDo: input value
+            value: 'light_driving-factor',
             label: '軽自動車'
           },
           {
-            value: 'gas', //ToDo: input value
+            value: 'hv_driving-factor',
             label: 'ハイブリッド車'
           },
           {
-            value: 'gas', //ToDo: input value
-            label: 'プラグインハイブリッド車'
+            value: 'phv_driving-factor',
+            label: 'プラグインハイブリッド車',
+            nextPageUid: 'mq3'
           },
           {
-            value: 'gas', //ToDo: input value
-            label: '電気自動車'
+            value: 'ev_driving-factor',
+            label: '電気自動車',
+            nextPageUid: 'mq3'
           },
           {
-            value: 'gas', //ToDo: input value
+            value: 'unknown_driving-factor',
             label: '分からない'
           }
         ]
@@ -71,23 +73,23 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
         answerType: 'select',
         options: [
           {
-            value: '', //ToDo: input value
+            value: 'use-charging-spots-occasionally', //ToDo: input value
             label: '自宅で充電することの方が多いが、充電スポットも利用する'
           },
           {
-            value: '', //ToDo: input value
+            value: 'use-charging-spots-sometimes', //ToDo: input value
             label: '自宅と充電スポットを半々で利用する'
           },
           {
-            value: '', //ToDo: input value
+            value: 'charge-almost-at-home', //ToDo: input value
             label: 'ほとんど自宅で充電する '
           },
           {
-            value: '', //ToDo: input value
+            value: 'use-charging-spots-usually', //ToDo: input value
             label: 'ほとんど充電スポットで充電する '
           },
           {
-            value: '', //ToDo: input value
+            value: 'unknown', //ToDo: input value
             label: '分からない'
           }
         ]
@@ -106,35 +108,35 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
         answerType: 'select',
         options: [
           {
-            value: '', //ToDo: input value
+            value: 'unknown', //ToDo: input value
             label: '分からない'
           },
           {
-            value: '', //ToDo: input value
+            value: '1', //ToDo: input value
             label: 'ほとんど1人'
           },
           {
-            value: '', //ToDo: input value
+            value: '1-2', //ToDo: input value
             label: '1~2人'
           },
           {
-            value: '', //ToDo: input value
+            value: '2', //ToDo: input value
             label: '2人'
           },
           {
-            value: '', //ToDo: input value
+            value: '2-3', //ToDo: input value
             label: '2~3人'
           },
           {
-            value: '', //ToDo: input value
+            value: '3', //ToDo: input value
             label: '3人'
           },
           {
-            value: '', //ToDo: input value
+            value: '3-4', //ToDo: input value
             label: '3~4人'
           },
           {
-            value: '', //ToDo: input value
+            value: '4-more', //ToDo: input value
             label: '4人以上'
           }
         ]
@@ -202,23 +204,23 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
         answerType: 'select',
         options: [
           {
-            value: '', // ToDo input value
+            value: 'major-city-or-metropolitan-area', // ToDo input value
             label: '政令指定都市・都区部'
           },
           {
-            value: '', // ToDo input value
+            value: 'city-150k-more', // ToDo input value
             label: '人口15万人以上の市'
           },
           {
-            value: '', // ToDo input value
+            value: 'city-50k-150k', // ToDo input value
             label: '人口5~15万人未満の市'
           },
           {
-            value: '', // ToDo input value
+            value: 'area-less-than-50k', // ToDo input value
             label: '人口5万人未満の市または町・村'
           },
           {
-            value: '', // ToDo input value
+            value: 'unknown', // ToDo input value
             label: '分からない'
           }
         ]

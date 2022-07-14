@@ -7,8 +7,8 @@ export const chakraTheme = extendTheme({
   },
   colors: {
     brandPrimary: {
-      200: '#d9ebdb',
-      400: '#439A4D'
+      200: '#99D9EF',
+      400: '#009ACE'
     },
     brandSecondary: {
       200: '#ccecf7',
@@ -17,6 +17,10 @@ export const chakraTheme = extendTheme({
     brandAccent: {
       200: '#fbebd4',
       400: '#ED9928'
+    },
+    grey: {
+      200: '#CCCCCC',
+      400: '#888888'
     },
     mobility: {
       200: '#99D9EF',
@@ -30,7 +34,7 @@ export const chakraTheme = extendTheme({
       200: '#fbebd4',
       400: '#ed9928'
     },
-    consumption: {
+    other: {
       200: '#f8e5e4',
       400: '#da7f79'
     }

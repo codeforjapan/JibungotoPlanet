@@ -1,4 +1,5 @@
 import { FC, useMemo } from 'react'
+import Image from 'next/image'
 import { Box } from '@chakra-ui/react'
 
 type Props = {
@@ -14,7 +15,7 @@ const CategoryTitle: FC<Props> = ({ category }) => {
         return '食について'
       case 'house':
         return '住居について'
-      case 'consumption':
+      case 'other':
         return 'モノとサービスについて'
       default:
         return ''
@@ -27,8 +28,10 @@ const CategoryTitle: FC<Props> = ({ category }) => {
       textAlign="center"
       fontSize="20px"
       fontWeight="bold"
+      pt={3}
     >
-      {text}
+      <Image src={`/icons/${category}.svg`} width="70px" height="70px" />
+      <p>{text}</p>
     </Box>
   )
 }
