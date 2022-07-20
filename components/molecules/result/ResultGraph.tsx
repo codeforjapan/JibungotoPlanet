@@ -3,6 +3,7 @@ import {
   Box,
   Container,
   Heading,
+  Spinner,
   Table,
   Tbody,
   Td,
@@ -18,7 +19,7 @@ import { useConvertSubdomainLabel } from 'hooks/result'
 import ShareSNS from './ShareSNS'
 
 const QuestionResultGraph: FC = () => {
-  const { mobility } = useEmissionResult()
+  const { mobility, loading } = useEmissionResult()
   const subdomainConverter = useConvertSubdomainLabel()
 
   const sortedResult = useMemo(() => {
@@ -46,6 +47,17 @@ const QuestionResultGraph: FC = () => {
       <Cloud amount={total} category="mobility"></Cloud>
       <Average />
 
+      {loading && (
+        <Box textAlign="center">
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color={`mobility.400`}
+            size="xl"
+          />
+        </Box>
+      )}
       <Table variant="unstyled" fontSize="12px" my={8}>
         <Tbody>
           {sortedResult.map((item, index) => (

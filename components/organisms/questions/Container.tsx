@@ -1,6 +1,5 @@
 import { FC, ReactNode } from 'react'
 import { Box, Container } from '@chakra-ui/react'
-import DatasourceFooter from 'components/DatasourceFooter'
 import CategoryTitle from 'components/molecules/questions/CategoryTitle'
 
 type Props = {

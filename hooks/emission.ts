@@ -3,6 +3,7 @@ import { useProfile } from './profile'
 
 export const useEmissionResult = () => {
   const { profile } = useProfile()
+  const [loading, setLoading] = useState(true)
   const [mobility, setMobility] = useState<{ key: string; value: number }[]>([])
 
   const uniq = (array: any[]): any[] => {
@@ -85,8 +86,9 @@ export const useEmissionResult = () => {
     if (profile) {
       const mobilityEmission = calcEmission('mobility')
       setMobility(mobilityEmission)
+      setLoading(false)
     }
   }, [profile])
 
-  return { mobility }
+  return { mobility, loading }
 }
