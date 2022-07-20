@@ -21,7 +21,6 @@ const QuestionPage: NextPage<Params> = ({ category, uid }) => {
     <>
       {questionPage && (
         <QuestionContainer category={questionPage.category}>
-          <CategoryTitle category={category} />
           <QuestionForm questionPage={questionPage} />
         </QuestionContainer>
       )}
