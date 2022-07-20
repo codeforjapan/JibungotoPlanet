@@ -2,6 +2,7 @@ import { FC, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Container, Heading } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
+import DatasourceFooter from 'components/DatasourceFooter'
 import { useProfile } from '../../../hooks/profile'
 import { useAnswerController } from '../../../hooks/questions'
 import api from '../../../utils/api'
@@ -42,7 +43,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
 
     if (questionPage.isLast) {
       console.log(profile)
-      // router.push(`/estimations/${questionPage.category}`)
+      router.push(`/questions/${questionPage.category}/result`)
     } else {
       let nextPageUid = nextQuestionUid(data)
       router.push(`/questions/${questionPage.category}/${nextPageUid}`)
@@ -136,61 +137,53 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   }
 
   return (
-    <Box display="flex" justifyContent="center">
-      <Container
-        background="white"
-        position="fixed"
-        height={{ base: `calc(100vh - 140px)` }}
-        width="90%"
-        bottom="0"
-        borderRadius="10px 10px 0 0"
-        overflow="auto"
-        pb="100px"
-      >
-        <QuestionHeader
-          numerator={1}
-          denominator={2}
-          questionPage={questionPage}
-        />
-        <Heading as="h1" fontSize="24px" textAlign="center" mb={5}>
-          {questionPage.title}
-        </Heading>
-        <form onSubmit={handleSubmit(submit)}>
-          {questionPage.questions.map((question) => (
-            <Box key={question.key}>
-              <Controller
-                control={control}
-                name={question.key}
-                render={({ field: { value, onChange } }) => (
-                  <QuestionInput
-                    question={question}
-                    onChange={onChange}
-                    value={value}
-                  />
-                )}
-              />
-            </Box>
-          ))}
+    <Box pb="100px">
+      <QuestionHeader
+        numerator={1}
+        denominator={2}
+        questionPage={questionPage}
+      />
+      <Heading as="h1" fontSize="24px" textAlign="center" mb={5}>
+        {questionPage.title}
+      </Heading>
+      <form onSubmit={handleSubmit(submit)}>
+        {questionPage.questions.map((question) => (
+          <Box key={question.key}>
+            <Controller
+              control={control}
+              name={question.key}
+              render={({ field: { value, onChange } }) => (
+                <QuestionInput
+                  question={question}
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
+            />
+          </Box>
+        ))}
 
-          <Container
-            textAlign="center"
-            position="fixed"
-            bottom={10}
-            left="50%"
-            transform="translateX(-50%)"
+        <Box
+          width="90%"
+          textAlign="center"
+          position="fixed"
+          bottom={5}
+          left="50%"
+          transform="translateX(-50%)"
+        >
+          <BasicButton
+            type="submit"
+            theme="brandPrimary"
+            isNext
+            width="90%"
+            margin="0 auto 20px"
           >
-            <BasicButton
-              type="submit"
-              theme="brandPrimary"
-              isNext
-              width="90%"
-              margin="0 auto"
-            >
-              次の質問へ
-            </BasicButton>
-          </Container>
-        </form>
-      </Container>
+            次の質問へ
+          </BasicButton>
+
+          <DatasourceFooter />
+        </Box>
+      </form>
     </Box>
   )
 }

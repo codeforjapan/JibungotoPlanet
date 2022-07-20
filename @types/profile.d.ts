@@ -12,7 +12,22 @@ declare namespace Profile {
     otherAnswer?: any
   }
 
-  interface Baseline {}
+  interface Baseline {
+    citations: string
+    domain: Questions.QuestionCategory
+    item: string
+    subdomain: string
+    type: 'amount' | 'intensity'
+    unit: string
+    value: value
+  }
 
-  interface Estimation {}
+  interface Estimation {
+    domain: Questions.QuestionCategory
+    item: string
+    subdomain: string
+    type: 'amount' | 'intensity'
+    unit: string
+    value: number
+  }
 }
