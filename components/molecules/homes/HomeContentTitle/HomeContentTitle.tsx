@@ -2,8 +2,8 @@ import { FC, ReactNode } from 'react'
 import { Heading } from '@chakra-ui/react'
 
 type Props = {
-  classname?: string;
-  children: ReactNode;
+  classname?: string
+  children: ReactNode
 }
 
 const HomeContentTitle: FC<Props> = (props) => {
