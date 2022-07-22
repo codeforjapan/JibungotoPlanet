@@ -25,7 +25,7 @@ const HomeHeader: FC = () => {
         >
           <Box pt={15}>
             <HomeContentTitle
-              classname={styles['home__header__title-container']}
+              className={styles['home__header__title-container']}
             >
               <span>
                 気候変動を
