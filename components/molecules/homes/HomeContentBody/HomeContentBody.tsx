@@ -2,6 +2,7 @@ import { FC, ReactNode } from 'react'
 import { Text } from '@chakra-ui/react'
 
 type Props = {
+  className?: string
   children: ReactNode
 }
 
@@ -14,7 +15,11 @@ const HomeContentBody: FC<Props> = (props) => {
     color: '#333333'
   }
 
-  return <Text style={baseStyle}>{props.children}</Text>
+  return (
+    <Text className={props.className} style={baseStyle}>
+      {props.children}
+    </Text>
+  )
 }
 
 export default HomeContentBody
