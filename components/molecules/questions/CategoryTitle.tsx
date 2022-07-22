@@ -13,7 +13,7 @@ const CategoryTitle: FC<Props> = ({ category }) => {
         return '移動について'
       case 'food':
         return '食について'
-      case 'house':
+      case 'housing':
         return '住居について'
       case 'other':
         return 'モノとサービスについて'

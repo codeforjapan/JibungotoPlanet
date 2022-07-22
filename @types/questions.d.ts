@@ -20,7 +20,7 @@ declare namespace Questions {
     options?: Questions.QuestionOption[] //回答のオプション
   }
 
-  type QuestionCategory = 'food' | 'mobility' | 'house' | 'other'
+  type QuestionCategory = 'food' | 'mobility' | 'housing' | 'other'
   type AnswerType = 'text' | 'select' | 'checkbox' | 'radio' | 'numeric'
   interface QuestionOption {
     label: string //ラベル

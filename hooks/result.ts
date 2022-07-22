@@ -19,6 +19,28 @@ export const useConvertSubdomainLabel = () => {
         return 'タクシー/レンタカー'
       case 'train':
         return '電車'
+      case 'cereals':
+        return '穀物'
+      case 'other-food':
+        return '惣菜・菓子・調味料等'
+      case 'vegetables':
+        return '野菜'
+      case 'dairy':
+        return '乳製品'
+      case 'meat':
+        return '肉類'
+      case 'fish':
+        return '魚介類'
+      case 'fruits':
+        return '果物'
+      case 'eggs':
+        return '卵'
+      case 'beans-nuts':
+        return '豆類'
+      case 'beverages':
+        return '飲料'
+      case 'restaurant':
+        return '外食'
       default:
         return ''
     }

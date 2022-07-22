@@ -18,23 +18,29 @@ import { useEmissionResult } from 'hooks/emission'
 import { useConvertSubdomainLabel } from 'hooks/result'
 import ShareSNS from './ShareSNS'
 
-const QuestionResultGraph: FC = () => {
-  const { mobility, loading } = useEmissionResult()
+type Props = {
+  category: Questions.QuestionCategory
+}
+
+const QuestionResultGraph: FC<Props> = ({ category }) => {
+  const result = useEmissionResult(category)
   const subdomainConverter = useConvertSubdomainLabel()
 
   const sortedResult = useMemo(() => {
-    return mobility
-      .filter((v) => v.key !== 'total')
-      .sort((a, b) => b.value - a.value)
-  }, [mobility])
+    const r = result[category]
+    return r
+      ? r.filter((v) => v.key !== 'total').sort((a, b) => b.value - a.value)
+      : []
+  }, [result])
 
   const maxValue = useMemo(() => {
     return sortedResult[0]?.value
-  }, [mobility])
+  }, [result])
 
   const total = useMemo(() => {
-    return Math.round(mobility.find((m) => m.key === 'total')?.value || 0)
-  }, [mobility])
+    const r = result[category]
+    return r ? Math.round(r.find((m) => m.key === 'total')?.value || 0) : 0
+  }, [result])
 
   return (
     <>
@@ -44,16 +50,16 @@ const QuestionResultGraph: FC = () => {
         カーボンフットプリント量
       </Heading>
 
-      <Cloud amount={total} category="mobility"></Cloud>
+      <Cloud amount={total} category={category}></Cloud>
       <Average />
 
-      {loading && (
+      {result.loading && (
         <Box textAlign="center">
           <Spinner
             thickness="4px"
             speed="0.65s"
             emptyColor="gray.200"
-            color={`mobility.400`}
+            color={`${category}.400`}
             size="xl"
           />
         </Box>
@@ -62,7 +68,13 @@ const QuestionResultGraph: FC = () => {
         <Tbody>
           {sortedResult.map((item, index) => (
             <Tr key={index}>
-              <Td wordBreak="keep-all" px={0} py={1} textAlign="left">
+              <Td
+                wordBreak="keep-all"
+                px={0}
+                py={1}
+                textAlign="left"
+                minWidth="80px"
+              >
                 {subdomainConverter(item.key)}
               </Td>
               <Td width="100%" px={3} py={1}>
@@ -70,7 +82,7 @@ const QuestionResultGraph: FC = () => {
                   width={`${(item.value / maxValue) * 100}%`}
                   height="30px"
                   backgroundColor={
-                    index === 0 ? 'mobility.400' : 'mobility.200'
+                    index === 0 ? `${category}.400` : `${category}.200`
                   }
                   display="block"
                 ></Box>

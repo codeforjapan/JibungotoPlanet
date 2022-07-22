@@ -14,7 +14,6 @@ const TextField: FC<Props> = ({
   type,
   onChange,
   value,
-  description,
   unitText,
   placeholder
 }) => {
@@ -39,9 +38,6 @@ const TextField: FC<Props> = ({
 
   return (
     <Box>
-      <Heading as="h2" fontSize="18px" mb={3}>
-        {description}
-      </Heading>
       <Grid gridTemplateColumns="1fr auto" alignItems="end">
         <Input
           type={inputType}

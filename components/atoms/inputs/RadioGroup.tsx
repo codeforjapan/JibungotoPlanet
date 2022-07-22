@@ -21,7 +21,7 @@ const RadioGroups: FC<Props> = ({ onChange, value, options }) => {
   return (
     <RadioGroup onChange={(v) => handleOnChange(v)} value={convertedValue}>
       {options.map((option, index) => (
-        <Box mb="2" className={style.radio} key={index}>
+        <Box className={style.radio} key={index} mb={4}>
           <Radio
             value={option.value}
             flexDirection="row-reverse"

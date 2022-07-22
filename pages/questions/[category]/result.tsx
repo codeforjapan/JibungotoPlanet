@@ -1,6 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import CategoryTitle from 'components/molecules/questions/CategoryTitle'
 import QuestionResultGraph from 'components/molecules/result/ResultGraph'
 import QuestionContainer from 'components/organisms/questions/Container'
 
@@ -11,7 +10,7 @@ interface Params extends ParsedUrlQuery {
 const QuestionResultPage: NextPage<Params> = ({ category }) => {
   return (
     <QuestionContainer category={category}>
-      <QuestionResultGraph />
+      <QuestionResultGraph category={category} />
     </QuestionContainer>
   )
 }
