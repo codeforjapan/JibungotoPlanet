@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react'
 import { Heading } from '@chakra-ui/react'
 
 type Props = {
-  classname?: string
+  className?: string
   children: ReactNode
 }
 
@@ -15,7 +15,7 @@ const HomeContentTitle: FC<Props> = (props) => {
   }
 
   return (
-    <Heading className={props.classname} style={baseStyle} as="h3">
+    <Heading className={props.className} style={baseStyle} as="h3">
       {props.children}
     </Heading>
   )
