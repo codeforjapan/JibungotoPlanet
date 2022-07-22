@@ -7,9 +7,13 @@ import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchP
 import HomeContentTitle from 'components/molecules/homes/HomeContentTitle/HomeContentTitle'
 import styles from 'styles/Home.module.scss'
 
-const HomeKnowSection: FC = () => {
+type Props = {
+  className?: string
+}
+
+const HomeKnowSection: FC<Props> = (props) => {
   return (
-    <SimpleGrid columns={2} spacing={10}>
+    <SimpleGrid columns={2} spacing={10} className={props.className}>
       <Box className={styles['home__section__img-container']}>
         <Image
           src={'/home/home-content-know.png'}
