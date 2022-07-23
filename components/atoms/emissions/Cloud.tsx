@@ -1,14 +1,18 @@
 import { FC } from 'react'
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Spinner, Text } from '@chakra-ui/react'
 
 type Props = {
   amount: number
-  category: Questions.QuestionCategory
+  category?: Questions.QuestionCategory
 }
 
 const Cloud: FC<Props> = ({ amount, category }) => {
   return (
-    <Box position="relative" fill={`${category}.200`} textAlign="center">
+    <Box
+      position="relative"
+      fill={category ? `${category}.200` : 'grey.200'}
+      textAlign="center"
+    >
       <Box
         position="absolute"
         top="25px"
@@ -18,7 +22,7 @@ const Cloud: FC<Props> = ({ amount, category }) => {
         margin="auto"
       >
         <Text fontSize="44px" fontWeight="bold">
-          {amount.toLocaleString()}
+          {amount === NaN ? '????' : amount.toLocaleString()}
         </Text>
         <Text fontSize="18px" fontWeight="bold">
           kg CO2e

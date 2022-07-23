@@ -1,10 +1,11 @@
 import { FC, useMemo } from 'react'
-import { Select } from '@chakra-ui/react'
+import { Box, Heading, Select } from '@chakra-ui/react'
 
 type Props = {
   options: { value: string | number; label: string }[]
   onChange: (v: string) => void
   defaultValue?: string
+  description?: string
 }
 
 const SelectBox: FC<Props> = ({ options, onChange, defaultValue }) => {

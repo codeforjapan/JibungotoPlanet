@@ -2,7 +2,10 @@ import { ParsedUrlQuery } from 'querystring'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import QuestionForm from '../../../components/molecules/questions/Form'
 import QuestionContainer from '../../../components/organisms/questions/Container'
-import { MOBILITY_QUESTION_PAGES } from '../../../constants/questions'
+import {
+  FOOD_QUESTION_PAGES,
+  MOBILITY_QUESTION_PAGES
+} from '../../../constants/questions'
 import { useQuestions } from '../../../hooks/questions'
 
 interface Params extends ParsedUrlQuery {
@@ -31,13 +34,16 @@ const QuestionPage: NextPage<Params> = ({ category, uid }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = () => {
-  //ToDo add house, food and comsumption, then concat them
+  //ToDo add housing, food and comsumption, then concat them
 
   const mobilityPaths = MOBILITY_QUESTION_PAGES.map((page) => {
     return { params: { category: page.category, uid: page.uid } }
   })
+  const foodPaths = FOOD_QUESTION_PAGES.map((page) => {
+    return { params: { category: page.category, uid: page.uid } }
+  })
 
-  const allPaths = mobilityPaths
+  const allPaths = mobilityPaths.concat(foodPaths)
 
   return {
     paths: allPaths,

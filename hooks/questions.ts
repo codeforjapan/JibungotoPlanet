@@ -1,21 +1,25 @@
 import { cloneDeep } from 'lodash'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { MOBILITY_QUESTION_PAGES } from '../constants/questions'
+import {
+  FOOD_QUESTION_PAGES,
+  MOBILITY_QUESTION_PAGES
+} from '../constants/questions'
 import { answersAtom } from '../store/question'
 
 export const useQuestions = () => {
   const [mobility, setMobilityQuestions] = useState<Questions.Page[]>([])
   const [food, setFoodQuestions] = useState<Questions.Page[]>([])
-  const [house, setHouseQuestions] = useState<Questions.Page[]>([])
+  const [housing, setHousingQuestions] = useState<Questions.Page[]>([])
   const [other, setOtherQuestions] = useState<Questions.Page[]>([])
 
   //一旦静的データをいれてますが、のちにAPIから取得しやすいようにあえて。
   useEffect(() => {
     setMobilityQuestions(MOBILITY_QUESTION_PAGES)
+    setFoodQuestions(FOOD_QUESTION_PAGES)
   }, [])
 
-  return { mobility, food, house, other }
+  return { mobility, food, housing, other }
 }
 
 export const useAnswerController = (params: {

@@ -1,7 +1,7 @@
 import { FC, ReactNode, useMemo } from 'react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 // eslint-disable-next-line import/named
-import { Button, ButtonProps } from '@chakra-ui/react'
+import { Button, ButtonProps, Spinner } from '@chakra-ui/react'
 
 type Props = {
   children: ReactNode
@@ -39,8 +39,9 @@ const BasicButton: FC<Props & ButtonProps> = ({
       py={rest.py || '16px'}
       lineHeight={rest.lineHeight || '23px'}
       height="auto"
+      disabled={rest.disabled || rest.isLoading}
     >
-      {children}
+      {rest.isLoading ? <Spinner /> : children}
     </Button>
   )
 }

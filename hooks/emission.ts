@@ -1,10 +1,15 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useProfile } from './profile'
 
-export const useEmissionResult = () => {
+export const useEmissionResult = (
+  category: Questions.QuestionCategory | 'all'
+) => {
   const { profile } = useProfile()
   const [loading, setLoading] = useState(true)
   const [mobility, setMobility] = useState<{ key: string; value: number }[]>([])
+  const [food, setFood] = useState<{ key: string; value: number }[]>([])
+  const [housing, sethousing] = useState<{ key: string; value: number }[]>([])
+  const [other, setOther] = useState<{ key: string; value: number }[]>([])
 
   const uniq = (array: any[]): any[] => {
     const knownElements = new Set()
@@ -84,11 +89,25 @@ export const useEmissionResult = () => {
 
   useEffect(() => {
     if (profile) {
-      const mobilityEmission = calcEmission('mobility')
-      setMobility(mobilityEmission)
+      switch (category) {
+        case ['mobility', 'all'].includes(category) && category:
+          const memission = calcEmission('mobility')
+          setMobility(memission)
+        case ['food', 'all'].includes(category) && category:
+          const femission = calcEmission('food')
+          setFood(femission)
+        case ['housing', 'all'].includes(category) && category:
+          const hemission = calcEmission('housing')
+          sethousing(hemission)
+        case ['other', 'all'].includes(category) && category:
+          const oemission = calcEmission('other')
+          setOther(oemission)
+        default:
+          break
+      }
       setLoading(false)
     }
-  }, [profile])
+  }, [profile, category])
 
-  return { mobility, loading }
+  return { mobility, food, housing, other, loading }
 }
