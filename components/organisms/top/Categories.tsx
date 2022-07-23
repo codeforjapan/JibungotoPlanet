@@ -1,9 +1,9 @@
+import { FC, useMemo } from 'react'
 import { Box } from '@chakra-ui/react'
 import Cloud from 'components/atoms/emissions/Cloud'
 import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
 import { useProfile } from 'hooks/profile'
-import { FC, useMemo } from 'react'
 
 const TopCategories: FC = () => {
   const { profile } = useProfile()

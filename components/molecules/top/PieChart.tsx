@@ -1,9 +1,8 @@
-import { Box } from '@chakra-ui/react'
 import { FC, useMemo } from 'react'
+import { Box } from '@chakra-ui/react'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
-import 'chart.js/auto'
 import { Pie } from 'react-chartjs-2'
-import { Plugin } from 'chart.js/auto'
+import type { Plugin } from 'chart.js'
 
 const PieChart: FC = () => {
   const iconTooltip: Plugin = useMemo(() => {
