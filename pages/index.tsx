@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Container } from '@chakra-ui/react'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
+import HomeFooter from 'components/organisms/homes/HomeFooter/HomeFooter'
 import HomeHeader from 'components/organisms/homes/HomeHeader/HomeHeader'
 import HomeKnowSection from 'components/organisms/homes/HomeKnowSection/HomeKnowSection'
 import HomeLookBackSection from 'components/organisms/homes/HomeLookBackSection/HomeLookBackSection'
@@ -19,6 +20,7 @@ const Home: FC = () => {
         <HomeChangeSection className={styles['home__section']} />
         <HomeCaptionSection className={styles['home__caption-section']} />
       </Container>
+      <HomeFooter />
     </div>
   )
 }
