@@ -1,8 +1,7 @@
 .home {
   &__header {
-
     &__item-container {
-     padding-left: 15%;
+      padding-left: 15%;
     }
 
     &__title-container {
@@ -10,8 +9,24 @@
     }
 
     &__title {
-      padding-bottom: .3rem;
+      padding-bottom: 0.3rem;
       border-bottom: 5px solid black;
+    }
+  }
+
+  &__section {
+    padding: 5rem 0;
+
+    &__img-container {
+      position: relative;
+    }
+
+    &__item-title {
+      padding: 1rem 0;
+    }
+
+    &__item {
+      padding: 0.5rem 0;
     }
   }
 }
