@@ -29,4 +29,19 @@
       padding: 0.5rem 0;
     }
   }
+
+  &__caption-section {
+    padding-top: 4rem;
+    max-width: 1000px;
+
+    &__text {
+      font-size: 14px;
+      line-height: 160%;
+      letter-spacing: 0.05em;
+    }
+
+    &__link {
+      text-decoration: underline;
+    }
+  }
 }

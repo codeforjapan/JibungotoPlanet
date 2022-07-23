@@ -1,6 +1,8 @@
 import { FC, useMemo } from 'react'
 import { Box } from '@chakra-ui/react'
+// eslint-disable-next-line import/no-unresolved
 import ChartDataLabels from 'chartjs-plugin-datalabels'
+// eslint-disable-next-line import/no-unresolved
 import { Pie } from 'react-chartjs-2'
 import type { Plugin } from 'chart.js'
 
