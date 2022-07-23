@@ -30,7 +30,7 @@ export const chakraTheme = extendTheme({
       200: '#d9eadb',
       400: '#51a15a'
     },
-    house: {
+    housing: {
       200: '#fbebd4',
       400: '#ed9928'
     },

@@ -274,3 +274,450 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     isLast: true
   }
 ]
+
+export const FOOD_QUESTION_PAGES: Questions.Page[] = [
+  {
+    uid: 'fd1',
+    title: '1日の活動量（摂取カロリー量）はどのくらいですか？',
+    category: 'food',
+    defaultNextPageUid: 'fd2',
+    questions: [
+      {
+        key: 'foodIntakeFactorKey',
+        answerType: 'radio',
+        options: [
+          {
+            value: 'very-little',
+            label: '約1,400kcal かなりすくない',
+            subLabel: '小学校低・中学年の子ども、高齢の女性'
+          },
+          {
+            value: 'somewhat-little',
+            label: '約2,000kcal やや少ない',
+            subLabel: '座って過ごすことが多い女性、高齢の男性'
+          },
+          {
+            value: 'moderate',
+            label: '約2,200kcal　普通',
+            subLabel: '軽い運動や立ち仕事がある女性、座って過ごすことが多い男性'
+          },
+          {
+            value: 'somewhat-much',
+            label: '約2,400kcal　やや多い',
+            subLabel: '軽い運動や立ち仕事がある男性、運動習慣の多い女性'
+          },
+          {
+            value: 'very-much',
+            label: '約3,000kcal　かなり多い',
+            subLabel: '立ち仕事や移動、運動習慣の多い男性'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'fd2',
+    title: '食材を捨てたり食べ残し（食品ロス）が生じる頻度はどのくらいですか？',
+    category: 'food',
+    defaultNextPageUid: 'fd3',
+    questions: [
+      {
+        key: 'foodDirectWasteFactorKey',
+        description: '賞味期限切れなどで未使用の食品や食材を捨ててしまう頻度',
+        answerType: 'select',
+        options: [
+          {
+            value: '1-per-week',
+            label: '週に1回'
+          },
+          {
+            value: '2-3-per-week',
+            label: '週に2～3回'
+          },
+          {
+            value: '4-7-per-week',
+            label: '週に4～7回'
+          },
+          {
+            value: '8-more-per-week',
+            label: '週に8回以上'
+          },
+          {
+            value: 'seldom',
+            label: 'ほとんどない'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      },
+      {
+        key: 'foodLeftoverFactorKey',
+        description: '食べ残しの頻度',
+        answerType: 'select',
+        options: [
+          {
+            value: '1-per-week',
+            label: '週に1回'
+          },
+          {
+            value: '2-3-per-week',
+            label: '週に2～3回'
+          },
+          {
+            value: '4-7-per-week',
+            label: '週に4～7回'
+          },
+          {
+            value: '8-more-per-week',
+            label: '週に8回以上'
+          },
+          {
+            value: 'seldom',
+            label: 'ほとんどない'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'fd3',
+    title: '普段の食生活を教えてください',
+    supplement: '（外食、惣菜、弁当、テイクアウトも含む）',
+    category: 'food',
+    defaultNextPageUid: 'fd4',
+    questions: [
+      {
+        key: 'dishBeefFactorKey',
+        description: '牛肉を食べる頻度',
+        answerType: 'select',
+        options: [
+          {
+            value: 'never',
+            label: '食べない'
+          },
+          {
+            value: '1-less-per-month',
+            label: '月に1日以下'
+          },
+          {
+            value: '2-3-per-month',
+            label: '月に2〜3日'
+          },
+          {
+            value: '1-per-week',
+            label: '週に1日'
+          },
+          {
+            value: '2-3-per-week',
+            label: '週に2〜3日'
+          },
+          {
+            value: '4-5-per-week',
+            label: '週に4〜5日'
+          },
+          {
+            value: 'everyday',
+            label: 'ほぼ毎日'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      },
+      {
+        key: 'dishPorkFactorKey',
+        description: '豚肉を食べる頻度',
+        answerType: 'select',
+        options: [
+          {
+            value: 'never',
+            label: '食べない'
+          },
+          {
+            value: '1-less-per-month',
+            label: '月に1日以下'
+          },
+          {
+            value: '2-3-per-month',
+            label: '月に2〜3日'
+          },
+          {
+            value: '1-per-week',
+            label: '週に1日'
+          },
+          {
+            value: '2-3-per-week',
+            label: '週に2〜3日'
+          },
+          {
+            value: '4-5-per-week',
+            label: '週に4〜5日'
+          },
+          {
+            value: 'everyday',
+            label: 'ほぼ毎日'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      },
+      {
+        key: 'dishChickenFactorKey',
+        description: '鶏肉を食べる頻度',
+        answerType: 'select',
+        options: [
+          {
+            value: 'never',
+            label: '食べない'
+          },
+          {
+            value: '1-less-per-month',
+            label: '月に1日以下'
+          },
+          {
+            value: '2-3-per-month',
+            label: '月に2〜3日'
+          },
+          {
+            value: '1-per-week',
+            label: '週に1日'
+          },
+          {
+            value: '2-3-per-week',
+            label: '週に2〜3日'
+          },
+          {
+            value: '4-5-per-week',
+            label: '週に4〜5日'
+          },
+          {
+            value: 'everyday',
+            label: 'ほぼ毎日'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      },
+      {
+        key: 'dishSeafoodFactorKey',
+        description: '魚介を食べる頻度',
+        answerType: 'select',
+        options: [
+          {
+            value: 'never',
+            label: '食べない'
+          },
+          {
+            value: '1-less-per-month',
+            label: '月に1日以下'
+          },
+          {
+            value: '2-3-per-month',
+            label: '月に2〜3日'
+          },
+          {
+            value: '1-per-week',
+            label: '週に1日'
+          },
+          {
+            value: '2-3-per-week',
+            label: '週に2〜3日'
+          },
+          {
+            value: '4-5-per-week',
+            label: '週に4〜5日'
+          },
+          {
+            value: 'everyday',
+            label: 'ほぼ毎日'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      },
+      {
+        key: 'dairyFoodFactorKey',
+        description: '乳製品、卵を食べる頻度',
+        answerType: 'select',
+        options: [
+          {
+            value: 'never',
+            label: '食べない'
+          },
+          {
+            value: '1-2-less-per-week',
+            label: '週に1〜2回以下'
+          },
+          {
+            value: 'half-of-week',
+            label: '週の半分'
+          },
+          {
+            value: '1-per-day',
+            label: '1日1回'
+          },
+          {
+            value: '2-per-day',
+            label: '1日2回'
+          },
+          {
+            value: '3-more-per-day',
+            label: '1日3回以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'fd4',
+    title: '１週間にどのくらいの頻度でお酒を飲みますか？',
+    supplement: '（外食の場合も含む）',
+    category: 'food',
+    defaultNextPageUid: 'fd5',
+    questions: [
+      {
+        key: 'alcoholFactorKey',
+        answerType: 'select',
+        options: [
+          {
+            value: 'never',
+            label: '飲まない'
+          },
+          {
+            value: '1-less-per-month',
+            label: '月に1日以下'
+          },
+          {
+            value: '2-3-per-month',
+            label: '月に2〜3日'
+          },
+          {
+            value: '1-per-week',
+            label: '週に1日'
+          },
+          {
+            value: '2-3-per-week',
+            label: '週に2〜3日'
+          },
+          {
+            value: '4-5-per-week',
+            label: '週に4〜5日'
+          },
+          {
+            value: 'everyday',
+            label: 'ほぼ毎日'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'fd5',
+    title: 'お酒以外の飲み物、お菓子類の1ヶ月の支出はどのくらいですか？',
+    supplement:
+      '（コーヒー、お茶、炭酸飲料、ノンアルコールビール、スイーツ、スナック類など）',
+    category: 'food',
+    defaultNextPageUid: 'fd6',
+    questions: [
+      {
+        key: 'softDrinkSnackFactorKey',
+        answerType: 'select',
+        subDescription:
+          '家族の分もあわせて購入している場合、あなた自身が消費している分だけで考えましょう。',
+        options: [
+          {
+            value: '3k-less',
+            label: '月に¥3,000未満'
+          },
+          {
+            value: '3k-5k',
+            label: '月に¥3,000〜¥5,000未満'
+          },
+          {
+            value: '5k-10k',
+            label: '月に¥5,000〜¥10,000未満'
+          },
+          {
+            value: '10k-15k',
+            label: '月に¥10,000〜¥15,000未満'
+          },
+          {
+            value: '15k-more',
+            label: '月に¥15,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'fd6',
+    title: '1ヶ月の外食費はどのくらいですか？',
+    supplement: '（惣菜、弁当、テイクアウトなどは除く）',
+    category: 'food',
+    defaultNextPageUid: '',
+    isLast: true,
+    questions: [
+      {
+        key: 'eatOutFactorKey',
+        answerType: 'select',
+        subDescription:
+          '家族の分もあわせて購入している場合、あなた自身が消費している分だけで考えましょう。',
+        options: [
+          {
+            value: '5k-less',
+            label: '月に¥5,000未満'
+          },
+          {
+            value: '5k-10k',
+            label: '月に¥5,000〜¥10,000未満'
+          },
+          {
+            value: '10k-20k',
+            label: '月に¥10,000〜¥20,000未満'
+          },
+          {
+            value: '20k-50k',
+            label: '月に¥20,000〜¥50,000未満'
+          },
+          {
+            value: '50k-more',
+            label: '月に¥50,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  }
+]

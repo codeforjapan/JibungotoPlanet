@@ -1,6 +1,6 @@
-import { FC, useMemo } from 'react'
+import { FC, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
-import { Box, Container, Heading } from '@chakra-ui/react'
+import { Box, Container, Heading, Text } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
 import DatasourceFooter from 'components/DatasourceFooter'
 import { useProfile } from '../../../hooks/profile'
@@ -34,7 +34,11 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     return questionPage.questions.map((q) => q.key)
   }, [questionPage])
 
-  const { control, handleSubmit } = useForm({ defaultValues: defautValues })
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting }
+  } = useForm({ defaultValues: defautValues })
 
   const submit = async (data: any) => {
     setNewAnswer(data)
@@ -42,7 +46,6 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     await sendData(data)
 
     if (questionPage.isLast) {
-      console.log(profile)
       router.push(`/questions/${questionPage.category}/result`)
     } else {
       let nextPageUid = nextQuestionUid(data)
@@ -50,16 +53,34 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     }
   }
 
-  const sendData = async (data: any) => {
-    if (!profile) return
-    const params: Profile.Profile = { ...profile, mobilityAnswer: data }
-    try {
-      const { data } = await api.put(`/profiles/${profile?.id}`, params)
-      setProfile(data)
-    } catch (error) {
-      console.log(error)
+  const sendDataParamsKey = useMemo(() => {
+    switch (questionPage.category) {
+      case 'mobility':
+        return 'mobilityAnswer'
+      case 'housing':
+        return 'housingAnswer'
+      case 'food':
+        return 'foodAnswer'
+      case 'other':
+        return 'otherAnswer'
+      default:
+        return ''
     }
-  }
+  }, [questionPage.category])
+
+  const sendData = useCallback(
+    async (data: any) => {
+      if (!profile) return
+      const params: Profile.Profile = { ...profile, [sendDataParamsKey]: data }
+      try {
+        const { data } = await api.put(`/profiles/${profile?.id}`, params)
+        setProfile(data)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    [profile]
+  )
 
   const nextQuestionUid = (data: { [key: string]: string | number }) => {
     let questionValue = toBoolean(data[questionKeys[0]])
@@ -114,7 +135,6 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
               onChange={onChange}
               value={value}
               type="text"
-              description={question.description}
               unitText={question.unitText}
             />
           </Box>
@@ -126,7 +146,6 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
               onChange={onChange}
               value={value}
               type="numeric"
-              description={question.description}
               unitText={question.unitText}
             />
           </Box>
@@ -143,12 +162,27 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         denominator={2}
         questionPage={questionPage}
       />
-      <Heading as="h1" fontSize="24px" textAlign="center" mb={5}>
-        {questionPage.title}
-      </Heading>
+      <Box fontSize="24px" textAlign="center" mb={5}>
+        <Heading as="h1">{questionPage.title}</Heading>
+        {questionPage.supplement && (
+          <Text fontSize="14px" mt={2} textAlign="center" fontWeight="normal">
+            {questionPage.supplement}
+          </Text>
+        )}
+      </Box>
       <form onSubmit={handleSubmit(submit)}>
         {questionPage.questions.map((question) => (
-          <Box key={question.key}>
+          <Box key={question.key} mb={5}>
+            {question.description && (
+              <Heading as="h2" fontSize="18px" mb={2}>
+                {question.description}
+              </Heading>
+            )}
+            {question.subDescription && (
+              <Text fontSize="14px" mb={2}>
+                {question.subDescription}
+              </Text>
+            )}
             <Controller
               control={control}
               name={question.key}
@@ -177,6 +211,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             isNext
             width="90%"
             margin="0 auto 20px"
+            isLoading={isSubmitting}
           >
             次の質問へ
           </BasicButton>

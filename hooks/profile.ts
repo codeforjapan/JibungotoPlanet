@@ -12,9 +12,8 @@ export const useProfile = () => {
       if (profile) return
       try {
         const profileId = localStorage.getItem(PROFILE_ID)
-
         if (!profileId) {
-          const data = await api.post('/profiles')
+          const { data } = await api.post('/profiles')
           setProfile(data)
           localStorage.setItem(PROFILE_ID, data.id)
         } else {
