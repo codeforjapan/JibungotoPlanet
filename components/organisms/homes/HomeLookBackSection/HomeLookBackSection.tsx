@@ -18,16 +18,22 @@ const HomeLookBackSection: FC<Props> = (props) => {
           <span>2.見直す</span>
         </HomeContentTitle>
         <HomeContentCatchPhrase className={styles['home__section__item']}>
-          あなたの暮らしに地球が何個必要か知っていますか？<br />
+          あなたの暮らしに地球が何個必要か知っていますか？
+          <br />
           地球に負担をかけない、丁寧な暮らし方への見直しが、いま求められています
         </HomeContentCatchPhrase>
         <HomeContentBody className={styles['home__section__item']}>
           <span>
-            エコロジカルフットプリント<small>（人類が地球に与えている負荷の大きさを測る指標）</small>によると、
-            もし、世界中の人が日本と同じ暮らしをすると、地球が<span style={{ backgroundColor: '#F1FF55' }}>約2.8個分</span>必要になると言われています<sup>3</sup>。
-            これは、私たちが地球が生み出す自然の資源を必要以上に採取し、自然に吸収される量より多くのCO2を排出していることを意味します。<br />
+            エコロジカルフットプリント
+            <small>（人類が地球に与えている負荷の大きさを測る指標）</small>
+            によると、 もし、世界中の人が日本と同じ暮らしをすると、地球が
+            <span style={{ backgroundColor: '#F1FF55' }}>約2.8個分</span>
+            必要になると言われています<sup>3</sup>。
+            これは、私たちが地球が生み出す自然の資源を必要以上に採取し、自然に吸収される量より多くのCO2を排出していることを意味します。
+            <br />
             住居、移動、食生活、衣類など、私たちの暮らしを支えるあらゆるモノやサービスは、これらを作り、運び、使い、捨てるまでの間に温室効果ガスを排出し、
-            その量はカーボンフットプリント全体の約6割を占めています<sup>2</sup>。
+            その量はカーボンフットプリント全体の約6割を占めています<sup>2</sup>
+            。
           </span>
         </HomeContentBody>
       </Box>
