@@ -1,7 +1,7 @@
 import { FC, forwardRef, RefObject } from 'react'
 
 import { useRouter } from 'next/router'
-import { Flex, Grid, GridItem, Box } from '@chakra-ui/react'
+import { Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 
 import BasicButton from 'components/atoms/buttons/Basic'
 import SocietyContentCatchPhrase from 'components/molecules/society/SocietyContentCatchPhrase/SocietyContentCatchPhrase'
@@ -142,6 +142,9 @@ const SocietyDetailedSection: FC<Props> = (props) => {
         {/*  onClick={handleButtonClick}> */}
         戻る
       </BasicButton>
+      <Text fontSize={14} mt={'5em'} pb={5}>
+        © 2022 Code for Japan
+      </Text>
     </Flex>
   )
 }

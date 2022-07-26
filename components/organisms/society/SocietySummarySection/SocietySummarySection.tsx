@@ -19,6 +19,15 @@ const SocietySummarySection: FC<Props> = (props) => {
       className={props.className}
       width={'80%'}
     >
+      <Box height="3vh" width={'100%'} py={10}>
+        <Box mb={'4em'} className={styles['society__header__item-container']}>
+          <SocietyContentCatchPhrase
+            className={styles['society__header__catch-phrase']}
+          >
+            じぶんごとプラネット
+          </SocietyContentCatchPhrase>
+        </Box>
+      </Box>
       <Box px={5}>
         <SocietyContentTitle className={styles['society__section__item-title']}>
           自分から働きかける
