@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { Text } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
 
 type Props = {
   className?: string
@@ -8,17 +8,16 @@ type Props = {
 
 const HomeContentCatchPhrase: FC<Props> = (props) => {
   const baseStyle = {
-    fontSize: '18px',
-    lineHeight: '190%',
+    fontSize: '24px',
+    lineHeight: '160%',
     letterSpacing: '0.05em',
-    fontWeight: 500,
-    color: '#333333'
+    fontWeight: 700
   }
 
   return (
-    <Text className={props.className} style={baseStyle}>
+    <Heading className={props.className} style={baseStyle} as="h4">
       {props.children}
-    </Text>
+    </Heading>
   )
 }
 
