@@ -6,9 +6,9 @@ type Props = {
   children: ReactNode
 }
 
-const HomeContentCatchPhrase: FC<Props> = (props) => {
+const SocietyContentCatchPhrase: FC<Props> = (props) => {
   const baseStyle = {
-    fontSize: '18px',
+    fontSize: '14px',
     lineHeight: '190%',
     letterSpacing: '0.05em',
     fontWeight: 500,
@@ -22,4 +22,4 @@ const HomeContentCatchPhrase: FC<Props> = (props) => {
   )
 }
 
-export default HomeContentCatchPhrase
+export default SocietyContentCatchPhrase
