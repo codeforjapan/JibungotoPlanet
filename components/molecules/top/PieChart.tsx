@@ -1,9 +1,9 @@
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
 import { Box, Flex } from '@chakra-ui/react'
+import { ArcElement, Chart } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { Pie } from 'react-chartjs-2'
 import type { Plugin } from 'chart.js'
-import { ArcElement, Chart } from 'chart.js'
 Chart.register(ArcElement)
 
 type Props = {

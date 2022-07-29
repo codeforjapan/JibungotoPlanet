@@ -1,7 +1,7 @@
+import { FC, useMemo } from 'react'
+import Image from 'next/image'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import { Button, Flex, Text } from '@chakra-ui/react'
-import Image from 'next/image'
-import { FC, useMemo } from 'react'
 
 type Props = {
   category: Questions.QuestionCategory

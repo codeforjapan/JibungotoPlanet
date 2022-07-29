@@ -29,4 +29,63 @@
       padding: 0.5rem 0;
     }
   }
+
+  &__caption-section {
+    padding-top: 4rem;
+    max-width: 1000px;
+
+    &__text {
+      font-size: 14px;
+      line-height: 160%;
+      letter-spacing: 0.05em;
+    }
+
+    &__link {
+      text-decoration: underline;
+    }
+  }
+
+  &__footer {
+    position: relative;
+    height: 450px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    &__content {
+      z-index: 1000;
+      height: 65%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &__catch-phrase {
+      position: relative;
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.3;
+      font-size: 2.5rem;
+      padding-bottom: 2.2rem;
+
+      &:before,
+      &:after {
+        position: relative;
+        display: inline-block;
+        content: '';
+        background: #333333;
+        width: 2px;
+        height: 2em;
+        margin: -0.2em 1em 0;
+        vertical-align: middle;
+      }
+
+      &:before {
+        transform: rotate(-35deg); //角度調整
+      }
+      &:after {
+        transform: rotate(35deg); //角度調整
+      }
+    }
+  }
 }
