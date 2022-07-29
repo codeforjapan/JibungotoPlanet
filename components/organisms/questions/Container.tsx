@@ -28,6 +28,7 @@ const QuestionContainer: FC<Props> = ({ children, category }) => {
           bottom="0"
           borderRadius="10px 10px 0 0"
           overflow="auto"
+          overflowX="hidden"
         >
           <Box pb="40px">{children}</Box>
         </Container>
