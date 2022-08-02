@@ -4,10 +4,8 @@ import CategoryButton from 'components/atoms/buttons/Category'
 import Cloud from 'components/atoms/emissions/Cloud'
 import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
-import { useProfile } from 'hooks/profile'
 
 const TopCategories: FC = () => {
-  const { profile } = useProfile()
   const emission = useEmissionResult('all')
 
   const mobility = useMemo(() => {
