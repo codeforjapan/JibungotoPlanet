@@ -1,3 +1,4 @@
+import { FC, ReactNode, useRef } from 'react'
 import {
   AlertDialog,
   AlertDialogBody,
@@ -6,7 +7,6 @@ import {
   AlertDialogOverlay,
   Box
 } from '@chakra-ui/react'
-import { FC, ReactNode, useRef } from 'react'
 
 type Props = {
   isOpen: boolean

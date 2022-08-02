@@ -1,7 +1,7 @@
+import { FC, useMemo } from 'react'
+import Link from 'next/link'
 import { Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
-import Link from 'next/link'
-import { FC, useMemo } from 'react'
 import ModalBase from '../modal/Base'
 import CategoryTitle from '../questions/CategoryTitle'
 

@@ -2,10 +2,10 @@ import { FC, useMemo, useState } from 'react'
 import { Box, Text, useDisclosure } from '@chakra-ui/react'
 import CategoryButton from 'components/atoms/buttons/Category'
 import Cloud from 'components/atoms/emissions/Cloud'
+import CategoryModal from 'components/molecules/top/CategoryModal'
 import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
 import { useProfile } from 'hooks/profile'
-import CategoryModal from 'components/molecules/top/CategoryModal'
 
 const TopCategories: FC = () => {
   const { profile } = useProfile()
