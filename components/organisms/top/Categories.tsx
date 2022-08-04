@@ -5,10 +5,8 @@ import Cloud from 'components/atoms/emissions/Cloud'
 import CategoryModal from 'components/molecules/top/CategoryModal'
 import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
-import { useProfile } from 'hooks/profile'
 
 const TopCategories: FC = () => {
-  const { profile } = useProfile()
   const emission = useEmissionResult('all')
 
   const { isOpen, onClose, onOpen } = useDisclosure()
