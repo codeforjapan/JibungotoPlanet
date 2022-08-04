@@ -35,7 +35,12 @@ const CategoryButton: FC<Props> = ({ category, onClick }) => {
       onClick={onClick}
     >
       <Flex alignItems="center" width="100%">
-        <Image width="40px" height="40px" src={`/icons/${category}.svg`} />
+        <Image
+          width="40px"
+          height="40px"
+          src={`/icons/${category}.svg`}
+          alt=""
+        />
         <Text ml={3} color={`${category}.400`}>
           {text}
         </Text>

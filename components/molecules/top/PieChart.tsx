@@ -22,7 +22,6 @@ const PieChart: FC<Props> = ({ mobility, food, housing, other }) => {
       chart.data.datasets.forEach((dataset, i) => {
         chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
           const categoryEmission = Number(dataset.data[index])
-          console.log(categoryEmission)
           if (categoryEmission > 0) {
             const img = new Image()
             switch (index) {
@@ -67,7 +66,7 @@ const PieChart: FC<Props> = ({ mobility, food, housing, other }) => {
     } else {
       return [mobility, housing, food, other]
     }
-  }, [mobility, housing, food, other])
+  }, [mobility, housing, food, other, isNoAnswered])
 
   return (
     <Box maxWidth="450" mx="auto">
