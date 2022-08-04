@@ -1,12 +1,17 @@
-import { FC, useMemo } from 'react'
-import { Box, Text } from '@chakra-ui/react'
+import { FC, useMemo, useState } from 'react'
+import { Box, Text, useDisclosure } from '@chakra-ui/react'
 import CategoryButton from 'components/atoms/buttons/Category'
 import Cloud from 'components/atoms/emissions/Cloud'
+import CategoryModal from 'components/molecules/top/CategoryModal'
 import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
 
 const TopCategories: FC = () => {
   const emission = useEmissionResult('all')
+
+  const { isOpen, onClose, onOpen } = useDisclosure()
+  const [modalCategory, setModalCategory] =
+    useState<Questions.QuestionCategory>()
 
   const mobility = useMemo(() => {
     return emission.mobility.find((f) => f.key === 'total')?.value
@@ -34,6 +39,11 @@ const TopCategories: FC = () => {
     }
   }, [emission])
 
+  const selectCategory = (category: Questions.QuestionCategory) => {
+    setModalCategory(category)
+    onOpen()
+  }
+
   return (
     <>
       <Box mt={5}>
@@ -52,18 +62,36 @@ const TopCategories: FC = () => {
           カーボンフットプリント量がわかる
         </Text>
         <Box mb={3}>
-          <CategoryButton category="housing" />
+          <CategoryButton
+            category="housing"
+            onClick={() => selectCategory('housing')}
+          />
         </Box>
         <Box mb={3}>
-          <CategoryButton category="food" />
+          <CategoryButton
+            category="food"
+            onClick={() => selectCategory('food')}
+          />
         </Box>
         <Box mb={3}>
-          <CategoryButton category="mobility" />
+          <CategoryButton
+            category="mobility"
+            onClick={() => selectCategory('mobility')}
+          />
         </Box>
         <Box mb={3}>
-          <CategoryButton category="other" />
+          <CategoryButton
+            category="other"
+            onClick={() => selectCategory('other')}
+          />
         </Box>
       </Box>
+
+      <CategoryModal
+        isOpen={isOpen}
+        onClose={onClose}
+        modalCategory={modalCategory}
+      />
     </>
   )
 }
