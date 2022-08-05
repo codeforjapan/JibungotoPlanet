@@ -4,7 +4,9 @@ import QuestionForm from '../../../components/molecules/questions/Form'
 import QuestionContainer from '../../../components/organisms/questions/Container'
 import {
   FOOD_QUESTION_PAGES,
-  MOBILITY_QUESTION_PAGES
+  HOUSING_QUESTION_PAGES,
+  MOBILITY_QUESTION_PAGES,
+  OTHER_QUESTION_PAGES
 } from '../../../constants/questions'
 import { useQuestions } from '../../../hooks/questions'
 
@@ -42,8 +44,17 @@ export const getStaticPaths: GetStaticPaths = () => {
   const foodPaths = FOOD_QUESTION_PAGES.map((page) => {
     return { params: { category: page.category, uid: page.uid } }
   })
+  const housingPaths = HOUSING_QUESTION_PAGES.map((page) => {
+    return { params: { category: page.category, uid: page.uid } }
+  })
+  const otherPaths = OTHER_QUESTION_PAGES.map((page) => {
+    return { params: { category: page.category, uid: page.uid } }
+  })
 
-  const allPaths = mobilityPaths.concat(foodPaths)
+  const allPaths = mobilityPaths
+    .concat(foodPaths)
+    .concat(housingPaths)
+    .concat(otherPaths)
 
   return {
     paths: allPaths,
