@@ -721,3 +721,772 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
     ]
   }
 ]
+
+export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
+  {
+    uid: 'hs1',
+    title: '一緒に暮らしている人数を教えてください',
+    category: 'housing',
+    defaultNextPageUid: 'hs2',
+    questions: [
+      {
+        key: 'residentCount',
+        answerType: 'numeric',
+        unitText: '人'
+      }
+    ]
+  },
+  {
+    uid: 'hs2',
+    title: 'あなたの家の部屋はいくつありますか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs3',
+    questions: [
+      {
+        key: 'housingSizeKey',
+        answerType: 'select',
+        options: [
+          {
+            value: '1-room',
+            label: '1部屋（ワンルーム, 1K）'
+          },
+          {
+            value: '2-room',
+            label: '2部屋（1DK, 2K）'
+          },
+          {
+            value: '3-room',
+            label: '3部屋相当（2DK, 1LDK, 3K）'
+          },
+          {
+            value: '4-room',
+            label: '4部屋相当（3DK, 2LDK）'
+          },
+          {
+            value: '5-6-room',
+            label: '5〜6部屋相当（3LDK, 4LDK）'
+          },
+          {
+            value: '7-more-room',
+            label: '7部屋以上（5LDK以上）'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs3',
+    title: '現在住んでいる住居の建築年はいつ頃ですか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs4',
+    questions: [
+      {
+        key: 'housingInsulationFirstKey',
+        answerType: 'select',
+        options: [
+          {
+            value: 'no-insulation',
+            label: '1970年代以前（無断熱）'
+          },
+          {
+            value: '2-level',
+            label: '1980年代（断熱等級2級）'
+          },
+          {
+            value: '3-level',
+            label: '1990年代（断熱等級3級）'
+          },
+          {
+            value: '4-level',
+            label: '2000年代以降（断熱等級4級）'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs4',
+    title: '自宅の電力は何を使用していますか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs5',
+    questions: [
+      {
+        key: 'electricityIntensityKey',
+        answerType: 'select',
+        options: [
+          {
+            value: 'conventional',
+            label: '通常の電力'
+          },
+          {
+            value: 'solar-panel',
+            label: '屋上太陽光パネル'
+          },
+          {
+            value: '30-renewable',
+            label: '30%再生可能エネルギー'
+          },
+          {
+            value: '50-renewable',
+            label: '50%再生可能エネルギー'
+          },
+          {
+            value: '100-renewable',
+            label: '100%再生可能エネルギー'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs5',
+    title: '1ヶ月の電力使用量はどのくらいですか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs6',
+    skipToPageUid: 'hs11',
+    questions: [
+      {
+        key: 'electricityMonthlyConsumption',
+        answerType: 'numeric',
+        unitText: 'kWh'
+      },
+      {
+        key: 'electricityIntensityKey',
+        subDescription: '対象月',
+        answerType: 'select',
+        options: [
+          {
+            value: 'january',
+            label: '1月'
+          },
+          {
+            value: 'february',
+            label: '2月'
+          },
+          {
+            value: 'march',
+            label: '3月'
+          },
+          {
+            value: 'april',
+            label: '4月'
+          },
+          {
+            value: 'may',
+            label: '5月'
+          },
+          {
+            value: 'june',
+            label: '6月'
+          },
+          {
+            value: 'july',
+            label: '7月'
+          },
+          {
+            value: 'august',
+            label: '8月'
+          },
+          {
+            value: 'september',
+            label: '9月'
+          },
+          {
+            value: 'october',
+            label: '10月'
+          },
+          {
+            value: 'november',
+            label: '11月'
+          },
+          {
+            value: 'december',
+            label: '11月'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs6',
+    title: '暖房、温水供給、調理にガスを使用していますか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs7',
+    questions: [
+      {
+        key: 'useGas',
+        answerType: 'radio',
+        options: [
+          {
+            value: true,
+            label: 'はい'
+          },
+          {
+            value: false,
+            label: 'いいえ',
+            nextPageUid: 'hs9'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs7',
+    title: '使用しているガスの種類を教えてください',
+    category: 'housing',
+    defaultNextPageUid: 'hs8',
+    questions: [
+      {
+        key: 'energyHeatIntensityKey',
+        answerType: 'select',
+        options: [
+          {
+            value: 'urban-gas',
+            label: '都市ガス'
+          },
+          {
+            value: 'lpg',
+            label: 'プロパンガス'
+          },
+          {
+            value: 'unknown',
+            label: '分からない',
+            nextPageUid: 'hs12'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs8',
+    title: '1ヶ月のガス使用量はどのくらいですか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs9',
+    skipToPageUid: 'hs9',
+    questions: [
+      {
+        key: 'gasMonthlyConsumption',
+        answerType: 'numeric',
+        unitText: '㎥'
+      },
+      {
+        key: 'gasSeasonFactorKey',
+        description: '対象月',
+        answerType: 'select',
+        options: [
+          {
+            value: 'january',
+            label: '1月'
+          },
+          {
+            value: 'february',
+            label: '2月'
+          },
+          {
+            value: 'march',
+            label: '3月'
+          },
+          {
+            value: 'april',
+            label: '4月'
+          },
+          {
+            value: 'may',
+            label: '5月'
+          },
+          {
+            value: 'june',
+            label: '6月'
+          },
+          {
+            value: 'july',
+            label: '7月'
+          },
+          {
+            value: 'august',
+            label: '8月'
+          },
+          {
+            value: 'september',
+            label: '9月'
+          },
+          {
+            value: 'october',
+            label: '10月'
+          },
+          {
+            value: 'november',
+            label: '11月'
+          },
+          {
+            value: 'december',
+            label: '11月'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs9',
+    title: '暖房などに灯油を使用していますか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs10',
+    questions: [
+      {
+        key: 'useKerosene',
+        answerType: 'radio',
+        options: [
+          {
+            value: true,
+            label: 'はい'
+          },
+          {
+            value: false,
+            label: 'いいえ',
+            nextPageUid: 'result'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs10',
+    title: '昨シーズンの灯油の使用量はどのくらいですか？',
+    category: 'housing',
+    defaultNextPageUid: '',
+    isLast: true,
+    skipToPageUid: 'hs13',
+    questions: [
+      {
+        key: 'keroseneMonthlyConsumption',
+        answerType: 'numeric',
+        unitText: 'リットル/月'
+      },
+      {
+        key: 'keroseneMonthCount',
+        answerType: 'numeric',
+        unitText: 'ヶ月/年'
+      }
+    ]
+  },
+  {
+    uid: 'hs11',
+    title: '暖房、温水供給、調理にガスを使用していますか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs12',
+    questions: [
+      {
+        key: 'useGas',
+        answerType: 'radio',
+        options: [
+          {
+            value: true,
+            label: 'はい'
+          },
+          {
+            value: false,
+            label: 'いいえ'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs12',
+    title: '暖房などに灯油を使用していますか？',
+    category: 'housing',
+    defaultNextPageUid: 'hs13',
+    questions: [
+      {
+        key: 'useKerosene',
+        answerType: 'radio',
+        options: [
+          {
+            value: true,
+            label: 'はい'
+          },
+          {
+            value: false,
+            label: 'いいえ'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'hs13',
+    title: 'お住まいの地域（地方）はどちらですか？',
+    category: 'housing',
+    defaultNextPageUid: '',
+    isLast: true,
+    questions: [
+      {
+        key: 'housingAmountByRegionFirstKey',
+        answerType: 'select',
+        options: [
+          {
+            value: 'northeast',
+            label: '北海道・東北・北陸地方'
+          },
+          {
+            value: 'middle',
+            label: '関東・東海・近畿・中国・四国地方'
+          },
+          {
+            value: 'southwest',
+            label: '九州・沖縄地方'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  }
+]
+
+export const OTHER_QUESTION_PAGES: Questions.Page[] = [
+  {
+    uid: 'ot1',
+    title: '日用消耗品の支出はどのくらいですか？',
+    supplement: '（衛生用品・キッチン用品・文具など）',
+    category: 'other',
+    defaultNextPageUid: 'ot2',
+    questions: [
+      {
+        key: 'dailyGoodsAmountKey',
+        answerType: 'select',
+        subDescription: '世帯での合計金額',
+        options: [
+          {
+            value: '5k-less',
+            label: '月に¥5,000未満'
+          },
+          {
+            value: '5k-10k',
+            label: '月に¥5,000〜¥10,000未満'
+          },
+          {
+            value: '10k-20k',
+            label: '月に¥10,000〜¥20,000未満'
+          },
+          {
+            value: '20k-30k',
+            label: '月に¥20,000〜¥30,000未満'
+          },
+          {
+            value: '30k-more',
+            label: '月に¥30,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'ot2',
+    title: '通信費、放送受信料を合わせた支出はどのくらいですか？',
+    category: 'other',
+    defaultNextPageUid: 'ot3',
+    questions: [
+      {
+        key: 'communicationAmountKey',
+        answerType: 'select',
+        subDescription: '世帯での合計金額',
+        options: [
+          {
+            value: '5k-less',
+            label: '月に¥5,000未満'
+          },
+          {
+            value: '5k-10k',
+            label: '月に¥5,000〜¥10,000未満'
+          },
+          {
+            value: '10k-20k',
+            label: '月に¥10,000〜¥20,000未満'
+          },
+          {
+            value: '20k-30k',
+            label: '月に¥20,000〜¥30,000未満'
+          },
+          {
+            value: '30k-more',
+            label: '月に¥30,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'ot3',
+    title: '過去1年間の家電、家具などの大型な買い物の支出はどのくらいですか？',
+    category: 'other',
+    defaultNextPageUid: 'ot4',
+    questions: [
+      {
+        key: 'applianceFurnitureAmountKey',
+        answerType: 'select',
+        subDescription: '世帯での合計金額',
+        options: [
+          {
+            value: '50k-less',
+            label: '¥50,000未満'
+          },
+          {
+            value: '50k-100k',
+            label: '¥5,000〜¥10,000未満'
+          },
+          {
+            value: '100k-200k',
+            label: '¥10,000〜¥20,000未満'
+          },
+          {
+            value: '200k-300k',
+            label: '¥200,000〜¥300,000未満'
+          },
+          {
+            value: '300k-400k',
+            label: '¥300,000〜¥400,000未満'
+          },
+          {
+            value: '400k-more',
+            label: '¥300,000〜¥400,000未満'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'ot4',
+    title: '医療、福祉、教育、塾などの習い事の支出はどのくらいですか？',
+    supplement: '（保険料、美容関連の支出は除く）',
+    category: 'other',
+    defaultNextPageUid: 'ot5',
+    questions: [
+      {
+        key: 'serviceFactorKey',
+        answerType: 'select',
+        subDescription: 'あなた1人分の金額',
+        options: [
+          {
+            value: '5k-less',
+            label: '月に¥5,000未満'
+          },
+          {
+            value: '5k-10k',
+            label: '月に¥5,000〜¥10,000未満'
+          },
+          {
+            value: '10k-20k',
+            label: '月に¥10,000〜¥20,000未満'
+          },
+          {
+            value: '20k-50k',
+            label: '月に¥20,000〜¥50,000未満'
+          },
+          {
+            value: '50k-more',
+            label: '月に¥50,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'ot5',
+    title: '趣味にかかるの物の支出はどのくらいですか？',
+    supplement:
+      '（娯楽、書籍、雑誌、スポーツ、ペット、ガーデニング用品、たばこ含む）',
+    category: 'other',
+    defaultNextPageUid: 'ot6',
+    questions: [
+      {
+        key: 'hobbyGoodsFactorKey',
+        answerType: 'select',
+        subDescription: 'あなた1人分の金額',
+        options: [
+          {
+            value: '5k-less',
+            label: '月に¥5,000未満'
+          },
+          {
+            value: '5k-10k',
+            label: '月に¥5,000〜¥10,000未満'
+          },
+          {
+            value: '10k-20k',
+            label: '月に¥10,000〜¥20,000未満'
+          },
+          {
+            value: '20k-50k',
+            label: '月に¥20,000〜¥50,000未満'
+          },
+          {
+            value: '50k-more',
+            label: '月に¥50,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'ot6',
+    title: '衣類、かばん、宝飾品、美容関連などの支出はどのくらいですか？',
+    category: 'other',
+    defaultNextPageUid: 'ot7',
+    questions: [
+      {
+        key: 'clothesBeautyFactorKey',
+        answerType: 'select',
+        subDescription: 'あなた1人分の金額',
+        options: [
+          {
+            value: '5k-less',
+            label: '月に¥5,000未満'
+          },
+          {
+            value: '5k-10k',
+            label: '月に¥5,000〜¥10,000未満'
+          },
+          {
+            value: '10k-20k',
+            label: '月に¥10,000〜¥20,000未満'
+          },
+          {
+            value: '20k-50k',
+            label: '月に¥20,000〜¥50,000未満'
+          },
+          {
+            value: '50k-more',
+            label: '月に¥50,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'ot7',
+    title: 'レジャー、スポーツへの支出はどのくらいですか？',
+    supplement: '（交通費と飲食代は除く、施設利用料、入場料、観覧料など）',
+    category: 'other',
+    defaultNextPageUid: 'ot8',
+    questions: [
+      {
+        key: 'leisureSportsFactorKey',
+        answerType: 'select',
+        subDescription:
+          '家族の分もあわせて支払っている場合、あなた自身が利用した分だけで考えましょう。',
+        options: [
+          {
+            value: '5k-less',
+            label: '月に¥5,000未満'
+          },
+          {
+            value: '5k-10k',
+            label: '月に¥5,000〜¥10,000未満'
+          },
+          {
+            value: '10k-20k',
+            label: '月に¥10,000〜¥20,000未満'
+          },
+          {
+            value: '20k-50k',
+            label: '月に¥20,000〜¥50,000未満'
+          },
+          {
+            value: '50k-more',
+            label: '月に¥50,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    uid: 'ot8',
+    title: '過去１年間の宿泊を伴う旅行にかかった費用はいくらくらいですか？ ',
+    supplement:
+      '（交通費と飲食代は除く、宿泊費、施設利用料、入場料、観覧料など）',
+    category: 'other',
+    defaultNextPageUid: '',
+    isLast: true,
+    questions: [
+      {
+        key: 'travelFactorKey',
+        answerType: 'select',
+        subDescription:
+          '家族の分もあわせて支払っている場合、あなた自身が利用した分だけで考えましょう。',
+        options: [
+          {
+            value: '10k-less',
+            label: '¥10,000未満'
+          },
+          {
+            value: '10k-30k',
+            label: '¥10,000〜¥30,000未満'
+          },
+          {
+            value: '30k-50k',
+            label: '¥30,000〜¥50,000未満'
+          },
+          {
+            value: '50k-100k',
+            label: '¥50,000〜¥100,000未満'
+          },
+          {
+            value: '100k-200k',
+            label: '¥100,000〜¥200,000未満'
+          },
+          {
+            value: '200k-more',
+            label: '¥200,000以上'
+          },
+          {
+            value: 'unknown',
+            label: '分からない'
+          }
+        ]
+      }
+    ]
+  }
+]

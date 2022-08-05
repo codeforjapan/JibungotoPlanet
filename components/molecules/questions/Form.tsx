@@ -92,6 +92,13 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     return uid
   }
 
+  const skipQuestion = () => {
+    const nextPageUid = questionPage.skipToPageUid
+    if (nextPageUid) {
+      router.push(`/questions/${questionPage.category}/${nextPageUid}`)
+    }
+  }
+
   const QuestionInput: FC<{
     question: Questions.Question
     onChange: () => void
@@ -163,7 +170,9 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         questionPage={questionPage}
       />
       <Box fontSize="24px" textAlign="center" mb={5}>
-        <Heading as="h1">{questionPage.title}</Heading>
+        <Heading as="h1" fontSize={{ base: '24px' }}>
+          {questionPage.title}
+        </Heading>
         {questionPage.supplement && (
           <Text fontSize="14px" mt={2} textAlign="center" fontWeight="normal">
             {questionPage.supplement}
@@ -215,6 +224,20 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
           >
             次の質問へ
           </BasicButton>
+
+          {questionPage.skipToPageUid && (
+            <Text
+              fontSize={{ base: '18px' }}
+              fontWeight="bold"
+              textAlign="center"
+              textDecoration="underline"
+              mb="20px"
+              cursor="pointer"
+              onClick={() => skipQuestion()}
+            >
+              分からないのでスキップする
+            </Text>
+          )}
 
           <DatasourceFooter />
         </Box>
