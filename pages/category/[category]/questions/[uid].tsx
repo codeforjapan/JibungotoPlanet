@@ -1,14 +1,14 @@
 import { ParsedUrlQuery } from 'querystring'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { useQuestions } from 'hooks/questions'
-import QuestionContainer from 'components/organisms/questions/Container'
 import QuestionForm from 'components/molecules/questions/Form'
+import QuestionContainer from 'components/organisms/questions/Container'
 import {
   FOOD_QUESTION_PAGES,
   HOUSING_QUESTION_PAGES,
   MOBILITY_QUESTION_PAGES,
   OTHER_QUESTION_PAGES
 } from 'constants/questions'
+import { useQuestions } from 'hooks/questions'
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory
