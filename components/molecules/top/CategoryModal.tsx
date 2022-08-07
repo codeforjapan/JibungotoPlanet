@@ -59,7 +59,7 @@ const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
   const linkPath = useMemo(() => {
     switch (modalCategory) {
       case 'mobility':
-        return '/questions/mobility/mq1'
+        return '/category/mobility/questions/mq1'
 
       default:
         return ''

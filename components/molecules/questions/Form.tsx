@@ -1,6 +1,6 @@
 import { FC, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
-import { Box, Container, Heading, Text } from '@chakra-ui/react'
+import { Box, Heading, Text } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
 import DatasourceFooter from 'components/DatasourceFooter'
 import { useProfile } from '../../../hooks/profile'
@@ -46,10 +46,10 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     await sendData(data)
 
     if (questionPage.isLast) {
-      router.push(`/questions/${questionPage.category}/result`)
+      router.push(`/category/${questionPage.category}/result`)
     } else {
       let nextPageUid = nextQuestionUid(data)
-      router.push(`/questions/${questionPage.category}/${nextPageUid}`)
+      router.push(`/category/${questionPage.category}/questions/${nextPageUid}`)
     }
   }
 
