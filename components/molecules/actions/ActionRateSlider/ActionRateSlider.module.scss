@@ -1,0 +1,18 @@
+@import 'styles/vars';
+
+.action-rate-slider {
+  &__track {
+    padding: 0.25rem !important;
+    border-radius: 50px !important;
+  }
+
+  &__thumb {
+    border: 2px solid #009ace !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  &__tooltip {
+    padding: 0.75rem !important;
+    max-width: 80px !important;
+  }
+}

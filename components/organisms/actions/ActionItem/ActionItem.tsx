@@ -20,6 +20,7 @@ type Props = {
   implementationRate: number
   action: string
   description: string
+  onClick: { (): void }
 }
 
 const ActionItem: FC<Props> = (props) => {
@@ -33,6 +34,7 @@ const ActionItem: FC<Props> = (props) => {
             color="brandPrimary.400"
             rightIcon={<ChevronRightIcon fontSize="25px" />}
             className={styles['action-item__change-link']}
+            onClick={props.onClick}
           >
             実施率を変更
           </Button>
