@@ -97,7 +97,8 @@ const QuestionResultGraph: FC<Props> = ({ category }) => {
       <ShareSNS />
 
       <Text fontWeight="bold" textAlign="center" mt={10} mb={5}>
-        カーボンフットプリント量を減らすためにできることを考える
+        カーボンフットプリント量を減らすために
+        <br /> できることを考える
       </Text>
 
       <BasicButton width="full" isNext>
