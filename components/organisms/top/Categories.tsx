@@ -54,6 +54,7 @@ const TopCategories: FC = () => {
             food={food}
             housing={housing}
             other={other}
+            onChartClick={(c) => selectCategory(c)}
           />
         </Box>
         <Text mt={5} mb={3} fontWeight="bold" textAlign="center">
