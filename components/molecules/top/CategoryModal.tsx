@@ -60,7 +60,12 @@ const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
     switch (modalCategory) {
       case 'mobility':
         return '/category/mobility/questions/mq1'
-
+      case 'food':
+        return '/category/food/questions/fd1'
+      case 'housing':
+        return '/category/housing/questions/hs1'
+      case 'other':
+        return '/category/other/questions/ot1'
       default:
         return ''
     }
