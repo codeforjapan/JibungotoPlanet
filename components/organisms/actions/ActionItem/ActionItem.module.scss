@@ -1,0 +1,33 @@
+.action-item {
+  width: 100%;
+  min-height: 184px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+
+  &__checkbox {
+    span {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  &__change-link {
+    border-bottom: 1px solid #009ace;
+    border-radius: unset !important;
+  }
+
+  &__amount {
+    font-size: 32px;
+  }
+
+  &__accordion-trigger {
+    border-bottom-width: 0 !important;
+  }
+
+  &__accordion-btn {
+    &:hover {
+      background: none !important;
+    }
+  }
+}
