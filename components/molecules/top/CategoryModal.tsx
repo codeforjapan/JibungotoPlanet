@@ -2,11 +2,11 @@ import { FC, useMemo } from 'react'
 import Link from 'next/link'
 import { Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
+import Average from 'components/atoms/emissions/Average'
+import Cloud from 'components/atoms/emissions/Cloud'
+import { useEmissionResult } from 'hooks/emission'
 import ModalBase from '../modal/Base'
 import CategoryTitle from '../questions/CategoryTitle'
-import { useEmissionResult } from 'hooks/emission'
-import Cloud from 'components/atoms/emissions/Cloud'
-import Average from 'components/atoms/emissions/Average'
 
 type Props = {
   isOpen: boolean
