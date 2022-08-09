@@ -49,8 +49,8 @@ const QuestionResultGraph: FC<Props> = ({ category }) => {
         カーボンフットプリント量
       </Heading>
 
-      <Cloud amount={total} category={category}></Cloud>
-      <Average />
+      <Cloud amount={total} category={category} />
+      <Average amount={total} category={category} />
 
       {result.loading && (
         <Box textAlign="center">
