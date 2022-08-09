@@ -11,7 +11,7 @@ const TopCategories: FC = () => {
 
   const { isOpen, onClose, onOpen } = useDisclosure()
   const [modalCategory, setModalCategory] =
-    useState<Questions.QuestionCategory>()
+    useState<Questions.QuestionCategory>('mobility')
 
   const mobility = useMemo(() => {
     return emission.mobility.find((f) => f.key === 'total')?.value
