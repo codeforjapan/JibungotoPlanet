@@ -216,8 +216,9 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
 
         <Box
           width="90%"
+          maxWidth="100%"
           textAlign="center"
-          position="fixed"
+          position="absolute"
           bottom={5}
           left="50%"
           transform="translateX(-50%)"
