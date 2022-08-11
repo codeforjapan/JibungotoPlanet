@@ -23,7 +23,7 @@ const CompletionHeader: FC<Props> = (props) => {
         カーボンフットプリント量
       </Heading>
       <Cloud amount={total} category={props.category} />
-      <Average />
+      <Average amount={total} category={props.category} />
     </>
   )
 }
