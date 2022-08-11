@@ -11,7 +11,7 @@ const TopCategories: FC = () => {
 
   const { isOpen, onClose, onOpen } = useDisclosure()
   const [modalCategory, setModalCategory] =
-    useState<Questions.QuestionCategory>()
+    useState<Questions.QuestionCategory>('mobility')
 
   const mobility = useMemo(() => {
     return emission.mobility.find((f) => f.key === 'total')?.value
@@ -54,6 +54,7 @@ const TopCategories: FC = () => {
             food={food}
             housing={housing}
             other={other}
+            onChartClick={(c) => selectCategory(c)}
           />
         </Box>
         <Text mt={5} mb={3} fontWeight="bold" textAlign="center">

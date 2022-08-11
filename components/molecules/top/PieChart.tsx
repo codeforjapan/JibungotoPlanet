@@ -11,9 +11,16 @@ type Props = {
   food?: number
   housing?: number
   other?: number
+  onChartClick: (category: Questions.QuestionCategory) => void
 }
 
-const PieChart: FC<Props> = ({ mobility, food, housing, other }) => {
+const PieChart: FC<Props> = ({
+  mobility,
+  food,
+  housing,
+  other,
+  onChartClick
+}) => {
   const iconTooltip: Plugin = {
     id: 'iconTooltip',
     afterDraw(chart, args, options) {
@@ -21,6 +28,9 @@ const PieChart: FC<Props> = ({ mobility, food, housing, other }) => {
       ctx.save()
       chart.data.datasets.forEach((dataset, i) => {
         chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
+          const canvasWidth = Number(
+            document.getElementById('piechart')?.clientWidth
+          )
           const categoryEmission = Number(dataset.data[index])
           if (categoryEmission > 0) {
             const img = new Image()
@@ -41,19 +51,15 @@ const PieChart: FC<Props> = ({ mobility, food, housing, other }) => {
                 break
             }
             const { x, y } = datapoint.tooltipPosition()
-            const tan = (y - 225) / (x - 225)
-            const cy = tan * (x - 225) * 1.85 + 225 - 45
-            const cx = (x - 225) * 1.85 + 225 - 45
+            const tan = (y - canvasWidth / 2) / (x - canvasWidth / 2)
+            const cy = tan * (x - canvasWidth / 2) * 1.85 + canvasWidth / 2 - 35
+            const cx = (x - canvasWidth / 2) * 1.85 + canvasWidth / 2 - 35
 
-            ctx.drawImage(img, cx, cy, 90, 90)
+            ctx.drawImage(img, cx, cy, 70, 70)
           }
         })
       })
     }
-  }
-
-  const onChartClick = (category: Questions.QuestionCategory) => {
-    console.log(category)
   }
 
   const isNoAnswered = useMemo(() => {
@@ -71,6 +77,7 @@ const PieChart: FC<Props> = ({ mobility, food, housing, other }) => {
   return (
     <Box maxWidth="450" mx="auto">
       <Pie
+        id="piechart"
         plugins={[ChartDataLabels, iconTooltip]}
         options={{
           plugins: {

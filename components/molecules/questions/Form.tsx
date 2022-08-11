@@ -17,6 +17,10 @@ type Props = {
   questionPage: Questions.Page
 }
 
+interface SendParams extends Profile.Profile {
+  estimate: boolean
+}
+
 const QuestionForm: FC<Props> = ({ questionPage }) => {
   const { profile, setProfile } = useProfile()
 
@@ -71,7 +75,11 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const sendData = useCallback(
     async (data: any) => {
       if (!profile) return
-      const params: Profile.Profile = { ...profile, [sendDataParamsKey]: data }
+      const params: SendParams = {
+        ...profile,
+        [sendDataParamsKey]: data,
+        estimate: questionPage.isLast ? true : false
+      }
       try {
         const { data } = await api.put(`/profiles/${profile?.id}`, params)
         setProfile(data)
@@ -79,7 +87,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         console.log(error)
       }
     },
-    [profile]
+    [profile, questionPage]
   )
 
   const nextQuestionUid = (data: { [key: string]: string | number }) => {
@@ -208,8 +216,9 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
 
         <Box
           width="90%"
+          maxWidth="100%"
           textAlign="center"
-          position="fixed"
+          position="absolute"
           bottom={5}
           left="50%"
           transform="translateX(-50%)"

@@ -1,7 +1,7 @@
 import { FC, ReactNode, useMemo } from 'react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 // eslint-disable-next-line import/named
-import { Button, ButtonProps, Spinner } from '@chakra-ui/react'
+import { Box, Button, ButtonProps, Spinner } from '@chakra-ui/react'
 
 type Props = {
   children: ReactNode
@@ -24,6 +24,12 @@ const BasicButton: FC<Props & ButtonProps> = ({
     return undefined
   }, [isNext])
 
+  const leftIcon = useMemo(() => {
+    if (isNext) {
+      return <Box as="span" width="25px" height="25px" />
+    }
+  }, [isNext])
+
   const bg = useMemo(() => {
     return `${theme}.${themeIntensity}`
   }, [theme, themeIntensity])
@@ -38,6 +44,8 @@ const BasicButton: FC<Props & ButtonProps> = ({
       color={rest.color || 'white'}
       fontWeight={rest.fontWeight || '700'}
       fontSize={rest.fontSize || '16px'}
+      justifyContent="space-between"
+      leftIcon={leftIcon}
       rightIcon={rightIcon}
       py={rest.py || '16px'}
       lineHeight={rest.lineHeight || '23px'}

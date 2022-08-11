@@ -2,17 +2,45 @@ import { FC, useMemo } from 'react'
 import Link from 'next/link'
 import { Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
+import Average from 'components/atoms/emissions/Average'
+import Cloud from 'components/atoms/emissions/Cloud'
+import { useEmissionResult } from 'hooks/emission'
 import ModalBase from '../modal/Base'
 import CategoryTitle from '../questions/CategoryTitle'
 
 type Props = {
   isOpen: boolean
   onClose: () => void
-  modalCategory?: Questions.QuestionCategory
+  modalCategory: Questions.QuestionCategory
 }
 
 const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
+  const result = useEmissionResult(modalCategory)
+
+  const selectedCategoryResult = useMemo(() => {
+    return result[modalCategory]
+  }, [result, modalCategory])
+
+  const isEstimated = useMemo(() => {
+    return selectedCategoryResult?.length > 1
+  }, [selectedCategoryResult])
+
+  const totalEmission = useMemo(() => {
+    return Number(selectedCategoryResult?.find((r) => r.key === 'total')?.value)
+  }, [selectedCategoryResult])
+
+  const EstimatedResult: FC = () => {
+    return (
+      <>
+        <Cloud category={modalCategory} amount={Math.round(totalEmission)} />
+        <Average category={modalCategory} amount={totalEmission} />
+      </>
+    )
+  }
+
   const categoryQuestionDesc = useMemo(() => {
+    if (isEstimated) return <EstimatedResult />
+
     switch (modalCategory) {
       case 'food':
         return (
@@ -54,13 +82,18 @@ const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
       default:
         return ''
     }
-  }, [modalCategory])
+  }, [modalCategory, EstimatedResult])
 
   const linkPath = useMemo(() => {
     switch (modalCategory) {
       case 'mobility':
         return '/category/mobility/questions/mq1'
-
+      case 'food':
+        return '/category/food/questions/fd1'
+      case 'housing':
+        return '/category/housing/questions/hs1'
+      case 'other':
+        return '/category/other/questions/ot1'
       default:
         return ''
     }
@@ -71,7 +104,9 @@ const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
       <CategoryTitle category={modalCategory} />
       <Text my={6}>{categoryQuestionDesc}</Text>
       <Link href={linkPath}>
-        <BasicButton width="full">質問をはじめる</BasicButton>
+        <BasicButton width="full">
+          {isEstimated ? 'もう一度やり直す' : '質問をはじめる'}
+        </BasicButton>
       </Link>
     </ModalBase>
   )
