@@ -1,0 +1,19 @@
+@import "styles/vars";
+
+.completion-action-item {
+  &__amount-container {
+    height: 80px;
+    width: 100%;
+    line-height: 140%;
+    border-radius: 4px;
+    background-color: #439a4d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    @include pc {
+      height: 70%;
+    }
+  }
+}
