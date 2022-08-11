@@ -8,7 +8,6 @@ type Props = {
 }
 
 const CompletionContent: FC<Props> = (props) => {
-
   return (
     <Box>
       <Heading as="h2" fontSize="18px" textAlign="center" my={10}>

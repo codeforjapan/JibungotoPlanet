@@ -2,7 +2,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Box } from '@chakra-ui/react'
-import DatasourceFooter from "components/DatasourceFooter";
+import DatasourceFooter from 'components/DatasourceFooter'
 import ActionCompleteBtn from 'components/molecules/actions/ActionCompleteBtn/ActionCompleteBtn'
 import ActionHeader from 'components/molecules/actions/ActionHeader/ActionHeader'
 import ActionChangeRateDialog from 'components/organisms/actions/ActionChangeRateDialog/ActionChangeRateDialog'
@@ -48,7 +48,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
             )
           })}
       </Box>
-      <Box style={{ padding: "0.5rem 0 4rem 0"}}>
+      <Box style={{ padding: '0.5rem 0 4rem 0' }}>
         <DatasourceFooter />
       </Box>
       <ActionCompleteBtn onClick={completeActions} />
