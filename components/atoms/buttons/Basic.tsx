@@ -31,8 +31,11 @@ const BasicButton: FC<Props & ButtonProps> = ({
   return (
     <Button
       {...rest}
-      bg={bg}
-      color="white"
+      border={
+        rest.variant === 'outline' ? rest.border : '2px solid transparent'
+      }
+      bg={rest.variant === 'outline' ? 'transparent' : bg}
+      color={rest.color || 'white'}
       fontWeight={rest.fontWeight || '700'}
       fontSize={rest.fontSize || '16px'}
       rightIcon={rightIcon}
