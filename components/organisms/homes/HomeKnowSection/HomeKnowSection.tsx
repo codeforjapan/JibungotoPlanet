@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Box, Text } from '@chakra-ui/react'
+import { Box, SimpleGrid, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import HomeContentBody from 'components/molecules/homes/HomeContentBody/HomeContentBody'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
