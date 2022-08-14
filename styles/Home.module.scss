@@ -1,4 +1,4 @@
-@import "styles/vars";
+@import 'styles/vars';
 
 .home {
   &__header {
@@ -109,7 +109,7 @@
       &:before,
       &:after {
         position: absolute;
-        content: "";
+        content: '';
         top: 0;
         height: 73%;
         background: #000;

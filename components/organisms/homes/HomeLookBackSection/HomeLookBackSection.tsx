@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react'
 import HomeContentBody from 'components/molecules/homes/HomeContentBody/HomeContentBody'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
 import HomeContentTitle from 'components/molecules/homes/HomeContentTitle/HomeContentTitle'
-import HomeSectionContainer from "components/molecules/homes/HomeSectionContainer/HomeSectionContainer";
+import HomeSectionContainer from 'components/molecules/homes/HomeSectionContainer/HomeSectionContainer'
 import styles from 'styles/Home.module.scss'
 
 type Props = {
@@ -15,21 +15,20 @@ type Props = {
 const HomeLookBackSection: FC<Props> = (props) => {
   return (
     <HomeSectionContainer className={props.className}>
-      <Box px={{base: 0, md: 5}}>
+      <Box px={{ base: 0, md: 5 }}>
         <HomeContentTitle className={styles['home__section__item-title']}>
           <span>2.見直す</span>
         </HomeContentTitle>
-        {
-          props.sp &&
-            <Box className={styles['home__section__img-container']}>
-                <Image
-                    src={'/home/home-content-look-back.png'}
-                    alt={'見直すセクション'}
-                    objectFit={'contain'}
-                    layout={'fill'}
-                />
-            </Box>
-        }
+        {props.sp && (
+          <Box className={styles['home__section__img-container']}>
+            <Image
+              src={'/home/home-content-look-back.png'}
+              alt={'見直すセクション'}
+              objectFit={'contain'}
+              layout={'fill'}
+            />
+          </Box>
+        )}
         <HomeContentCatchPhrase className={styles['home__section__item']}>
           あなたの暮らしに地球が何個必要か知っていますか？
           <br />
@@ -50,17 +49,16 @@ const HomeLookBackSection: FC<Props> = (props) => {
           </span>
         </HomeContentBody>
       </Box>
-      {
-        !props.sp &&
-          <Box className={styles['home__section__img-container']}>
-              <Image
-                  src={'/home/home-content-look-back.png'}
-                  alt={'見直すセクション'}
-                  objectFit={'contain'}
-                  layout={'fill'}
-              />
-          </Box>
-      }
+      {!props.sp && (
+        <Box className={styles['home__section__img-container']}>
+          <Image
+            src={'/home/home-content-look-back.png'}
+            alt={'見直すセクション'}
+            objectFit={'contain'}
+            layout={'fill'}
+          />
+        </Box>
+      )}
     </HomeSectionContainer>
   )
 }

@@ -7,56 +7,48 @@ import HomeContentTitle from 'components/molecules/homes/HomeContentTitle/HomeCo
 import styles from 'styles/Home.module.scss'
 
 type Props = {
-  sp: boolean;
+  sp: boolean
 }
 
 const HomeHeader: FC<Props> = (props) => {
   return (
-    <Box height={{base: "100vh", md: "113vh"}} style={ { position: 'relative'} }>
+    <Box
+      height={{ base: '100vh', md: '113vh' }}
+      style={{ position: 'relative' }}
+    >
       <Box
-        maxWidth={ '660px' }
-        className={ styles['home__header__item-container'] }
+        maxWidth={'660px'}
+        className={styles['home__header__item-container']}
       >
-        <Box mb={ {base: 10, md: 20} }>
-          <HomeContentCatchPhrase>
-            じぶんごとプラネット
-          </HomeContentCatchPhrase>
+        <Box mb={{ base: 10, md: 20 }}>
+          <HomeContentCatchPhrase>じぶんごとプラネット</HomeContentCatchPhrase>
         </Box>
-        <Box pt={ 15 }>
-          <HomeContentTitle
-            className={ styles['home__header__title-container'] }
-          >
-              <span>
-                気候変動を
-                <br/>
-                <span className={ styles['home__header__title'] }>
-                  じぶんごと
-                </span>
-                にする
-              </span>
+        <Box pt={15}>
+          <HomeContentTitle className={styles['home__header__title-container']}>
+            <span>
+              気候変動を
+              <br />
+              <span className={styles['home__header__title']}>じぶんごと</span>
+              にする
+            </span>
           </HomeContentTitle>
           <HomeContentBody>
             脱炭素で持続可能な未来のために、ひとりひとりが今の生活スタイルの気候変動への影響を知り、小さなことから一つずつアクションを起こす。こうして「じぶんごと」の輪が広がっていきます。
           </HomeContentBody>
         </Box>
       </Box>
-      {
-        props.sp ?
-          <Box height='470px' style={ { position: 'relative'} }>
-            <Image
-              src={ '/home/home-header--sp.png' }
-              layout="fill"
-              objectFit='contain'
-              alt="home-header"
-            />
-          </Box>
-          :
+      {props.sp ? (
+        <Box height="470px" style={{ position: 'relative' }}>
           <Image
-            src={ '/home/home-header.png' }
+            src={'/home/home-header--sp.png'}
             layout="fill"
+            objectFit="contain"
             alt="home-header"
           />
-      }
+        </Box>
+      ) : (
+        <Image src={'/home/home-header.png'} layout="fill" alt="home-header" />
+      )}
     </Box>
   )
 }

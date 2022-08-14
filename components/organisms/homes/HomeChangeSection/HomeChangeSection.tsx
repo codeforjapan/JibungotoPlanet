@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react'
 import HomeContentBody from 'components/molecules/homes/HomeContentBody/HomeContentBody'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
 import HomeContentTitle from 'components/molecules/homes/HomeContentTitle/HomeContentTitle'
-import HomeSectionContainer from "components/molecules/homes/HomeSectionContainer/HomeSectionContainer"
+import HomeSectionContainer from 'components/molecules/homes/HomeSectionContainer/HomeSectionContainer'
 import styles from 'styles/Home.module.scss'
 
 type Props = {
@@ -15,12 +15,11 @@ type Props = {
 const HomeChangeSection: FC<Props> = (props) => {
   return (
     <HomeSectionContainer className={props.className}>
-      {
-        props.sp &&
-          <HomeContentTitle className={styles['home__section__item-title']}>
-              <span>3.変える</span>
-          </HomeContentTitle>
-      }
+      {props.sp && (
+        <HomeContentTitle className={styles['home__section__item-title']}>
+          <span>3.変える</span>
+        </HomeContentTitle>
+      )}
       <Box className={styles['home__section__img-container']}>
         <Image
           src={'/home/home-content-change.png'}
@@ -29,13 +28,12 @@ const HomeChangeSection: FC<Props> = (props) => {
           layout={'fill'}
         />
       </Box>
-      <Box px={{base: 0, md: 5}}>
-        {
-          !props.sp &&
-            <HomeContentTitle className={styles['home__section__item-title']}>
-                <span>3.変える</span>
-            </HomeContentTitle>
-        }
+      <Box px={{ base: 0, md: 5 }}>
+        {!props.sp && (
+          <HomeContentTitle className={styles['home__section__item-title']}>
+            <span>3.変える</span>
+          </HomeContentTitle>
+        )}
         <HomeContentCatchPhrase className={styles['home__section__item']}>
           あなたにあった行動の選択肢の中から、脱炭素社会に向けてできることからはじめましょう
         </HomeContentCatchPhrase>

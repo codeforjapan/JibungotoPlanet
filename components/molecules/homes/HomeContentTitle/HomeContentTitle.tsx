@@ -14,7 +14,12 @@ const HomeContentTitle: FC<Props> = (props) => {
   }
 
   return (
-    <Heading className={props.className} style={baseStyle} fontSize={{base: "36px", md: "50px"}} as="h3">
+    <Heading
+      className={props.className}
+      style={baseStyle}
+      fontSize={{ base: '36px', md: '50px' }}
+      as="h3"
+    >
       {props.children}
     </Heading>
   )

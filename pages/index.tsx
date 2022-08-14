@@ -9,15 +9,23 @@ import HomeLookBackSection from 'components/organisms/homes/HomeLookBackSection/
 import styles from 'styles/Home.module.scss'
 
 const Home: FC = () => {
-  const [isMobile] = useMediaQuery("(max-width: 480px)");
+  const [isMobile] = useMediaQuery('(max-width: 480px)')
   const maxW = '1280px'
 
   return (
     <div>
       <HomeHeader sp={isMobile} />
-      <Container maxW={maxW} centerContent py={{base: 0, md:12}} my={{base: 0, md:5 }}>
+      <Container
+        maxW={maxW}
+        centerContent
+        py={{ base: 0, md: 12 }}
+        my={{ base: 0, md: 5 }}
+      >
         <HomeKnowSection className={styles['home__section']} sp={isMobile} />
-        <HomeLookBackSection className={styles['home__section']} sp={isMobile} />
+        <HomeLookBackSection
+          className={styles['home__section']}
+          sp={isMobile}
+        />
         <HomeChangeSection className={styles['home__section']} sp={isMobile} />
         <HomeCaptionSection className={styles['home__caption-section']} />
       </Container>

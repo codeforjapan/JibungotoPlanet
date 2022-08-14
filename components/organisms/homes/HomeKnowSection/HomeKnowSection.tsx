@@ -5,7 +5,7 @@ import BasicButton from 'components/atoms/buttons/Basic'
 import HomeContentBody from 'components/molecules/homes/HomeContentBody/HomeContentBody'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
 import HomeContentTitle from 'components/molecules/homes/HomeContentTitle/HomeContentTitle'
-import HomeSectionContainer from "components/molecules/homes/HomeSectionContainer/HomeSectionContainer";
+import HomeSectionContainer from 'components/molecules/homes/HomeSectionContainer/HomeSectionContainer'
 import styles from 'styles/Home.module.scss'
 
 type Props = {
@@ -16,12 +16,11 @@ type Props = {
 const HomeKnowSection: FC<Props> = (props) => {
   return (
     <HomeSectionContainer className={props.className}>
-      {
-        props.sp &&
-          <HomeContentTitle className={styles['home__section__item-title']}>
-              <span>1.知る</span>
-          </HomeContentTitle>
-      }
+      {props.sp && (
+        <HomeContentTitle className={styles['home__section__item-title']}>
+          <span>1.知る</span>
+        </HomeContentTitle>
+      )}
       <Box className={styles['home__section__img-container']}>
         <Image
           src={'/home/home-content-know.png'}
@@ -30,13 +29,12 @@ const HomeKnowSection: FC<Props> = (props) => {
           layout={'fill'}
         />
       </Box>
-      <Box px={{base: 0, md: 5}}>
-        {
-          !props.sp &&
-            <HomeContentTitle className={styles['home__section__item-title']}>
-                <span>1.知る</span>
-            </HomeContentTitle>
-        }
+      <Box px={{ base: 0, md: 5 }}>
+        {!props.sp && (
+          <HomeContentTitle className={styles['home__section__item-title']}>
+            <span>1.知る</span>
+          </HomeContentTitle>
+        )}
         <HomeContentCatchPhrase className={styles['home__section__item']}>
           まずはあなたの現状を知ることからはじめ、ひとりひとりの具体的な気候変動対策を
         </HomeContentCatchPhrase>
@@ -58,7 +56,9 @@ const HomeKnowSection: FC<Props> = (props) => {
           <Text pb={3} fontSize={'18px'} fontWeight={'bold'}>
             あなたのカーボンフットプリント量を知る
           </Text>
-          <BasicButton width={'full'} textAlign={"center"}>はじめる</BasicButton>
+          <BasicButton width={'full'} textAlign={'center'}>
+            はじめる
+          </BasicButton>
         </Box>
       </Box>
     </HomeSectionContainer>
