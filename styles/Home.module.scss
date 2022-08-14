@@ -31,6 +31,7 @@
       position: relative;
 
       @include sp {
+        margin: 0.5rem 0;
         height: 288px;
       }
     }
