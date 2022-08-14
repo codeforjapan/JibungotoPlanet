@@ -22,10 +22,10 @@ export const useEmissionResult = (
   const calcEmission = useCallback(
     (category: Questions.QuestionCategory) => {
       const result: { key: string; value: number }[] = []
-      const categoryEstimations = profile?.estimations.filter(
+      const categoryEstimations = profile?.estimations?.filter(
         (e) => e.domain === category
       )
-      const categoryBaselines = profile?.baselines.filter(
+      const categoryBaselines = profile?.baselines?.filter(
         (b) => b.domain === category
       )
       const subdomains = uniq(

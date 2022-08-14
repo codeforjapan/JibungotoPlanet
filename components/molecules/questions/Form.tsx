@@ -1,6 +1,6 @@
 import { FC, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
-import { Box, Container, Heading, Text } from '@chakra-ui/react'
+import { Box, Heading, Text } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
 import DatasourceFooter from 'components/DatasourceFooter'
 import { useProfile } from '../../../hooks/profile'
@@ -15,6 +15,10 @@ import QuestionHeader from './QuestionHeader'
 
 type Props = {
   questionPage: Questions.Page
+}
+
+interface SendParams extends Profile.Profile {
+  estimate: boolean
 }
 
 const QuestionForm: FC<Props> = ({ questionPage }) => {
@@ -46,10 +50,10 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     await sendData(data)
 
     if (questionPage.isLast) {
-      router.push(`/questions/${questionPage.category}/result`)
+      router.push(`/category/${questionPage.category}/result`)
     } else {
       let nextPageUid = nextQuestionUid(data)
-      router.push(`/questions/${questionPage.category}/${nextPageUid}`)
+      router.push(`/category/${questionPage.category}/questions/${nextPageUid}`)
     }
   }
 
@@ -71,7 +75,11 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const sendData = useCallback(
     async (data: any) => {
       if (!profile) return
-      const params: Profile.Profile = { ...profile, [sendDataParamsKey]: data }
+      const params: SendParams = {
+        ...profile,
+        [sendDataParamsKey]: data,
+        estimate: questionPage.isLast ? true : false
+      }
       try {
         const { data } = await api.put(`/profiles/${profile?.id}`, params)
         setProfile(data)
@@ -79,7 +87,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         console.log(error)
       }
     },
-    [profile]
+    [profile, questionPage]
   )
 
   const nextQuestionUid = (data: { [key: string]: string | number }) => {
@@ -90,6 +98,13 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     const uid =
       answeredNextPageUid?.nextPageUid || questionPage.defaultNextPageUid
     return uid
+  }
+
+  const skipQuestion = () => {
+    const nextPageUid = questionPage.skipToPageUid
+    if (nextPageUid) {
+      router.push(`/questions/${questionPage.category}/${nextPageUid}`)
+    }
   }
 
   const QuestionInput: FC<{
@@ -163,7 +178,9 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         questionPage={questionPage}
       />
       <Box fontSize="24px" textAlign="center" mb={5}>
-        <Heading as="h1">{questionPage.title}</Heading>
+        <Heading as="h1" fontSize={{ base: '24px' }}>
+          {questionPage.title}
+        </Heading>
         {questionPage.supplement && (
           <Text fontSize="14px" mt={2} textAlign="center" fontWeight="normal">
             {questionPage.supplement}
@@ -199,8 +216,9 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
 
         <Box
           width="90%"
+          maxWidth="100%"
           textAlign="center"
-          position="fixed"
+          position="absolute"
           bottom={5}
           left="50%"
           transform="translateX(-50%)"
@@ -215,6 +233,20 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
           >
             次の質問へ
           </BasicButton>
+
+          {questionPage.skipToPageUid && (
+            <Text
+              fontSize={{ base: '18px' }}
+              fontWeight="bold"
+              textAlign="center"
+              textDecoration="underline"
+              mb="20px"
+              cursor="pointer"
+              onClick={() => skipQuestion()}
+            >
+              分からないのでスキップする
+            </Text>
+          )}
 
           <DatasourceFooter />
         </Box>

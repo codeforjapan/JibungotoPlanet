@@ -1,7 +1,6 @@
 import { FC, useMemo } from 'react'
 import {
   Box,
-  Container,
   Heading,
   Spinner,
   Table,
@@ -50,8 +49,8 @@ const QuestionResultGraph: FC<Props> = ({ category }) => {
         カーボンフットプリント量
       </Heading>
 
-      <Cloud amount={total} category={category}></Cloud>
-      <Average />
+      <Cloud amount={total} category={category} />
+      <Average amount={total} category={category} />
 
       {result.loading && (
         <Box textAlign="center">
@@ -98,7 +97,8 @@ const QuestionResultGraph: FC<Props> = ({ category }) => {
       <ShareSNS />
 
       <Text fontWeight="bold" textAlign="center" mt={10} mb={5}>
-        カーボンフットプリント量を減らすためにできることを考える
+        カーボンフットプリント量を減らすために
+        <br /> できることを考える
       </Text>
 
       <BasicButton width="full" isNext>

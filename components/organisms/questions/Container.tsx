@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { Box, Container, Text } from '@chakra-ui/react'
+import { Box, Container, Grid, Text } from '@chakra-ui/react'
 import CategoryTitle from 'components/molecules/questions/CategoryTitle'
 
 type Props = {
@@ -9,30 +9,37 @@ type Props = {
 
 const QuestionContainer: FC<Props> = ({ children, category }) => {
   return (
-    <Box
+    <Grid
       backgroundColor={category ? `${category}.200` : 'grey.200'}
-      height="100vh"
+      gridTemplateColumns="100%"
+      gridTemplateRows="auto auto 1fr"
+      minHeight="100vh"
     >
       <Box background="white">
         <Text fontWeight="bold" fontSize="16px" p={4} textAlign="center">
           じぶんごとプラネット
         </Text>
       </Box>
-      <CategoryTitle category={category} />
-      <Box display="flex" justifyContent="center">
+      <Box mb={3}>
+        <CategoryTitle category={category} />
+      </Box>
+      <Box>
         <Container
           background="white"
-          position="fixed"
-          height={{ base: `calc(100vh - ${category ? '180px' : '150px'})` }}
+          height="100%"
           width="90%"
+          maxWidth="736px"
           bottom="0"
           borderRadius="10px 10px 0 0"
           overflow="auto"
+          overflowX="hidden"
+          position="relative"
+          px={{ base: 3, md: 10 }}
         >
           <Box pb="40px">{children}</Box>
         </Container>
       </Box>
-    </Box>
+    </Grid>
   )
 }
 
