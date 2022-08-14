@@ -1,0 +1,23 @@
+// media config
+@mixin pc {
+  @media screen and (min-width: 960px) {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@include pc {
+  .br-sp {
+    display: none;
+  }
+}
+
+@include sp {
+  .br-pc {
+    display: none;
+  }
+}
