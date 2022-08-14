@@ -46,7 +46,7 @@ const HomeKnowSection: FC<Props> = (props) => {
           <Text pb={3} fontSize={'18px'} fontWeight={'bold'}>
             あなたのカーボンフットプリント量を知る
           </Text>
-          <BasicButton width={'full'}>はじめる</BasicButton>
+          <BasicButton width={'full'} textAlign={"center"}>はじめる</BasicButton>
         </Box>
       </Box>
     </SimpleGrid>

@@ -24,7 +24,7 @@ const HomeFooter: FC<Props> = (props) => {
         >
           あなたのカーボンフットプリント量を知る
         </HomeContentCatchPhrase>
-        <BasicButton width={300}>はじめる</BasicButton>
+        <BasicButton width={300} textAlign={"center"}>はじめる</BasicButton>
         <Text fontSize={14} mt={'auto'} pb={5}>
           © 2022 Code for Japan
         </Text>
