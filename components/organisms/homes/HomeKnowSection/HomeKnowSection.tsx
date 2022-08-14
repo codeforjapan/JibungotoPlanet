@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Box, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import HomeContentBody from 'components/molecules/homes/HomeContentBody/HomeContentBody'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
 import HomeContentTitle from 'components/molecules/homes/HomeContentTitle/HomeContentTitle'
+import HomeSectionContainer from "components/molecules/homes/HomeSectionContainer/HomeSectionContainer";
 import styles from 'styles/Home.module.scss'
 
 type Props = {
@@ -14,7 +15,7 @@ type Props = {
 
 const HomeKnowSection: FC<Props> = (props) => {
   return (
-    <SimpleGrid columns={{base: 1, md: 2}} spacing={{base: 1, md: 10}} className={props.className}>
+    <HomeSectionContainer className={props.className}>
       {
         props.sp &&
           <HomeContentTitle className={styles['home__section__item-title']}>
@@ -60,7 +61,7 @@ const HomeKnowSection: FC<Props> = (props) => {
           <BasicButton width={'full'} textAlign={"center"}>はじめる</BasicButton>
         </Box>
       </Box>
-    </SimpleGrid>
+    </HomeSectionContainer>
   )
 }
 
