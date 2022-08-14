@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Container } from '@chakra-ui/react'
+import { Container, useMediaQuery } from '@chakra-ui/react'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
 import HomeFooter from 'components/organisms/homes/HomeFooter/HomeFooter'
@@ -9,11 +9,12 @@ import HomeLookBackSection from 'components/organisms/homes/HomeLookBackSection/
 import styles from 'styles/Home.module.scss'
 
 const Home: FC = () => {
+  const [isMobile] = useMediaQuery("(max-width: 480px)");
   const maxW = '1280px'
 
   return (
     <div>
-      <HomeHeader />
+      <HomeHeader sp={isMobile} />
       <Container maxW={maxW} centerContent py={12} my={5}>
         <HomeKnowSection className={styles['home__section']} />
         <HomeLookBackSection className={styles['home__section']} />
