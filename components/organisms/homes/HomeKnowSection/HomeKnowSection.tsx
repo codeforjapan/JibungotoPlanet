@@ -9,22 +9,33 @@ import styles from 'styles/Home.module.scss'
 
 type Props = {
   className?: string
+  sp: boolean
 }
 
 const HomeKnowSection: FC<Props> = (props) => {
   return (
-    <SimpleGrid columns={2} spacing={10} className={props.className}>
+    <SimpleGrid columns={{base: 1, md: 2}} spacing={{base: 1, md: 10}} className={props.className}>
+      {
+        props.sp &&
+          <HomeContentTitle className={styles['home__section__item-title']}>
+              <span>1.知る</span>
+          </HomeContentTitle>
+      }
       <Box className={styles['home__section__img-container']}>
         <Image
           src={'/home/home-content-know.png'}
           alt={'知るセクション'}
+          objectFit={'contain'}
           layout={'fill'}
         />
       </Box>
-      <Box px={5}>
-        <HomeContentTitle className={styles['home__section__item-title']}>
-          <span>1.知る</span>
-        </HomeContentTitle>
+      <Box px={{base: 0, md: 5}}>
+        {
+          !props.sp &&
+            <HomeContentTitle className={styles['home__section__item-title']}>
+                <span>1.知る</span>
+            </HomeContentTitle>
+        }
         <HomeContentCatchPhrase className={styles['home__section__item']}>
           まずはあなたの現状を知ることからはじめ、ひとりひとりの具体的な気候変動対策を
         </HomeContentCatchPhrase>

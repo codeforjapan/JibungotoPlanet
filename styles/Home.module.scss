@@ -29,6 +29,10 @@
 
     &__img-container {
       position: relative;
+
+      @include sp {
+        height: 288px;
+      }
     }
 
     &__item-title {
