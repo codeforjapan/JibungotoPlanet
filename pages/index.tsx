@@ -15,7 +15,7 @@ const Home: FC = () => {
   return (
     <div>
       <HomeHeader sp={isMobile} />
-      <Container maxW={maxW} centerContent py={12} my={5}>
+      <Container maxW={maxW} centerContent py={{base: 0, md:12}} my={{base: 0, md:5 }}>
         <HomeKnowSection className={styles['home__section']} />
         <HomeLookBackSection className={styles['home__section']} />
         <HomeChangeSection className={styles['home__section']} />

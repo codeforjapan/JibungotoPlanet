@@ -23,6 +23,10 @@
   &__section {
     padding: 5rem 0;
 
+    @include sp {
+      padding: 2rem 0;
+    }
+
     &__img-container {
       position: relative;
     }
