@@ -22,10 +22,10 @@ const HomeFooter: FC<Props> = (props) => {
         <HomeContentCatchPhrase
           className={styles['home__footer__catch-phrase']}
         >
-          あなたのカーボンフットプリント量を知る
+          あなたのカーボン<br className={styles['br-sp']} />フットプリント量を<br className={styles['br-sp']} />知る
         </HomeContentCatchPhrase>
         <BasicButton width={300} textAlign={"center"}>はじめる</BasicButton>
-        <Text fontSize={14} mt={'auto'} pb={5}>
+        <Text fontSize={14} mt={'auto'} pb={{base:0, md: 5}}>
           © 2022 Code for Japan
         </Text>
       </Box>

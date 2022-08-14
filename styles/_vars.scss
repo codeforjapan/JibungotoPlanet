@@ -9,3 +9,15 @@
     @content;
   }
 }
+
+@include pc {
+  .br-sp {
+    display: none;
+  }
+}
+
+@include sp {
+  .br-pc {
+    display: none;
+  }
+}
