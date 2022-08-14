@@ -8,14 +8,13 @@ type Props = {
 
 const HomeContentTitle: FC<Props> = (props) => {
   const baseStyle = {
-    fontSize: '50px',
     lineHeight: '140%',
     letterSpacing: '0.1em',
     fontWeight: 700
   }
 
   return (
-    <Heading className={props.className} style={baseStyle} as="h3">
+    <Heading className={props.className} style={baseStyle} fontSize={{base: "36px", md: "50px"}} as="h3">
       {props.children}
     </Heading>
   )

@@ -1,7 +1,13 @@
+@import "styles/vars";
+
 .home {
   &__header {
     &__item-container {
-      padding-left: 15%;
+      padding: 2rem 0 0 15%;
+
+      @include sp {
+        padding: 2rem 1rem 0 1rem;
+      }
     }
 
     &__title-container {
