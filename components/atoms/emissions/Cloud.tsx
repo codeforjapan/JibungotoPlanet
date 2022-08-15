@@ -22,10 +22,10 @@ const Cloud: FC<Props> = ({ amount, category }) => {
         margin="auto"
       >
         <Text fontSize="44px" fontWeight="bold">
-          {amount === NaN ? '????' : amount.toLocaleString()}
+          {isNaN(amount) ? '????' : amount.toLocaleString()}
         </Text>
         <Text fontSize="18px" fontWeight="bold">
-          kg CO2e
+          kg CO₂e
         </Text>
       </Box>
       <svg

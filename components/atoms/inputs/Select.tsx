@@ -6,9 +6,15 @@ type Props = {
   onChange: (v: string) => void
   defaultValue?: string
   description?: string
+  disabled?: boolean
 }
 
-const SelectBox: FC<Props> = ({ options, onChange, defaultValue }) => {
+const SelectBox: FC<Props> = ({
+  options,
+  onChange,
+  defaultValue,
+  disabled = false
+}) => {
   const selectOptions = useMemo(() => {
     return [{ value: '', label: '選択してください。' }, ...options]
   }, [options])
@@ -21,6 +27,7 @@ const SelectBox: FC<Props> = ({ options, onChange, defaultValue }) => {
       fontSize="16px"
       onChange={(e) => onChange(e.target.value)}
       defaultValue={defaultValue}
+      disabled={disabled}
     >
       {selectOptions.map((option, index) => (
         <option value={option.value} key={index}>
