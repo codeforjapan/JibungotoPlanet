@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react'
 import { Box, Link, Text, useDisclosure } from '@chakra-ui/react'
-import ModalBase from './molecules/modal/Base'
 import BasicButton from './atoms/buttons/Basic'
+import ModalBase from './molecules/modal/Base'
 
 const DatasourceFooter: FC = () => {
   const year = useMemo(() => {
