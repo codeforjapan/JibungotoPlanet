@@ -4,17 +4,20 @@ import {
   AlertDialogBody,
   AlertDialogCloseButton,
   AlertDialogContent,
+  AlertDialogFooter,
   AlertDialogOverlay,
   Box
 } from '@chakra-ui/react'
+import BasicButton from 'components/atoms/buttons/Basic'
 
 type Props = {
   isOpen: boolean
   onClose: () => void
   children?: ReactNode
+  maxWidth?: string
 }
 
-const ModalBase: FC<Props> = ({ isOpen, onClose, children }) => {
+const ModalBase: FC<Props> = ({ isOpen, onClose, children, maxWidth }) => {
   const cancelRef = useRef<any>()
   return (
     <AlertDialog
@@ -24,9 +27,15 @@ const ModalBase: FC<Props> = ({ isOpen, onClose, children }) => {
       isCentered
     >
       <AlertDialogOverlay>
-        <AlertDialogContent mx={2} pb={3}>
+        <AlertDialogContent
+          my={0}
+          mx={2}
+          pb={3}
+          maxWidth={maxWidth}
+          maxHeight="90%"
+        >
           <AlertDialogCloseButton />
-          <AlertDialogBody>{children}</AlertDialogBody>
+          <AlertDialogBody overflow="auto">{children}</AlertDialogBody>
         </AlertDialogContent>
       </AlertDialogOverlay>
     </AlertDialog>

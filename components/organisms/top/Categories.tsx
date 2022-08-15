@@ -5,6 +5,7 @@ import Cloud from 'components/atoms/emissions/Cloud'
 import CategoryModal from 'components/molecules/top/CategoryModal'
 import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
+import DatasourceFooter from 'components/DatasourceFooter'
 
 const TopCategories: FC = () => {
   const emission = useEmissionResult('all')
@@ -86,6 +87,10 @@ const TopCategories: FC = () => {
             onClick={() => selectCategory('other')}
           />
         </Box>
+      </Box>
+
+      <Box mt={10}>
+        <DatasourceFooter />
       </Box>
 
       <CategoryModal
