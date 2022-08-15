@@ -22,7 +22,7 @@ interface SendParams extends Profile.Profile {
 }
 
 const QuestionForm: FC<Props> = ({ questionPage }) => {
-  const { profile, setProfile } = useProfile()
+  const { profile, setProfile, userInfoDone } = useProfile()
 
   const router = useRouter()
   const { setNewAnswer, answers } = useAnswerController({
@@ -51,8 +51,10 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     let nextPageUid = nextQuestionUid(data)
 
     if (questionPage.isLast || nextPageUid === 'result') {
-      const { data } = await api.get(`/profiles/${profile?.id}`)
-      setProfile(data)
+      if (!userInfoDone) {
+        router.push(`/userinfo?category=${questionPage.category}`)
+        return
+      }
       router.push(`/category/${questionPage.category}/result`)
     } else {
       router.push(`/category/${questionPage.category}/questions/${nextPageUid}`)
@@ -76,11 +78,12 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
 
   const sendData = useCallback(
     async (data: any) => {
+      let nextPageUid = nextQuestionUid(data)
       if (!profile) return
       const params: SendParams = {
         ...profile,
         [sendDataParamsKey]: data,
-        estimate: questionPage.isLast ? true : false
+        estimate: questionPage.isLast || nextPageUid === 'result' ? true : false
       }
       try {
         const { data } = await api.put(`/profiles/${profile?.id}`, params)
@@ -107,6 +110,10 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     if (nextPageUid === 'result') {
       const { data } = await api.get(`/profiles/${profile?.id}`)
       setProfile(data)
+      if (!userInfoDone) {
+        router.push(`/userinfo?category=${questionPage.category}`)
+        return
+      }
       router.push(`/category/${questionPage.category}/result`)
     } else if (nextPageUid) {
       router.push(`/category/${questionPage.category}/questions/${nextPageUid}`)
@@ -194,7 +201,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         )}
       </Box>
       <form onSubmit={handleSubmit(submit)}>
-        <Box pb="10">
+        <Box pb="5">
           {questionPage.questions.map((question) => (
             <Box key={question.key} mb={5}>
               {question.description && (

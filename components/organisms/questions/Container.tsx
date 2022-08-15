@@ -5,9 +5,10 @@ import CategoryTitle from 'components/molecules/questions/CategoryTitle'
 type Props = {
   children: ReactNode
   category?: Questions.QuestionCategory
+  title?: string
 }
 
-const QuestionContainer: FC<Props> = ({ children, category }) => {
+const QuestionContainer: FC<Props> = ({ children, category, title }) => {
   return (
     <Grid
       backgroundColor={category ? `${category}.200` : 'grey.200'}
@@ -21,7 +22,7 @@ const QuestionContainer: FC<Props> = ({ children, category }) => {
         </Text>
       </Box>
       <Box mb={3}>
-        <CategoryTitle category={category} />
+        <CategoryTitle category={category} title={title} />
       </Box>
       <Box>
         <Container

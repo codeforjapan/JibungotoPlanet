@@ -10,6 +10,9 @@ declare namespace Profile {
     housingAnswer?: any
     foodAnswer?: any
     otherAnswer?: any
+    gender?: string
+    age?: string
+    region?: string
   }
 
   interface Baseline {
