@@ -1,5 +1,3 @@
-import { OTHER_QUESTION_PAGES } from "constants/questions";
-
 export const MOBILITY_ACTIONS: Actions.Action[] = [
   {
     dirAndDomain: "telework-option_mobility",
