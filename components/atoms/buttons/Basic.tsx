@@ -21,7 +21,6 @@ const BasicButton: FC<Props & ButtonProps> = ({
     if (isNext) {
       return <ChevronRightIcon fontSize="25px" />
     }
-    return undefined
   }, [isNext])
 
   const leftIcon = useMemo(() => {
@@ -44,7 +43,7 @@ const BasicButton: FC<Props & ButtonProps> = ({
       color={rest.color || 'white'}
       fontWeight={rest.fontWeight || '700'}
       fontSize={rest.fontSize || '16px'}
-      justifyContent="space-between"
+      justifyContent={isNext && !rest.isLoading ? 'space-between' : 'center'}
       leftIcon={leftIcon}
       rightIcon={rightIcon}
       py={rest.py || '16px'}

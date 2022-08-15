@@ -48,11 +48,13 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     setNewAnswer(data)
 
     await sendData(data)
+    let nextPageUid = nextQuestionUid(data)
 
-    if (questionPage.isLast) {
+    if (questionPage.isLast || nextPageUid === 'result') {
+      const { data } = await api.get(`/profiles/${profile?.id}`)
+      setProfile(data)
       router.push(`/category/${questionPage.category}/result`)
     } else {
-      let nextPageUid = nextQuestionUid(data)
       router.push(`/category/${questionPage.category}/questions/${nextPageUid}`)
     }
   }
@@ -100,10 +102,14 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     return uid
   }
 
-  const skipQuestion = () => {
+  const skipQuestion = async () => {
     const nextPageUid = questionPage.skipToPageUid
-    if (nextPageUid) {
-      router.push(`/questions/${questionPage.category}/${nextPageUid}`)
+    if (nextPageUid === 'result') {
+      const { data } = await api.get(`/profiles/${profile?.id}`)
+      setProfile(data)
+      router.push(`/category/${questionPage.category}/result`)
+    } else if (nextPageUid) {
+      router.push(`/category/${questionPage.category}/questions/${nextPageUid}`)
     }
   }
 
@@ -188,31 +194,33 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         )}
       </Box>
       <form onSubmit={handleSubmit(submit)}>
-        {questionPage.questions.map((question) => (
-          <Box key={question.key} mb={5}>
-            {question.description && (
-              <Heading as="h2" fontSize="18px" mb={2}>
-                {question.description}
-              </Heading>
-            )}
-            {question.subDescription && (
-              <Text fontSize="14px" mb={2}>
-                {question.subDescription}
-              </Text>
-            )}
-            <Controller
-              control={control}
-              name={question.key}
-              render={({ field: { value, onChange } }) => (
-                <QuestionInput
-                  question={question}
-                  onChange={onChange}
-                  value={value}
-                />
+        <Box pb="10">
+          {questionPage.questions.map((question) => (
+            <Box key={question.key} mb={5}>
+              {question.description && (
+                <Heading as="h2" fontSize="18px" mb={2}>
+                  {question.description}
+                </Heading>
               )}
-            />
-          </Box>
-        ))}
+              {question.subDescription && (
+                <Text fontSize="14px" mb={2}>
+                  {question.subDescription}
+                </Text>
+              )}
+              <Controller
+                control={control}
+                name={question.key}
+                render={({ field: { value, onChange } }) => (
+                  <QuestionInput
+                    question={question}
+                    onChange={onChange}
+                    value={value}
+                  />
+                )}
+              />
+            </Box>
+          ))}
+        </Box>
 
         <Box
           width="90%"

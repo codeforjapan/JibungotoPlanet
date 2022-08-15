@@ -1,22 +1,34 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Box, SimpleGrid } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import HomeContentBody from 'components/molecules/homes/HomeContentBody/HomeContentBody'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
 import HomeContentTitle from 'components/molecules/homes/HomeContentTitle/HomeContentTitle'
+import HomeSectionContainer from 'components/molecules/homes/HomeSectionContainer/HomeSectionContainer'
 import styles from 'styles/Home.module.scss'
 
 type Props = {
   className?: string
+  sp: boolean
 }
 
 const HomeLookBackSection: FC<Props> = (props) => {
   return (
-    <SimpleGrid columns={2} spacing={10} className={props.className}>
-      <Box px={5}>
+    <HomeSectionContainer className={props.className}>
+      <Box px={{ base: 0, md: 5 }}>
         <HomeContentTitle className={styles['home__section__item-title']}>
           <span>2.見直す</span>
         </HomeContentTitle>
+        {props.sp && (
+          <Box className={styles['home__section__img-container']}>
+            <Image
+              src={'/home/home-content-look-back.png'}
+              alt={'見直すセクション'}
+              objectFit={'contain'}
+              layout={'fill'}
+            />
+          </Box>
+        )}
         <HomeContentCatchPhrase className={styles['home__section__item']}>
           あなたの暮らしに地球が何個必要か知っていますか？
           <br />
@@ -37,14 +49,17 @@ const HomeLookBackSection: FC<Props> = (props) => {
           </span>
         </HomeContentBody>
       </Box>
-      <Box className={styles['home__section__img-container']}>
-        <Image
-          src={'/home/home-content-look-back.png'}
-          alt={'見直すセクション'}
-          layout={'fill'}
-        />
-      </Box>
-    </SimpleGrid>
+      {!props.sp && (
+        <Box className={styles['home__section__img-container']}>
+          <Image
+            src={'/home/home-content-look-back.png'}
+            alt={'見直すセクション'}
+            objectFit={'contain'}
+            layout={'fill'}
+          />
+        </Box>
+      )}
+    </HomeSectionContainer>
   )
 }
 

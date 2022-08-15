@@ -45,7 +45,7 @@ export const useConvertSubdomainLabel = () => {
         return 'ガス・灯油等'
       case 'electricity':
         return '電気'
-      case 'maintenance':
+      case 'construction-maintenance':
         return '建設・維持管理'
       case 'imputedrent':
         return ''

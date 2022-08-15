@@ -1,0 +1,83 @@
+.society {
+    &__header {
+      &__item-container {
+        width: 100%;
+      }
+  
+      &__title-container {
+        padding: 1rem 0 2.5rem 0;
+      }
+  
+      &__title {
+        padding-bottom: 0.3rem;
+        border-bottom: 5px solid black;
+      }
+    }
+  
+    &__section {
+      padding: 5rem 0;
+      
+      &__img-container {
+          position: relative;
+          width: 100%;
+          margin-top: 32px;
+          margin-bottom: 64px;
+        }
+        
+        &__item-title {
+            padding: 1rem 0;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        &__item {
+        text-align: center;
+        padding: 0.5rem 0;
+      }
+    }
+
+    &__category {
+        &__item {
+            font-weight: bold;
+            display: grid;
+            grid-template-columns: 1fr 30px 2fr;
+            gap: 0.6em;
+            margin-bottom: 4em;
+            @media (max-width: 550px) {
+                grid-template-columns: 1fr;
+                gap: 1em;
+                text-align: center;
+            }
+
+            &__arrow {
+                margin-top: 0.8em;
+                @media (max-width: 550px) {
+                    margin-top: 0px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                & > span {
+                    @media (max-width: 550px) {
+                        transform: rotate(90deg);
+                        // display: block;
+                    }
+                }
+                
+            }
+
+            &__big-text {
+                font-size: 1.8em;
+                margin-right: 3px;
+            }
+
+            &__highlighted {
+                background-color: #F1FF55;
+            }
+
+        }
+    }
+
+  }
+  
