@@ -9,10 +9,9 @@ export default {
 
 export const Index: ComponentStoryObj<typeof ActionChangeRateDialog> = {
   args: {
-    amount: 90,
-    implementationRate: 25,
-    action: '食事を完全菜食（ヴィーガン）にする',
-    description:
-      '食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする'
+    isOpen: true,
+    onClose: () => {},
+    onClick: () => {},
+    action: { id: 1, implementationRate: 40 }
   }
 }
