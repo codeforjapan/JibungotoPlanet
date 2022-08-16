@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
-import { ChevronRightIcon } from '@chakra-ui/icons'
-import { Box, Button, Spinner } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 
 const CompletionTransitions: FC = () => {
@@ -12,10 +11,9 @@ const CompletionTransitions: FC = () => {
       <BasicButton isNext onClick={() => router.push('/top')} width="full">
         質問カテゴリーへ戻る
       </BasicButton>
-      {/*todo: urlの変更*/}
       <BasicButton
         isNext
-        onClick={() => router.push('/')}
+        onClick={() => router.push('/society')}
         width="full"
         mt={4}
         variant="outline"

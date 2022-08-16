@@ -16,12 +16,14 @@ import DatasourceFooter from 'components/DatasourceFooter'
 import ShareSNS from 'components/molecules/result/ShareSNS/ShareSNS'
 import { useEmissionResult } from 'hooks/emission'
 import { useConvertSubdomainLabel } from 'hooks/result'
+import { useRouter } from "next/router";
 
 type Props = {
   category: Questions.QuestionCategory
 }
 
 const QuestionResultGraph: FC<Props> = ({ category }) => {
+  const router = useRouter()
   const result = useEmissionResult(category)
   const subdomainConverter = useConvertSubdomainLabel()
 
@@ -102,7 +104,7 @@ const QuestionResultGraph: FC<Props> = ({ category }) => {
         <br /> できることを考える
       </Text>
 
-      <BasicButton width="full" isNext>
+      <BasicButton width="full" isNext onClick={() => router.push(`/category/${category}/action`)}>
         脱炭素アクションをみる
       </BasicButton>
 
