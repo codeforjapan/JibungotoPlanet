@@ -1,5 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Box } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
@@ -17,14 +17,28 @@ interface Params extends ParsedUrlQuery {
 const ActionPage: NextPage<Params> = ({ category }) => {
   const actions = useActions()
   const [open, setOpen] = useState<boolean>(false)
-  const [selectedAction, setSelectedAction] = useState<any>({})
+  const [categorizeActions, setCategorizeActions] = useState([])
+  const [selectedAction, setSelectedAction] = useState<Actions.Action | null>(null)
+
+  useEffect(() => {
+    if (actions) {
+      setCategorizeActions(actions[category])
+    }
+  }, [actions])
 
   const completeActions = () => {
     console.log('completed')
   }
 
-  const changeActionRate = (rate: number) => {
-    console.log('set rate', rate)
+  const changeActionRate = (id: number, rate: number) => {
+    const newCategorizeActions = categorizeActions.map((action) => {
+      if(action.id === id) {
+        action.actionIntensityRate = rate
+      }
+
+      return action
+    })
+    setCategorizeActions([...newCategorizeActions])
     setOpen(false)
   }
 
@@ -32,15 +46,16 @@ const ActionPage: NextPage<Params> = ({ category }) => {
     <QuestionContainer category={category}>
       <ActionHeader />
       <Box pt={10}>
-        {actions &&
-          actions[category].map((action, index) => {
+        {categorizeActions &&
+          categorizeActions.map((action) => {
             return (
               <ActionItem
-                key={index}
-                amount={40}
-                intensityRate={action.defaultActionIntensityRate}
+                key={action.id}
+                actionIntensityRate={action.actionIntensityRate}
+                reductionEffect={action.reductionEffect}
                 label={action.label}
                 description={action.description}
+                btnDisabled={!action.rangeActionIntensityRate}
                 onClick={() => {
                   setSelectedAction(action)
                   setOpen(true)
