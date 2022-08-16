@@ -11,7 +11,7 @@ import styles from 'styles/Home.module.scss'
 type Props = {
   className?: string
   sp: boolean
-  onClick: {(): void}
+  onClick: { (): void }
 }
 
 const HomeKnowSection: FC<Props> = (props) => {
@@ -57,7 +57,11 @@ const HomeKnowSection: FC<Props> = (props) => {
           <Text pb={3} fontSize={'18px'} fontWeight={'bold'}>
             あなたのカーボンフットプリント量を知る
           </Text>
-          <BasicButton width={'full'} textAlign={'center'} onClick={props.onClick}>
+          <BasicButton
+            width={'full'}
+            textAlign={'center'}
+            onClick={props.onClick}
+          >
             はじめる
           </BasicButton>
         </Box>

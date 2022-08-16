@@ -8,7 +8,7 @@ import styles from 'styles/Home.module.scss'
 
 type Props = {
   className?: string
-  onClick: {(): void}
+  onClick: { (): void }
 }
 
 const HomeFooter: FC<Props> = (props) => {
