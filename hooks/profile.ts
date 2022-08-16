@@ -1,11 +1,12 @@
-import { PROFILE_ID } from 'constants/localstorageKeys'
-import { useEffect } from 'react'
+import { PROFILE_ID, USERINFO_SKIP } from 'constants/localstorageKeys'
+import { useEffect, useMemo, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { profileAtom } from '../store/profile'
 import api from '../utils/api'
 
 export const useProfile = () => {
   const [profile, setProfile] = useRecoilState(profileAtom)
+  const [userInfoDone, setUserInfoDone] = useState(false)
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -28,5 +29,14 @@ export const useProfile = () => {
     fetchProfile()
   }, [])
 
-  return { profile, setProfile }
+  useEffect(() => {
+    if (
+      (!profile?.age && !profile?.gender && !profile?.region) ||
+      localStorage.getItem(USERINFO_SKIP) === 'true'
+    ) {
+      setUserInfoDone(true)
+    }
+  }, [profile])
+
+  return { profile, setProfile, userInfoDone }
 }

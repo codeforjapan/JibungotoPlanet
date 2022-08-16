@@ -4,10 +4,12 @@ import { Box } from '@chakra-ui/react'
 
 type Props = {
   category?: Questions.QuestionCategory
+  title?: string
 }
 
-const CategoryTitle: FC<Props> = ({ category }) => {
+const CategoryTitle: FC<Props> = ({ category, title }) => {
   const text = useMemo(() => {
+    if (title) return title
     switch (category) {
       case 'mobility':
         return '移動について'

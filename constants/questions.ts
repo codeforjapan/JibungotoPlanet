@@ -605,11 +605,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
             label: '飲まない'
           },
           {
-            value: '1-less-per-month',
-            label: '月に1日以下'
-          },
-          {
-            value: '2-3-per-month',
+            value: '2-3-less-per-month',
             label: '月に2〜3日'
           },
           {
