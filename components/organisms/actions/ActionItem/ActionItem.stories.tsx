@@ -9,10 +9,15 @@ export default {
 
 export const Index: ComponentStoryObj<typeof ActionItem> = {
   args: {
-    amount: 90,
-    intensityRate: 25,
-    label: '食事を完全菜食（ヴィーガン）にする',
-    description:
-      '食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする'
+    action: {
+      id: 1,
+      domain: 'mobility',
+      option: 'telework',
+      category: 'mobility',
+      label: 'テレワーク',
+      description: '通勤目的の移動をゼロにする',
+      reductionEffect: 346,
+      actionIntensityRate: 0.5
+    }
   }
 }
