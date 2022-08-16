@@ -1,6 +1,7 @@
 declare namespace Actions {
   interface Action {
-    dirAndDomain: string;
+    domain: string;
+    option: string;
     category: ActionCategory;
     label: string; // アクションラベル
     description: string; //説明
