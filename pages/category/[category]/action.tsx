@@ -1,6 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
 import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
 import ActionCompleteBtn from 'components/molecules/actions/ActionCompleteBtn/ActionCompleteBtn'
@@ -15,9 +16,12 @@ interface Params extends ParsedUrlQuery {
 }
 
 const ActionPage: NextPage<Params> = ({ category }) => {
+  const router = useRouter()
   const actions = useActions()
   const [open, setOpen] = useState<boolean>(false)
-  const [categorizeActions, setCategorizeActions] = useState<Actions.Action[]>([])
+  const [categorizeActions, setCategorizeActions] = useState<Actions.Action[]>(
+    []
+  )
   const [selectedAction, setSelectedAction] = useState<Actions.Action | null>(
     null
   )
@@ -30,7 +34,9 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   }, [actions])
 
   const completeActions = () => {
+    // todo: selectedActionsをpostする
     console.log('completed')
+    router.push(`/category/${category}/completion`)
   }
 
   const changeActionRate = (id: number, rate: number) => {
@@ -90,7 +96,10 @@ const ActionPage: NextPage<Params> = ({ category }) => {
       <Box style={{ padding: '0.5rem 0 4rem 0' }}>
         <DatasourceFooter />
       </Box>
-      <ActionCompleteBtn onClick={completeActions} />
+      <ActionCompleteBtn
+        onClick={completeActions}
+        disabled={!selectedActions.length}
+      />
       {selectedAction && (
         <ActionChangeRateDialog
           isOpen={open}
