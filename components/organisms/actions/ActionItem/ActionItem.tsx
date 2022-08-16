@@ -17,8 +17,8 @@ import styles from 'components/organisms/actions/ActionItem/ActionItem.module.sc
 type Props = {
   className?: string
   amount: number
-  implementationRate: number
-  action: string
+  intensityRate: number
+  label: string
   description: string
   onClick: { (): void }
 }
@@ -52,10 +52,10 @@ const ActionItem: FC<Props> = (props) => {
             </span>
             kg CO₂e / 年
           </Text>
-          <Text>実施率: {props.implementationRate}%</Text>
+          <Text>実施率: {props.intensityRate * 100}%</Text>
         </Box>
         <Text fontSize="14px" fontWeight="bold">
-          {props.action}
+          {props.label}
         </Text>
       </Box>
       <Accordion allowMultiple>

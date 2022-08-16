@@ -10,12 +10,12 @@ type Props = {
   onClick: { (arg: number): void }
   action: {
     id: number
-    implementationRate: number
+    intensityRate: number
   }
 }
 
 const ActionChangeRateDialog: FC<Props> = (props) => {
-  const [rate, setRate] = useState<number>(props.action.implementationRate)
+  const [rate, setRate] = useState<number>(props.action.intensityRate)
 
   return (
     <ModalBase isOpen={props.isOpen} onClose={props.onClose}>

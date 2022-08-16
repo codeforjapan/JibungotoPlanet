@@ -8,13 +8,14 @@ import ActionHeader from 'components/molecules/actions/ActionHeader/ActionHeader
 import ActionChangeRateDialog from 'components/organisms/actions/ActionChangeRateDialog/ActionChangeRateDialog'
 import ActionItem from 'components/organisms/actions/ActionItem/ActionItem'
 import QuestionContainer from 'components/organisms/questions/Container'
-import { actionData } from 'constants/action-mock'
+import { useActions } from "hooks/actions";
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory
 }
 
 const ActionPage: NextPage<Params> = ({ category }) => {
+  const actions = useActions()
   const [open, setOpen] = useState<boolean>(false)
   const [selectedAction, setSelectedAction] = useState<any>({})
 
@@ -31,14 +32,14 @@ const ActionPage: NextPage<Params> = ({ category }) => {
     <QuestionContainer category={category}>
       <ActionHeader />
       <Box pt={10}>
-        {actionData &&
-          actionData.map((action) => {
+        {actions &&
+          actions[category].map((action, index) => {
             return (
               <ActionItem
-                key={action.id}
-                amount={action.amount}
-                implementationRate={action.implementationRate}
-                action={action.action}
+                key={index}
+                amount={40}
+                intensityRate={action.defaultActionIntensityRate}
+                label={action.label}
                 description={action.description}
                 onClick={() => {
                   setSelectedAction(action)
