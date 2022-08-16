@@ -17,6 +17,7 @@ const CompletionPage: NextPage<Params> = ({ category }) => {
     <QuestionContainer category={category}>
       <CompletionHeader category={category} />
       <CompletionContent category={category} />
+      {/*todo: sns link*/}
       <ShareSNS line={'/'} twitter={'/'} facebook={'/'} />
       <Box pt={14}>
         <CompletionTransitions />

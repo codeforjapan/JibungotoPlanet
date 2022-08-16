@@ -10,6 +10,9 @@
       width: 2rem;
       height: 2rem;
     }
+    svg {
+      font-size: 1rem;
+    }
   }
 
   &__change-link {
@@ -19,6 +22,7 @@
 
   &__amount {
     font-size: 32px;
+    margin-right: 0.2rem;
   }
 
   &__accordion-trigger {

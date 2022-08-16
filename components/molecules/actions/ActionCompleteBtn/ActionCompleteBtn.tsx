@@ -7,12 +7,18 @@ import styles from 'components/molecules/actions/ActionCompleteBtn/ActionComplet
 type Props = {
   className?: string
   onClick: { (): void }
+  disabled: boolean
 }
 
 const ActionCompleteBtn: FC<Props> = (props) => {
   return (
     <Box className={classNames(props.className, styles['action-complete-btn'])}>
-      <BasicButton width="full" isNext onClick={props.onClick}>
+      <BasicButton
+        width="full"
+        isNext
+        onClick={props.onClick}
+        disabled={props.disabled}
+      >
         選択を完了する
       </BasicButton>
     </Box>
