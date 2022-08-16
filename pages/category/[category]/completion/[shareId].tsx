@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
 import { ParsedUrlQuery } from 'querystring'
 import { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
+import BasicButton from 'components/atoms/buttons/Basic'
 import DatasourceFooter from 'components/DatasourceFooter'
 import CompletionContent from 'components/organisms/completion/CompletionContent/CompletionContent'
 import CompletionHeader from 'components/organisms/completion/CompletionHeader/CompletionHeader'
 import QuestionContainer from 'components/organisms/questions/Container'
-import BasicButton from "components/atoms/buttons/Basic";
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory
@@ -32,7 +32,12 @@ const CompletionPage: NextPage<Params> = ({ category, shareId }) => {
   )
 }
 
-export const getServerSideProps: ({ params }: { params: any }) => { props: { shareId: string; category: "food" | "mobility" | "housing" | "other" } } = ({ params }) => {
+export const getServerSideProps: ({ params }: { params: any }) => {
+  props: {
+    shareId: string
+    category: 'food' | 'mobility' | 'housing' | 'other'
+  }
+} = ({ params }) => {
   return {
     props: {
       category: params?.category || 'mobility',

@@ -11,7 +11,7 @@ export const Index: ComponentStoryObj<typeof ActionItem> = {
   args: {
     amount: 90,
     intensityRate: 25,
-    action: '食事を完全菜食（ヴィーガン）にする',
+    label: '食事を完全菜食（ヴィーガン）にする',
     description:
       '食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする。食事を完全菜食（ヴィーガン）にする'
   }

@@ -8,7 +8,7 @@ import ActionHeader from 'components/molecules/actions/ActionHeader/ActionHeader
 import ActionChangeRateDialog from 'components/organisms/actions/ActionChangeRateDialog/ActionChangeRateDialog'
 import ActionItem from 'components/organisms/actions/ActionItem/ActionItem'
 import QuestionContainer from 'components/organisms/questions/Container'
-import { useActions } from "hooks/actions";
+import { useActions } from 'hooks/actions'
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory

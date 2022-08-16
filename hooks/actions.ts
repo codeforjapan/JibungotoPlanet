@@ -4,7 +4,7 @@ import {
   MOBILITY_ACTIONS,
   HOUSING_ACTIONS,
   OTHER_ACTIONS
-} from "constants/Actions";
+} from "constants/actions";
 
 export const useActions = () => {
   const [mobility, setMobilityActions] = useState<Actions.Action[]>([])
