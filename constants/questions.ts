@@ -29,33 +29,33 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     defaultNextPageUid: 'mq4',
     questions: [
       {
-        key: 'privateCarType',
+        key: 'carIntensityFactorFirstKey',
         answerType: 'select',
         options: [
           {
-            value: 'gasoline_driving-factor',
+            value: 'gasoline',
             label: 'ガソリン車'
           },
           {
-            value: 'light_driving-factor',
+            value: 'light',
             label: '軽自動車'
           },
           {
-            value: 'hv_driving-factor',
+            value: 'hv',
             label: 'ハイブリッド車'
           },
           {
-            value: 'phv_driving-factor',
+            value: 'phv',
             label: 'プラグインハイブリッド車',
             nextPageUid: 'mq3'
           },
           {
-            value: 'ev_driving-factor',
+            value: 'ev',
             label: '電気自動車',
             nextPageUid: 'mq3'
           },
           {
-            value: 'unknown_driving-factor',
+            value: 'unknown',
             label: '分からない'
           }
         ]
@@ -69,27 +69,27 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     defaultNextPageUid: 'mq4',
     questions: [
       {
-        key: 'carCharging',
+        key: 'carChargingKey',
         answerType: 'select',
         options: [
           {
-            value: 'use-charging-spots-occasionally', //ToDo: input value
+            value: 'use-charging-spots-occasionally',
             label: '自宅で充電することの方が多いが、充電スポットも利用する'
           },
           {
-            value: 'use-charging-spots-sometimes', //ToDo: input value
+            value: 'use-charging-spots-sometimes',
             label: '自宅と充電スポットを半々で利用する'
           },
           {
-            value: 'charge-almost-at-home', //ToDo: input value
+            value: 'charge-almost-at-home',
             label: 'ほとんど自宅で充電する '
           },
           {
-            value: 'use-charging-spots-usually', //ToDo: input value
+            value: 'use-charging-spots-usually',
             label: 'ほとんど充電スポットで充電する '
           },
           {
-            value: 'unknown', //ToDo: input value
+            value: 'unknown',
             label: '分からない'
           }
         ]
@@ -104,39 +104,39 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     defaultNextPageUid: 'mq5',
     questions: [
       {
-        key: 'carPassengers',
+        key: 'carPassengersFirstKey',
         answerType: 'select',
         options: [
           {
-            value: 'unknown', //ToDo: input value
+            value: 'unknown',
             label: '分からない'
           },
           {
-            value: '1', //ToDo: input value
+            value: '1',
             label: 'ほとんど1人'
           },
           {
-            value: '1-2', //ToDo: input value
+            value: '1-2',
             label: '1~2人'
           },
           {
-            value: '2', //ToDo: input value
+            value: '2',
             label: '2人'
           },
           {
-            value: '2-3', //ToDo: input value
+            value: '2-3',
             label: '2~3人'
           },
           {
-            value: '3', //ToDo: input value
+            value: '3',
             label: '3人'
           },
           {
-            value: '3-4', //ToDo: input value
+            value: '3-4',
             label: '3~4人'
           },
           {
-            value: '4-more', //ToDo: input value
+            value: '4-more',
             label: '4人以上'
           }
         ]
@@ -200,7 +200,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     defaultNextPageUid: 'mq7',
     questions: [
       {
-        key: 'livingAreaSize',
+        key: 'mileageByAreaFirstKey',
         answerType: 'select',
         options: [
           {
@@ -1028,7 +1028,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
           },
           {
             value: 'december',
-            label: '11月'
+            label: '12月'
           }
         ]
       }
