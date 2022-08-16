@@ -23,7 +23,11 @@ type Props = {
 
 const ActionItem: FC<Props> = (props) => {
   const amount = useMemo(() => {
-    return props.action.actionIntensityRate * props.action.reductionEffect
+    return (
+      Math.round(
+        props.action.actionIntensityRate * props.action.reductionEffect * 100
+      ) / 100
+    )
   }, [props.action.actionIntensityRate])
 
   return (
