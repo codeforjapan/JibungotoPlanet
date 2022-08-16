@@ -1,0 +1,14 @@
+@import 'styles/vars';
+
+.action-complete-btn {
+  position: fixed;
+  padding: 1.1rem;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+
+  @include pc {
+    position: sticky;
+  }
+}

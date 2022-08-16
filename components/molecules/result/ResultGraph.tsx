@@ -1,4 +1,5 @@
 import { FC, useMemo } from 'react'
+import { useRouter } from 'next/router'
 import {
   Box,
   Heading,
@@ -13,15 +14,16 @@ import BasicButton from 'components/atoms/buttons/Basic'
 import Average from 'components/atoms/emissions/Average'
 import Cloud from 'components/atoms/emissions/Cloud'
 import DatasourceFooter from 'components/DatasourceFooter'
+import ShareSNS from 'components/molecules/result/ShareSNS/ShareSNS'
 import { useEmissionResult } from 'hooks/emission'
 import { useConvertSubdomainLabel } from 'hooks/result'
-import ShareSNS from './ShareSNS'
 
 type Props = {
   category: Questions.QuestionCategory
 }
 
 const QuestionResultGraph: FC<Props> = ({ category }) => {
+  const router = useRouter()
   const result = useEmissionResult(category)
   const subdomainConverter = useConvertSubdomainLabel()
 
@@ -94,14 +96,19 @@ const QuestionResultGraph: FC<Props> = ({ category }) => {
         </Tbody>
       </Table>
 
-      <ShareSNS />
+      {/*todo: urlの変更*/}
+      <ShareSNS facebook={'/'} line={'/'} twitter={'/'} />
 
       <Text fontWeight="bold" textAlign="center" mt={10} mb={5}>
         カーボンフットプリント量を減らすために
         <br /> できることを考える
       </Text>
 
-      <BasicButton width="full" isNext>
+      <BasicButton
+        width="full"
+        isNext
+        onClick={() => router.push(`/category/${category}/action`)}
+      >
         脱炭素アクションをみる
       </BasicButton>
 
