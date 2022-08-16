@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import {
   Accordion,
@@ -16,28 +16,37 @@ import styles from 'components/organisms/actions/ActionItem/ActionItem.module.sc
 
 type Props = {
   className?: string
-  amount: number
-  intensityRate: number
+  actionIntensityRate: number
+  reductionEffect: number
   label: string
   description: string
   onClick: { (): void }
+  btnDisabled: boolean
 }
 
 const ActionItem: FC<Props> = (props) => {
+
+  const amount = useMemo(() => {
+    return props.actionIntensityRate * props.reductionEffect
+  }, [props.actionIntensityRate])
+
   return (
     <Box className={classNames(props.className, styles['action-item'])}>
       <Box p={3}>
         <Box display="flex" justifyContent="space-between">
           <Checkbox className={styles['action-item__checkbox']} />
-          <Button
-            variant="link"
-            color="brandPrimary.400"
-            rightIcon={<ChevronRightIcon fontSize="25px" />}
-            className={styles['action-item__change-link']}
-            onClick={props.onClick}
-          >
-            実施率を変更
-          </Button>
+          {
+            !props.btnDisabled &&
+              <Button
+                  variant="link"
+                  color="brandPrimary.400"
+                  rightIcon={<ChevronRightIcon fontSize="25px" />}
+                  className={styles['action-item__change-link']}
+                  onClick={props.onClick}
+              >
+                  実施率を変更
+              </Button>
+          }
         </Box>
         <Box
           pt={2}
@@ -48,11 +57,11 @@ const ActionItem: FC<Props> = (props) => {
         >
           <Text fontSize="16px" fontWeight="bold">
             <span className={styles['action-item__amount']}>
-              {props.amount}
+              {amount}
             </span>
             kg CO₂e / 年
           </Text>
-          <Text>実施率: {props.intensityRate * 100}%</Text>
+          <Text>実施率: {props.actionIntensityRate * 100}%</Text>
         </Box>
         <Text fontSize="14px" fontWeight="bold">
           {props.label}
