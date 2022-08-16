@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Box, Heading, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import ActionRateSlider from 'components/molecules/actions/ActionRateSlider/ActionRateSlider'
@@ -15,7 +15,13 @@ type Props = {
 }
 
 const ActionChangeRateDialog: FC<Props> = (props) => {
-  const [rate, setRate] = useState<number>(props.action.actionIntensityRate)
+  const [rate, setRate] = useState<number>(
+    props.action.actionIntensityRate * 100
+  )
+
+  useEffect(() => {
+    setRate(props.action.actionIntensityRate * 100)
+  }, [props.action.actionIntensityRate])
 
   return (
     <ModalBase isOpen={props.isOpen} onClose={props.onClose}>
@@ -27,7 +33,7 @@ const ActionChangeRateDialog: FC<Props> = (props) => {
         実施率を調整して、できることから行動にしてみましょう。
       </Text>
       <Box py={12} my={3}>
-        <ActionRateSlider rate={rate * 100} onChange={setRate} />
+        <ActionRateSlider rate={rate} onChange={setRate} />
       </Box>
       <BasicButton
         width="full"
