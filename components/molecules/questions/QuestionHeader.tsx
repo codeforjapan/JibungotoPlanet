@@ -1,20 +1,15 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import { Flex, IconButton, Text } from '@chakra-ui/react'
 import { useAnswerController } from '../../../hooks/questions'
+import { QUESTION_DENOMINATOR } from 'constants/questions'
 
 type Props = {
-  numerator: number
-  denominator: number
   questionPage: Questions.Page
 }
 
-const QuestionHeader: FC<Props> = ({
-  numerator,
-  denominator,
-  questionPage
-}) => {
+const QuestionHeader: FC<Props> = ({ questionPage }) => {
   const router = useRouter()
   const { removeAnswer } = useAnswerController({
     category: questionPage.category
@@ -27,6 +22,14 @@ const QuestionHeader: FC<Props> = ({
     }
     router.back()
   }
+
+  const numerator = useMemo(() => {
+    return questionPage.numerator
+  }, [questionPage])
+
+  const denominator = useMemo(() => {
+    return QUESTION_DENOMINATOR[questionPage.category]
+  }, [questionPage])
 
   return (
     <Flex justifyContent="space-between" alignItems="center" my={7}>

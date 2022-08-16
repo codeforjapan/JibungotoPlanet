@@ -72,7 +72,7 @@ const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
       case 'other':
         return (
           <>
-            消費財やレジャーに関する質問が約5問あります。
+            消費財やレジャーに関する質問が約8問あります。
             <br />
             <br />
             質問に答えると、あなたの1年間のカーボンフットプリント量が分かります。

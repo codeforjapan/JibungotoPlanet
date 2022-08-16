@@ -193,11 +193,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
 
   return (
     <Box pb="100px">
-      <QuestionHeader
-        numerator={1}
-        denominator={2}
-        questionPage={questionPage}
-      />
+      <QuestionHeader questionPage={questionPage} />
       <Box fontSize="24px" textAlign="center" mb={5}>
         <Heading as="h1" fontSize={{ base: '24px' }}>
           {questionPage.title}

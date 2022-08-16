@@ -1,9 +1,17 @@
+export const QUESTION_DENOMINATOR = {
+  mobility: 7,
+  housing: 10,
+  food: 6,
+  other: 10
+}
+
 export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
   {
     uid: 'mq1',
     title: '自家用車をお持ちですか？',
     category: 'mobility',
     defaultNextPageUid: 'mq2',
+    numerator: 1,
     questions: [
       {
         key: 'hasPrivateCar',
@@ -27,6 +35,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     title: '最も使用する自動車の種類を教えてください',
     category: 'mobility',
     defaultNextPageUid: 'mq4',
+    numerator: 2,
     questions: [
       {
         key: 'privateCarType',
@@ -67,6 +76,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     title: '電気自動車・プラグインハイブリッド車を自宅で充電しますか？',
     category: 'mobility',
     defaultNextPageUid: 'mq4',
+    numerator: 3,
     questions: [
       {
         key: 'carCharging',
@@ -102,6 +112,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     supplement: '運転手を含む',
     category: 'mobility',
     defaultNextPageUid: 'mq5',
+    numerator: 4,
     questions: [
       {
         key: 'carPassengers',
@@ -149,6 +160,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     supplement: 'あなたが乗車していない分は除く',
     category: 'mobility',
     defaultNextPageUid: 'mq6',
+    numerator: 5,
     questions: [
       {
         key: 'privateCarAnnualMileage',
@@ -166,6 +178,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     defaultNextPageUid: 'mq7',
     skippable: true,
     skipToPageUid: 'mq6-2',
+    numerator: 6,
     questions: [
       {
         key: 'trainWeeklyTravelingTime',
@@ -197,7 +210,9 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     uid: 'mq6-2',
     title: 'お住いの地域（地方）の規模はどのくらいですか？',
     category: 'mobility',
-    defaultNextPageUid: 'mq7',
+    isLast: true,
+    defaultNextPageUid: '',
+    numerator: 6,
     questions: [
       {
         key: 'livingAreaSize',
@@ -233,6 +248,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     supplement: '（出張など仕事目的の移動は除く・利用していな場合は0と入力）',
     category: 'mobility',
     defaultNextPageUid: '',
+    numerator: 7,
     questions: [
       {
         key: 'trainAnnuallyTravelingTime',
@@ -281,6 +297,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
     title: '1日の活動量（摂取カロリー量）はどのくらいですか？',
     category: 'food',
     defaultNextPageUid: 'fd2',
+    numerator: 1,
     questions: [
       {
         key: 'foodIntakeFactorKey',
@@ -324,6 +341,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
     title: '食材を捨てたり食べ残し（食品ロス）が生じる頻度はどのくらいですか？',
     category: 'food',
     defaultNextPageUid: 'fd3',
+    numerator: 2,
     questions: [
       {
         key: 'foodDirectWasteFactorKey',
@@ -395,6 +413,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
     supplement: '（外食、惣菜、弁当、テイクアウトも含む）',
     category: 'food',
     defaultNextPageUid: 'fd4',
+    numerator: 3,
     questions: [
       {
         key: 'dishBeefFactorKey',
@@ -595,6 +614,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
     supplement: '（外食の場合も含む）',
     category: 'food',
     defaultNextPageUid: 'fd5',
+    numerator: 4,
     questions: [
       {
         key: 'alcoholFactorKey',
@@ -639,6 +659,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
       '（コーヒー、お茶、炭酸飲料、ノンアルコールビール、スイーツ、スナック類など）',
     category: 'food',
     defaultNextPageUid: 'fd6',
+    numerator: 5,
     questions: [
       {
         key: 'softDrinkSnackFactorKey',
@@ -681,6 +702,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
     category: 'food',
     defaultNextPageUid: '',
     isLast: true,
+    numerator: 6,
     questions: [
       {
         key: 'eatOutFactorKey',
@@ -724,6 +746,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '一緒に暮らしている人数を教えてください',
     category: 'housing',
     defaultNextPageUid: 'hs2',
+    numerator: 1,
     questions: [
       {
         key: 'residentCount',
@@ -737,6 +760,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: 'あなたの家の部屋はいくつありますか？',
     category: 'housing',
     defaultNextPageUid: 'hs3',
+    numerator: 2,
     questions: [
       {
         key: 'housingSizeKey',
@@ -779,6 +803,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '現在住んでいる住居の建築年はいつ頃ですか？',
     category: 'housing',
     defaultNextPageUid: 'hs4',
+    numerator: 3,
     questions: [
       {
         key: 'housingInsulationFirstKey',
@@ -813,6 +838,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '自宅の電力は何を使用していますか？',
     category: 'housing',
     defaultNextPageUid: 'hs5',
+    numerator: 4,
     questions: [
       {
         key: 'electricityIntensityKey',
@@ -852,6 +878,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     category: 'housing',
     defaultNextPageUid: 'hs6',
     skipToPageUid: 'hs11',
+    numerator: 5,
     questions: [
       {
         key: 'electricityMonthlyConsumption',
@@ -920,6 +947,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '暖房、温水供給、調理にガスを使用していますか？',
     category: 'housing',
     defaultNextPageUid: 'hs7',
+    numerator: 6,
     questions: [
       {
         key: 'useGas',
@@ -943,6 +971,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '使用しているガスの種類を教えてください',
     category: 'housing',
     defaultNextPageUid: 'hs8',
+    numerator: 7,
     questions: [
       {
         key: 'energyHeatIntensityKey',
@@ -971,6 +1000,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     category: 'housing',
     defaultNextPageUid: 'hs9',
     skipToPageUid: 'hs9',
+    numerator: 8,
     questions: [
       {
         key: 'gasMonthlyConsumption',
@@ -1039,6 +1069,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '暖房などに灯油を使用していますか？',
     category: 'housing',
     defaultNextPageUid: 'hs10',
+    numerator: 9,
     questions: [
       {
         key: 'useKerosene',
@@ -1064,6 +1095,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     defaultNextPageUid: '',
     isLast: true,
     skipToPageUid: 'hs13',
+    numerator: 10,
     questions: [
       {
         key: 'keroseneMonthlyConsumption',
@@ -1082,6 +1114,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '暖房、温水供給、調理にガスを使用していますか？',
     category: 'housing',
     defaultNextPageUid: 'hs12',
+    numerator: 6,
     questions: [
       {
         key: 'useGas',
@@ -1104,6 +1137,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '暖房などに灯油を使用していますか？',
     category: 'housing',
     defaultNextPageUid: 'hs13',
+    numerator: 9,
     questions: [
       {
         key: 'useKerosene',
@@ -1127,6 +1161,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     category: 'housing',
     defaultNextPageUid: '',
     isLast: true,
+    numerator: 10,
     questions: [
       {
         key: 'housingAmountByRegionFirstKey',
@@ -1161,6 +1196,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
     supplement: '（衛生用品・キッチン用品・文具など）',
     category: 'other',
     defaultNextPageUid: 'ot2',
+    numerator: 1,
     questions: [
       {
         key: 'dailyGoodsAmountKey',
@@ -1200,6 +1236,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
     title: '通信費、放送受信料を合わせた支出はどのくらいですか？',
     category: 'other',
     defaultNextPageUid: 'ot3',
+    numerator: 2,
     questions: [
       {
         key: 'communicationAmountKey',
@@ -1239,6 +1276,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
     title: '過去1年間の家電、家具などの大型な買い物の支出はどのくらいですか？',
     category: 'other',
     defaultNextPageUid: 'ot4',
+    numerator: 3,
     questions: [
       {
         key: 'applianceFurnitureAmountKey',
@@ -1283,6 +1321,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
     supplement: '（保険料、美容関連の支出は除く）',
     category: 'other',
     defaultNextPageUid: 'ot5',
+    numerator: 4,
     questions: [
       {
         key: 'serviceFactorKey',
@@ -1324,6 +1363,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
       '（娯楽、書籍、雑誌、スポーツ、ペット、ガーデニング用品、たばこ含む）',
     category: 'other',
     defaultNextPageUid: 'ot6',
+    numerator: 5,
     questions: [
       {
         key: 'hobbyGoodsFactorKey',
@@ -1363,6 +1403,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
     title: '衣類、かばん、宝飾品、美容関連などの支出はどのくらいですか？',
     category: 'other',
     defaultNextPageUid: 'ot7',
+    numerator: 6,
     questions: [
       {
         key: 'clothesBeautyFactorKey',
@@ -1403,6 +1444,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
     supplement: '（交通費と飲食代は除く、施設利用料、入場料、観覧料など）',
     category: 'other',
     defaultNextPageUid: 'ot8',
+    numerator: 7,
     questions: [
       {
         key: 'leisureSportsFactorKey',
@@ -1446,6 +1488,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
     category: 'other',
     defaultNextPageUid: '',
     isLast: true,
+    numerator: 8,
     questions: [
       {
         key: 'travelFactorKey',
