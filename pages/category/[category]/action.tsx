@@ -11,16 +11,17 @@ import QuestionContainer from 'components/organisms/questions/Container'
 import { useActions } from 'hooks/actions'
 
 interface Params extends ParsedUrlQuery {
-  category: Questions.QuestionCategory
+  category: Actions.ActionCategory
 }
 
 const ActionPage: NextPage<Params> = ({ category }) => {
   const actions = useActions()
   const [open, setOpen] = useState<boolean>(false)
-  const [categorizeActions, setCategorizeActions] = useState([])
+  const [categorizeActions, setCategorizeActions] = useState<Actions.Action[]>([])
   const [selectedAction, setSelectedAction] = useState<Actions.Action | null>(
     null
   )
+  const [selectedActions, setSelectedActions] = useState<Actions.Action[]>([])
 
   useEffect(() => {
     if (actions) {
@@ -40,8 +41,31 @@ const ActionPage: NextPage<Params> = ({ category }) => {
 
       return action
     })
+    const newSelectedActions = selectedActions.map((action) => {
+      if (action.id === id) {
+        action.actionIntensityRate = rate
+      }
+
+      return action
+    })
+
     setCategorizeActions([...newCategorizeActions])
+    setSelectedActions([...newSelectedActions])
     setOpen(false)
+  }
+
+  const handleSelectedActions = (id: number, checked: boolean) => {
+    let newSelectedActions: Actions.Action[]
+
+    if (checked) {
+      newSelectedActions = categorizeActions
+        .filter((action) => action.id === id)
+        .concat(selectedActions)
+    } else {
+      newSelectedActions = selectedActions.filter((action) => action.id !== id)
+    }
+
+    setSelectedActions([...newSelectedActions])
   }
 
   return (
@@ -53,11 +77,8 @@ const ActionPage: NextPage<Params> = ({ category }) => {
             return (
               <ActionItem
                 key={action.id}
-                actionIntensityRate={action.actionIntensityRate}
-                reductionEffect={action.reductionEffect}
-                label={action.label}
-                description={action.description}
-                btnDisabled={!action.rangeActionIntensityRate}
+                action={action}
+                onCheck={handleSelectedActions}
                 onClick={() => {
                   setSelectedAction(action)
                   setOpen(true)

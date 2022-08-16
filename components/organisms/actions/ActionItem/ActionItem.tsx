@@ -16,25 +16,25 @@ import styles from 'components/organisms/actions/ActionItem/ActionItem.module.sc
 
 type Props = {
   className?: string
-  actionIntensityRate: number
-  reductionEffect: number
-  label: string
-  description: string
+  action: Actions.Action
   onClick: { (): void }
-  btnDisabled: boolean
+  onCheck: { (id: number, checked: boolean): void }
 }
 
 const ActionItem: FC<Props> = (props) => {
   const amount = useMemo(() => {
-    return props.actionIntensityRate * props.reductionEffect
-  }, [props.actionIntensityRate])
+    return props.action.actionIntensityRate * props.action.reductionEffect
+  }, [props.action.actionIntensityRate])
 
   return (
     <Box className={classNames(props.className, styles['action-item'])}>
       <Box p={3}>
         <Box display="flex" justifyContent="space-between">
-          <Checkbox className={styles['action-item__checkbox']} />
-          {!props.btnDisabled && (
+          <Checkbox
+            className={styles['action-item__checkbox']}
+            onChange={(e) => props.onCheck(props.action.id, e.target.checked)}
+          />
+          {props.action?.rangeActionIntensityRate && (
             <Button
               variant="link"
               color="brandPrimary.400"
@@ -57,10 +57,10 @@ const ActionItem: FC<Props> = (props) => {
             <span className={styles['action-item__amount']}>{amount}</span>
             kg CO₂e / 年
           </Text>
-          <Text>実施率: {props.actionIntensityRate * 100}%</Text>
+          <Text>実施率: {props.action.actionIntensityRate * 100}%</Text>
         </Box>
         <Text fontSize="14px" fontWeight="bold">
-          {props.label}
+          {props.action.label}
         </Text>
       </Box>
       <Accordion allowMultiple>
@@ -74,7 +74,7 @@ const ActionItem: FC<Props> = (props) => {
             </Box>
             <AccordionIcon />
           </AccordionButton>
-          <AccordionPanel pb={4}>{props.description}</AccordionPanel>
+          <AccordionPanel pb={4}>{props.action.description}</AccordionPanel>
         </AccordionItem>
       </Accordion>
     </Box>
