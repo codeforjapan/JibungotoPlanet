@@ -25,7 +25,6 @@ type Props = {
 }
 
 const ActionItem: FC<Props> = (props) => {
-
   const amount = useMemo(() => {
     return props.actionIntensityRate * props.reductionEffect
   }, [props.actionIntensityRate])
@@ -35,18 +34,17 @@ const ActionItem: FC<Props> = (props) => {
       <Box p={3}>
         <Box display="flex" justifyContent="space-between">
           <Checkbox className={styles['action-item__checkbox']} />
-          {
-            !props.btnDisabled &&
-              <Button
-                  variant="link"
-                  color="brandPrimary.400"
-                  rightIcon={<ChevronRightIcon fontSize="25px" />}
-                  className={styles['action-item__change-link']}
-                  onClick={props.onClick}
-              >
-                  実施率を変更
-              </Button>
-          }
+          {!props.btnDisabled && (
+            <Button
+              variant="link"
+              color="brandPrimary.400"
+              rightIcon={<ChevronRightIcon fontSize="25px" />}
+              className={styles['action-item__change-link']}
+              onClick={props.onClick}
+            >
+              実施率を変更
+            </Button>
+          )}
         </Box>
         <Box
           pt={2}
@@ -56,9 +54,7 @@ const ActionItem: FC<Props> = (props) => {
           alignItems="baseline"
         >
           <Text fontSize="16px" fontWeight="bold">
-            <span className={styles['action-item__amount']}>
-              {amount}
-            </span>
+            <span className={styles['action-item__amount']}>{amount}</span>
             kg CO₂e / 年
           </Text>
           <Text>実施率: {props.actionIntensityRate * 100}%</Text>

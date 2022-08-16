@@ -9,7 +9,7 @@ type Props = {
   onClose: { (): void }
   onClick: { (id: number, rate: number): void }
   action: {
-    id: number;
+    id: number
     actionIntensityRate: number
   }
 }
@@ -29,7 +29,10 @@ const ActionChangeRateDialog: FC<Props> = (props) => {
       <Box py={12} my={3}>
         <ActionRateSlider rate={rate * 100} onChange={setRate} />
       </Box>
-      <BasicButton width="full" onClick={() => props.onClick(props.action.id, rate / 100)}>
+      <BasicButton
+        width="full"
+        onClick={() => props.onClick(props.action.id, rate / 100)}
+      >
         変更を保存する
       </BasicButton>
     </ModalBase>

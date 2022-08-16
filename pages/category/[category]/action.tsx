@@ -18,7 +18,9 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   const actions = useActions()
   const [open, setOpen] = useState<boolean>(false)
   const [categorizeActions, setCategorizeActions] = useState([])
-  const [selectedAction, setSelectedAction] = useState<Actions.Action | null>(null)
+  const [selectedAction, setSelectedAction] = useState<Actions.Action | null>(
+    null
+  )
 
   useEffect(() => {
     if (actions) {
@@ -32,7 +34,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
 
   const changeActionRate = (id: number, rate: number) => {
     const newCategorizeActions = categorizeActions.map((action) => {
-      if(action.id === id) {
+      if (action.id === id) {
         action.actionIntensityRate = rate
       }
 
