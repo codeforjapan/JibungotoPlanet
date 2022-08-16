@@ -9,6 +9,7 @@ declare namespace Questions {
     skippable?: boolean //回答をスキップできるかどうか
     skipToPageUid?: string //回答をスキップした場合に遷移するページUID
     isLast?: boolean //最後の質問かどうか
+    numerator?: number //Question1/7の分子
   }
 
   interface Question {
