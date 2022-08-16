@@ -57,26 +57,26 @@ export const useConvertSubdomainLabel = () => {
         return '水道'
       case 'appliance-furniture':
         return '家電製品・家具類'
-      case 'daily-goods-medicine':
+      case 'daily-goods-cosmetics-medicine':
         return '日用品・化粧品・医薬品'
-      case 'hotel':
+      case 'hotel-travel':
         return '宿泊'
-      case 'hobby-books':
+      case 'hobby-books-magazines':
         return '趣味用品・書籍・雑誌'
       case 'clothes':
         return '衣類'
-      case 'communication':
+      case 'communication-delivery-broadcasting':
         return '通信・配送・放送等'
       case 'waste-repair-rental':
         return '廃棄物処理・修理等'
       case 'leisure-sports':
         return '娯楽・スポーツ施設等'
-      case 'welfare-education':
+      case 'medical-welfare-education':
         return '医療・福祉・教育'
-      case 'personal-care-other-services':
+      case 'other-services':
         return 'その他サービス'
-      case '':
-        return 'その他サービス'
+      case 'ceremony':
+        return '冠婚葬祭'
       default:
         return ''
     }

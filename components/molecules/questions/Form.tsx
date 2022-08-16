@@ -135,7 +135,13 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
                 : String(option.value)
             return { value: val, label: option.label }
           }) || []
-        return <SelectBox onChange={onChange} options={selectOptions} />
+        return (
+          <SelectBox
+            onChange={onChange}
+            options={selectOptions}
+            disabled={isSubmitting}
+          />
+        )
       case 'radio':
         const radioOptions =
           question.options?.map((option) => {
@@ -154,6 +160,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             onChange={onChange}
             options={radioOptions}
             value={value}
+            disabled={isSubmitting}
           />
         )
       case 'text':
@@ -164,6 +171,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
               value={value}
               type="text"
               unitText={question.unitText}
+              disabled={isSubmitting}
             />
           </Box>
         )

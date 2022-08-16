@@ -8,6 +8,7 @@ type Props = {
   description?: string
   unitText?: string
   placeholder?: string
+  disabled?: boolean
 }
 
 const TextField: FC<Props> = ({
@@ -15,7 +16,8 @@ const TextField: FC<Props> = ({
   onChange,
   value,
   unitText,
-  placeholder
+  placeholder,
+  disabled = false
 }) => {
   const inputType = useMemo(() => {
     switch (type) {
@@ -45,6 +47,7 @@ const TextField: FC<Props> = ({
           onChange={(e) => handleOnChange(e.target.value)}
           value={value}
           placeholder={placeholder}
+          disabled={disabled}
         />
         <Text pl={3} wordBreak="keep-all">
           {unitText}

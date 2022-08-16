@@ -7,9 +7,15 @@ type Props = {
   onChange: (v: string | number | boolean) => void
   value?: string | number
   options: { label: string; subLabel?: string; value: string | number }[]
+  disabled?: boolean
 }
 
-const RadioGroups: FC<Props> = ({ onChange, value, options }) => {
+const RadioGroups: FC<Props> = ({
+  onChange,
+  value,
+  options,
+  disabled = false
+}) => {
   const handleOnChange = (value: string) => {
     onChange(toBoolean(value))
   }
@@ -28,6 +34,7 @@ const RadioGroups: FC<Props> = ({ onChange, value, options }) => {
             justifyContent="space-between"
             display="flex"
             size="lg"
+            disabled={disabled}
           >
             <Text fontSize="18px" fontWeight="bold" marginLeft="-0.5rem">
               {option.label}
