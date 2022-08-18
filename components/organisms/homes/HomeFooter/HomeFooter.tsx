@@ -8,6 +8,7 @@ import styles from 'styles/Home.module.scss'
 
 type Props = {
   className?: string
+  onClick: { (): void }
 }
 
 const HomeFooter: FC<Props> = (props) => {
@@ -28,7 +29,7 @@ const HomeFooter: FC<Props> = (props) => {
           <br className={styles['br-sp']} />
           知る
         </HomeContentCatchPhrase>
-        <BasicButton width={300} textAlign={'center'}>
+        <BasicButton width={300} textAlign={'center'} onClick={props.onClick}>
           はじめる
         </BasicButton>
         <Text fontSize={14} mt={'auto'} pb={{ base: 0, md: 5 }}>

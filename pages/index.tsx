@@ -1,5 +1,6 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Container, useMediaQuery } from '@chakra-ui/react'
+import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
 import HomeFooter from 'components/organisms/homes/HomeFooter/HomeFooter'
@@ -10,6 +11,7 @@ import styles from 'styles/Home.module.scss'
 
 const Home: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 480px)')
+  const [open, setOpen] = useState<boolean>(false)
   const maxW = '1280px'
 
   return (
@@ -21,7 +23,11 @@ const Home: FC = () => {
         py={{ base: 0, md: 12 }}
         my={{ base: 0, md: 5 }}
       >
-        <HomeKnowSection className={styles['home__section']} sp={isMobile} />
+        <HomeKnowSection
+          className={styles['home__section']}
+          sp={isMobile}
+          onClick={() => setOpen(true)}
+        />
         <HomeLookBackSection
           className={styles['home__section']}
           sp={isMobile}
@@ -29,7 +35,12 @@ const Home: FC = () => {
         <HomeChangeSection className={styles['home__section']} sp={isMobile} />
         <HomeCaptionSection className={styles['home__caption-section']} />
       </Container>
-      <HomeFooter />
+      <HomeFooter onClick={() => setOpen(true)} />
+      <TermOfServiceDialog
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        sp={isMobile}
+      />
     </div>
   )
 }

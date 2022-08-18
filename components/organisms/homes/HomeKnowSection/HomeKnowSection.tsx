@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Box, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import HomeContentBody from 'components/molecules/homes/HomeContentBody/HomeContentBody'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
@@ -11,11 +11,12 @@ import styles from 'styles/Home.module.scss'
 type Props = {
   className?: string
   sp: boolean
+  onClick: { (): void }
 }
 
 const HomeKnowSection: FC<Props> = (props) => {
   return (
-    <HomeSectionContainer className={props.className}>
+    <HomeSectionContainer className={props.className || ''}>
       {props.sp && (
         <HomeContentTitle className={styles['home__section__item-title']}>
           <span>1.知る</span>
@@ -56,7 +57,11 @@ const HomeKnowSection: FC<Props> = (props) => {
           <Text pb={3} fontSize={'18px'} fontWeight={'bold'}>
             あなたのカーボンフットプリント量を知る
           </Text>
-          <BasicButton width={'full'} textAlign={'center'}>
+          <BasicButton
+            width={'full'}
+            textAlign={'center'}
+            onClick={props.onClick}
+          >
             はじめる
           </BasicButton>
         </Box>
