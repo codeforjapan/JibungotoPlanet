@@ -5,19 +5,31 @@ import {
   HOUSING_ACTIONS,
   OTHER_ACTIONS
 } from "constants/actions";
+import { useProfile } from "hooks/profile";
+
+const combinedActionData = (actions: Actions.Action[], actionIntensityRates: Actions.ActionIntensityRate[]) => {
+  actions.forEach((action) => {
+    action.actionIntensityRate = actionIntensityRates.find((rate) => rate.option === action.option)
+  })
+
+  return actions
+}
 
 export const useActions = () => {
+  const { profile } = useProfile()
   const [mobility, setMobilityActions] = useState<Actions.Action[]>([])
   const [food, setFoodActions] = useState<Actions.Action[]>([])
   const [housing, setHousingActions] = useState<Actions.Action[]>([])
   const [other, setOtherActions] = useState<Actions.Action[]>([])
 
   useEffect(() => {
-    setMobilityActions(MOBILITY_ACTIONS)
-    setFoodActions(FOOD_ACTIONS)
-    setHousingActions(HOUSING_ACTIONS)
-    setOtherActions(OTHER_ACTIONS)
-  }, [])
+    if (profile?.actionIntensityRates) {
+      setMobilityActions(combinedActionData(MOBILITY_ACTIONS, profile.actionIntensityRates))
+      setFoodActions(combinedActionData(FOOD_ACTIONS, profile.actionIntensityRates))
+      setHousingActions(combinedActionData(HOUSING_ACTIONS, profile.actionIntensityRates))
+      setOtherActions(combinedActionData(OTHER_ACTIONS, profile.actionIntensityRates))
+    }
+  }, [profile])
 
   return { mobility, food, housing, other }
 }
