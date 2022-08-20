@@ -17,7 +17,13 @@ export const Index: ComponentStoryObj<typeof CompletionActionItem> = {
       label: 'テレワーク',
       description: '通勤目的の移動をゼロにする',
       reductionEffect: 346,
-      actionIntensityRate: 0.5
+      actionIntensityRate: {
+        range: [0, 1],
+        value: 0,
+        defaultValue: 1,
+        option: 'telework'
+      },
+      checked: false
     }
   }
 }
