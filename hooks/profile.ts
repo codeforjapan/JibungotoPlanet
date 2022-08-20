@@ -1,7 +1,7 @@
-import { PROFILE_ID, USERINFO_SKIP } from 'constants/localstorageKeys'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { profileAtom } from '../store/profile'
+import { PROFILE_ID, USERINFO_SKIP } from 'constants/localstorageKeys'
+import { profileAtom } from 'store/profile'
 import api from '../utils/api'
 
 export const useProfile = () => {
