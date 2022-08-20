@@ -10,7 +10,10 @@ import { useProfile } from "hooks/profile";
 const combinedActionData = (actions: Actions.Action[], actionIntensityRates: Actions.ActionIntensityRate[]) => {
   actions.forEach((action) => {
     const actionIntensityRate = actionIntensityRates.find((rate) => rate.option === action.option)
-    if (actionIntensityRate) action.actionIntensityRate = Object.assign({}, actionIntensityRate);
+    if (actionIntensityRate) {
+      action.actionIntensityRate = Object.assign({}, actionIntensityRate)
+      if (actionIntensityRate.value) action.checked = true
+    }
   })
 
   return actions

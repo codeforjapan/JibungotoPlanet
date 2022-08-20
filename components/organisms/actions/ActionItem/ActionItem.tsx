@@ -48,6 +48,7 @@ const ActionItem: FC<Props> = (props) => {
           <Checkbox
             className={styles['action-item__checkbox']}
             onChange={(e) => props.onCheck(props.action.id, e.target.checked)}
+            defaultChecked={props.action.checked}
           />
           {!props.action?.actionIntensityRate?.range.length && (
             <Button
@@ -56,6 +57,7 @@ const ActionItem: FC<Props> = (props) => {
               rightIcon={<ChevronRightIcon fontSize="25px" />}
               className={styles['action-item__change-link']}
               onClick={props.onClick}
+              disabled={!props.action.checked}
             >
               実施率を変更
             </Button>
