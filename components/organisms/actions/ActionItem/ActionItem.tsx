@@ -25,10 +25,21 @@ const ActionItem: FC<Props> = (props) => {
   const actionIntensityRate =
     props.action.actionIntensityRate?.value ||
     props.action.actionIntensityRate?.defaultValue
+
   const amount = useMemo(() => {
-    const rate = props.action.actionIntensityRate?.value || 0
+    let rate = 0
+    if (props.action.actionIntensityRate?.value) {
+      rate = props.action.actionIntensityRate.value
+    } else {
+      rate = props.action.actionIntensityRate?.defaultValue || rate
+    }
+
     return Math.round(rate * props.action.reductionEffect)
-  }, [props.action.actionIntensityRate?.value, props.action.reductionEffect])
+  }, [
+    props.action.actionIntensityRate?.defaultValue,
+    props.action.actionIntensityRate?.value,
+    props.action.reductionEffect
+  ])
 
   return (
     <Box className={classNames(props.className, styles['action-item'])}>
