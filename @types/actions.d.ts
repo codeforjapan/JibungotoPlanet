@@ -7,7 +7,7 @@ declare namespace Actions {
     label: string; // アクションラベル
     description: string; //説明
     reductionEffect: number;
-    actionIntensityRate: ActionIntensityRate | null | undefined // 標準の削減施策の実施率 apiから取得
+    actionIntensityRate: ActionIntensityRate | null // 標準の削減施策の実施率 apiから取得
     checked: boolean; // 選択されたかどうか
   }
 
