@@ -22,13 +22,13 @@ type Props = {
 }
 
 const ActionItem: FC<Props> = (props) => {
+  const actionIntensityRate =
+    props.action.actionIntensityRate?.value ||
+    props.action.actionIntensityRate?.defaultValue
   const amount = useMemo(() => {
-    return (
-      Math.round(
-        props.action.actionIntensityRate * props.action.reductionEffect * 100
-      ) / 100
-    )
-  }, [props.action.actionIntensityRate])
+    const rate = props.action.actionIntensityRate?.value || 0
+    return Math.round(rate * props.action.reductionEffect)
+  }, [props.action.actionIntensityRate?.value, props.action.reductionEffect])
 
   return (
     <Box className={classNames(props.className, styles['action-item'])}>
@@ -38,7 +38,7 @@ const ActionItem: FC<Props> = (props) => {
             className={styles['action-item__checkbox']}
             onChange={(e) => props.onCheck(props.action.id, e.target.checked)}
           />
-          {props.action?.rangeActionIntensityRate && (
+          {!props.action?.actionIntensityRate?.range.length && (
             <Button
               variant="link"
               color="brandPrimary.400"
@@ -61,7 +61,7 @@ const ActionItem: FC<Props> = (props) => {
             <span className={styles['action-item__amount']}>{amount}</span>
             kg CO₂e / 年
           </Text>
-          <Text>実施率: {props.action.actionIntensityRate * 100}%</Text>
+          <Text>実施率: {Number(actionIntensityRate) * 100}%</Text>
         </Box>
         <Text fontSize="14px" fontWeight="bold">
           {props.action.label}

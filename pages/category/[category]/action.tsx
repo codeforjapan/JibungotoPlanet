@@ -25,13 +25,12 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   const [selectedAction, setSelectedAction] = useState<Actions.Action | null>(
     null
   )
-  const [selectedActions, setSelectedActions] = useState<Actions.Action[]>([])
 
   useEffect(() => {
     if (actions) {
       setCategorizeActions(actions[category])
     }
-  }, [actions])
+  }, [actions, category])
 
   const completeActions = () => {
     // todo: selectedActionsをpostする
@@ -41,37 +40,25 @@ const ActionPage: NextPage<Params> = ({ category }) => {
 
   const changeActionRate = (id: number, rate: number) => {
     const newCategorizeActions = categorizeActions.map((action) => {
-      if (action.id === id) {
-        action.actionIntensityRate = rate
+      if (action.id === id && action.actionIntensityRate?.value) {
+        action.actionIntensityRate.value = rate
       }
-
-      return action
-    })
-    const newSelectedActions = selectedActions.map((action) => {
-      if (action.id === id) {
-        action.actionIntensityRate = rate
-      }
-
       return action
     })
 
     setCategorizeActions([...newCategorizeActions])
-    setSelectedActions([...newSelectedActions])
     setOpen(false)
   }
 
-  const handleSelectedActions = (id: number, checked: boolean) => {
-    let newSelectedActions: Actions.Action[]
+  const handleCheckedActions = (id: number, checked: boolean) => {
+    const newCategorizeActions = categorizeActions.map((action) => {
+      if (action.id === id) {
+        action.checked = checked
+      }
+      return action
+    })
 
-    if (checked) {
-      newSelectedActions = categorizeActions
-        .filter((action) => action.id === id)
-        .concat(selectedActions)
-    } else {
-      newSelectedActions = selectedActions.filter((action) => action.id !== id)
-    }
-
-    setSelectedActions([...newSelectedActions])
+    setCategorizeActions([...newCategorizeActions])
   }
 
   return (
@@ -84,11 +71,11 @@ const ActionPage: NextPage<Params> = ({ category }) => {
               <ActionItem
                 key={action.id}
                 action={action}
-                onCheck={handleSelectedActions}
                 onClick={() => {
                   setSelectedAction(action)
                   setOpen(true)
                 }}
+                onCheck={handleCheckedActions}
               />
             )
           })}
@@ -98,13 +85,17 @@ const ActionPage: NextPage<Params> = ({ category }) => {
       </Box>
       <ActionCompleteBtn
         onClick={completeActions}
-        disabled={!selectedActions.length}
+        disabled={!categorizeActions.find((action) => action.checked)}
       />
-      {selectedAction && (
+      {selectedAction && selectedAction.actionIntensityRate?.defaultValue && (
         <ActionChangeRateDialog
           isOpen={open}
           onClose={() => setOpen(false)}
-          action={selectedAction}
+          actionId={selectedAction.id}
+          actionIntensityRate={
+            selectedAction.actionIntensityRate?.value ||
+            selectedAction.actionIntensityRate.defaultValue
+          }
           onClick={changeActionRate}
         />
       )}

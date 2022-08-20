@@ -8,20 +8,16 @@ type Props = {
   isOpen: boolean
   onClose: { (): void }
   onClick: { (id: number, rate: number): void }
-  action: {
-    id: number
-    actionIntensityRate: number
-  }
+  actionId: number
+  actionIntensityRate: number
 }
 
 const ActionChangeRateDialog: FC<Props> = (props) => {
-  const [rate, setRate] = useState<number>(
-    props.action.actionIntensityRate * 100
-  )
+  const [rate, setRate] = useState<number>(props.actionIntensityRate * 100)
 
   useEffect(() => {
-    setRate(props.action.actionIntensityRate * 100)
-  }, [props.action.actionIntensityRate])
+    setRate(props.actionIntensityRate * 100)
+  }, [props.actionIntensityRate])
 
   return (
     <ModalBase isOpen={props.isOpen} onClose={props.onClose}>
@@ -37,7 +33,7 @@ const ActionChangeRateDialog: FC<Props> = (props) => {
       </Box>
       <BasicButton
         width="full"
-        onClick={() => props.onClick(props.action.id, rate / 100)}
+        onClick={() => props.onClick(props.actionId, rate / 100)}
       >
         変更を保存する
       </BasicButton>
