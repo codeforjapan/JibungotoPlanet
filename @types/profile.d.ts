@@ -1,5 +1,6 @@
 declare namespace Profile {
   interface Profile {
+    actionIntensityRates: Actions.ActionIntensityRate[];
     id: string
     shareId: string
     baselines: Baseline[]

@@ -19,6 +19,7 @@ export const useProfile = () => {
           localStorage.setItem(PROFILE_ID, data.id)
         } else {
           const data = await api.get(`/profiles/${profileId}`)
+          console.log(data);
           setProfile(data)
         }
       } catch (error) {
