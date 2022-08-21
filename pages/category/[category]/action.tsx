@@ -2,7 +2,7 @@ import { ParsedUrlQuery } from 'querystring'
 import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { Box } from '@chakra-ui/react'
+import { Box, Spinner } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
 import ActionCompleteBtn from 'components/molecules/actions/ActionCompleteBtn/ActionCompleteBtn'
 import ActionHeader from 'components/molecules/actions/ActionHeader/ActionHeader'
@@ -10,101 +10,129 @@ import ActionChangeRateDialog from 'components/organisms/actions/ActionChangeRat
 import ActionItem from 'components/organisms/actions/ActionItem/ActionItem'
 import QuestionContainer from 'components/organisms/questions/Container'
 import { useActions } from 'hooks/actions'
+import { useProfile } from 'hooks/profile'
+import api from 'utils/api'
 
 interface Params extends ParsedUrlQuery {
   category: Actions.ActionCategory
 }
 
 const ActionPage: NextPage<Params> = ({ category }) => {
+  const { profile } = useProfile()
   const router = useRouter()
   const actions = useActions()
   const [open, setOpen] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [categorizeActions, setCategorizeActions] = useState<Actions.Action[]>(
     []
   )
   const [selectedAction, setSelectedAction] = useState<Actions.Action | null>(
     null
   )
-  const [selectedActions, setSelectedActions] = useState<Actions.Action[]>([])
 
   useEffect(() => {
     if (actions) {
       setCategorizeActions(actions[category])
     }
-  }, [actions])
+  }, [actions, category])
 
-  const completeActions = () => {
-    // todo: selectedActionsをpostする
-    console.log('completed')
-    router.push(`/category/${category}/completion`)
+  const completeActions = async () => {
+    setLoading(true)
+    const actionIntensityRates = categorizeActions.map(
+      (action) => action.actionIntensityRate
+    )
+    if (profile || !actionIntensityRates.includes(null)) {
+      const newProfile = Object.assign({}, profile)
+      // @ts-ignore
+      newProfile.actionIntensityRates = actionIntensityRates
+
+      try {
+        await api.put(`/profiles/${profile?.id}`, {
+          ...profile,
+          ...newProfile,
+          estimate: true
+        })
+
+        router.push(`/category/${category}/completion`)
+      } catch (error) {
+        setLoading(false)
+        console.log(error)
+      }
+    }
   }
 
   const changeActionRate = (id: number, rate: number) => {
     const newCategorizeActions = categorizeActions.map((action) => {
       if (action.id === id) {
-        action.actionIntensityRate = rate
+        // @ts-ignore
+        action.actionIntensityRate.value = rate
       }
-
-      return action
-    })
-    const newSelectedActions = selectedActions.map((action) => {
-      if (action.id === id) {
-        action.actionIntensityRate = rate
-      }
-
       return action
     })
 
     setCategorizeActions([...newCategorizeActions])
-    setSelectedActions([...newSelectedActions])
     setOpen(false)
   }
 
-  const handleSelectedActions = (id: number, checked: boolean) => {
-    let newSelectedActions: Actions.Action[]
+  const handleCheckedActions = (id: number, checked: boolean) => {
+    const newCategorizeActions = categorizeActions.map((action) => {
+      if (action.id === id) {
+        action.checked = checked
+      }
+      return action
+    })
 
-    if (checked) {
-      newSelectedActions = categorizeActions
-        .filter((action) => action.id === id)
-        .concat(selectedActions)
-    } else {
-      newSelectedActions = selectedActions.filter((action) => action.id !== id)
-    }
-
-    setSelectedActions([...newSelectedActions])
+    setCategorizeActions([...newCategorizeActions])
   }
 
   return (
     <QuestionContainer category={category}>
       <ActionHeader />
-      <Box pt={10}>
-        {categorizeActions &&
-          categorizeActions.map((action) => {
-            return (
-              <ActionItem
-                key={action.id}
-                action={action}
-                onCheck={handleSelectedActions}
-                onClick={() => {
-                  setSelectedAction(action)
-                  setOpen(true)
-                }}
-              />
-            )
-          })}
-      </Box>
+      {loading ? (
+        <Box
+          py={10}
+          display={'flex'}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Spinner />
+        </Box>
+      ) : (
+        <Box pt={10}>
+          {categorizeActions &&
+            categorizeActions.map((action) => {
+              return (
+                <ActionItem
+                  key={action.id}
+                  action={action}
+                  onClick={() => {
+                    setSelectedAction(action)
+                    setOpen(true)
+                  }}
+                  onCheck={handleCheckedActions}
+                />
+              )
+            })}
+        </Box>
+      )}
       <Box style={{ padding: '0.5rem 0 4rem 0' }}>
         <DatasourceFooter />
       </Box>
       <ActionCompleteBtn
         onClick={completeActions}
-        disabled={!selectedActions.length}
+        disabled={
+          !categorizeActions.find((action) => action.checked) || loading
+        }
       />
-      {selectedAction && (
+      {selectedAction && selectedAction.actionIntensityRate?.defaultValue && (
         <ActionChangeRateDialog
           isOpen={open}
           onClose={() => setOpen(false)}
-          action={selectedAction}
+          actionId={selectedAction.id}
+          actionIntensityRate={
+            selectedAction.actionIntensityRate?.value ||
+            selectedAction.actionIntensityRate.defaultValue
+          }
           onClick={changeActionRate}
         />
       )}

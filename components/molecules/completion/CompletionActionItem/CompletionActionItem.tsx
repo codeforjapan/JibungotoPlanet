@@ -7,13 +7,23 @@ type Props = {
 }
 
 const CompletionItem: FC<Props> = (props) => {
+  const actionIntensityRate = useMemo(() => {
+    if (props.action.actionIntensityRate?.value) {
+      return props.action.actionIntensityRate?.value * 100
+    } else {
+      return '-'
+    }
+  }, [props.action.actionIntensityRate?.value])
+
   const amount = useMemo(() => {
-    return (
-      Math.round(
-        props.action.actionIntensityRate * props.action.reductionEffect * 100
-      ) / 100
-    )
-  }, [props.action.actionIntensityRate])
+    if (props.action.actionIntensityRate?.value) {
+      return Math.round(
+        props.action.actionIntensityRate.value * props.action.reductionEffect
+      )
+    } else {
+      return '-'
+    }
+  }, [props.action.actionIntensityRate?.value, props.action.reductionEffect])
 
   return (
     <Grid
@@ -32,7 +42,7 @@ const CompletionItem: FC<Props> = (props) => {
           </Text>
         </Box>
         <Text style={{ textAlign: 'center' }} fontSize="12px" pt={1}>
-          実施率: {props.action.actionIntensityRate * 100}%
+          実施率: {actionIntensityRate}%
         </Text>
       </GridItem>
       <GridItem colSpan={{ base: 5, md: 6 }}>

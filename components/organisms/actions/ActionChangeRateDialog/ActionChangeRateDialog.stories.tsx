@@ -12,6 +12,7 @@ export const Index: ComponentStoryObj<typeof ActionChangeRateDialog> = {
     isOpen: true,
     onClose: () => {},
     onClick: () => {},
-    action: { id: 1, actionIntensityRate: 40 }
+    actionId: 1,
+    actionIntensityRate: 0.5
   }
 }
