@@ -34,7 +34,7 @@ const SharedResult: NextPage<Params> = ({ category, shareId }) => {
   return (
     <>
       <Heading as="h2" fontSize="18px" textAlign="center" my={5}>
-        あなたの1年間の
+        わたしの1年間の
         <br />
         カーボンフットプリント量
       </Heading>
