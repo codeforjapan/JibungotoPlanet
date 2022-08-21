@@ -2,6 +2,7 @@
 
 export enum AtomKeys {
   profileAtom = 'profileAtom',
+  sharedProfileAtom = 'sharedProfileAtom',
   answersAtom = 'answersAtom'
 }
 

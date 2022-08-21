@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import { useRouter } from 'next/router'
 import { Box, IconButton } from '@chakra-ui/react'
 import FacebookIcon from 'components/atoms/icons/FaceBookIcon'
 import LineIcon from 'components/atoms/icons/LineIcon'
@@ -12,28 +11,36 @@ type Props = {
   facebook: string
 }
 
-const ShareSNS: FC<Props> = (props) => {
-  const router = useRouter()
+const ShareSNS: FC<Props> = ({ line, twitter, facebook }) => {
   return (
     <Box className={styles['share-sns']}>
       <Box className={styles['share-sns__title']}>結果をシェアする</Box>
       <Box display="flex" justifyContent="center">
-        <IconButton
-          aria-label="Share result on Facebook"
-          icon={<FacebookIcon />}
-          onClick={() => router.push(props.facebook)}
-        />
-        <IconButton
-          aria-label="Share result on Twitter"
-          icon={<TwitterIcon />}
-          onClick={() => router.push(props.twitter)}
-          mx={6}
-        />
-        <IconButton
-          aria-label="Share result on Line"
-          icon={<LineIcon />}
-          onClick={() => router.push(props.line)}
-        />
+        <a href={facebook} target="_blank" rel="noreferrer">
+          <IconButton
+            background="transparent"
+            _hover={{ backgroud: 'transparent' }}
+            aria-label="Share result on Facebook"
+            icon={<FacebookIcon />}
+          />
+        </a>
+        <a href={twitter} target="_blank" rel="noreferrer">
+          <IconButton
+            background="transparent"
+            _hover={{ backgroud: 'transparent' }}
+            aria-label="Share result on Twitter"
+            icon={<TwitterIcon />}
+            mx={6}
+          />
+        </a>
+        <a href={line} target="_blank" rel="noreferrer">
+          <IconButton
+            background="transparent"
+            _hover={{ backgroud: 'transparent' }}
+            aria-label="Share result on Line"
+            icon={<LineIcon />}
+          />
+        </a>
       </Box>
     </Box>
   )

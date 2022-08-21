@@ -886,7 +886,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
         unitText: 'kWh'
       },
       {
-        key: 'electricityIntensityKey',
+        key: 'electricitySeasonFactorKey',
         subDescription: '対象月',
         answerType: 'select',
         options: [
