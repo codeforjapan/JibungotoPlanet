@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useProfile } from './profile'
+import { useProfile, useSharedProfile } from './profile'
 
 export const useEmissionResult = (
-  category: Questions.QuestionCategory | 'all'
+  category: Questions.QuestionCategory | 'all',
+  shareId?: string
 ) => {
-  const { profile } = useProfile()
+  const { profile } = shareId ? useSharedProfile(shareId) : useProfile()
   const [loading, setLoading] = useState(true)
   const [mobility, setMobility] = useState<{ key: string; value: number }[]>([])
   const [food, setFood] = useState<{ key: string; value: number }[]>([])

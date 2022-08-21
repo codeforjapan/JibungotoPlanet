@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { PROFILE_ID, USERINFO_SKIP } from 'constants/localstorageKeys'
-import { profileAtom } from 'store/profile'
+import { profileAtom, sharedProfileAtom } from 'store/profile'
 import api from '../utils/api'
 
 export const useProfile = () => {
@@ -39,4 +39,24 @@ export const useProfile = () => {
   }, [profile])
 
   return { profile, setProfile, userInfoDone }
+}
+
+export const useSharedProfile = (shareId: string) => {
+  const [profile, setProfile] = useRecoilState(sharedProfileAtom)
+
+  useEffect(() => {
+    if (!shareId) return
+    const fetchProfile = async () => {
+      try {
+        const data = await api.get(`/shares/${shareId}`)
+        setProfile(data)
+      } catch (error) {
+        setProfile(null)
+        return
+      }
+    }
+    fetchProfile()
+  }, [shareId])
+
+  return { profile }
 }
