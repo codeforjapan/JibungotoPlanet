@@ -24,29 +24,64 @@ const CategoryButton: FC<Props> = ({ category, onClick }) => {
     }
   }, [category])
 
+  const questionNum = useMemo(() => {
+    switch (category) {
+      case 'mobility':
+        return '7'
+      case 'food':
+        return '6'
+      case 'housing':
+        return '10'
+      case 'other':
+        return '8'
+      default:
+        return ''
+    }
+  }, [category])
+
   return (
     <Button
       background="white"
       borderWidth="1px"
       borderColor="gray.200"
-      height="70px"
+      height={{ base: '70px', md: '160px' }}
       width="100%"
-      textAlign="left"
+      textAlign={{ base: 'left', md: 'center' }}
       onClick={onClick}
     >
-      <Flex alignItems="center" width="100%">
-        <Image
-          width="40px"
-          height="40px"
-          src={`/icons/${category}.svg`}
-          alt=""
-        />
-        <Text ml={3} color={`${category}.400`}>
-          {text}
-        </Text>
+      <Flex
+        justifyContent={{ base: 'space-between' }}
+        alignItems="center"
+        width="100%"
+      >
+        <Flex
+          width="100%"
+          alignItems="center"
+          justifyContent={{ base: 'space-between', md: 'center' }}
+          flexWrap="wrap"
+        >
+          <Flex alignItems="center" flexWrap="wrap" justifyContent="center">
+            <Image
+              width="40px"
+              height="40px"
+              src={`/icons/${category}.svg`}
+              alt=""
+            />
+            <Text
+              ml={{ base: 3, md: 0 }}
+              mt={{ md: 2 }}
+              color={`${category}.400`}
+              width={{ md: '100%' }}
+            >
+              {text}
+            </Text>
+          </Flex>
+          <Text fontWeight="bold" width={{ md: '100%' }} mt={{ md: 5 }}>
+            約{questionNum}問
+          </Text>
+        </Flex>
+        <ChevronRightIcon fontSize="25px" />
       </Flex>
-      <Text fontWeight="bold">約10問</Text>
-      <ChevronRightIcon fontSize="25px" />
     </Button>
   )
 }

@@ -1,5 +1,5 @@
 import { FC, useMemo, useState } from 'react'
-import { Box, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Grid, Text, useDisclosure } from '@chakra-ui/react'
 import CategoryButton from 'components/atoms/buttons/Category'
 import Cloud from 'components/atoms/emissions/Cloud'
 import DatasourceFooter from 'components/DatasourceFooter'
@@ -63,30 +63,32 @@ const TopCategories: FC = () => {
           <br />
           カーボンフットプリント量がわかる
         </Text>
-        <Box mb={3}>
-          <CategoryButton
-            category="housing"
-            onClick={() => selectCategory('housing')}
-          />
-        </Box>
-        <Box mb={3}>
-          <CategoryButton
-            category="food"
-            onClick={() => selectCategory('food')}
-          />
-        </Box>
-        <Box mb={3}>
-          <CategoryButton
-            category="mobility"
-            onClick={() => selectCategory('mobility')}
-          />
-        </Box>
-        <Box mb={3}>
-          <CategoryButton
-            category="other"
-            onClick={() => selectCategory('other')}
-          />
-        </Box>
+        <Grid gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} gridGap={3}>
+          <Box>
+            <CategoryButton
+              category="housing"
+              onClick={() => selectCategory('housing')}
+            />
+          </Box>
+          <Box>
+            <CategoryButton
+              category="food"
+              onClick={() => selectCategory('food')}
+            />
+          </Box>
+          <Box>
+            <CategoryButton
+              category="mobility"
+              onClick={() => selectCategory('mobility')}
+            />
+          </Box>
+          <Box>
+            <CategoryButton
+              category="other"
+              onClick={() => selectCategory('other')}
+            />
+          </Box>
+        </Grid>
       </Box>
 
       <Box mt={10}>
