@@ -221,12 +221,23 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
               <Controller
                 control={control}
                 name={question.key}
-                render={({ field: { value, onChange } }) => (
-                  <QuestionInput
-                    question={question}
-                    onChange={onChange}
-                    value={value}
-                  />
+                rules={{
+                  required: 'すべての項目が入力必須です。'
+                }}
+                render={({
+                  field: { value, onChange },
+                  formState: { errors }
+                }) => (
+                  <>
+                    <QuestionInput
+                      question={question}
+                      onChange={onChange}
+                      value={value}
+                    />
+                    <Text mt={1} fontSize="11px" color="red.300">
+                      {errors[question.key]?.message}
+                    </Text>
+                  </>
                 )}
               />
             </Box>
