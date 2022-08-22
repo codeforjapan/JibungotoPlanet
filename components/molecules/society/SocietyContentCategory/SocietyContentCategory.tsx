@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 
-import { Flex, Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 type Props = {
   className?: string
@@ -8,7 +8,7 @@ type Props = {
 }
 
 const SocietyContentCategory: FC<Props> = (props) => {
-  return <Flex>{props.children}</Flex>
+  return <Box>{props.children}</Box>
 }
 
 export default SocietyContentCategory
