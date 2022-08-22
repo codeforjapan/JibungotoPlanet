@@ -9,7 +9,7 @@ const SocietyScreen: FC = () => {
 
   return (
     <div>
-      <Container maxW={maxW} centerContent py={12} my={5}>
+      <Container maxW={maxW} centerContent>
         <SocietySummarySection />
         <SocietyDetailedSection />
       </Container>

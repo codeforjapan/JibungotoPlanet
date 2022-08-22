@@ -1,39 +1,32 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Flex, Box } from '@chakra-ui/react'
+import { Flex, Box, Text } from '@chakra-ui/react'
 
 import SocietyContentCatchPhrase from 'components/molecules/society/SocietyContentCatchPhrase/SocietyContentCatchPhrase'
 import SocietyContentTitle from 'components/molecules/society/SocietyContentTitle/SocietyContentTitle'
 
 import styles from 'styles/Society.module.scss'
 
-type Props = {
-  className?: string
-}
-
-const SocietySummarySection: FC<Props> = (props) => {
+const SocietySummarySection: FC = () => {
   return (
-    <Flex
-      direction={'column'}
-      alignItems={'center'}
-      className={props.className}
-      width={'80%'}
-    >
-      <Box height="3vh" width={'100%'} py={10}>
-        <Box mb={'4em'} className={styles['society__header__item-container']}>
-          <SocietyContentCatchPhrase
-            className={styles['society__header__catch-phrase']}
-          >
-            じぶんごとプラネット
-          </SocietyContentCatchPhrase>
-        </Box>
+    <Box width={{ md: '80%' }}>
+      <Box background="white">
+        <Text
+          fontWeight="bold"
+          fontSize="16px"
+          p={4}
+          textAlign={{ base: 'center', md: 'left' }}
+        >
+          じぶんごとプラネット
+        </Text>
       </Box>
-      <Box px={5}>
+      <Box mt={10}>
         <SocietyContentTitle className={styles['society__section__item-title']}>
-          自分から働きかける
+          じぶんから働きかける
         </SocietyContentTitle>
         <SocietyContentCatchPhrase className={styles['society__section__item']}>
-          あなた自身の「脱炭素アクション」が、他の市民、企業、行政の行動をも変えていきます。「じぶんごとの輪」を広めるために、他にもできることがあります。
+          あなた自身の「脱炭素アクション」が、他の市民、企業、行政の行動をも変えていきます。
+          <br /> 「じぶんごとの輪」を広めるために、他にもできることがあります。
         </SocietyContentCatchPhrase>
       </Box>
       <Box className={styles['society__section__img-container']}>
@@ -45,7 +38,7 @@ const SocietySummarySection: FC<Props> = (props) => {
           height={872}
         />
       </Box>
-    </Flex>
+    </Box>
   )
 }
 
