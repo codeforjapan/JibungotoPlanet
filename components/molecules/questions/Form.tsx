@@ -191,6 +191,14 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     }
   }
 
+  const validateFormInput = (v: any) => {
+    if (v === '' || v === undefined || v === null) {
+      return 'すべての項目が入力必須です。'
+    } else {
+      return true
+    }
+  }
+
   return (
     <Box pb="100px">
       <QuestionHeader questionPage={questionPage} />
@@ -222,7 +230,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
                 control={control}
                 name={question.key}
                 rules={{
-                  required: 'すべての項目が入力必須です。'
+                  validate: (v) => validateFormInput(v)
                 }}
                 render={({
                   field: { value, onChange },
