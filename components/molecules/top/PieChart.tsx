@@ -3,8 +3,8 @@ import { Box, Flex } from '@chakra-ui/react'
 import { ArcElement, Chart } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { Pie } from 'react-chartjs-2'
-import type { Plugin } from 'chart.js'
 import { roundCo2Amount } from 'utils/calculate'
+import type { Plugin } from 'chart.js'
 Chart.register(ArcElement)
 
 type Props = {
