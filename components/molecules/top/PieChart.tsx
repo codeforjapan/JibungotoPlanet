@@ -4,6 +4,7 @@ import { ArcElement, Chart } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { Pie } from 'react-chartjs-2'
 import type { Plugin } from 'chart.js'
+import { roundCo2Amount } from 'utils/calculate'
 Chart.register(ArcElement)
 
 type Props = {
@@ -70,7 +71,12 @@ const PieChart: FC<Props> = ({
     if (isNoAnswered) {
       return [3, 2, 1.5, 3.5]
     } else {
-      return [mobility, housing, food, other]
+      return [
+        roundCo2Amount(mobility),
+        roundCo2Amount(housing),
+        roundCo2Amount(food),
+        roundCo2Amount(other)
+      ]
     }
   }, [mobility, housing, food, other, isNoAnswered])
 

@@ -1,6 +1,7 @@
 import { FC, useMemo } from 'react'
 import { Box, Table, Tbody, Td, Tr } from '@chakra-ui/react'
 import { useConvertSubdomainLabel } from 'hooks/result'
+import { roundCo2Amount } from 'utils/calculate'
 
 type Props = {
   category: Questions.QuestionCategory
@@ -42,7 +43,7 @@ const QuestionResultGraph: FC<Props> = ({ category, sortedResult }) => {
               ></Box>
             </Td>
             <Td px={0} py={1} textAlign="right">
-              {Math.round(item.value).toLocaleString()}
+              {roundCo2Amount(item.value).toLocaleString()}
             </Td>
           </Tr>
         ))}
