@@ -22,7 +22,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   const router = useRouter()
   const actions = useActions()
   const [open, setOpen] = useState<boolean>(false)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
   const [categorizeActions, setCategorizeActions] = useState<Actions.Action[]>(
     []
   )
@@ -31,10 +31,11 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   )
 
   useEffect(() => {
-    if (actions) {
+    if (actions && profile) {
       setCategorizeActions(actions[category])
+      setLoading(false)
     }
-  }, [actions, category])
+  }, [actions, category, profile])
 
   const completeActions = async () => {
     setLoading(true)

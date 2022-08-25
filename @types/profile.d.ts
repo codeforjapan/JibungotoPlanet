@@ -3,6 +3,7 @@ declare namespace Profile {
     actionIntensityRates: Actions.ActionIntensityRate[];
     id: string
     shareId: string
+    actions: Action[]
     baselines: Baseline[]
     estimations: Estimation[]
     createdAt: Date
@@ -30,6 +31,16 @@ declare namespace Profile {
     domain: Questions.QuestionCategory
     item: string
     subdomain: string
+    type: 'amount' | 'intensity'
+    unit: string
+    value: number
+  }
+
+  interface Action {
+    domain: Questions.QuestionCategory
+    item: string
+    subdomain: string
+    option: string
     type: 'amount' | 'intensity'
     unit: string
     value: number
