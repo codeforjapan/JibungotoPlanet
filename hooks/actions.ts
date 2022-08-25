@@ -7,6 +7,13 @@ import {
 } from "constants/actions";
 import { useProfile } from "hooks/profile";
 
+const compareFunc = (a: Actions.Action, b: Actions.Action) => {
+  const resultA = Number(a.reductionEffect * (Number(a.actionIntensityRate?.value) || Number(a.actionIntensityRate?.defaultValue)))
+  const resultB = Number(b.reductionEffect * (Number(b.actionIntensityRate?.value) || Number(b.actionIntensityRate?.defaultValue)))
+
+  return resultB - resultA;
+}
+
 const calculateReductionEffect = (option: string, baseLines: Profile.Baseline[], actions: Profile.Action[], estimations: Profile.Estimation[]): number => {
   let sumBaseLinesEstimation = 0, sumAll = 0;
   const intensityItems = actions.filter((action) => action.option === option && action.type === "intensity").map((action) => {
@@ -96,7 +103,7 @@ const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile)
   })
 
   // 削減施策による効果が0より上のものを表示
-  return actions.filter((action) => action.reductionEffect > 0)
+  return actions.filter((action) => action.reductionEffect > 0).sort(compareFunc)
 }
 
 export const useActions = () => {
