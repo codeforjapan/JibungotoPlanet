@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Box, Spinner, Text } from '@chakra-ui/react'
+import { roundCo2Amount } from 'utils/calculate'
 
 type Props = {
   amount: number
@@ -22,7 +23,7 @@ const Cloud: FC<Props> = ({ amount, category }) => {
         margin="auto"
       >
         <Text fontSize="44px" fontWeight="bold">
-          {isNaN(amount) ? '????' : amount.toLocaleString()}
+          {isNaN(amount) ? '????' : roundCo2Amount(amount).toLocaleString()}
         </Text>
         <Text fontSize="18px" fontWeight="bold">
           kg CO₂e

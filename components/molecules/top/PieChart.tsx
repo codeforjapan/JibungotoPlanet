@@ -3,6 +3,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import { ArcElement, Chart } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { Pie } from 'react-chartjs-2'
+import { roundCo2Amount } from 'utils/calculate'
 import type { Plugin } from 'chart.js'
 Chart.register(ArcElement)
 
@@ -70,7 +71,12 @@ const PieChart: FC<Props> = ({
     if (isNoAnswered) {
       return [3, 2, 1.5, 3.5]
     } else {
-      return [mobility, housing, food, other]
+      return [
+        roundCo2Amount(mobility),
+        roundCo2Amount(housing),
+        roundCo2Amount(food),
+        roundCo2Amount(other)
+      ]
     }
   }, [mobility, housing, food, other, isNoAnswered])
 
