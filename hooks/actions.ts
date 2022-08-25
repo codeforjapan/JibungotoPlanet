@@ -95,7 +95,8 @@ const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile)
     action.reductionEffect = calculateReductionEffect(action.option, baselines, baseActions, estimations)
   })
 
-  return actions
+  // 削減施策による効果が0より上のものを表示
+  return actions.filter((action) => action.reductionEffect > 0)
 }
 
 export const useActions = () => {
