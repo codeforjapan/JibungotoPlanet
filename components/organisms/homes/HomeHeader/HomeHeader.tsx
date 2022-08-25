@@ -13,17 +13,14 @@ type Props = {
 const HomeHeader: FC<Props> = (props) => {
   return (
     <Box
-      height={{ base: '100vh', md: '113vh' }}
+      height={{ base: '100vh' }}
       style={{ position: 'relative' }}
     >
-      <Box
-        maxWidth={'660px'}
-        className={styles['home__header__item-container']}
-      >
+      <Box className={styles['home__header__item-container']}>
         <Box mb={{ base: 10, md: 20 }}>
           <HomeContentCatchPhrase>じぶんごとプラネット</HomeContentCatchPhrase>
         </Box>
-        <Box pt={15}>
+        <Box pt={15} width={'100%'}>
           <HomeContentTitle className={styles['home__header__title-container']}>
             <span>
               気候変動を
@@ -47,7 +44,12 @@ const HomeHeader: FC<Props> = (props) => {
           />
         </Box>
       ) : (
-        <Image src={'/home/home-header.png'} layout="fill" alt="home-header" />
+        <Image
+          src={'/home/home-header.png'}
+          layout="fill"
+          alt="home-header"
+          objectFit="cover"
+        />
       )}
     </Box>
   )

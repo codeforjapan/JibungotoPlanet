@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, Fragment } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
@@ -43,9 +43,9 @@ const TermOfServiceDialog: FC<Props> = (props) => {
           （以下「本サービス」といいます）の利用条件を定めるものです。本サービスを利用する皆様は、ご利用前に本規約をよく読み、本規約に同意の上でご利用ください
         </Text>
         <Box pb={10}>
-          {termOfServices.map((termOfService) => {
+          {termOfServices.map((termOfService, index) => {
             return (
-              <>
+              <Fragment key={index}>
                 <Text fontWeight="bold" pt={6} pb={3}>
                   {termOfService.title}
                 </Text>
@@ -55,7 +55,7 @@ const TermOfServiceDialog: FC<Props> = (props) => {
                     __html: termOfService.body
                   }}
                 />
-              </>
+              </Fragment>
             )
           })}
         </Box>
