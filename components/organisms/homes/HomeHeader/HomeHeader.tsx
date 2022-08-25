@@ -13,7 +13,7 @@ type Props = {
 const HomeHeader: FC<Props> = (props) => {
   return (
     <Box
-      height={{ base: '100vh', md: '113vh' }}
+      height={{ base: '100vh' }}
       style={{ position: 'relative' }}
     >
       <Box className={styles['home__header__item-container']}>
