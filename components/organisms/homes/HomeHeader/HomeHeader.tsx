@@ -12,10 +12,7 @@ type Props = {
 
 const HomeHeader: FC<Props> = (props) => {
   return (
-    <Box
-      height={{ base: '100vh' }}
-      style={{ position: 'relative' }}
-    >
+    <Box height={{ base: '100vh' }} style={{ position: 'relative' }}>
       <Box className={styles['home__header__item-container']}>
         <Box mb={{ base: 10, md: 20 }}>
           <HomeContentCatchPhrase>じぶんごとプラネット</HomeContentCatchPhrase>
