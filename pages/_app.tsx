@@ -2,8 +2,8 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 import { RecoilRoot } from 'recoil'
-import { chakraTheme } from '../utils/chakratheme'
 import HeadElm from 'components/HeadElm'
+import { chakraTheme } from '../utils/chakratheme'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

@@ -1,6 +1,6 @@
+import { FC, useMemo } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { FC, useMemo } from 'react'
 
 const HeadElm: FC = () => {
   const { asPath } = useRouter()
