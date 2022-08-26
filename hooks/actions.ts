@@ -15,7 +15,8 @@ const compareFunc = (a: Actions.Action, b: Actions.Action) => {
 }
 
 const calculateReductionEffect = (option: string, baseLines: Profile.Baseline[], actions: Profile.Action[], estimations: Profile.Estimation[]): number => {
-  let sumBaseLinesEstimation = 0, sumAll = 0;
+  let calculatedBaseAndEstimation: number = 0, calculatedAll: number = 0;
+
   const intensityItems = actions.filter((action) => action.option === option && action.type === "intensity").map((action) => {
     return {name: action.item, value: action.value }
   })
@@ -28,63 +29,20 @@ const calculateReductionEffect = (option: string, baseLines: Profile.Baseline[],
   if (!items.length) return 0
 
   items.forEach((item) => {
-    const estimatingAmount = estimations.find((estimation) => estimation.item === item.name && estimation.type === "amount")
-    const baseLinesAmount = baseLines.find((baseLine) => baseLine.item === item.name && baseLine.type === "amount")
-    const estimatingIntensity = estimations.find((estimation) => estimation.item === item.name && estimation.type === "intensity")
-    const baseLinesIntensity = baseLines.find((baseLine) => baseLine.item === item.name && baseLine.type === "intensity")
+    const estimatingAmount = estimations.find((estimation) => estimation.item === item.name && estimation.type === "amount"),
+      estimatingIntensity = estimations.find((estimation) => estimation.item === item.name && estimation.type === "intensity")
+    const baseAmount = baseLines.find((baseLine) => baseLine.item === item.name && baseLine.type === "amount"),
+      baseIntensity = baseLines.find((baseLine) => baseLine.item === item.name && baseLine.type === "intensity")
+    const estimatingOrBaseAmount = estimatingAmount?.value || baseAmount?.value,
+      estimatingOrBaseIntensity = estimatingIntensity?.value || baseIntensity?.value
+    const allAmount = item.amountValue || estimatingAmount?.value || baseAmount?.value,
+      allIntensity = item.intensityValue || estimatingIntensity?.value || baseIntensity?.value
 
-    if (estimatingAmount) {
-      if(estimatingIntensity) {
-        sumBaseLinesEstimation += estimatingAmount.value * estimatingIntensity.value
-      } else {
-        if (baseLinesIntensity) {
-          sumBaseLinesEstimation += estimatingAmount.value * baseLinesIntensity.value
-        }
-      }
-    } else if (baseLinesAmount) {
-      if (estimatingIntensity) {
-        sumBaseLinesEstimation += baseLinesAmount.value * estimatingIntensity.value
-      } else {
-        if (baseLinesIntensity) {
-          sumBaseLinesEstimation += baseLinesAmount.value * baseLinesIntensity.value
-        }
-      }
-    }
-
-    if (item.amountValue) {
-      if (item.intensityValue) {
-        sumAll += item.amountValue * item.intensityValue
-      } else if(estimatingIntensity) {
-        sumAll += item.amountValue * estimatingIntensity.value
-      } else {
-        if (baseLinesIntensity) {
-          sumAll += item.amountValue * baseLinesIntensity.value
-        }
-      }
-    } else if (estimatingAmount) {
-      if (item.intensityValue) {
-        sumAll += estimatingAmount.value * item.intensityValue
-      } else if(estimatingIntensity) {
-        sumAll += estimatingAmount.value * estimatingIntensity.value
-      } else {
-        if (baseLinesIntensity) {
-          sumAll += estimatingAmount.value * baseLinesIntensity.value
-        }
-      }
-    } else if (baseLinesAmount) {
-      if (item.intensityValue) {
-        sumAll += baseLinesAmount.value * item.intensityValue
-      } else if (estimatingIntensity) {
-        sumAll += baseLinesAmount.value * estimatingIntensity.value
-      } else {
-        if (baseLinesIntensity) {
-          sumAll += baseLinesAmount.value * baseLinesIntensity.value
-        }
-      }
-    }
+    calculatedBaseAndEstimation += Number(estimatingOrBaseAmount) * Number(estimatingOrBaseIntensity)
+    calculatedAll += Number(allAmount) * Number(allIntensity)
   })
 
-  return Math.abs(sumAll - sumBaseLinesEstimation)
+  return Math.abs(calculatedAll - calculatedBaseAndEstimation)
 }
 
 const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile) => {
@@ -101,6 +59,7 @@ const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile)
     }
     action.reductionEffect = calculateReductionEffect(action.option, baselines, baseActions, estimations)
   })
+
 
   // 削減施策による効果が0より上のものを表示
   return actions.filter((action) => action.reductionEffect > 0).sort(compareFunc)
