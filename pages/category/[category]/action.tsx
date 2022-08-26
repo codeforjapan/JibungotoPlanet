@@ -31,11 +31,11 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   )
 
   useEffect(() => {
-    if (actions && profile) {
+    if (actions) {
       setCategorizeActions(actions[category])
       setLoading(false)
     }
-  }, [actions, category, profile])
+  }, [actions, category])
 
   const completeActions = async () => {
     setLoading(true)
