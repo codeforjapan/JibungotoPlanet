@@ -15,34 +15,32 @@ const compareFunc = (a: Actions.Action, b: Actions.Action) => {
 }
 
 const calculateReductionEffect = (option: string, baseLines: Profile.Baseline[], actions: Profile.Action[], estimations: Profile.Estimation[]): number => {
-  let calculatedBaseAndEstimation: number = 0, calculatedAll: number = 0;
-
+  let sumEstimatingFootprint: number = 0, sumActionFootprint: number = 0;
   const intensityItems = actions.filter((action) => action.option === option && action.type === "intensity").map((action) => {
     return {name: action.item, value: action.value }
   })
-  const items = actions.filter((action) => action.option === option && action.type === "amount").map((action) => {
+  const items = actions.filter((action) => action?.option === option).map((action) => {
     const intensity = intensityItems.find((intensityItem) => intensityItem.name === action.item)
-    return {name: action.item, amountValue: action.value, intensityValue: intensity?.value || null}
+    return {name: action.item, amountValue: action?.value, intensityValue: intensity?.value, domain: action.domain}
   })
 
-  // note: デフォルトは0で返していいのか
   if (!items.length) return 0
 
   items.forEach((item) => {
-    const estimatingAmount = estimations.find((estimation) => estimation.item === item.name && estimation.type === "amount"),
-      estimatingIntensity = estimations.find((estimation) => estimation.item === item.name && estimation.type === "intensity")
-    const baseAmount = baseLines.find((baseLine) => baseLine.item === item.name && baseLine.type === "amount"),
-      baseIntensity = baseLines.find((baseLine) => baseLine.item === item.name && baseLine.type === "intensity")
-    const estimatingOrBaseAmount = estimatingAmount?.value || baseAmount?.value,
-      estimatingOrBaseIntensity = estimatingIntensity?.value || baseIntensity?.value
-    const allAmount = item.amountValue || estimatingAmount?.value || baseAmount?.value,
-      allIntensity = item.intensityValue || estimatingIntensity?.value || baseIntensity?.value
+    const estimatingAmount = estimations.find((estimation) => estimation.item === item.name &&　estimation.domain === item.domain && estimation.type === "amount"),
+      estimatingIntensity = estimations.find((estimation) => estimation.item === item.name &&　estimation.domain === item.domain && estimation.type === "intensity")
+    const baseAmount = baseLines.find((baseLine) => baseLine.item === item.name &&　baseLine.domain === item.domain && baseLine.type === "amount"),
+      baseIntensity = baseLines.find((baseLine) => baseLine.item === item.name &&　baseLine.domain === item.domain && baseLine.type === "intensity")
+    const estimatingOrBaseAmount = estimatingAmount !== undefined ? estimatingAmount.value : baseAmount?.value,
+      estimatingOrBaseIntensity = estimatingIntensity !== undefined ? estimatingIntensity.value : baseIntensity?.value
+    const actionAmount = item.amountValue !== undefined ? item.amountValue : estimatingOrBaseAmount,
+      actionIntensity = item.intensityValue !== undefined ? item.intensityValue : estimatingOrBaseIntensity
 
-    calculatedBaseAndEstimation += Number(estimatingOrBaseAmount) * Number(estimatingOrBaseIntensity)
-    calculatedAll += Number(allAmount) * Number(allIntensity)
+    sumEstimatingFootprint += !isNaN(estimatingOrBaseAmount) && !isNaN(estimatingOrBaseIntensity) ? estimatingOrBaseAmount * estimatingOrBaseIntensity : 0
+    sumActionFootprint += !isNaN(actionAmount) && !isNaN(actionIntensity) ? actionAmount * actionIntensity : 0
   })
 
-  return Math.abs(calculatedAll - calculatedBaseAndEstimation)
+  return Math.abs(sumActionFootprint - sumEstimatingFootprint)
 }
 
 const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile) => {
@@ -50,7 +48,6 @@ const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile)
     baselines = profile.baselines.filter((baseline) => baseline.domain === domain),
     baseActions = profile.actions.filter((action) => action.domain === domain),
     estimations = profile.estimations.filter((estimation) => estimation.domain === domain)
-
   actions.forEach((action) => {
     const actionIntensityRate = profile.actionIntensityRates.find((rate) => rate.option === action.option);
     if (actionIntensityRate) {
