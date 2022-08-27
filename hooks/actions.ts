@@ -23,7 +23,7 @@ const calculateReductionEffect = (option: string, baseLines: Profile.EmissionIte
     const intensity = intensityItems.find((intensityItem) => intensityItem.name === action.item)
     const amount = action?.type === 'amount' ? action?.value : undefined
     return {name: action.item, amountValue: amount, intensityValue: intensity?.value, domain: action.domain}
-  })
+  }).filter((action, index, self) => self.findIndex(e => e.name === action.name && e.domain === action.domain) === index);
 
   if (!items.length) return 0
 
@@ -41,7 +41,7 @@ const calculateReductionEffect = (option: string, baseLines: Profile.EmissionIte
     sumActionFootprint += !isNaN(actionAmount) && !isNaN(actionIntensity) ? actionAmount * actionIntensity : 0
   })
 
-  return Math.abs(sumActionFootprint - sumEstimatingFootprint)
+  return (sumActionFootprint - sumEstimatingFootprint) * -1
 }
 
 const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile) => {
@@ -57,7 +57,6 @@ const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile)
     }
     action.reductionEffect = calculateReductionEffect(action.option, baselines, baseActions, estimations)
   })
-
 
   // 削減施策による効果が0より上のものを表示
   return actions.filter((action) => action.reductionEffect > 0).sort(compareFunc)
