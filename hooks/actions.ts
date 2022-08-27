@@ -23,7 +23,7 @@ const calculateReductionEffect = (option: string, baseLines: Profile.EmissionIte
     const intensity = intensityItems.find((intensityItem) => intensityItem.name === action.item)
     const amount = action?.type === 'amount' ? action?.value : undefined
     return {name: action.item, amountValue: amount, intensityValue: intensity?.value, domain: action.domain}
-  })
+  }).filter((action, index, self) => self.findIndex(e => e.name === action.name && e.domain === action.domain) === index);
 
   if (!items.length) return 0
 
