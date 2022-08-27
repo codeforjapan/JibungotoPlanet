@@ -19,7 +19,7 @@ const CompletionPage: NextPage<Params> = ({ category, shareId }) => {
   return (
     <QuestionContainer category={category}>
       <CompletionHeader category={category} />
-      <CompletionContent category={category} />
+      <CompletionContent category={category} shareId={shareId} />
       <Box pt={14}>
         <BasicButton isNext onClick={() => router.push('/')} width="full">
           じぶんもやってみる
