@@ -28,7 +28,7 @@ const CompletionContent: FC<Props> = (props) => {
       </Heading>
       <Box px={{ md: 16 }}>
         {selectedActions.map((action) => {
-          return <CompletionItem key={action.id} action={action} />
+          return <CompletionItem key={action.id} action={action} category={props.category} />
         })}
       </Box>
     </Box>

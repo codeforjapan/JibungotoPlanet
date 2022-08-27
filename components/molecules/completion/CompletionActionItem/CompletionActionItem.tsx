@@ -5,6 +5,7 @@ import { roundCo2Amount } from 'utils/calculate'
 
 type Props = {
   action: Actions.Action
+  category: Questions.QuestionCategory
 }
 
 const CompletionItem: FC<Props> = (props) => {
@@ -34,7 +35,7 @@ const CompletionItem: FC<Props> = (props) => {
       mb={{ base: 1, md: 4 }}
     >
       <GridItem rowSpan={{ base: 1, md: 1 }} colSpan={{ base: 2, md: 1 }}>
-        <Box className={styles['completion-action-item__amount-container']}>
+        <Box className={styles['completion-action-item__amount-container']} backgroundColor={`${props.category}.400`} >
           <Text color="white" fontSize="32px" fontWeight="700">
             {amount}
           </Text>
