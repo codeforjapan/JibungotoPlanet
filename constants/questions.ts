@@ -1289,11 +1289,11 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
           },
           {
             value: '50k-100k',
-            label: '¥5,000〜¥10,000未満'
+            label: '¥5,0000〜¥100,000未満'
           },
           {
             value: '100k-200k',
-            label: '¥10,000〜¥20,000未満'
+            label: '¥1000,000〜¥200,000未満'
           },
           {
             value: '200k-300k',
