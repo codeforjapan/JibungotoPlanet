@@ -305,7 +305,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
         options: [
           {
             value: 'very-little',
-            label: '約1,400kcal かなりすくない',
+            label: '約1,400kcal かなり少ない',
             subLabel: '小学校低・中学年の子ども、高齢の女性'
           },
           {
