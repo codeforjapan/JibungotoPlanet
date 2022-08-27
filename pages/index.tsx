@@ -1,5 +1,6 @@
 import { FC, useState } from 'react'
 import { Container, useMediaQuery } from '@chakra-ui/react'
+import Cookie from "components/molecules/homes/Cookie/Cookie";
 import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
@@ -41,6 +42,7 @@ const Home: FC = () => {
         onClose={() => setOpen(false)}
         sp={isMobile}
       />
+      <Cookie />
     </div>
   )
 }
