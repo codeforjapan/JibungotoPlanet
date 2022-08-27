@@ -743,7 +743,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
 export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
   {
     uid: 'hs1',
-    title: '一緒に暮らしている人数を教えてください',
+    title: 'あなたを含めて一緒に暮らしている人数を教えてください',
     category: 'housing',
     defaultNextPageUid: 'hs2',
     numerator: 1,
