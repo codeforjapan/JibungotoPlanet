@@ -109,7 +109,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
   {
     uid: 'mq4',
     title: '自動車に乗るとき、平均で何人が同じ車に乗リますか？',
-    supplement: '運転手を含む',
+    supplement: '（運転手を含む）',
     category: 'mobility',
     defaultNextPageUid: 'mq5',
     numerator: 4,
