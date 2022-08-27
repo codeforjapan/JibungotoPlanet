@@ -14,7 +14,7 @@ const compareFunc = (a: Actions.Action, b: Actions.Action) => {
   return resultB - resultA;
 }
 
-const calculateReductionEffect = (option: string, baseLines: Profile.Baseline[], actions: Profile.Action[], estimations: Profile.Estimation[]): number => {
+const calculateReductionEffect = (option: string, baseLines: Profile.EmissionItem[], actions: Profile.ActionItem[], estimations: Profile.EmissionItem[]): number => {
   let sumEstimatingFootprint: number = 0, sumActionFootprint: number = 0;
   const intensityItems = actions.filter((action) => action.option === option && action.type === "intensity").map((action) => {
     return {name: action.item, value: action.value }

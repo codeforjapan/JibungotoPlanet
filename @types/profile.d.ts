@@ -3,7 +3,7 @@ declare namespace Profile {
     actionIntensityRates: Actions.ActionIntensityRate[]
     id: string
     shareId: string
-    actions: EmissionItem & { option: string }[]
+    actions: ActionItem[]
     baselines: EmissionItem[]
     estimations: EmissionItem[]
     createdAt: Date
@@ -20,6 +20,16 @@ declare namespace Profile {
   interface EmissionItem {
     domain: Questions.QuestionCategory
     item: string
+    subdomain: string
+    type: 'amount' | 'intensity'
+    unit: string
+    value: value
+  }
+
+  interface ActionItem {
+    domain: Questions.QuestionCategory
+    item: string
+    option: string
     subdomain: string
     type: 'amount' | 'intensity'
     unit: string
