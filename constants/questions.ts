@@ -305,7 +305,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
         options: [
           {
             value: 'very-little',
-            label: '約1,400kcal かなりすくない',
+            label: '約1,400kcal かなり少ない',
             subLabel: '小学校低・中学年の子ども、高齢の女性'
           },
           {
@@ -610,7 +610,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
   },
   {
     uid: 'fd4',
-    title: '１週間にどのくらいの頻度でお酒を飲みますか？',
+    title: 'どのくらいの頻度でお酒を飲みますか？',
     supplement: '（外食の場合も含む）',
     category: 'food',
     defaultNextPageUid: 'fd5',
