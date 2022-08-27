@@ -37,7 +37,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   }, [actions, category])
 
   const completeActions = async () => {
-    setLoading(true)
+    await setLoading(true)
     const actionIntensityRates = categorizeActions.map(
       (action) => action.actionIntensityRate
     )
@@ -78,10 +78,16 @@ const ActionPage: NextPage<Params> = ({ category }) => {
     const newCategorizeActions = categorizeActions.map((action) => {
       if (action.id === id) {
         action.checked = checked
+        if (checked) {
+          // @ts-ignore
+          action.actionIntensityRate.value = action.actionIntensityRate.defaultValue
+        } else {
+          // @ts-ignore
+          action.actionIntensityRate.value = 0
+        }
       }
       return action
     })
-
     setCategorizeActions([...newCategorizeActions])
   }
 

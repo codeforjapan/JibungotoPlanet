@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
+import { useMemo } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Box } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
@@ -7,18 +8,36 @@ import CompletionContent from 'components/organisms/completion/CompletionContent
 import CompletionHeader from 'components/organisms/completion/CompletionHeader/CompletionHeader'
 import CompletionTransitions from 'components/organisms/completion/CompletionTransitions/CompletionTransitions'
 import QuestionContainer from 'components/organisms/questions/Container'
+import { useProfile } from 'hooks/profile'
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory
 }
 
 const CompletionPage: NextPage<Params> = ({ category }) => {
+  const { profile } = useProfile()
+
+  const twitterShareLink = useMemo(() => {
+    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}&text=わたしの脱炭素アクション`
+  }, [profile, category])
+
+  const facebookShareLink = useMemo(() => {
+    return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}`
+  }, [profile, category])
+
+  const lineShareLink = useMemo(() => {
+    return `https://line.me/R/msg/text/?${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}`
+  }, [profile, category])
+
   return (
     <QuestionContainer category={category}>
       <CompletionHeader category={category} />
       <CompletionContent category={category} />
-      {/*todo: sns link*/}
-      <ShareSNS line={'/'} twitter={'/'} facebook={'/'} />
+      <ShareSNS
+        line={lineShareLink}
+        twitter={twitterShareLink}
+        facebook={facebookShareLink}
+      />
       <Box pt={14}>
         <CompletionTransitions />
       </Box>

@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react'
 import classNames from 'classnames'
 import styles from 'components/organisms/actions/ActionItem/ActionItem.module.scss'
+import { roundCo2Amount } from 'utils/calculate'
 
 type Props = {
   className?: string
@@ -34,7 +35,7 @@ const ActionItem: FC<Props> = (props) => {
       rate = props.action.actionIntensityRate?.defaultValue || rate
     }
 
-    return Math.round(rate * props.action.reductionEffect)
+    return roundCo2Amount(rate * props.action.reductionEffect)
   }, [
     props.action.actionIntensityRate?.defaultValue,
     props.action.actionIntensityRate?.value,

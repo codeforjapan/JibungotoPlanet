@@ -1,6 +1,7 @@
 import { FC, useMemo } from 'react'
 import { Box, Grid, GridItem, Text } from '@chakra-ui/react'
 import styles from 'components/molecules/completion/CompletionActionItem/CompletionActionItem.module.scss'
+import { roundCo2Amount } from 'utils/calculate'
 
 type Props = {
   action: Actions.Action
@@ -17,7 +18,7 @@ const CompletionItem: FC<Props> = (props) => {
 
   const amount = useMemo(() => {
     if (props.action.actionIntensityRate?.value) {
-      return Math.round(
+      return roundCo2Amount(
         props.action.actionIntensityRate.value * props.action.reductionEffect
       )
     } else {
