@@ -148,9 +148,9 @@ const PieChart: FC<Props> = ({
           ]
         }}
       />
-      <Flex mx="30px">
+      <Flex mx={{ base: '10px', md: '30px' }}>
         {housing || isNoAnswered ? (
-          <Box width="25%">
+          <Box width="25%" wordBreak="keep-all">
             <Box
               as="span"
               width={3}
@@ -165,7 +165,7 @@ const PieChart: FC<Props> = ({
           ''
         )}
         {food || isNoAnswered ? (
-          <Box width="25%">
+          <Box width="25%" wordBreak="keep-all">
             <Box
               as="span"
               width={3}
@@ -180,7 +180,7 @@ const PieChart: FC<Props> = ({
           ''
         )}
         {mobility || isNoAnswered ? (
-          <Box width="25%">
+          <Box width="25%" wordBreak="keep-all">
             <Box
               as="span"
               width={3}
@@ -195,7 +195,7 @@ const PieChart: FC<Props> = ({
           ''
         )}
         {other || isNoAnswered ? (
-          <Box width="25%">
+          <Box width="25%" wordBreak="keep-all">
             <Box
               as="span"
               width={3}

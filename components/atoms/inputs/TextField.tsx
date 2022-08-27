@@ -19,19 +19,17 @@ const TextField: FC<Props> = ({
   placeholder,
   disabled = false
 }) => {
-  const inputType = useMemo(() => {
+  const inputPattern = useMemo(() => {
     switch (type) {
-      case 'text':
-        return 'text'
       case 'numeric':
-        return 'number'
+        return '^[1-9][0-9]*$'
       default:
-        return 'text'
+        return
     }
-  }, [type])
+  }, [])
 
   const handleOnChange = (v: string) => {
-    if (Number(v) !== NaN) {
+    if (Number(v) !== NaN && v !== '') {
       onChange(Number(v))
     } else {
       onChange(v)
@@ -42,12 +40,13 @@ const TextField: FC<Props> = ({
     <Box>
       <Grid gridTemplateColumns="1fr auto" alignItems="end">
         <Input
-          type={inputType}
+          type="text"
           inputMode={type}
           onChange={(e) => handleOnChange(e.target.value)}
           value={value}
           placeholder={placeholder}
           disabled={disabled}
+          pattern={inputPattern}
         />
         <Text pl={3} wordBreak="keep-all">
           {unitText}
