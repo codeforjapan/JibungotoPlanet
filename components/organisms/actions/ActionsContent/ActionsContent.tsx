@@ -1,7 +1,11 @@
 import { FC } from 'react'
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Heading, Spinner } from '@chakra-ui/react'
 import CompletionItem from 'components/molecules/completion/CompletionActionItem/CompletionActionItem'
 import { useActions } from 'hooks/actions'
+
+type Props = {
+  shareId?: string
+}
 
 const categories: Questions.QuestionCategory[] = [
   'housing',
@@ -25,8 +29,8 @@ const getCategoryTitle = (category: Questions.QuestionCategory) => {
   }
 }
 
-const ActionsContent: FC = () => {
-  const actions = useActions()
+const ActionsContent: FC<Props> = (props) => {
+  const actions = useActions(props.shareId)
 
   const getSelectedActions = (category: Questions.QuestionCategory) => {
     let selectedActions: Actions.Action[] = []
@@ -37,6 +41,19 @@ const ActionsContent: FC = () => {
     }
 
     return selectedActions
+  }
+
+  if (actions.loading) {
+    return (
+      <Box
+        py={10}
+        display={'flex'}
+        justifyContent={'center'}
+        alignItems={'center'}
+      >
+        <Spinner />
+      </Box>
+    )
   }
 
   return (

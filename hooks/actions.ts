@@ -5,7 +5,7 @@ import {
   HOUSING_ACTIONS,
   OTHER_ACTIONS
 } from "constants/actions";
-import { useProfile } from "hooks/profile";
+import { useProfile, useSharedProfile } from "hooks/profile";
 
 const compareFunc = (a: Actions.Action, b: Actions.Action) => {
   const resultA = Number(a.reductionEffect * (Number(a.actionIntensityRate?.value) || Number(a.actionIntensityRate?.defaultValue)))
@@ -62,21 +62,26 @@ const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile)
   return actions.filter((action) => action.reductionEffect > 0).sort(compareFunc)
 }
 
-export const useActions = () => {
-  const { profile } = useProfile()
+export const useActions = (shareId?: string) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { profile } = shareId ? useSharedProfile(shareId) : useProfile()
   const [mobility, setMobilityActions] = useState<Actions.Action[]>([])
   const [food, setFoodActions] = useState<Actions.Action[]>([])
   const [housing, setHousingActions] = useState<Actions.Action[]>([])
   const [other, setOtherActions] = useState<Actions.Action[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
-  useEffect(() => {
+  useEffect( () => {
     if (profile) {
       setMobilityActions(combinedActionData(MOBILITY_ACTIONS, profile))
       setFoodActions(combinedActionData(FOOD_ACTIONS, profile))
       setHousingActions(combinedActionData(HOUSING_ACTIONS, profile))
       setOtherActions(combinedActionData(OTHER_ACTIONS, profile))
+      setLoading(false)
+    } else {
+      setTimeout(() => setLoading(false), 4000)
     }
   }, [profile])
 
-  return { mobility, food, housing, other }
+  return { mobility, food, housing, other, loading }
 }
