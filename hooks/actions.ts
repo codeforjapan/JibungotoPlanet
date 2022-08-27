@@ -41,7 +41,7 @@ const calculateReductionEffect = (option: string, baseLines: Profile.EmissionIte
     sumActionFootprint += !isNaN(actionAmount) && !isNaN(actionIntensity) ? actionAmount * actionIntensity : 0
   })
 
-  return sumActionFootprint - sumEstimatingFootprint
+  return (sumActionFootprint - sumEstimatingFootprint) * -1
 }
 
 const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile) => {
