@@ -21,16 +21,17 @@ const calculateReductionEffect = (option: string, baseLines: Profile.Baseline[],
   })
   const items = actions.filter((action) => action?.option === option).map((action) => {
     const intensity = intensityItems.find((intensityItem) => intensityItem.name === action.item)
-    return {name: action.item, amountValue: action?.value, intensityValue: intensity?.value, domain: action.domain}
+    const amount = action?.type === 'amount' ? action?.value : undefined
+    return {name: action.item, amountValue: amount, intensityValue: intensity?.value, domain: action.domain}
   })
 
   if (!items.length) return 0
 
   items.forEach((item) => {
-    const estimatingAmount = estimations.find((estimation) => estimation.item === item.name &&　estimation.domain === item.domain && estimation.type === "amount"),
-      estimatingIntensity = estimations.find((estimation) => estimation.item === item.name &&　estimation.domain === item.domain && estimation.type === "intensity")
-    const baseAmount = baseLines.find((baseLine) => baseLine.item === item.name &&　baseLine.domain === item.domain && baseLine.type === "amount"),
-      baseIntensity = baseLines.find((baseLine) => baseLine.item === item.name &&　baseLine.domain === item.domain && baseLine.type === "intensity")
+    const estimatingAmount = estimations.find((estimation) => estimation.item === item.name && estimation.domain === item.domain && estimation.type === "amount"),
+      estimatingIntensity = estimations.find((estimation) => estimation.item === item.name && estimation.domain === item.domain && estimation.type === "intensity")
+    const baseAmount = baseLines.find((baseLine) => baseLine.item === item.name && baseLine.domain === item.domain && baseLine.type === "amount"),
+      baseIntensity = baseLines.find((baseLine) => baseLine.item === item.name && baseLine.domain === item.domain && baseLine.type === "intensity")
     const estimatingOrBaseAmount = estimatingAmount !== undefined ? estimatingAmount.value : baseAmount?.value,
       estimatingOrBaseIntensity = estimatingIntensity !== undefined ? estimatingIntensity.value : baseIntensity?.value
     const actionAmount = item.amountValue !== undefined ? item.amountValue : estimatingOrBaseAmount,
