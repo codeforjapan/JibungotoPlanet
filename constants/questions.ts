@@ -610,7 +610,7 @@ export const FOOD_QUESTION_PAGES: Questions.Page[] = [
   },
   {
     uid: 'fd4',
-    title: '１週間にどのくらいの頻度でお酒を飲みますか？',
+    title: 'どのくらいの頻度でお酒を飲みますか？',
     supplement: '（外食の場合も含む）',
     category: 'food',
     defaultNextPageUid: 'fd5',
