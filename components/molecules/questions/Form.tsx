@@ -1,7 +1,7 @@
 import { FC, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Heading, Text } from '@chakra-ui/react'
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, FieldErrors, useForm } from 'react-hook-form'
 import DatasourceFooter from 'components/DatasourceFooter'
 import { useProfile } from '../../../hooks/profile'
 import { useAnswerController } from '../../../hooks/questions'
@@ -124,7 +124,10 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     question: Questions.Question
     onChange: () => void
     value: string | number | undefined
-  }> = ({ question, onChange, value }) => {
+    errors: FieldErrors<{
+      [key: string]: string | number | undefined
+    }>
+  }> = ({ question, onChange, value, errors }) => {
     switch (question.answerType) {
       case 'select':
         const selectOptions =
@@ -136,11 +139,16 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             return { value: val, label: option.label }
           }) || []
         return (
-          <SelectBox
-            onChange={onChange}
-            options={selectOptions}
-            disabled={isSubmitting}
-          />
+          <>
+            <SelectBox
+              onChange={onChange}
+              options={selectOptions}
+              disabled={isSubmitting}
+            />
+            <Text mt={1} fontSize="11px" color="red.300">
+              {errors[question.key]?.message}
+            </Text>
+          </>
         )
       case 'radio':
         const radioOptions =
@@ -156,34 +164,49 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             }
           }) || []
         return (
-          <RadioGroups
-            onChange={onChange}
-            options={radioOptions}
-            value={value}
-            disabled={isSubmitting}
-          />
+          <>
+            <RadioGroups
+              onChange={onChange}
+              options={radioOptions}
+              value={value}
+              disabled={isSubmitting}
+            />
+            <Text mt={1} fontSize="11px" color="red.300">
+              {errors[question.key]?.message}
+            </Text>
+          </>
         )
       case 'text':
         return (
           <Box mb={7}>
-            <TextField
-              onChange={onChange}
-              value={value}
-              type="text"
-              unitText={question.unitText}
-              disabled={isSubmitting}
-            />
+            <>
+              <TextField
+                onChange={onChange}
+                value={value}
+                type="text"
+                unitText={question.unitText}
+                disabled={isSubmitting}
+              />
+              <Text mt={1} fontSize="11px" color="red.300">
+                {errors[question.key]?.message}
+              </Text>
+            </>
           </Box>
         )
       case 'numeric':
         return (
           <Box mb={7}>
-            <TextField
-              onChange={onChange}
-              value={value}
-              type="numeric"
-              unitText={question.unitText}
-            />
+            <>
+              <TextField
+                onChange={onChange}
+                value={value}
+                type="numeric"
+                unitText={question.unitText}
+              />
+              <Text mt={1} fontSize="11px" color="red.300">
+                {errors[question.key]?.message}
+              </Text>
+            </>
           </Box>
         )
       default:
@@ -213,7 +236,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         )}
       </Box>
       <form onSubmit={handleSubmit(submit)}>
-        <Box pb="5">
+        <Box pb="30px">
           {questionPage.questions.map((question) => (
             <Box key={question.key} mb={5}>
               {question.description && (
@@ -236,16 +259,12 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
                   field: { value, onChange },
                   formState: { errors }
                 }) => (
-                  <>
-                    <QuestionInput
-                      question={question}
-                      onChange={onChange}
-                      value={value}
-                    />
-                    <Text mt={1} fontSize="11px" color="red.300">
-                      {errors[question.key]?.message}
-                    </Text>
-                  </>
+                  <QuestionInput
+                    question={question}
+                    onChange={onChange}
+                    errors={errors}
+                    value={value}
+                  />
                 )}
               />
             </Box>
@@ -261,6 +280,19 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
           left="50%"
           transform="translateX(-50%)"
         >
+          {questionPage.skipToPageUid && (
+            <Text
+              fontSize={{ base: '18px' }}
+              fontWeight="bold"
+              textAlign="center"
+              textDecoration="underline"
+              mb="30px"
+              cursor="pointer"
+              onClick={() => skipQuestion()}
+            >
+              分からないのでスキップする
+            </Text>
+          )}
           <BasicButton
             type="submit"
             theme="brandPrimary"
@@ -271,20 +303,6 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
           >
             次の質問へ
           </BasicButton>
-
-          {questionPage.skipToPageUid && (
-            <Text
-              fontSize={{ base: '18px' }}
-              fontWeight="bold"
-              textAlign="center"
-              textDecoration="underline"
-              mb="20px"
-              cursor="pointer"
-              onClick={() => skipQuestion()}
-            >
-              分からないのでスキップする
-            </Text>
-          )}
 
           <DatasourceFooter />
         </Box>
