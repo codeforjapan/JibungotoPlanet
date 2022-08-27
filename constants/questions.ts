@@ -2,7 +2,7 @@ export const QUESTION_DENOMINATOR = {
   mobility: 7,
   housing: 10,
   food: 6,
-  other: 10
+  other: 8
 }
 
 export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
