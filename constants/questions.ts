@@ -2,7 +2,7 @@ export const QUESTION_DENOMINATOR = {
   mobility: 7,
   housing: 10,
   food: 6,
-  other: 10
+  other: 8
 }
 
 export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
@@ -109,7 +109,7 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
   {
     uid: 'mq4',
     title: '自動車に乗るとき、平均で何人が同じ車に乗リますか？',
-    supplement: '運転手を含む',
+    supplement: '（運転手を含む）',
     category: 'mobility',
     defaultNextPageUid: 'mq5',
     numerator: 4,
@@ -1305,7 +1305,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
           },
           {
             value: '400k-more',
-            label: '¥300,000〜¥400,000未満'
+            label: '¥400,000以上'
           },
           {
             value: 'unknown',
