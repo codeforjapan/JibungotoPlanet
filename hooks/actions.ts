@@ -41,7 +41,7 @@ const calculateReductionEffect = (option: string, baseLines: Profile.EmissionIte
     sumActionFootprint += !isNaN(actionAmount) && !isNaN(actionIntensity) ? actionAmount * actionIntensity : 0
   })
 
-  return Math.abs(sumActionFootprint - sumEstimatingFootprint)
+  return sumActionFootprint - sumEstimatingFootprint
 }
 
 const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile) => {
@@ -57,7 +57,6 @@ const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile)
     }
     action.reductionEffect = calculateReductionEffect(action.option, baselines, baseActions, estimations)
   })
-
 
   // 削減施策による効果が0より上のものを表示
   return actions.filter((action) => action.reductionEffect > 0).sort(compareFunc)
