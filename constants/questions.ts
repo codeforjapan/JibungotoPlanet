@@ -936,7 +936,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
           },
           {
             value: 'december',
-            label: '11月'
+            label: '12月'
           }
         ]
       }
