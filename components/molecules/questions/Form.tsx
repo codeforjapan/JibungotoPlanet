@@ -3,10 +3,10 @@ import { useRouter } from 'next/router'
 import { Box, Heading, Text } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
 import DatasourceFooter from 'components/DatasourceFooter'
-import { useProfile } from '../../../hooks/profile'
-import { useAnswerController } from '../../../hooks/questions'
+import { useProfile } from 'hooks/profile'
+import { useAnswerController } from 'hooks/questions'
+import { toBoolean } from 'utils/datatype'
 import api from '../../../utils/api'
-import { toBoolean } from '../../../utils/datatype'
 import BasicButton from '../../atoms/buttons/Basic'
 import RadioGroups from '../../atoms/inputs/RadioGroup'
 import SelectBox from '../../atoms/inputs/Select'
@@ -25,7 +25,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const { profile, setProfile, userInfoDone } = useProfile()
 
   const router = useRouter()
-  const { setNewAnswer, answers } = useAnswerController({
+  const { setNewAnswer } = useAnswerController({
     category: questionPage.category
   })
 
@@ -45,6 +45,9 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   } = useForm({ defaultValues: defautValues })
 
   const submit = async (data: any) => {
+    if (questionPage.category === "mobility") {
+      data.hasTravelingTime = true
+    }
     setNewAnswer(data)
 
     await sendData(data)
