@@ -1,4 +1,4 @@
-import { FC, forwardRef, RefObject } from 'react'
+import { FC } from 'react'
 
 import { useRouter } from 'next/router'
 import { Box, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
@@ -54,12 +54,7 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 企業で使っている電力の
                 <Box as="br" display={{ md: 'none' }} />
-                <span
-                  className={styles['society__category__item__highlighted']}
-                >
-                  再エネが10％増加
-                </span>
-                したら…
+                  再エネが10％増加したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>
@@ -92,12 +87,7 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 購入したモノを届けるまでの
                 <Box as="br" display={{ md: 'none' }} />
-                <span
-                  className={styles['society__category__item__highlighted']}
-                >
-                  排出量が10％削減
-                </span>
-                したら…
+                  排出量が10％削減したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>
@@ -129,12 +119,7 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 公共施設や行政サービスの
                 <Box as="br" display={{ md: 'none' }} />
-                <span
-                  className={styles['society__category__item__highlighted']}
-                >
-                  排出量が10％削減
-                </span>
-                したら…
+                  排出量が10％削減したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>

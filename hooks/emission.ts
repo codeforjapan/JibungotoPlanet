@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { roundCo2Amount } from 'utils/calculate'
 import { useProfile, useSharedProfile } from './profile'
 
 export const useEmissionResult = (
@@ -83,9 +84,11 @@ export const useEmissionResult = (
       }
       result.push({
         key: 'total',
-        value: Object.values(result).reduce((total, e) => {
-          return total + e.value
-        }, 0)
+        value: roundCo2Amount(
+          Object.values(result).reduce((total, e) => {
+            return total + e.value
+          }, 0)
+        )
       })
       return result
     },
