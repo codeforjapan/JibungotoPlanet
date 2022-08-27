@@ -31,7 +31,7 @@ export const useProfile = () => {
 
   useEffect(() => {
     if (
-      (!profile?.age && !profile?.gender && !profile?.region) ||
+      (profile?.age && profile?.gender && profile?.region) ||
       localStorage.getItem(USERINFO_SKIP) === 'true'
     ) {
       setUserInfoDone(true)
