@@ -117,7 +117,7 @@ const UserinfoForm: FC = () => {
                   { value: 'tokai', label: '東海地方' },
                   { value: 'kinki', label: '近畿地方' },
                   { value: 'chugoku', label: '中国地方' },
-                  { value: 'shikoku', label: '四国地方' },
+                  { value: 'sikoku', label: '四国地方' },
                   { value: 'kyusyu', label: '九州地方' },
                   { value: 'okinawa', label: '沖縄地方' }
                 ]}
