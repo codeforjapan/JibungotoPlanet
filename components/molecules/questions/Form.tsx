@@ -269,7 +269,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             margin="0 auto 20px"
             isLoading={isSubmitting}
           >
-            次の質問へ
+            次へ進む
           </BasicButton>
 
           {questionPage.skipToPageUid && (
