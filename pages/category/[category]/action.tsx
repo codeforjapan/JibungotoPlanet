@@ -18,7 +18,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 const ActionPage: NextPage<Params> = ({ category }) => {
-  const { profile } = useProfile()
+  const { profile, setProfile } = useProfile()
   const router = useRouter()
   const actions = useActions()
   const [open, setOpen] = useState<boolean>(false)
@@ -47,12 +47,13 @@ const ActionPage: NextPage<Params> = ({ category }) => {
       newProfile.actionIntensityRates = actionIntensityRates
 
       try {
-        await api.put(`/profiles/${profile?.id}`, {
+        const { data } = await api.put(`/profiles/${profile?.id}`, {
           ...profile,
           ...newProfile,
           estimate: true
         })
 
+        setProfile(data)
         router.push(`/category/${category}/completion`)
       } catch (error) {
         setLoading(false)
