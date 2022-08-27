@@ -5,10 +5,11 @@ import { useActions } from 'hooks/actions'
 
 type Props = {
   category: Questions.QuestionCategory
+  shareId?: string
 }
 
 const CompletionContent: FC<Props> = (props) => {
-  const actions = useActions()
+  const actions = useActions(props.shareId)
 
   const selectedActions = useMemo(() => {
     let selectedActions: Actions.Action[] = []
@@ -28,7 +29,13 @@ const CompletionContent: FC<Props> = (props) => {
       </Heading>
       <Box px={{ md: 16 }}>
         {selectedActions.map((action) => {
-          return <CompletionItem key={action.id} action={action} category={props.category} />
+          return (
+            <CompletionItem
+              key={action.id}
+              action={action}
+              category={props.category}
+            />
+          )
         })}
       </Box>
     </Box>

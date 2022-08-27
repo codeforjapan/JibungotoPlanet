@@ -35,7 +35,10 @@ const CompletionItem: FC<Props> = (props) => {
       mb={{ base: 4 }}
     >
       <GridItem rowSpan={{ base: 1, md: 1 }} colSpan={{ base: 2, md: 1 }}>
-        <Box className={styles['completion-action-item__amount-container']} backgroundColor={`${props.category}.400`} >
+        <Box
+          className={styles['completion-action-item__amount-container']}
+          backgroundColor={`${props.category}.400`}
+        >
           <Text color="white" fontSize="32px" fontWeight="700" pb={1}>
             {amount}
           </Text>
