@@ -1305,7 +1305,7 @@ export const OTHER_QUESTION_PAGES: Questions.Page[] = [
           },
           {
             value: '400k-more',
-            label: '¥300,000〜¥400,000未満'
+            label: '¥400,000以上'
           },
           {
             value: 'unknown',
