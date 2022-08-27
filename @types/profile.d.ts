@@ -1,11 +1,11 @@
 declare namespace Profile {
   interface Profile {
-    actionIntensityRates: Actions.ActionIntensityRate[];
+    actionIntensityRates: Actions.ActionIntensityRate[]
     id: string
     shareId: string
-    actions: Action[]
-    baselines: Baseline[]
-    estimations: Estimation[]
+    actions: EmissionItem & { option: string }[]
+    baselines: EmissionItem[]
+    estimations: EmissionItem[]
     createdAt: Date
     updatedAt: Date
     mobilityAnswer?: any
@@ -17,32 +17,12 @@ declare namespace Profile {
     region?: string
   }
 
-  interface Baseline {
-    citations: string
+  interface EmissionItem {
     domain: Questions.QuestionCategory
     item: string
     subdomain: string
     type: 'amount' | 'intensity'
     unit: string
     value: value
-  }
-
-  interface Estimation {
-    domain: Questions.QuestionCategory
-    item: string
-    subdomain: string
-    type: 'amount' | 'intensity'
-    unit: string
-    value: number
-  }
-
-  interface Action {
-    domain: Questions.QuestionCategory
-    item: string
-    subdomain: string
-    option: string
-    type: 'amount' | 'intensity'
-    unit: string
-    value: number
   }
 }

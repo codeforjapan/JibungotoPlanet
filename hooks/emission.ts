@@ -33,17 +33,21 @@ export const useEmissionResult = (
         categoryBaselines?.map((cb) => cb.subdomain) || []
       )
 
+      if (!categoryEstimations || !categoryBaselines) return []
+
       for (const subdomain of subdomains) {
         result.push({ key: subdomain, value: 0 })
         let current = result.find((r) => r.key === subdomain)
         if (!current) break
 
-        const items =
+        const subdomainItems = uniq(
           categoryEstimations
+            ?.concat(categoryBaselines)
             ?.filter((ce) => ce.subdomain === subdomain)
             .map((si) => si.item) || []
+        )
 
-        for (const item of items) {
+        for (const item of subdomainItems) {
           let amount = categoryEstimations?.find(
             (ce) =>
               ce.domain === category && ce.item === item && ce.type === 'amount'
