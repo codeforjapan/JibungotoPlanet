@@ -6,18 +6,14 @@ const HeadElm: FC = () => {
   const { asPath } = useRouter()
 
   const generatedUrl = useMemo(() => {
-    return typeof window === 'object'
-      ? `https://${document.domain}${asPath}`
-      : ''
+    return `https://www.jibungoto-planet.jp${asPath}`
   }, [asPath])
 
   const generatedImage = useMemo(() => {
-    if (typeof window !== 'object') {
-      return ''
-    } else if (asPath.includes('result') || asPath.includes('completion')) {
-      return `https://${document.domain}/ogp-sns-sharing.jpg`
+    if (asPath.includes('result') || asPath.includes('completion')) {
+      return `https://www.jibungoto-planet.jp/ogp-sns-sharing.jpg`
     } else {
-      return `https://${document.domain}/ogp.jpg`
+      return `https://www.jibungoto-planet.jp/ogp.jpg`
     }
   }, [])
 
