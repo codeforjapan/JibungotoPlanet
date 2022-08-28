@@ -15,9 +15,9 @@ const HeadElm: FC = () => {
     if (typeof window !== 'object') {
       return ''
     } else if (asPath.includes('result') || asPath.includes('completion')) {
-      return `https://${document.domain}/images/ogp-sns-sharing.jpg`
+      return `https://${document.domain}/ogp-sns-sharing.jpg`
     } else {
-      return `https://${document.domain}/images/ogp.jpg`
+      return `https://${document.domain}/ogp.jpg`
     }
   }, [])
 

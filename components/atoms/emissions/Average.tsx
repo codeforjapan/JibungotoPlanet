@@ -27,7 +27,8 @@ const Average: FC<Props> = ({ category, amount }) => {
         日本平均より
       </Box>
       <Box mx={2}>
-        {compareAverage.diff}%{compareAverage.isOver ? '多い' : '少ない'}
+        {Math.abs(compareAverage.diff)}%
+        {compareAverage.isOver ? '多い' : '少ない'}
       </Box>
       <Flex width={8} alignItems="center">
         {compareAverage.isOver ? <EarthTroubledIcon /> : <EarthSmileIcon />}

@@ -123,13 +123,25 @@ const PieChart: FC<Props> = ({
               case '#008EBE':
                 onChartClick('mobility')
                 break
+              case '#009DD3':
+                onChartClick('mobility')
+                break
               case '#F98D00':
+                onChartClick('housing')
+                break
+              case '#ED9928':
                 onChartClick('housing')
                 break
               case '#37A344':
                 onChartClick('food')
                 break
+              case '#51A15A':
+                onChartClick('food')
+                break
               case '#EF4D42':
+                onChartClick('other')
+                break
+              case '#DA7F79':
                 onChartClick('other')
                 break
               default:
