@@ -247,11 +247,15 @@ export const MOBILITY_QUESTION_PAGES: Questions.Page[] = [
     title: '昨年１年間で、旅行などで利用した移動手段を教えてください',
     supplement: '（出張など仕事目的の移動は除く・利用していな場合は0と入力）',
     category: 'mobility',
+    beforeSubmitProcess: (data: any) => {
+      data.hasTravelingTime = true
+      return data
+    },
     defaultNextPageUid: '',
     numerator: 7,
     questions: [
       {
-        key: 'trainAnnuallyTravelingTime',
+        key: 'trainAnnualTravelingTime',
         description: '鉄道（地下鉄、在来線など）',
         answerType: 'numeric',
         unitText: '時間/年'
@@ -750,8 +754,11 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     questions: [
       {
         key: 'residentCount',
-        answerType: 'numeric',
-        unitText: '人'
+        answerType: 'select',
+        options: new Array(15).fill('').map((_, i) => {
+          return { label: `${i + 1}人`, value: i + 1 }
+        }),
+        returnValueType: 'number'
       }
     ]
   },
@@ -877,7 +884,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     title: '1ヶ月の電力使用量はどのくらいですか？',
     category: 'housing',
     defaultNextPageUid: 'hs6',
-    skipToPageUid: 'hs11',
+    skipToPageUid: 'hs6',
     numerator: 5,
     questions: [
       {
@@ -984,11 +991,6 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
           {
             value: 'lpg',
             label: 'プロパンガス'
-          },
-          {
-            value: 'unknown',
-            label: '分からない',
-            nextPageUid: 'hs12'
           }
         ]
       }
@@ -1094,7 +1096,7 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
     category: 'housing',
     defaultNextPageUid: '',
     isLast: true,
-    skipToPageUid: 'hs13',
+    skipToPageUid: 'hs11',
     numerator: 10,
     questions: [
       {
@@ -1111,52 +1113,6 @@ export const HOUSING_QUESTION_PAGES: Questions.Page[] = [
   },
   {
     uid: 'hs11',
-    title: '暖房、温水供給、調理にガスを使用していますか？',
-    category: 'housing',
-    defaultNextPageUid: 'hs12',
-    numerator: 6,
-    questions: [
-      {
-        key: 'useGas',
-        answerType: 'radio',
-        options: [
-          {
-            value: true,
-            label: 'はい'
-          },
-          {
-            value: false,
-            label: 'いいえ'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    uid: 'hs12',
-    title: '暖房などに灯油を使用していますか？',
-    category: 'housing',
-    defaultNextPageUid: 'hs13',
-    numerator: 9,
-    questions: [
-      {
-        key: 'useKerosene',
-        answerType: 'radio',
-        options: [
-          {
-            value: true,
-            label: 'はい'
-          },
-          {
-            value: false,
-            label: 'いいえ'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    uid: 'hs13',
     title: 'お住まいの地域（地方）はどちらですか？',
     category: 'housing',
     defaultNextPageUid: '',

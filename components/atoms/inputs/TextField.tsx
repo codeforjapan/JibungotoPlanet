@@ -22,17 +22,26 @@ const TextField: FC<Props> = ({
   const inputPattern = useMemo(() => {
     switch (type) {
       case 'numeric':
-        return '^[1-9][0-9]*$'
+        return '^[+]?([1-9][0-9]*|0)$'
       default:
         return
     }
   }, [])
 
   const handleOnChange = (v: string) => {
-    if (Number(v) !== NaN && v !== '') {
-      onChange(Number(v))
-    } else {
-      onChange(v)
+    switch (type) {
+      case 'numeric':
+        if (!isNaN(Number(v)) && v !== '') {
+          onChange(Number(v))
+        } else {
+          onChange('')
+        }
+        break
+      case 'text':
+        onChange(v)
+        break
+      default:
+        break
     }
   }
 

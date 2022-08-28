@@ -10,6 +10,7 @@ declare namespace Questions {
     skipToPageUid?: string //回答をスキップした場合に遷移するページUID
     isLast?: boolean //最後の質問かどうか
     numerator?: number //Question1/7の分子
+    beforeSubmitProcess?: (data: any) => any
   }
 
   interface Question {
@@ -19,14 +20,16 @@ declare namespace Questions {
     subDescription?: string //補足説明
     unitText?: string //テキストフィールドの右側にある「km/年」みたいな単位表記
     options?: Questions.QuestionOption[] //回答のオプション
+    returnValueType?: ReturnValueType //フォームインプット入力時のデータ形式
   }
 
   type QuestionCategory = 'food' | 'mobility' | 'housing' | 'other'
-  type AnswerType = 'text' | 'select' | 'checkbox' | 'radio' | 'numeric'
+  type AnswerType = 'text' | 'select' | 'radio' | 'numeric'
   interface QuestionOption {
     label: string //ラベル
     subLabel?: string //補足ラベル
     value: string | number | boolean | null //値
     nextPageUid?: string //回答によって分岐させたいときの遷移するページUID
   }
+  type ReturnValueType = 'string' | 'number'
 }
