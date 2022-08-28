@@ -12,7 +12,7 @@ import {
   Text
 } from '@chakra-ui/react'
 import classNames from 'classnames'
-import styles from 'components/organisms/actions/ActionItem/ActionItem.module.scss'
+import styles from 'components/organisms/action/ActionItem/ActionItem.module.scss'
 import { roundCo2Amount } from 'utils/calculate'
 
 type Props = {

@@ -2,25 +2,22 @@ import { ParsedUrlQuery } from 'querystring'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
-import BasicButton from 'components/atoms/buttons/Basic'
+import BasicButton from "components/atoms/buttons/Basic";
 import DatasourceFooter from 'components/DatasourceFooter'
-import CompletionContent from 'components/organisms/completion/CompletionContent/CompletionContent'
-import CompletionHeader from 'components/organisms/completion/CompletionHeader/CompletionHeader'
+import ActionsContent from "components/organisms/actions/ActionsContent/ActionsContent";
 import QuestionContainer from 'components/organisms/questions/Container'
 
 interface Params extends ParsedUrlQuery {
-  category: Questions.QuestionCategory
   shareId: string
 }
 
-const CompletionPage: NextPage<Params> = ({ category, shareId }) => {
+const ActionsSharePage: NextPage<Params> = ({ shareId}) => {
   const router = useRouter()
 
   return (
-    <QuestionContainer category={category}>
-      <CompletionHeader category={category} />
-      <CompletionContent category={category} shareId={shareId} />
-      <Box pt={14}>
+    <QuestionContainer title="わたしの脱炭素アクション">
+      <ActionsContent shareId={shareId} />
+      <Box pt={8}>
         <BasicButton isNext onClick={() => router.push('/')} width="full">
           じぶんもやってみる
         </BasicButton>
@@ -35,15 +32,13 @@ const CompletionPage: NextPage<Params> = ({ category, shareId }) => {
 export const getServerSideProps: ({ params }: { params: any }) => {
   props: {
     shareId: string
-    category: 'food' | 'mobility' | 'housing' | 'other'
   }
 } = ({ params }) => {
   return {
     props: {
-      category: params?.category || 'mobility',
       shareId: params?.shareId || ''
     }
   }
 }
 
-export default CompletionPage
+export default ActionsSharePage

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Box } from '@chakra-ui/react'
 import classNames from 'classnames'
 import BasicButton from 'components/atoms/buttons/Basic'
-import styles from 'components/molecules/actions/ActionCompleteBtn/ActionCompleteBtn.module.scss'
+import styles from 'components/molecules/action/ActionCompleteBtn/ActionCompleteBtn.module.scss'
 
 type Props = {
   className?: string

@@ -7,7 +7,7 @@ import {
   Tooltip,
   SliderThumb
 } from '@chakra-ui/react'
-import styles from 'components/molecules/actions/ActionRateSlider/ActionRateSlider.module.scss'
+import styles from 'components/molecules/action/ActionRateSlider/ActionRateSlider.module.scss'
 
 type Props = {
   className?: string

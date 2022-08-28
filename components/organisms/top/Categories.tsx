@@ -1,5 +1,7 @@
 import { FC, useMemo, useState } from 'react'
+import { useRouter } from 'next/router'
 import { Box, Grid, Text, useDisclosure } from '@chakra-ui/react'
+import BasicButton from 'components/atoms/buttons/Basic'
 import CategoryButton from 'components/atoms/buttons/Category'
 import Cloud from 'components/atoms/emissions/Cloud'
 import DatasourceFooter from 'components/DatasourceFooter'
@@ -8,6 +10,7 @@ import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
 
 const TopCategories: FC = () => {
+  const router = useRouter()
   const emission = useEmissionResult('all')
 
   const { isOpen, onClose, onOpen } = useDisclosure()
@@ -89,6 +92,16 @@ const TopCategories: FC = () => {
             />
           </Box>
         </Grid>
+      </Box>
+
+      <Box mt={8}>
+        <BasicButton
+          isNext
+          onClick={() => router.push('/actions')}
+          width="full"
+        >
+          脱炭素アクションをみる
+        </BasicButton>
       </Box>
 
       <Box mt={10}>
