@@ -45,9 +45,9 @@ const HomeKnowSection: FC<Props> = (props) => {
             <sup>1</sup>。<br />
             この気候目標を達成するためには、2030年までに1人1年あたりのカーボンフットプリント量
             <small>（ひとりの暮らしで発生する炭素の排出量）</small>を
-              約3トンCO₂e
-              <small>（二酸化炭素に換算した温室効果ガスの排出量）</small>
-              に減らす必要があります。
+            約3トンCO₂e
+            <small>（二酸化炭素に換算した温室効果ガスの排出量）</small>
+            に減らす必要があります。
             現在、日本人1人あたりの平均は約7トンCO₂eです<sup>2</sup>。
           </span>
         </HomeContentBody>

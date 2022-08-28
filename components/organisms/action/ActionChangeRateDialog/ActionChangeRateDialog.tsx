@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import { Box, Heading, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
-import ActionRateSlider from 'components/molecules/actions/ActionRateSlider/ActionRateSlider'
+import ActionRateSlider from 'components/molecules/action/ActionRateSlider/ActionRateSlider'
 import ModalBase from 'components/molecules/modal/Base'
 
 type Props = {
