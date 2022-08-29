@@ -46,23 +46,28 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   } = useForm({ defaultValues: defautValues })
 
   const submit = async (data: any) => {
-    if (questionPage.category === 'mobility') {
-      data.hasTravelingTime = true
-    }
-    setNewAnswer(data)
-
-    await sendData(data)
-    let nextPageUid = nextQuestionUid(data)
-
-    setIsTransitioning(true)
-    if (questionPage.isLast || nextPageUid === 'result') {
-      if (!userInfoDone) {
-        router.push(`/userinfo?category=${questionPage.category}`)
-        return
+    try {
+      if (questionPage.beforeSubmitProcess) {
+        data = questionPage.beforeSubmitProcess(data)
       }
-      router.push(`/category/${questionPage.category}/result`)
-    } else {
-      router.push(`/category/${questionPage.category}/questions/${nextPageUid}`)
+
+      await sendData(data)
+      let nextPageUid = nextQuestionUid(data)
+
+      setIsTransitioning(true)
+      if (questionPage.isLast || nextPageUid === 'result') {
+        if (!userInfoDone) {
+          router.push(`/userinfo?category=${questionPage.category}`)
+          return
+        }
+        router.push(`/category/${questionPage.category}/result`)
+      } else {
+        router.push(
+          `/category/${questionPage.category}/questions/${nextPageUid}`
+        )
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -153,6 +158,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
               onChange={onChange}
               options={selectOptions}
               disabled={isSubmitting}
+              returnValueType={question.returnValueType}
             />
             <Text mt={1} fontSize="11px" color="red.300">
               {errors[question.key]?.message}
@@ -185,14 +191,14 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             </Text>
           </>
         )
-      case 'text':
+      default:
         return (
           <Box mb={7}>
             <>
               <TextField
                 onChange={onChange}
                 value={value}
-                type="text"
+                type={question.answerType}
                 unitText={question.unitText}
                 disabled={isSubmitting}
               />
@@ -202,24 +208,6 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             </>
           </Box>
         )
-      case 'numeric':
-        return (
-          <Box mb={7}>
-            <>
-              <TextField
-                onChange={onChange}
-                value={value}
-                type="numeric"
-                unitText={question.unitText}
-              />
-              <Text mt={1} fontSize="11px" color="red.300">
-                {errors[question.key]?.message}
-              </Text>
-            </>
-          </Box>
-        )
-      default:
-        return <></>
     }
   }
 

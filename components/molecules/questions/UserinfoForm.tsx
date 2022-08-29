@@ -10,9 +10,9 @@ import { useProfile } from 'hooks/profile'
 import api from 'utils/api'
 
 type FormData = {
-  gender: string
-  age: string
-  region: string
+  gender?: string
+  age?: string
+  region?: string
 }
 
 const UserinfoForm: FC = () => {
@@ -32,6 +32,9 @@ const UserinfoForm: FC = () => {
   const submit = useCallback(
     async (formData: FormData) => {
       if (!profile) return
+      if (!formData.gender) delete formData.gender
+      if (!formData.age) delete formData.age
+      if (!formData.region) delete formData.region
       try {
         const { data } = await api.put(`/profiles/${profile?.id}`, {
           ...profile,
