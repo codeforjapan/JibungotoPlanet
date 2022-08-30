@@ -54,7 +54,12 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 企業で使っている電力の
                 <Box as="br" display={{ md: 'none' }} />
-                <span className={styles['society__category__item__marker-text']}>再エネが10％増加</span>したら…
+                <span
+                  className={styles['society__category__item__marker-text']}
+                >
+                  再エネが10％増加
+                </span>
+                したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>
@@ -87,7 +92,12 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 購入したモノを届けるまでの
                 <Box as="br" display={{ md: 'none' }} />
-                <span className={styles['society__category__item__marker-text']}>排出量が10％削減</span>したら…
+                <span
+                  className={styles['society__category__item__marker-text']}
+                >
+                  排出量が10％削減
+                </span>
+                したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>
@@ -119,7 +129,12 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 公共施設や行政サービスの
                 <Box as="br" display={{ md: 'none' }} />
-                <span className={styles['society__category__item__marker-text']}>排出量が10％削減</span>したら…
+                <span
+                  className={styles['society__category__item__marker-text']}
+                >
+                  排出量が10％削減
+                </span>
+                したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>
