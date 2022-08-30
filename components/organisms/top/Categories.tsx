@@ -94,15 +94,33 @@ const TopCategories: FC = () => {
         </Grid>
       </Box>
 
-      <Box mt={8}>
-        <BasicButton
-          isNext
-          onClick={() => router.push('/actions')}
-          width="full"
-        >
-          脱炭素アクションをみる
-        </BasicButton>
-      </Box>
+      {housing || food || mobility || other ? (
+        <>
+          <Box mt={8}>
+            <BasicButton
+              isNext
+              onClick={() => router.push('/actions')}
+              width="full"
+            >
+              脱炭素アクションをみる
+            </BasicButton>
+          </Box>
+          <Box mt={3}>
+            <BasicButton
+              isNext
+              onClick={() => router.push('/society')}
+              width="full"
+              variant="outline"
+              color="brandPrimary.400"
+              border="2px solid #009ACE!important"
+            >
+              社会へ働きかけるには
+            </BasicButton>
+          </Box>
+        </>
+      ) : (
+        ''
+      )}
 
       <Box mt={10}>
         <DatasourceFooter />

@@ -1,34 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# じぶんごとプラネット フロントエンド
 
-## Getting Started
+サービス URL: https://jibungoto-planet.jp
 
-First, run the development server:
+## ソースコードの利用
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+**MIT ライセンス記載の事項に加え、以下の事項を遵守いただくようお願いいたします。**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+本ソースコードを利活用したソフトウェア又はこれを用いたサービスを開発・公開する場合、[こちら](https://forms.gle/GshrYmBn2D22Q8Uq6)のフォームから報告をお願いいたします。派生版ソフトウェア及びこれを用いたサービスについての情報は、関連ウェブサイト等において紹介することがあります。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+本ソースコード及びこれに含まれるデータの利用並びに推計方法、データソース又は表示方法に対して行われたいかなる改変によって生じた不利益については、一般社団法人 コード・フォー・ジャパン及び国立研究開発法人 国立環境研究所は何ら責任を負いません。
+また、本ソースコード及びこれに含まれるデータを用いた分析結果及びその解釈について、一般社団法人 コード・フォー・ジャパン及び国立研究開発法人 国立環境研究所は何ら正当性を保証いたしません。
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 関連するソースコード
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+一般社団法人コード・フォー・ジャパンでは本ソースコードを用いてじぶんごとプラネットというサービスを提供しています。じぶんごとプラネットのバックエンド側のソースコードは下記となります。
+https://github.com/codeforjapan/JibungotoPlanet-backend

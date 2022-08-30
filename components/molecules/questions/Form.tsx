@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from 'react'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Heading, Text } from '@chakra-ui/react'
 import { Controller, FieldErrors, useForm } from 'react-hook-form'
@@ -23,6 +23,7 @@ interface SendParams extends Profile.Profile {
 
 const QuestionForm: FC<Props> = ({ questionPage }) => {
   const { profile, setProfile, userInfoDone } = useProfile()
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const router = useRouter()
   const { setNewAnswer } = useAnswerController({
@@ -53,6 +54,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
       await sendData(data)
       let nextPageUid = nextQuestionUid(data)
 
+      setIsTransitioning(true)
       if (questionPage.isLast || nextPageUid === 'result') {
         if (!userInfoDone) {
           router.push(`/userinfo?category=${questionPage.category}`)
@@ -68,6 +70,10 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    setIsTransitioning(false)
+  }, [router.asPath])
 
   const sendDataParamsKey = useMemo(() => {
     switch (questionPage.category) {
@@ -290,7 +296,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
             isNext
             width="90%"
             margin="0 auto 20px"
-            isLoading={isSubmitting}
+            isLoading={isSubmitting || isTransitioning}
           >
             次へ進む
           </BasicButton>
