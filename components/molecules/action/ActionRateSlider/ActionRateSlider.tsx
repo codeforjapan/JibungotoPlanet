@@ -60,6 +60,7 @@ const ActionRateSlider: FC<Props> = (props) => {
       max={100}
       size="lg"
       step={25}
+      value={props.rate}
       onChange={(v) => props.onChange(v)}
     >
       {rateMarks.map((rateMark) => {
