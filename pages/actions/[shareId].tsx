@@ -2,16 +2,16 @@ import { ParsedUrlQuery } from 'querystring'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
-import BasicButton from "components/atoms/buttons/Basic";
+import BasicButton from 'components/atoms/buttons/Basic'
 import DatasourceFooter from 'components/DatasourceFooter'
-import ActionsContent from "components/organisms/actions/ActionsContent/ActionsContent";
+import ActionsContent from 'components/organisms/actions/ActionsContent/ActionsContent'
 import QuestionContainer from 'components/organisms/questions/Container'
 
 interface Params extends ParsedUrlQuery {
   shareId: string
 }
 
-const ActionsSharePage: NextPage<Params> = ({ shareId}) => {
+const ActionsSharePage: NextPage<Params> = ({ shareId }) => {
   const router = useRouter()
 
   return (

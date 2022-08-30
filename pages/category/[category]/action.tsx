@@ -1,6 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
 import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Link from "next/link";
 import { useRouter } from 'next/router'
 import { Box, Spinner } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
@@ -106,7 +107,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
         </Box>
       ) : (
         <Box pt={10}>
-          {categorizeActions &&
+          {categorizeActions && categorizeActions.length ?
             categorizeActions.map((action) => {
               return (
                 <ActionItem
@@ -119,7 +120,17 @@ const ActionPage: NextPage<Params> = ({ category }) => {
                   onCheck={handleCheckedActions}
                 />
               )
-            })}
+            })
+            :
+            <Box textAlign="center">
+              <Box as={"h4"}>選択できるアクションが存在しません。</Box>
+              <Box py={4}>
+                <Link href={"/top"}>
+                  <h4 style={{ textDecoration: "underline", cursor: "pointer", fontWeight: "bold" }}>質問カテゴリーへ戻る</h4>
+                </Link>
+              </Box>
+            </Box>
+          }
         </Box>
       )}
       <Box style={{ padding: '0.5rem 0 4rem 0' }}>

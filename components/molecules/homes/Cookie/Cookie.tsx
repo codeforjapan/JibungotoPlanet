@@ -7,10 +7,10 @@ const Cookie: FC = () => {
   return (
     <CookieConsent
       onAccept={() => {
-        console.log("accept");
+        console.log('accept')
       }}
       onDecline={() => {
-        console.log("decline");
+        console.log('decline')
       }}
       buttonStyle={{
         color: 'white',
@@ -40,8 +40,10 @@ const Cookie: FC = () => {
       }}
     >
       <Box fontSize={{ base: '14px' }}>
-        このWebサイトでは閲覧者のコンピューターにCookieを保存します。<br />
-        サイトの利便性向上のため、Cookie保存の同意をお願いします。詳しくは<a href="">プライバシーポリシー</a>をご確認ください。
+        このWebサイトでは閲覧者のコンピューターにCookieを保存します。
+        <br />
+        サイトの利便性向上のため、Cookie保存の同意をお願いします。詳しくは
+        <a href="">プライバシーポリシー</a>をご確認ください。
       </Box>
     </CookieConsent>
   )

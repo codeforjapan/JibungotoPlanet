@@ -54,12 +54,17 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 企業で使っている電力の
                 <Box as="br" display={{ md: 'none' }} />
-                再エネが10％増加したら…
+                <span
+                  className={styles['society__category__item__marker-text']}
+                >
+                  再エネが10％増加
+                </span>
+                したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>
                 <span className={styles['society__category__item__big-text']}>
-                  150
+                  <small>約</small>150
                 </span>
                 kg CO₂e削減されます
               </p>
@@ -87,12 +92,17 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 購入したモノを届けるまでの
                 <Box as="br" display={{ md: 'none' }} />
-                排出量が10％削減したら…
+                <span
+                  className={styles['society__category__item__marker-text']}
+                >
+                  排出量が10％削減
+                </span>
+                したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>
                 <span className={styles['society__category__item__big-text']}>
-                  100
+                  <small>約</small>100
                 </span>
                 kg CO₂e削減されます
               </p>
@@ -119,12 +129,17 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               <p>
                 公共施設や行政サービスの
                 <Box as="br" display={{ md: 'none' }} />
-                排出量が10％削減したら…
+                <span
+                  className={styles['society__category__item__marker-text']}
+                >
+                  排出量が10％削減
+                </span>
+                したら…
               </p>
               <Text py={2}>日本の1人あたりカーボンフットプリントは</Text>
               <p>
                 <span className={styles['society__category__item__big-text']}>
-                  130
+                  <small>約</small>130
                 </span>
                 kg CO₂e削減されます
               </p>

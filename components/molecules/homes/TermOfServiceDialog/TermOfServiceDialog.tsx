@@ -1,6 +1,6 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Checkbox, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import PatchExclamation from 'components/atoms/icons/PatchExclamation'
 import ModalBase from 'components/molecules/modal/Base'
@@ -18,13 +18,15 @@ const serviceName = 'じぶんごとプラネット'
 
 const TermOfServiceDialog: FC<Props> = (props) => {
   const router = useRouter()
+  const [checked, setChecked] = useState<boolean>(false)
+
   return (
     <ModalBase
       isOpen={props.isOpen}
       onClose={props.onClose}
       maxWidth={props.sp ? '90%' : '60%'}
     >
-      <Box px={{ base: 1, md: 3 }} py={6}>
+      <Box px={{ base: 1, md: 3 }} py={4} position="relative">
         <Box pb={5} display="flex" alignItems="center">
           <PatchExclamation />
           <Text
@@ -59,13 +61,21 @@ const TermOfServiceDialog: FC<Props> = (props) => {
             )
           })}
         </Box>
-        <Box display={'flex'} justifyContent={'center'}>
+        <Box className={styles['home__dialog__actions']}>
+          <Checkbox
+            defaultChecked={checked}
+            onChange={(e) => setChecked(e.target.checked)}
+          >
+            利用規約に同意します。
+          </Checkbox>
           <BasicButton
+            mt={4}
             width="70%"
             textAlign={'center'}
+            disabled={!checked}
             onClick={() => router.push('/top')}
           >
-            同意して続ける
+            サービスを開始する
           </BasicButton>
         </Box>
       </Box>
