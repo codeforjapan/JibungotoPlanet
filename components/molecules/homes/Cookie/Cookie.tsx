@@ -43,7 +43,7 @@ const Cookie: FC = () => {
         このWebサイトでは閲覧者のコンピューターにCookieを保存します。
         <br />
         サイトの利便性向上のため、Cookie保存の同意をお願いします。詳しくは
-        <a href="">プライバシーポリシー</a>をご確認ください。
+        <a href="https://www.code4japan.org/privacy-policy">プライバシーポリシー</a>をご確認ください。
       </Box>
     </CookieConsent>
   )
