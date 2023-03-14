@@ -4,11 +4,11 @@ import { Box, Text } from '@chakra-ui/react'
 import classNames from 'classnames'
 import BasicButton from 'components/atoms/buttons/Basic'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
+import { API } from 'constants/api'
 import styles from 'styles/Home.module.scss'
 
 type Props = {
   className?: string
-  onClick: { (): void }
 }
 
 const HomeFooter: FC<Props> = (props) => {
@@ -29,9 +29,11 @@ const HomeFooter: FC<Props> = (props) => {
           <br className={styles['br-sp']} />
           知る
         </HomeContentCatchPhrase>
-        <BasicButton width={300} textAlign={'center'} onClick={props.onClick}>
-          はじめる
-        </BasicButton>
+        <a href={API.AUTH.LOGIN}>
+          <BasicButton width={300} textAlign={'center'}>
+            はじめる
+          </BasicButton>
+        </a>
         <Text fontSize={14} mt={'auto'} pb={{ base: 0, md: 5 }}>
           © 2022 Code for Japan
         </Text>

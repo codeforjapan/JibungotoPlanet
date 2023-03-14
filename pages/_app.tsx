@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import { useEffect } from 'react'
 import type { AppProps } from 'next/app'
+import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { ChakraProvider } from '@chakra-ui/react'
 import TagManager from 'react-gtm-module'
 import { RecoilRoot } from 'recoil'
@@ -32,10 +33,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <HeadElm />
       <RecoilRoot>
-        <ChakraProvider theme={chakraTheme}>
-          <Component {...pageProps} />
-          <Cookie />
-        </ChakraProvider>
+        <UserProvider>
+          <ChakraProvider theme={chakraTheme}>
+            <Component {...pageProps} />
+            <Cookie />
+          </ChakraProvider>
+        </UserProvider>
       </RecoilRoot>
     </>
   )
