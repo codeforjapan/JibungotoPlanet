@@ -24,12 +24,12 @@ const DatasourceFooter: FC = () => {
           データソースについて
         </Box>{' '}
         | © {year} Code for Japan
-        <Box pt={2}>
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/api/auth/logout" style={{ textDecoration: 'underline' }}>
+        {/* <Box pt={2}> */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        {/* <a href="/api/auth/logout" style={{ textDecoration: 'underline' }}>
             ログアウトする
           </a>
-        </Box>
+        </Box> */}
       </Box>
       <ModalBase isOpen={isOpen} onClose={onClose} maxWidth="800px">
         <Box pt={10} pb={20} fontSize="14px">
