@@ -7,6 +7,30 @@ import { RecoilRoot } from 'recoil'
 import HeadElm from 'components/HeadElm'
 import Cookie from 'components/molecules/homes/Cookie/Cookie'
 import { chakraTheme } from 'utils/chakratheme'
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
+import { publicProvider } from 'wagmi/providers/public'
+import { configureChains, createClient, WagmiConfig } from 'wagmi'
+import { hardhat, polygonMumbai } from 'wagmi/chains'
+
+const { provider, webSocketProvider } = configureChains(
+  [hardhat, polygonMumbai],
+  [
+    jsonRpcProvider({
+      rpc: () => ({
+        http: process.env.NEXT_PUBLIC_JSONRPC_HTTP!,
+        webSocket: process.env.NEXT_PUBLIC_JSONRPC_WS!
+      }),
+      priority: 0
+    }),
+    publicProvider({ priority: 1 })
+  ]
+)
+
+const client = createClient({
+  autoConnect: true,
+  provider,
+  webSocketProvider
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
