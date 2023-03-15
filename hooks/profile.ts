@@ -14,11 +14,10 @@ export const useProfile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      console.log(profile, 'profile recoil')
-      if (profile || !user) return
+      if (profile) return
       try {
         const profileId = localStorage.getItem(PROFILE_ID)
-        if (!profileId) {
+        if (!profileId || profileId === 'undefined') {
           let data: Profile.Profile | null = null
           if (user?.sub) {
             const res = await api.post(API.PROFILE.AUTH_INDEX, {
@@ -33,7 +32,9 @@ export const useProfile = () => {
             data = res.data
           }
           setProfile(data)
-          localStorage.setItem(PROFILE_ID, data?.id || 'undefined')
+          if (data?.id) {
+            localStorage.setItem(PROFILE_ID, data.id)
+          }
         } else {
           let data: Profile.Profile | null = null
           if (user?.sub) {
