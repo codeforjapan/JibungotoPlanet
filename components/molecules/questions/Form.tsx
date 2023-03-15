@@ -97,6 +97,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const sendData = useCallback(
     async (data: any) => {
       let nextPageUid = nextQuestionUid(data)
+      console.log(profile, 'profile')
       if (!profile) return
       const params: SendParams = {
         ...profile,
@@ -108,10 +109,12 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         if (user?.sub) {
           const authUrl = setDynamicUrl(API.PROFILE.AUTH_PUT, { id: user.sub })
           const res = await api.put(authUrl, params)
+          console.log(res, 'res')
           data = res.data
         } else {
           const url = setDynamicUrl(API.PROFILE.PUT, { id: profile.id })
           const res = await api.put(url, params)
+          console.log(res, 'res2')
           data = res.data
         }
         setProfile(data)
