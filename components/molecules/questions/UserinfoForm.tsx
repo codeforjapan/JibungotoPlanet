@@ -1,13 +1,16 @@
 import { FC, useCallback } from 'react'
 import { useRouter } from 'next/router'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { Box, Heading } from '@chakra-ui/react'
 import { Controller, useForm } from 'react-hook-form'
 import BasicButton from 'components/atoms/buttons/Basic'
 import SelectBox from 'components/atoms/inputs/Select'
 import DatasourceFooter from 'components/DatasourceFooter'
+import { API } from 'constants/api'
 import { USERINFO_SKIP } from 'constants/localstorageKeys'
 import { useProfile } from 'hooks/profile'
 import api from 'utils/api'
+import { setDynamicUrl } from 'utils/setUrl'
 
 type FormData = {
   gender?: string
@@ -16,6 +19,7 @@ type FormData = {
 }
 
 const UserinfoForm: FC = () => {
+  const { user } = useUser()
   const router = useRouter()
   const { category } = router.query
 
@@ -36,11 +40,19 @@ const UserinfoForm: FC = () => {
       if (!formData.age) delete formData.age
       if (!formData.region) delete formData.region
       try {
-        const { data } = await api.put(`/profiles/${profile?.id}`, {
+        const params = {
           ...profile,
           ...formData,
           estimate: true
-        })
+        }
+        let data = []
+        if (user?.sub) {
+          const authUrl = setDynamicUrl(API.PROFILE.AUTH_PUT, { id: user.sub })
+          data = await api.put(authUrl, params)
+        } else {
+          const url = setDynamicUrl(API.PROFILE.PUT, { id: profile.id })
+          data = await api.put(url, params)
+        }
         setProfile(data)
         router.push(`/category/${category}/result`)
       } catch (error) {

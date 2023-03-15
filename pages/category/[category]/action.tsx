@@ -1,8 +1,9 @@
 import { ParsedUrlQuery } from 'querystring'
 import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Link from "next/link";
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { Box, Spinner } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
 import ActionCompleteBtn from 'components/molecules/action/ActionCompleteBtn/ActionCompleteBtn'
@@ -10,15 +11,18 @@ import ActionHeader from 'components/molecules/action/ActionHeader/ActionHeader'
 import ActionChangeRateDialog from 'components/organisms/action/ActionChangeRateDialog/ActionChangeRateDialog'
 import ActionItem from 'components/organisms/action/ActionItem/ActionItem'
 import QuestionContainer from 'components/organisms/questions/Container'
+import { API } from 'constants/api'
 import { useActions } from 'hooks/actions'
 import { useProfile } from 'hooks/profile'
 import api from 'utils/api'
+import { setDynamicUrl } from 'utils/setUrl'
 
 interface Params extends ParsedUrlQuery {
   category: Actions.ActionCategory
 }
 
 const ActionPage: NextPage<Params> = ({ category }) => {
+  const { user } = useUser()
   const { profile, setProfile } = useProfile()
   const router = useRouter()
   const actions = useActions()
@@ -48,11 +52,19 @@ const ActionPage: NextPage<Params> = ({ category }) => {
       newProfile.actionIntensityRates = actionIntensityRates
 
       try {
-        const { data } = await api.put(`/profiles/${profile?.id}`, {
+        const params = {
           ...profile,
           ...newProfile,
           estimate: true
-        })
+        }
+        let data = []
+        if (user?.sub) {
+          const authUrl = setDynamicUrl(API.PROFILE.AUTH_PUT, { id: user.sub })
+          data = await api.put(authUrl, params)
+        } else {
+          const url = setDynamicUrl(API.PROFILE.PUT, { id: profile?.id || '' })
+          data = await api.put(url, params)
+        }
 
         setProfile(data)
         router.push(`/category/${category}/completion`)
@@ -82,7 +94,8 @@ const ActionPage: NextPage<Params> = ({ category }) => {
         action.checked = checked
         if (checked) {
           // @ts-ignore
-          action.actionIntensityRate.value = action.actionIntensityRate.defaultValue
+          action.actionIntensityRate.value =
+            action.actionIntensityRate.defaultValue
         } else {
           // @ts-ignore
           action.actionIntensityRate.value = 0
@@ -107,7 +120,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
         </Box>
       ) : (
         <Box pt={10}>
-          {categorizeActions && categorizeActions.length ?
+          {categorizeActions && categorizeActions.length ? (
             categorizeActions.map((action) => {
               return (
                 <ActionItem
@@ -121,16 +134,24 @@ const ActionPage: NextPage<Params> = ({ category }) => {
                 />
               )
             })
-            :
+          ) : (
             <Box textAlign="center">
-              <Box as={"h4"}>選択できるアクションが存在しません。</Box>
+              <Box as={'h4'}>選択できるアクションが存在しません。</Box>
               <Box py={4}>
-                <Link href={"/top"}>
-                  <h4 style={{ textDecoration: "underline", cursor: "pointer", fontWeight: "bold" }}>質問カテゴリーへ戻る</h4>
+                <Link href={'/top'}>
+                  <h4
+                    style={{
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    質問カテゴリーへ戻る
+                  </h4>
                 </Link>
               </Box>
             </Box>
-          }
+          )}
         </Box>
       )}
       <Box style={{ padding: '0.5rem 0 4rem 0' }}>

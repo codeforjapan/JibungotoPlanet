@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { useRecoilState } from 'recoil'
+import { API } from 'constants/api'
 import { PROFILE_ID, USERINFO_SKIP } from 'constants/localstorageKeys'
 import { profileAtom, sharedProfileAtom } from 'store/profile'
+import { setDynamicUrl } from 'utils/setUrl'
 import api from '../utils/api'
 
 export const useProfile = () => {
+  const { user } = useUser()
   const [profile, setProfile] = useRecoilState(profileAtom)
   const [userInfoDone, setUserInfoDone] = useState(false)
 
@@ -14,11 +18,31 @@ export const useProfile = () => {
       try {
         const profileId = localStorage.getItem(PROFILE_ID)
         if (!profileId) {
-          const { data } = await api.post('/profiles', { estimate: true })
+          let data = []
+          if (user?.sub) {
+            data = await api.post(API.PROFILE.AUTH_INDEX, {
+              estimate: true,
+              user_id: user?.sub
+            })
+          } else {
+            data = await api.post(API.PROFILE.INDEX, {
+              estimate: true
+            })
+          }
           setProfile(data)
           localStorage.setItem(PROFILE_ID, data.id)
         } else {
-          const data = await api.get(`/profiles/${profileId}`)
+          let data = []
+          if (user?.sub) {
+            const authShowUrl = setDynamicUrl(API.PROFILE.AUTH_SHOW, {
+              id: user.sub
+            })
+            data = await api.get(authShowUrl)
+          } else {
+            const showUrl = setDynamicUrl(API.PROFILE.SHOW, { id: profileId })
+            data = await api.get(showUrl)
+          }
+
           setProfile(data)
         }
       } catch (error) {
@@ -27,7 +51,7 @@ export const useProfile = () => {
       }
     }
     fetchProfile()
-  }, [])
+  }, [profile, setProfile, user])
 
   useEffect(() => {
     if (

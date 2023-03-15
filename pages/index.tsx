@@ -1,6 +1,7 @@
-import { FC, useState } from 'react'
+import { FC, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { Container, useMediaQuery } from '@chakra-ui/react'
-import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
 import HomeFooter from 'components/organisms/homes/HomeFooter/HomeFooter'
@@ -9,9 +10,18 @@ import HomeKnowSection from 'components/organisms/homes/HomeKnowSection/HomeKnow
 import HomeLookBackSection from 'components/organisms/homes/HomeLookBackSection/HomeLookBackSection'
 import styles from 'styles/Home.module.scss'
 
+const maxW = '1280px'
 const Home: FC = () => {
+  const router = useRouter()
   const [isMobile] = useMediaQuery('(max-width: 480px)')
-  const maxW = '1280px'
+  // TODO: ERROR Handling
+  const { user } = useUser()
+
+  useEffect(() => {
+    if (user) {
+      router.push('/top')
+    }
+  }, [router, user])
 
   return (
     <div>
@@ -31,12 +41,6 @@ const Home: FC = () => {
         <HomeCaptionSection className={styles['home__caption-section']} />
       </Container>
       <HomeFooter />
-      {/* TODO: topページで表示 */}
-      {/* <TermOfServiceDialog
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        sp={isMobile}
-      /> */}
     </div>
   )
 }

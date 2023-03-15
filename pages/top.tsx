@@ -1,21 +1,25 @@
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { NextPage } from 'next'
-import { useUser } from '@auth0/nextjs-auth0/client'
+import { useMediaQuery } from '@chakra-ui/react'
+import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import QuestionContainer from 'components/organisms/questions/Container'
 import TopCategories from 'components/organisms/top/Categories'
 
 const TopPage: NextPage = () => {
-  const { user, error, isLoading } = useUser()
-
-  // TODO: backendに投げる
-  useEffect(() => {
-    console.log(user, 'user')
-  }, [user])
+  const [isMobile] = useMediaQuery('(max-width: 480px)')
+  const [open, setOpen] = useState<boolean>(false)
 
   return (
-    <QuestionContainer>
-      <TopCategories />
-    </QuestionContainer>
+    <>
+      <QuestionContainer>
+        <TopCategories />
+      </QuestionContainer>
+      <TermOfServiceDialog
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        sp={isMobile}
+      />
+    </>
   )
 }
 
