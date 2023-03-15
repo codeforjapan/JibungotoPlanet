@@ -30,11 +30,11 @@ export const useProfile = () => {
               estimate: true
             })
             data = res.data
+            if (data?.id) {
+              localStorage.setItem(PROFILE_ID, data.id)
+            }
           }
           setProfile(data)
-          if (data?.id) {
-            localStorage.setItem(PROFILE_ID, data.id)
-          }
         } else {
           let data: Profile.Profile | null = null
           if (user?.sub) {
