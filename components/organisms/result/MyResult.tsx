@@ -26,7 +26,7 @@ export const MyResult: FC<Props> = ({ category }) => {
           .filter((v) => v.key !== 'total' && v.value !== 0)
           .sort((a, b) => b.value - a.value)
       : []
-  }, [result])
+  }, [category, result])
 
   const total = useMemo(() => {
     const r = result[category]

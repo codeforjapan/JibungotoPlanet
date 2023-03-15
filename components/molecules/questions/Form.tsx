@@ -104,13 +104,15 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         estimate: questionPage.isLast || nextPageUid === 'result' ? true : false
       }
       try {
-        let data = []
+        let data: Profile.Profile | null = null
         if (user?.sub) {
           const authUrl = setDynamicUrl(API.PROFILE.AUTH_PUT, { id: user.sub })
-          data = await api.put(authUrl, params)
+          const res = await api.put(authUrl, params)
+          data = res.data
         } else {
           const url = setDynamicUrl(API.PROFILE.PUT, { id: profile.id })
-          data = await api.put(url, params)
+          const res = await api.put(url, params)
+          data = res.data
         }
         setProfile(data)
       } catch (error) {

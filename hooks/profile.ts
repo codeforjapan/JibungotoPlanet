@@ -14,33 +14,38 @@ export const useProfile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      if (profile) return
+      console.log(profile, 'profile recoil')
+      if (profile || !user) return
       try {
         const profileId = localStorage.getItem(PROFILE_ID)
         if (!profileId) {
-          let data = []
+          let data: Profile.Profile | null = null
           if (user?.sub) {
-            data = await api.post(API.PROFILE.AUTH_INDEX, {
+            const res = await api.post(API.PROFILE.AUTH_INDEX, {
               estimate: true,
               user_id: user?.sub
             })
+            data = res.data
           } else {
-            data = await api.post(API.PROFILE.INDEX, {
+            const res = await api.post(API.PROFILE.INDEX, {
               estimate: true
             })
+            data = res.data
           }
           setProfile(data)
-          localStorage.setItem(PROFILE_ID, data.id)
+          localStorage.setItem(PROFILE_ID, data?.id || 'undefined')
         } else {
-          let data = []
+          let data: Profile.Profile | null = null
           if (user?.sub) {
             const authShowUrl = setDynamicUrl(API.PROFILE.AUTH_SHOW, {
               id: user.sub
             })
-            data = await api.get(authShowUrl)
+            const res = await api.get(authShowUrl)
+            data = res.data
           } else {
             const showUrl = setDynamicUrl(API.PROFILE.SHOW, { id: profileId })
-            data = await api.get(showUrl)
+            const res = await api.get(showUrl)
+            data = res.data
           }
 
           setProfile(data)
@@ -50,7 +55,9 @@ export const useProfile = () => {
         return
       }
     }
-    fetchProfile()
+    return () => {
+      fetchProfile()
+    }
   }, [profile, setProfile, user])
 
   useEffect(() => {
