@@ -1,9 +1,9 @@
+import { FC } from 'react'
 import { useUser } from '@auth0/nextjs-auth0/client'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { Box, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import { useAccountIntegration } from 'hooks/web3/integrate'
-import { FC } from 'react'
 import ConnectWallet from './ConnectWallet'
 
 const IntegrateAccount: FC = () => {

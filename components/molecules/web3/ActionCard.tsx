@@ -1,7 +1,7 @@
+import { FC } from 'react'
 import { GridItem, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import { useApproveAction } from 'hooks/web3/action'
-import { FC } from 'react'
 import { ActionRegistory } from 'typechain-types'
 
 type Props = {

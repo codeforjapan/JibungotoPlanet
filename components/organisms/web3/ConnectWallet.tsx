@@ -1,7 +1,7 @@
-import BasicButton from 'components/atoms/buttons/Basic'
 import { FC } from 'react'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
+import BasicButton from 'components/atoms/buttons/Basic'
 
 const ConnectWallet: FC = () => {
   const { connect } = useConnect({ connector: new InjectedConnector() })

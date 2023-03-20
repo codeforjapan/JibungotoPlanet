@@ -1,8 +1,8 @@
-import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
-import { publicProvider } from 'wagmi/providers/public'
 import { FC, ReactNode } from 'react'
 import { configureChains, createClient, WagmiConfig } from 'wagmi'
 import { hardhat, polygonMumbai } from 'wagmi/chains'
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
+import { publicProvider } from 'wagmi/providers/public'
 
 const { provider, webSocketProvider } = configureChains(
   [hardhat, polygonMumbai],

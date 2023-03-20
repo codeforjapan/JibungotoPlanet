@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { NextPage } from 'next'
+import Link from 'next/link'
 import { useMediaQuery } from '@chakra-ui/react'
+import BasicButton from 'components/atoms/buttons/Basic'
 import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import QuestionContainer from 'components/organisms/questions/Container'
 import TopCategories from 'components/organisms/top/Categories'
-import BasicButton from 'components/atoms/buttons/Basic'
-import Link from 'next/link'
 
 const TopPage: NextPage = () => {
   const [isMobile] = useMediaQuery('(max-width: 480px)')

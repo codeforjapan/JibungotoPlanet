@@ -9,12 +9,12 @@ import { useProfile } from 'hooks/profile'
 import { useAnswerController } from 'hooks/questions'
 import { toBoolean } from 'utils/datatype'
 import { setDynamicUrl } from 'utils/setUrl'
+import QuestionHeader from './QuestionHeader'
 import api from '../../../utils/api'
 import BasicButton from '../../atoms/buttons/Basic'
 import RadioGroups from '../../atoms/inputs/RadioGroup'
 import SelectBox from '../../atoms/inputs/Select'
 import TextField from '../../atoms/inputs/TextField'
-import QuestionHeader from './QuestionHeader'
 
 type Props = {
   questionPage: Questions.Page

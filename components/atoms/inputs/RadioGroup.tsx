@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react'
 import { Box, Radio, RadioGroup, Text } from '@chakra-ui/react'
-import { toBoolean } from '../../../utils/datatype'
 import style from './RadioGroup.module.scss'
+import { toBoolean } from '../../../utils/datatype'
 
 type Props = {
   onChange: (v: string | number | boolean) => void
@@ -29,7 +29,7 @@ const RadioGroups: FC<Props> = ({
       {options.map((option, index) => (
         <Box className={style.radio} key={index} mb={4}>
           <Radio
-            value={option.value}
+            value={String(option.value)}
             flexDirection="row-reverse"
             justifyContent="space-between"
             display="flex"

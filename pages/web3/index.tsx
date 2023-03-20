@@ -1,10 +1,10 @@
+import { NextPage } from 'next'
 import { Divider, Grid, Heading } from '@chakra-ui/react'
 import ActionCard from 'components/molecules/web3/ActionCard'
 import QuestionContainer from 'components/organisms/questions/Container'
 import IntegrateAccount from 'components/organisms/web3/IntegrateAccount'
 import WagmiProvider from 'components/providers/WagmiProvider'
 import { useActionRegistory } from 'hooks/web3/standard'
-import { NextPage } from 'next'
 
 const Web3: NextPage = () => {
   const { actions, approvedIds } = useActionRegistory()
