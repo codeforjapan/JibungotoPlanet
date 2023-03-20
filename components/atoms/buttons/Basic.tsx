@@ -49,7 +49,7 @@ const BasicButton: FC<Props & ButtonProps> = ({
       py={rest.py || '16px'}
       lineHeight={rest.lineHeight || '23px'}
       height="auto"
-      disabled={rest.disabled || rest.isLoading}
+      isDisabled={rest.disabled || rest.isLoading}
     >
       {rest.isLoading ? <Spinner /> : children}
     </Button>

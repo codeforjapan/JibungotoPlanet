@@ -1,36 +1,13 @@
 import '../styles/globals.css'
 import { useEffect } from 'react'
 import type { AppProps } from 'next/app'
+import { UserProvider } from '@auth0/nextjs-auth0/client'
 import { ChakraProvider } from '@chakra-ui/react'
 import TagManager from 'react-gtm-module'
 import { RecoilRoot } from 'recoil'
 import HeadElm from 'components/HeadElm'
 import Cookie from 'components/molecules/homes/Cookie/Cookie'
 import { chakraTheme } from 'utils/chakratheme'
-import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
-import { publicProvider } from 'wagmi/providers/public'
-import { configureChains, createClient, WagmiConfig } from 'wagmi'
-import { hardhat, polygonMumbai } from 'wagmi/chains'
-
-const { provider, webSocketProvider } = configureChains(
-  [hardhat, polygonMumbai],
-  [
-    jsonRpcProvider({
-      rpc: () => ({
-        http: process.env.NEXT_PUBLIC_JSONRPC_HTTP!,
-        webSocket: process.env.NEXT_PUBLIC_JSONRPC_WS!
-      }),
-      priority: 0
-    }),
-    publicProvider({ priority: 1 })
-  ]
-)
-
-const client = createClient({
-  autoConnect: true,
-  provider,
-  webSocketProvider
-})
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -56,10 +33,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <HeadElm />
       <RecoilRoot>
-        <ChakraProvider theme={chakraTheme}>
-          <Component {...pageProps} />
-          <Cookie />
-        </ChakraProvider>
+        <UserProvider>
+          <ChakraProvider theme={chakraTheme}>
+            <Component {...pageProps} />
+            <Cookie />
+          </ChakraProvider>
+        </UserProvider>
       </RecoilRoot>
     </>
   )

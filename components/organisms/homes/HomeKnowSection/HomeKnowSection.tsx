@@ -6,12 +6,12 @@ import HomeContentBody from 'components/molecules/homes/HomeContentBody/HomeCont
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
 import HomeContentTitle from 'components/molecules/homes/HomeContentTitle/HomeContentTitle'
 import HomeSectionContainer from 'components/molecules/homes/HomeSectionContainer/HomeSectionContainer'
+import { API } from 'constants/api'
 import styles from 'styles/Home.module.scss'
 
 type Props = {
   className?: string
   sp: boolean
-  onClick: { (): void }
 }
 
 const HomeKnowSection: FC<Props> = (props) => {
@@ -55,13 +55,11 @@ const HomeKnowSection: FC<Props> = (props) => {
           <Text pb={3} fontSize={'18px'} fontWeight={'bold'}>
             あなたのカーボンフットプリント量を知る
           </Text>
-          <BasicButton
-            width={'full'}
-            textAlign={'center'}
-            onClick={props.onClick}
-          >
-            はじめる
-          </BasicButton>
+          <a href={API.AUTH.LOGIN}>
+            <BasicButton width={'full'} textAlign={'center'}>
+              はじめる
+            </BasicButton>
+          </a>
         </Box>
       </Box>
     </HomeSectionContainer>

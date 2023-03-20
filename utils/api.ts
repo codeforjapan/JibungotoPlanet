@@ -28,7 +28,7 @@ class Api {
 
   post = async (url: string, d?: Object) => {
     try {
-      const { data } = await this.axiosInstance().post(url, d)
+      const { data } = await this.axiosInstance().post(url, d, {})
       return data
     } catch (error: any) {
       throw error.response.data || {}

@@ -1,6 +1,7 @@
-import { FC, useState } from 'react'
+import { FC, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { Container, useMediaQuery } from '@chakra-ui/react'
-import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
 import HomeFooter from 'components/organisms/homes/HomeFooter/HomeFooter'
@@ -9,10 +10,18 @@ import HomeKnowSection from 'components/organisms/homes/HomeKnowSection/HomeKnow
 import HomeLookBackSection from 'components/organisms/homes/HomeLookBackSection/HomeLookBackSection'
 import styles from 'styles/Home.module.scss'
 
+const maxW = '1280px'
 const Home: FC = () => {
+  const router = useRouter()
   const [isMobile] = useMediaQuery('(max-width: 480px)')
-  const [open, setOpen] = useState<boolean>(false)
-  const maxW = '1280px'
+  // TODO: ERROR Handling
+  const { user } = useUser()
+
+  useEffect(() => {
+    if (user) {
+      router.push('/top')
+    }
+  }, [router, user])
 
   return (
     <div>
@@ -23,11 +32,7 @@ const Home: FC = () => {
         py={{ base: 0, md: 12 }}
         my={{ base: 0, md: 5 }}
       >
-        <HomeKnowSection
-          className={styles['home__section']}
-          sp={isMobile}
-          onClick={() => setOpen(true)}
-        />
+        <HomeKnowSection className={styles['home__section']} sp={isMobile} />
         <HomeLookBackSection
           className={styles['home__section']}
           sp={isMobile}
@@ -35,12 +40,7 @@ const Home: FC = () => {
         <HomeChangeSection className={styles['home__section']} sp={isMobile} />
         <HomeCaptionSection className={styles['home__caption-section']} />
       </Container>
-      <HomeFooter onClick={() => setOpen(true)} />
-      <TermOfServiceDialog
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        sp={isMobile}
-      />
+      <HomeFooter />
     </div>
   )
 }

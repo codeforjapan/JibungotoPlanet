@@ -1,8 +1,9 @@
 import { ParsedUrlQuery } from 'querystring'
 import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Link from "next/link";
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { Box, Spinner } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
 import ActionCompleteBtn from 'components/molecules/action/ActionCompleteBtn/ActionCompleteBtn'
@@ -10,15 +11,18 @@ import ActionHeader from 'components/molecules/action/ActionHeader/ActionHeader'
 import ActionChangeRateDialog from 'components/organisms/action/ActionChangeRateDialog/ActionChangeRateDialog'
 import ActionItem from 'components/organisms/action/ActionItem/ActionItem'
 import QuestionContainer from 'components/organisms/questions/Container'
+import { API } from 'constants/api'
 import { useActions } from 'hooks/actions'
 import { useProfile } from 'hooks/profile'
 import api from 'utils/api'
+import { setDynamicUrl } from 'utils/setUrl'
 
 interface Params extends ParsedUrlQuery {
   category: Actions.ActionCategory
 }
 
 const ActionPage: NextPage<Params> = ({ category }) => {
+  const { user } = useUser()
   const { profile, setProfile } = useProfile()
   const router = useRouter()
   const actions = useActions()
@@ -48,12 +52,21 @@ const ActionPage: NextPage<Params> = ({ category }) => {
       newProfile.actionIntensityRates = actionIntensityRates
 
       try {
-        const { data } = await api.put(`/profiles/${profile?.id}`, {
+        const params = {
           ...profile,
           ...newProfile,
           estimate: true
-        })
-
+        }
+        let data: Profile.Profile | null = null
+        if (user?.sub) {
+          const authUrl = setDynamicUrl(API.PROFILE.AUTH_PUT, { id: user.sub })
+          const res = await api.put(authUrl, params)
+          data = res.data
+        } else {
+          const url = setDynamicUrl(API.PROFILE.PUT, { id: profile?.id || '' })
+          const res = await api.put(url, params)
+          data = res.data
+        }
         setProfile(data)
         router.push(`/category/${category}/completion`)
       } catch (error) {
@@ -77,19 +90,22 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   }
 
   const handleCheckedActions = (id: number, checked: boolean) => {
-    const newCategorizeActions = categorizeActions.map((action) => {
-      if (action.id === id) {
-        action.checked = checked
-        if (checked) {
-          // @ts-ignore
-          action.actionIntensityRate.value = action.actionIntensityRate.defaultValue
-        } else {
-          // @ts-ignore
-          action.actionIntensityRate.value = 0
+    const newCategorizeActions = categorizeActions.map(
+      (action: Actions.Action) => {
+        if (action.id === id) {
+          action.checked = checked
+          if (checked) {
+            // @ts-ignore
+            action.actionIntensityRate.value =
+              action.actionIntensityRate?.defaultValue
+          } else {
+            // @ts-ignore
+            action.actionIntensityRate.value = 0
+          }
         }
+        return action
       }
-      return action
-    })
+    )
     setCategorizeActions([...newCategorizeActions])
   }
 
@@ -107,7 +123,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
         </Box>
       ) : (
         <Box pt={10}>
-          {categorizeActions && categorizeActions.length ?
+          {categorizeActions && categorizeActions.length ? (
             categorizeActions.map((action) => {
               return (
                 <ActionItem
@@ -121,16 +137,24 @@ const ActionPage: NextPage<Params> = ({ category }) => {
                 />
               )
             })
-            :
+          ) : (
             <Box textAlign="center">
-              <Box as={"h4"}>選択できるアクションが存在しません。</Box>
+              <Box as={'h4'}>選択できるアクションが存在しません。</Box>
               <Box py={4}>
-                <Link href={"/top"}>
-                  <h4 style={{ textDecoration: "underline", cursor: "pointer", fontWeight: "bold" }}>質問カテゴリーへ戻る</h4>
+                <Link href={'/top'}>
+                  <h4
+                    style={{
+                      textDecoration: 'underline',
+                      cursor: 'pointer',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    質問カテゴリーへ戻る
+                  </h4>
                 </Link>
               </Box>
             </Box>
-          }
+          )}
         </Box>
       )}
       <Box style={{ padding: '0.5rem 0 4rem 0' }}>

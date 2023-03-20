@@ -8,22 +8,17 @@ const ConnectWallet: FC = () => {
   const { disconnect } = useDisconnect()
   const { isConnected } = useAccount()
 
-  return isConnected ? (
+  return (
     <BasicButton
+      width="full"
+      fontSize="sm"
+      py={3}
       onClick={() => {
-        disconnect()
+        isConnected ? disconnect() : connect()
       }}
-      theme="brandAccent"
+      theme={isConnected ? 'brandAccent' : 'brandPrimary'}
     >
-      Disconnect Wallet
-    </BasicButton>
-  ) : (
-    <BasicButton
-      onClick={() => {
-        connect()
-      }}
-    >
-      Connect Wallet
+      {isConnected ? 'Disconnect Wallet' : 'Connect Wallet'}
     </BasicButton>
   )
 }
