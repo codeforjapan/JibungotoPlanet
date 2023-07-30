@@ -1,11 +1,14 @@
 import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
+import { useUser } from '@auth0/nextjs-auth0/client'
 import { Box, Heading, Text } from '@chakra-ui/react'
 import { Controller, FieldErrors, useForm } from 'react-hook-form'
 import DatasourceFooter from 'components/DatasourceFooter'
+import { API } from 'constants/api'
 import { useProfile } from 'hooks/profile'
 import { useAnswerController } from 'hooks/questions'
 import { toBoolean } from 'utils/datatype'
+import { setDynamicUrl } from 'utils/setUrl'
 import api from '../../../utils/api'
 import BasicButton from '../../atoms/buttons/Basic'
 import RadioGroups from '../../atoms/inputs/RadioGroup'
@@ -22,6 +25,7 @@ interface SendParams extends Profile.Profile {
 }
 
 const QuestionForm: FC<Props> = ({ questionPage }) => {
+  const { user } = useUser()
   const { profile, setProfile, userInfoDone } = useProfile()
   const [isTransitioning, setIsTransitioning] = useState(false)
 
@@ -93,6 +97,7 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
   const sendData = useCallback(
     async (data: any) => {
       let nextPageUid = nextQuestionUid(data)
+      console.log(profile, 'profile')
       if (!profile) return
       const params: SendParams = {
         ...profile,
@@ -100,13 +105,24 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         estimate: questionPage.isLast || nextPageUid === 'result' ? true : false
       }
       try {
-        const { data } = await api.put(`/profiles/${profile?.id}`, params)
+        let data: Profile.Profile | null = null
+        if (user?.sub) {
+          const authUrl = setDynamicUrl(API.PROFILE.AUTH_PUT, { id: user.sub })
+          const res = await api.put(authUrl, params)
+          console.log(res, 'res')
+          data = res.data
+        } else {
+          const url = setDynamicUrl(API.PROFILE.PUT, { id: profile.id })
+          const res = await api.put(url, params)
+          console.log(res, 'res2')
+          data = res.data
+        }
         setProfile(data)
       } catch (error) {
         console.log(error)
       }
     },
-    [profile, questionPage]
+    [profile, questionPage, user]
   )
 
   const nextQuestionUid = (data: { [key: string]: string | number }) => {
