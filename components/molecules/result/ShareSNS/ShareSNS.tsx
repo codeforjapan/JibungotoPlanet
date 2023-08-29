@@ -16,6 +16,8 @@ const disable_twitter = process.env.NEXT_PUBLIC_DISABLE_TWITTER == 'true'
 const disable_line = process.env.NEXT_PUBLIC_DISABLE_LINE == 'true'
 
 const ShareSNS: FC<Props> = ({ line, twitter, facebook }) => {
+  if (disable_facebook && disable_twitter && disable_line) return <></>
+
   return (
     <Box className={ styles['share-sns'] }>
       <Box className={ styles['share-sns__title'] }>結果をシェアする</Box>
