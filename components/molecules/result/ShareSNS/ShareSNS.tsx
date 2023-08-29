@@ -19,40 +19,40 @@ const ShareSNS: FC<Props> = ({ line, twitter, facebook }) => {
   if (disable_facebook && disable_twitter && disable_line) return <></>
 
   return (
-    <Box className={ styles['share-sns'] }>
-      <Box className={ styles['share-sns__title'] }>結果をシェアする</Box>
+    <Box className={styles['share-sns']}>
+      <Box className={styles['share-sns__title']}>結果をシェアする</Box>
       <Box display="flex" justifyContent="center">
-        { !disable_facebook && (
-          <a href={ facebook } target="_blank" rel="noreferrer">
+        {!disable_facebook && (
+          <a href={facebook} target="_blank" rel="noreferrer">
             <IconButton
               background="transparent"
-              _hover={ { backgroud: 'transparent' } }
+              _hover={{ backgroud: 'transparent' }}
               aria-label="Share result on Facebook"
-              icon={ <FacebookIcon/> }
+              icon={<FacebookIcon />}
             />
           </a>
-        ) }
-        { !disable_twitter && (
-          <a href={ twitter } target="_blank" rel="noreferrer">
+        )}
+        {!disable_twitter && (
+          <a href={twitter} target="_blank" rel="noreferrer">
             <IconButton
               background="transparent"
-              _hover={ { backgroud: 'transparent' } }
+              _hover={{ backgroud: 'transparent' }}
               aria-label="Share result on Twitter"
-              icon={ <TwitterIcon/> }
-              mx={ 6 }
+              icon={<TwitterIcon />}
+              mx={6}
             />
           </a>
-        ) }
-        { !disable_line && (
-          <a href={ line } target="_blank" rel="noreferrer">
+        )}
+        {!disable_line && (
+          <a href={line} target="_blank" rel="noreferrer">
             <IconButton
               background="transparent"
-              _hover={ { backgroud: 'transparent' } }
+              _hover={{ backgroud: 'transparent' }}
               aria-label="Share result on Line"
-              icon={ <LineIcon/> }
+              icon={<LineIcon />}
             />
           </a>
-        ) }
+        )}
       </Box>
     </Box>
   )
