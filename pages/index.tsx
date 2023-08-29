@@ -88,7 +88,7 @@ const Home: FC = () => {
       )
   } else {
     return (
-      <div>
+      <>
         <HomeHeader sp={isMobile} />
         <Container
           maxW={maxW}
@@ -114,7 +114,7 @@ const Home: FC = () => {
           onClose={() => setOpen(false)}
           sp={isMobile}
         />
-      </div>
+      </>
     )
   }
 }
