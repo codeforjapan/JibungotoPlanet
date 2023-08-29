@@ -3,11 +3,28 @@ import { Container, useMediaQuery } from '@chakra-ui/react'
 import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
-import HomeFooter from 'components/organisms/homes/HomeFooter/HomeFooter'
+import HomeFooter, {
+  CampaignItem
+} from 'components/organisms/homes/HomeFooter/HomeFooter'
 import HomeHeader from 'components/organisms/homes/HomeHeader/HomeHeader'
 import HomeKnowSection from 'components/organisms/homes/HomeKnowSection/HomeKnowSection'
 import HomeLookBackSection from 'components/organisms/homes/HomeLookBackSection/HomeLookBackSection'
 import styles from 'styles/Home.module.scss'
+
+const campaigns: (CampaignItem | never)[] = [
+  {
+    imgSrc: '/campaigns/bs-asahi-campaign.png',
+    description: (
+      <>
+        BS朝日「地球クライシス」にてキャンペーン実施中！
+        <br />
+        じぶんごとプラネットを活用して気候変動対策に取り組もう
+      </>
+    ),
+    alt: 'bs朝日 地球クライシス',
+    url: 'https://google.com'
+  }
+]
 
 const Home: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 480px)')
@@ -35,7 +52,11 @@ const Home: FC = () => {
         <HomeChangeSection className={styles['home__section']} sp={isMobile} />
         <HomeCaptionSection className={styles['home__caption-section']} />
       </Container>
-      <HomeFooter onClick={() => setOpen(true)} />
+      <HomeFooter
+        campaigns={campaigns}
+        maxW={maxW}
+        onClick={() => setOpen(true)}
+      />
       <TermOfServiceDialog
         isOpen={open}
         onClose={() => setOpen(false)}
