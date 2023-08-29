@@ -26,6 +26,7 @@ const HomeFooter: FC<Props> = (props) => {
         src={'/home/home-footer.png'}
         alt={'footerの背景'}
         layout={'fill'}
+        style={{ objectFit: 'fill' }}
       />
       <Box className={styles['home__footer__content']}>
         <HomeContentCatchPhrase
