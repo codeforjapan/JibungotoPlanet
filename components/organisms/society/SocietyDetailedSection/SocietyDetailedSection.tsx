@@ -154,7 +154,7 @@ const SocietyDetailedSection: FC<Props> = (props) => {
         戻る
       </BasicButton>
       <Text fontSize={14} mt={'5em'} pb={5}>
-        © 2022 Code for Japan
+        © 2023 Code for Japan
       </Text>
     </Flex>
   )

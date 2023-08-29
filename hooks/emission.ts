@@ -117,5 +117,5 @@ export const useEmissionResult = (
     }
   }, [profile, category])
 
-  return { mobility, food, housing, other, loading }
+  return { mobility, food, housing, other, loading, profile }
 }

@@ -93,7 +93,7 @@ const HomeFooter: FC<Props> = (props) => {
         )}
 
         <Text fontSize={14} mt={'auto'} pb={{ base: 0, md: 5 }}>
-          © 2022 Code for Japan
+          © 2023 Code for Japan
         </Text>
       </Box>
     </Box>
