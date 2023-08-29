@@ -60,7 +60,7 @@ const HomeFooter: FC<Props> = (props) => {
                     alignItems="center"
                     justifyContent="center"
                     padding="24px"
-                    bg="red"
+                    bg="white"
                     onClick={() => {
                       window.open(campaign.url)
                     }}
