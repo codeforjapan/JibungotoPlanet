@@ -5,7 +5,7 @@ import CategoryTitle from 'components/molecules/questions/CategoryTitle'
 type Props = {
   children: ReactNode
   category?: Questions.QuestionCategory
-  title?: string
+  title?: string | ReactNode
 }
 
 const QuestionContainer: FC<Props> = ({ children, category, title }) => {
