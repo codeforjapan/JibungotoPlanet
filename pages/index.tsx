@@ -22,7 +22,7 @@ const campaigns: (CampaignItem | never)[] = [
       </>
     ),
     alt: 'bs朝日 地球クライシス',
-    url: 'https://google.com'
+    url: ''
   }
 ]
 

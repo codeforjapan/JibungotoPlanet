@@ -15,7 +15,7 @@ type Props = {
 export type CampaignItem = {
   imgSrc: string
   description: string | ReactNode
-  url: string
+  url?: string
   alt: string
 }
 
@@ -63,7 +63,7 @@ const HomeFooter: FC<Props> = (props) => {
                     padding="24px"
                     bg="white"
                     onClick={() => {
-                      window.open(campaign.url)
+                      if (campaign.url) window.open(campaign.url)
                     }}
                   >
                     <Box
