@@ -11,9 +11,15 @@ const HeadElm: FC = () => {
 
   const generatedImage = useMemo(() => {
     if (asPath.includes('result') || asPath.includes('completion')) {
-      return process.env.NEXT_PUBLIC_SNS_SHARE_OGP_PATH ?? `https://www.jibungoto-planet.jp/ogp-sns-sharing.jpg`
+      return (
+        process.env.NEXT_PUBLIC_SNS_SHARE_OGP_PATH ??
+        `https://www.jibungoto-planet.jp/ogp-sns-sharing.jpg`
+      )
     } else {
-      return process.env.NEXT_PUBLIC_OGP_IMAGE_PATH ?? ` https://www.jibungoto-planet.jp/ogp.jpg`
+      return (
+        process.env.NEXT_PUBLIC_OGP_IMAGE_PATH ??
+        ` https://www.jibungoto-planet.jp/ogp.jpg`
+      )
     }
   }, [])
 

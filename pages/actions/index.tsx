@@ -11,7 +11,9 @@ import { useProfile } from 'hooks/profile'
 const ActionsPage: NextPage = () => {
   const { profile } = useProfile()
 
-  const additional_hashtag = process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}` : ''
+  const additional_hashtag = process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG
+    ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}`
+    : ''
 
   const twitterShareLink = useMemo(() => {
     return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}&text=わたしの脱炭素アクション&hashtags=じぶんごとプラネット${additional_hashtag}`
