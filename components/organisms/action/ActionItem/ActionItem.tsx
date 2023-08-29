@@ -29,6 +29,14 @@ const ActionItem: FC<Props> = (props) => {
     props.action.reductionEffect
   ])
 
+  const isEnableOptions = useMemo(() => {
+    // Checkされていてかつ、actionIntensityRateのrange(実施率の選択肢？)が空の場合
+    return (
+      props.action.checked &&
+      props.action.actionIntensityRate?.range?.length != 2
+    )
+  }, [props.action.checked, props.action.actionIntensityRate?.range])
+
   return (
     <Box className={classNames(props.className, styles['action-item'])}>
       <Box padding="0 8px">
@@ -49,17 +57,14 @@ const ActionItem: FC<Props> = (props) => {
               {props.action.checked && (
                 <CardReductionEffect category={props.category} value={amount} />
               )}
-              {props.action.checked &&
-                props.action.actionIntensityRate?.range?.length != 2 && (
-                  <OptionsIntensityRate
-                    id={props.action.id}
-                    value={props.action.actionIntensityRate?.value}
-                    defaultValue={
-                      props.action.actionIntensityRate?.defaultValue
-                    }
-                    onChangeRate={props.onChangeActionRate}
-                  />
-                )}
+              {isEnableOptions && (
+                <OptionsIntensityRate
+                  id={props.action.id}
+                  value={props.action.actionIntensityRate?.value}
+                  defaultValue={props.action.actionIntensityRate?.defaultValue}
+                  onChangeRate={props.onChangeActionRate}
+                />
+              )}
             </VStack>
           </GridItem>
         </Grid>
