@@ -1,8 +1,15 @@
 import { FC, Fragment, useState } from 'react'
-import { useRouter } from "next/router";
-import { Box, Center, Checkbox, Container, Text, useMediaQuery } from '@chakra-ui/react'
-import BasicButton from "components/atoms/buttons/Basic";
-import PatchExclamation from "components/atoms/icons/PatchExclamation";
+import { useRouter } from 'next/router'
+import {
+  Box,
+  Center,
+  Checkbox,
+  Container,
+  Text,
+  useMediaQuery
+} from '@chakra-ui/react'
+import BasicButton from 'components/atoms/buttons/Basic'
+import PatchExclamation from 'components/atoms/icons/PatchExclamation'
 import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
@@ -13,7 +20,7 @@ import HomeHeader from 'components/organisms/homes/HomeHeader/HomeHeader'
 import HomeKnowSection from 'components/organisms/homes/HomeKnowSection/HomeKnowSection'
 import HomeLookBackSection from 'components/organisms/homes/HomeLookBackSection/HomeLookBackSection'
 import QuestionContainer from 'components/organisms/questions/Container'
-import { termOfServices } from "constants/termOfService";
+import { termOfServices } from 'constants/termOfService'
 import styles from 'styles/Home.module.scss'
 
 const campaigns: (CampaignItem | never)[] = [
@@ -42,7 +49,13 @@ const Home: FC = () => {
   if (process.env.NEXT_PUBLIC_SHOW_TOP_TERMS_OF_SERVICE) {
     return (
       // todo 環境変数からtitleを取得するようにする
-      <QuestionContainer title={<span>踏み出そう！地球のための一歩 <br/> ～じぶんごとプラネット×BS朝日～</span>}>
+      <QuestionContainer
+        title={
+          <span>
+            踏み出そう！地球のための一歩 <br /> ～じぶんごとプラネット×BS朝日～
+          </span>
+        }
+      >
         <Box px={{ base: 1, md: 3 }} py={10} position="relative">
           <Box pb={5} display="flex" alignItems="center">
             <PatchExclamation />
@@ -97,12 +110,12 @@ const Home: FC = () => {
           </Box>
         </Box>
         <Center>
-            <Text fontSize={14} mt={'auto'} pb={{ base: 0, md: 5 }}>
-              © 2023 Code for Japan
-            </Text>
+          <Text fontSize={14} mt={'auto'} pb={{ base: 0, md: 5 }}>
+            © 2023 Code for Japan
+          </Text>
         </Center>
       </QuestionContainer>
-      )
+    )
   } else {
     return (
       <>
@@ -122,16 +135,18 @@ const Home: FC = () => {
             className={styles['home__section']}
             sp={isMobile}
           />
-          <HomeChangeSection className={styles['home__section']} sp={isMobile} />
+          <HomeChangeSection
+            className={styles['home__section']}
+            sp={isMobile}
+          />
           <HomeCaptionSection className={styles['home__caption-section']} />
         </Container>
-          <HomeFooter
-              campaigns={campaigns}
-              maxW={maxW}
-              onClick={() => setOpen(true)}
-          />
-          <TermOfServiceDialog
-
+        <HomeFooter
+          campaigns={campaigns}
+          maxW={maxW}
+          onClick={() => setOpen(true)}
+        />
+        <TermOfServiceDialog
           isOpen={open}
           onClose={() => setOpen(false)}
           sp={isMobile}
