@@ -112,6 +112,12 @@ const TopCategories: FC = () => {
         </Grid>
       </Box>
 
+      {emission?.profile?.shareId && (
+        <Text textAlign="right" fontSize="xs" mt={2}>
+          識別ID: {emission.profile.shareId}
+        </Text>
+      )}
+
       {housing && food && mobility && other ? (
         <>
           <Box my="50px">
