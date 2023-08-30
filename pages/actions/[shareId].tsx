@@ -18,7 +18,11 @@ const ActionsSharePage: NextPage<Params> = ({ shareId }) => {
     <QuestionContainer title="わたしの脱炭素アクション">
       <ActionsContent shareId={shareId} />
       <Box pt={8}>
-        <BasicButton isNext onClick={() => router.push('/')} width="full">
+        <BasicButton
+          isNext
+          onClick={() => router.push(process.env.NEXT_PUBLIC_SHARE_URL ?? '/')}
+          width="full"
+        >
           じぶんもやってみる
         </BasicButton>
       </Box>

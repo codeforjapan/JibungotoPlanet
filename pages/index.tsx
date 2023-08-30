@@ -35,12 +35,13 @@ const Home: FC = () => {
 
   if (process.env.NEXT_PUBLIC_SHOW_TOP_TERMS_OF_SERVICE) {
     return (
-      // todo 環境変数からtitleを取得するようにする
       <QuestionContainer
         title={
-          <span>
-            踏み出そう！地球のための一歩 <br /> ～じぶんごとプラネット×BS朝日～
-          </span>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: process.env.NEXT_PUBLIC_TOP_TERMS_OF_SERVICE_TITLE || ''
+            }}
+          />
         }
       >
         <Box px={{ base: 1, md: 3 }} py={10} position="relative">

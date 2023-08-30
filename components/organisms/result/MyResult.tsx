@@ -33,8 +33,12 @@ export const MyResult: FC<Props> = ({ category }) => {
     return r ? Math.round(r.find((m) => m.key === 'total')?.value || 0) : 0
   }, [result])
 
+  const additional_hashtag = process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG
+    ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}`
+    : ''
+
   const twitterShareLink = useMemo(() => {
-    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}&text=わたしのカーボンフットプリント量`
+    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}&text=わたしのカーボンフットプリント量&hashtags=じぶんごとプラネット${additional_hashtag}`
   }, [profile, category])
 
   const facebookShareLink = useMemo(() => {
