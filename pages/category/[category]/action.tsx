@@ -77,7 +77,8 @@ const ActionPage: NextPage<Params> = ({ category }) => {
         if (checked) {
           // @ts-ignore
           action.actionIntensityRate.value =
-            action.actionIntensityRate?.defaultValue
+            // @ts-ignore
+            action.actionIntensityRate.defaultValue
         } else {
           // @ts-ignore
           action.actionIntensityRate.value = 0

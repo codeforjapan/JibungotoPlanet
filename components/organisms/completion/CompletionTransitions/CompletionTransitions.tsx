@@ -9,7 +9,18 @@ const CompletionTransitions: FC = () => {
   return (
     <Box>
       <BasicButton isNext onClick={() => router.push('/top')} width="full">
-        次のカテゴリーを選ぶ
+        質問カテゴリーへ戻る
+      </BasicButton>
+      <BasicButton
+        isNext
+        onClick={() => router.push('/society')}
+        width="full"
+        mt={4}
+        variant="outline"
+        color="brandPrimary.400"
+        border="2px solid #009ACE!important"
+      >
+        社会へ働きかけるには
       </BasicButton>
     </Box>
   )
