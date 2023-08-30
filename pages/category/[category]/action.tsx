@@ -77,8 +77,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
         if (checked) {
           // @ts-ignore
           action.actionIntensityRate.value =
-            // @ts-ignore
-            action.actionIntensityRate.defaultValue
+            action.actionIntensityRate?.defaultValue
         } else {
           // @ts-ignore
           action.actionIntensityRate.value = 0
@@ -130,7 +129,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
                         fontWeight: 'bold'
                       }}
                     >
-                      質問カテゴリーへ戻る
+                      トップへ戻る
                     </h4>
                   </Link>
                 </Box>

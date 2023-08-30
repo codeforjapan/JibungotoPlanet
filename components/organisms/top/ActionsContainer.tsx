@@ -4,8 +4,6 @@ import CategoryTitle from 'components/molecules/questions/CategoryTitle'
 
 type Props = {
   children: ReactNode
-  title?: string | ReactNode
-  hideHeader?: boolean
 }
 
 const ActionsContainer: FC<Props> = ({ children }) => {
