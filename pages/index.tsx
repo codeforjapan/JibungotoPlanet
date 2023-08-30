@@ -13,13 +13,17 @@ import PatchExclamation from 'components/atoms/icons/PatchExclamation'
 import TermOfServiceDialog from 'components/molecules/homes/TermOfServiceDialog/TermOfServiceDialog'
 import HomeCaptionSection from 'components/organisms/homes/HomeCaptionSection/HomeCaptionSection'
 import HomeChangeSection from 'components/organisms/homes/HomeChangeSection/HomeChangeSection'
-import HomeFooter from 'components/organisms/homes/HomeFooter/HomeFooter'
+import HomeFooter, {
+  CampaignItem
+} from 'components/organisms/homes/HomeFooter/HomeFooter'
 import HomeHeader from 'components/organisms/homes/HomeHeader/HomeHeader'
 import HomeKnowSection from 'components/organisms/homes/HomeKnowSection/HomeKnowSection'
 import HomeLookBackSection from 'components/organisms/homes/HomeLookBackSection/HomeLookBackSection'
 import QuestionContainer from 'components/organisms/questions/Container'
 import { termOfServices } from 'constants/termOfService'
 import styles from 'styles/Home.module.scss'
+
+const campaigns: (CampaignItem | never)[] = []
 
 const Home: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 480px)')
@@ -125,7 +129,11 @@ const Home: FC = () => {
           />
           <HomeCaptionSection className={styles['home__caption-section']} />
         </Container>
-        <HomeFooter onClick={() => setOpen(true)} />
+        <HomeFooter
+          campaigns={campaigns}
+          maxW={maxW}
+          onClick={() => setOpen(true)}
+        />
         <TermOfServiceDialog
           isOpen={open}
           onClose={() => setOpen(false)}
