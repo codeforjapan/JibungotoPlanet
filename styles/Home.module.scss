@@ -76,14 +76,15 @@
   }
 
   &__footer {
+    padding-top: 180px;
+    padding-bottom: 32px;
     position: relative;
-    height: 450px;
     display: flex;
     align-items: flex-end;
     justify-content: center;
 
     @include sp {
-      height: 400px;
+      padding-top: 100px;
       align-items: center;
     }
 
