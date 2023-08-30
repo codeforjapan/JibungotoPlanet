@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Box, Spinner } from '@chakra-ui/react'
+import { Box, Divider, Spinner } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
 import ActionCompleteBtn from 'components/molecules/action/ActionCompleteBtn/ActionCompleteBtn'
 import ActionHeader from 'components/molecules/action/ActionHeader/ActionHeader'
-import ActionChangeRateDialog from 'components/organisms/action/ActionChangeRateDialog/ActionChangeRateDialog'
 import ActionItem from 'components/organisms/action/ActionItem/ActionItem'
 import QuestionContainer from 'components/organisms/questions/Container'
 import { useActions } from 'hooks/actions'
@@ -22,13 +21,9 @@ const ActionPage: NextPage<Params> = ({ category }) => {
   const { profile, setProfile } = useProfile()
   const router = useRouter()
   const actions = useActions()
-  const [open, setOpen] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
   const [categorizeActions, setCategorizeActions] = useState<Actions.Action[]>(
     []
-  )
-  const [selectedAction, setSelectedAction] = useState<Actions.Action | null>(
-    null
   )
 
   useEffect(() => {
@@ -73,7 +68,6 @@ const ActionPage: NextPage<Params> = ({ category }) => {
     })
 
     setCategorizeActions([...newCategorizeActions])
-    setOpen(false)
   }
 
   const handleCheckedActions = (id: number, checked: boolean) => {
@@ -96,73 +90,63 @@ const ActionPage: NextPage<Params> = ({ category }) => {
 
   return (
     <QuestionContainer category={category}>
-      <ActionHeader />
-      {loading ? (
-        <Box
-          py={10}
-          display={'flex'}
-          justifyContent={'center'}
-          alignItems={'center'}
-        >
-          <Spinner />
-        </Box>
-      ) : (
-        <Box pt={10}>
-          {categorizeActions && categorizeActions.length ? (
-            categorizeActions.map((action) => {
-              return (
-                <ActionItem
-                  key={action.id}
-                  action={action}
-                  onClick={() => {
-                    setSelectedAction(action)
-                    setOpen(true)
-                  }}
-                  onCheck={handleCheckedActions}
-                />
-              )
-            })
-          ) : (
-            <Box textAlign="center">
-              <Box as={'h4'}>選択できるアクションが存在しません。</Box>
-              <Box py={4}>
-                <Link href={'/top'}>
-                  <h4
-                    style={{
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      fontWeight: 'bold'
-                    }}
-                  >
-                    質問カテゴリーへ戻る
-                  </h4>
-                </Link>
+      <Box padding="40px 12px 0 12px">
+        <ActionHeader actions={categorizeActions} category={category} />
+        {loading ? (
+          <Box
+            py={10}
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'center'}
+          >
+            <Spinner />
+          </Box>
+        ) : (
+          <Box pt={10}>
+            {categorizeActions && categorizeActions.length ? (
+              categorizeActions.map((action, index) => {
+                return (
+                  <Box as="div" key={action.id}>
+                    {index > 0 && <Divider margin="16px 0" />}
+                    <ActionItem
+                      action={action}
+                      category={category}
+                      onCheck={handleCheckedActions}
+                      onChangeActionRate={changeActionRate}
+                    />
+                  </Box>
+                )
+              })
+            ) : (
+              <Box textAlign="center">
+                <Box as={'h4'}>選択できるアクションが存在しません。</Box>
+                <Box py={4}>
+                  <Link href={'/top'}>
+                    <h4
+                      style={{
+                        textDecoration: 'underline',
+                        cursor: 'pointer',
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      質問カテゴリーへ戻る
+                    </h4>
+                  </Link>
+                </Box>
               </Box>
-            </Box>
-          )}
+            )}
+          </Box>
+        )}
+        <Box style={{ padding: '0.5rem 0 4rem 0' }}>
+          <DatasourceFooter />
         </Box>
-      )}
-      <Box style={{ padding: '0.5rem 0 4rem 0' }}>
-        <DatasourceFooter />
-      </Box>
-      <ActionCompleteBtn
-        onClick={completeActions}
-        disabled={
-          !categorizeActions.find((action) => action.checked) || loading
-        }
-      />
-      {selectedAction && selectedAction.actionIntensityRate?.defaultValue && (
-        <ActionChangeRateDialog
-          isOpen={open}
-          onClose={() => setOpen(false)}
-          actionId={selectedAction.id}
-          actionIntensityRate={
-            selectedAction.actionIntensityRate?.value ||
-            selectedAction.actionIntensityRate.defaultValue
+        <ActionCompleteBtn
+          onClick={completeActions}
+          disabled={
+            !categorizeActions.find((action) => action.checked) || loading
           }
-          onClick={changeActionRate}
         />
-      )}
+      </Box>
     </QuestionContainer>
   )
 }
