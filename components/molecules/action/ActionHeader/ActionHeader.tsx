@@ -42,7 +42,7 @@ const ActionHeader: FC<Props> = (props) => {
           <Text fontSize="14px">
             削減効果が大きければ大きいほどカーボンフットプリント量を減らすことにつながります。
           </Text>
-          <CardReductionEffect value={'00'} category={props.category} />
+          <CardReductionEffect value={'XX'} category={props.category} />
         </VStack>
       </Box>
     </>
