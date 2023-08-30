@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 import Image from 'next/image'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { Box, Container, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box, Container, Grid, GridItem, Text } from '@chakra-ui/react'
 import classNames from 'classnames'
 import BasicButton from 'components/atoms/buttons/Basic'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
