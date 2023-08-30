@@ -1,10 +1,8 @@
 import { FC, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Grid, Text, useDisclosure } from '@chakra-ui/react'
-import BasicButton from 'components/atoms/buttons/Basic'
 import CategoryButton from 'components/atoms/buttons/Category'
 import Cloud from 'components/atoms/emissions/Cloud'
-import DatasourceFooter from 'components/DatasourceFooter'
 import CategoryModal from 'components/molecules/top/CategoryModal'
 import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
@@ -92,44 +90,6 @@ const TopCategories: FC = () => {
             />
           </Box>
         </Grid>
-      </Box>
-
-      {emission?.profile?.shareId && (
-        <Text textAlign="right" fontSize="xs" mt={2}>
-          識別ID: {emission.profile.shareId}
-        </Text>
-      )}
-
-      {housing || food || mobility || other ? (
-        <>
-          <Box mt={8}>
-            <BasicButton
-              isNext
-              onClick={() => router.push('/actions')}
-              width="full"
-            >
-              脱炭素アクションをみる
-            </BasicButton>
-          </Box>
-          <Box mt={3}>
-            <BasicButton
-              isNext
-              onClick={() => router.push('/society')}
-              width="full"
-              variant="outline"
-              color="brandPrimary.400"
-              border="2px solid #009ACE!important"
-            >
-              社会へ働きかけるには
-            </BasicButton>
-          </Box>
-        </>
-      ) : (
-        ''
-      )}
-
-      <Box mt={10}>
-        <DatasourceFooter />
       </Box>
 
       <CategoryModal
