@@ -24,19 +24,23 @@ export const chakraTheme = extendTheme({
     },
     mobility: {
       200: '#99D9EF',
-      400: '#009DD3'
+      400: '#009DD3',
+      600: '#B3E1F1'
     },
     food: {
       200: '#d9eadb',
-      400: '#51a15a'
+      400: '#51a15a',
+      600: '#BBE7C0'
     },
     housing: {
       200: '#fbebd4',
-      400: '#ed9928'
+      400: '#ed9928',
+      600: '#FBD199'
     },
     other: {
       200: '#f8e5e4',
-      400: '#da7f79'
+      400: '#da7f79',
+      600: '#FBCBC8'
     }
   }
 })

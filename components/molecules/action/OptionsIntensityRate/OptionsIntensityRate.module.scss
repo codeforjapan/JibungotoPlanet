@@ -1,0 +1,22 @@
+.group {
+  .stack {
+    .radio {
+      width: 32px;
+      height: 32px;
+    }
+
+    .radio[data-checked] {
+      width: 32px;
+      height: 32px;
+      color: black;
+      background-color: #99D9EF !important;
+
+    }
+
+    .radio[data-checked]::before {
+      width: 12px;
+      height: 12px;
+
+    }
+  }
+}
