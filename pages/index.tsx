@@ -23,20 +23,7 @@ import QuestionContainer from 'components/organisms/questions/Container'
 import { termOfServices } from 'constants/termOfService'
 import styles from 'styles/Home.module.scss'
 
-const campaigns: (CampaignItem | never)[] = [
-  {
-    imgSrc: '/campaigns/bs-asahi-campaign.png',
-    description: (
-      <>
-        BS朝日「地球クライシス」にてキャンペーン実施中！
-        <br />
-        じぶんごとプラネットを活用して気候変動対策に取り組もう
-      </>
-    ),
-    alt: 'bs朝日 地球クライシス',
-    url: ''
-  }
-]
+const campaigns: (CampaignItem | never)[] = []
 
 const Home: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 480px)')

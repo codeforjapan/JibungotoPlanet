@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react'
 import Image from 'next/image'
-import { Box, Container, Grid, GridItem, Text } from '@chakra-ui/react'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { Box, Container, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import classNames from 'classnames'
 import BasicButton from 'components/atoms/buttons/Basic'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
@@ -47,7 +48,7 @@ const HomeFooter: FC<Props> = (props) => {
             <Grid
               templateColumns={
                 props.campaigns.length > 1
-                  ? { base: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }
+                  ? { base: 'repeat(1, 1fr)', xl: 'repeat(2, 1fr)' }
                   : 'repeat(1, 1fr)'
               }
               gap={4}
@@ -56,34 +57,39 @@ const HomeFooter: FC<Props> = (props) => {
               {props.campaigns.map((campaign, index) => (
                 <GridItem key={index} colSpan={1}>
                   <Box
-                    display={{ base: 'block', lg: 'flex' }}
-                    textAlign={{ base: 'center', lg: 'start' }}
-                    alignItems="center"
-                    justifyContent="center"
                     padding="24px"
                     bg="white"
+                    h="100%"
                     onClick={() => {
                       if (campaign.url) window.open(campaign.url)
                     }}
                   >
                     <Box
-                      minW="272px"
-                      h="152px"
-                      display="inline-block"
-                      position="relative"
-                      flexGrow={3}
+                      display={{ base: 'block', xl: 'flex' }}
+                      textAlign={{ base: 'center', xl: 'start' }}
+                      alignItems="center"
+                      justifyContent="center"
+                      h="100%"
                     >
-                      <Image
-                        src={campaign.imgSrc}
-                        alt={campaign.alt}
-                        layout="fill"
-                        style={{ objectFit: 'contain' }}
-                      />
-                    </Box>
-                    <Box ml="16px" flexGrow={1} textAlign="start">
-                      <Text fontSize="20px" fontWeight="bold">
-                        {campaign.description}
-                      </Text>
+                      <Box
+                        minW="272px"
+                        h="152px"
+                        display="inline-block"
+                        position="relative"
+                      >
+                        <Image
+                          src={campaign.imgSrc}
+                          alt={campaign.alt}
+                          layout="fill"
+                          style={{ objectFit: 'contain' }}
+                        />
+                      </Box>
+                      <Box ml="16px" textAlign="start">
+                        <Text fontSize="20px" fontWeight="bold">
+                          {campaign.description}
+                          {campaign.url && <ExternalLinkIcon />}
+                        </Text>
+                      </Box>
                     </Box>
                   </Box>
                 </GridItem>
