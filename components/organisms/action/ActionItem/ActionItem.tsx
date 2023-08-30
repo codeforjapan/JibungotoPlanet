@@ -1,32 +1,20 @@
 import { FC, useMemo } from 'react'
-import { ChevronRightIcon } from '@chakra-ui/icons'
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Button,
-  Checkbox,
-  Text
-} from '@chakra-ui/react'
+import { Box, Checkbox, Grid, GridItem, Text, VStack } from '@chakra-ui/react'
 import classNames from 'classnames'
+import CardReductionEffect from 'components/molecules/action/CardReductionEffect/CardReductionEffect'
+import OptionsIntensityRate from 'components/molecules/action/OptionsIntensityRate/OptionsIntensityRate'
 import styles from 'components/organisms/action/ActionItem/ActionItem.module.scss'
 import { roundCo2Amount } from 'utils/calculate'
 
 type Props = {
   className?: string
   action: Actions.Action
-  onClick: { (): void }
+  category: Actions.ActionCategory
   onCheck: { (id: number, checked: boolean): void }
+  onChangeActionRate: { (id: number, rate: number): void }
 }
 
 const ActionItem: FC<Props> = (props) => {
-  const actionIntensityRate =
-    props.action.actionIntensityRate?.value ||
-    props.action.actionIntensityRate?.defaultValue
-
   const amount = useMemo(() => {
     let rate = 0
     if (props.action.actionIntensityRate?.value) {
@@ -34,7 +22,6 @@ const ActionItem: FC<Props> = (props) => {
     } else {
       rate = props.action.actionIntensityRate?.defaultValue || rate
     }
-
     return roundCo2Amount(rate * props.action.reductionEffect)
   }, [
     props.action.actionIntensityRate?.defaultValue,
@@ -42,59 +29,46 @@ const ActionItem: FC<Props> = (props) => {
     props.action.reductionEffect
   ])
 
+  const isEnableOptions = useMemo(() => {
+    // Checkされていてかつ、actionIntensityRateのrange(実施率の選択肢？)が空の場合
+    return (
+      props.action.checked &&
+      props.action.actionIntensityRate?.range?.length != 2
+    )
+  }, [props.action.checked, props.action.actionIntensityRate?.range])
+
   return (
     <Box className={classNames(props.className, styles['action-item'])}>
-      <Box p={3}>
-        <Box display="flex" justifyContent="space-between">
-          <Checkbox
-            className={styles['action-item__checkbox']}
-            onChange={(e) => props.onCheck(props.action.id, e.target.checked)}
-            defaultChecked={props.action.checked}
-          />
-          {!props.action?.actionIntensityRate?.range.length && (
-            <Button
-              variant="link"
-              color="brandPrimary.400"
-              rightIcon={<ChevronRightIcon fontSize="25px" />}
-              className={styles['action-item__change-link']}
-              onClick={props.onClick}
-              disabled={!props.action.checked}
-            >
-              実施率を変更
-            </Button>
-          )}
-        </Box>
-        <Box
-          pt={2}
-          pb={1}
-          display="flex"
-          justifyContent="space-between"
-          alignItems="baseline"
-        >
-          <Text fontSize="16px" fontWeight="bold">
-            <span className={styles['action-item__amount']}>{amount}</span>
-            kg CO₂e / 年
-          </Text>
-          <Text>実施率: {Number(actionIntensityRate) * 100}%</Text>
-        </Box>
-        <Text fontSize="14px" fontWeight="bold">
-          {props.action.label}
-        </Text>
+      <Box padding="0 8px">
+        <Grid templateColumns="repeat(9, 1fr)" columnGap="16px">
+          <GridItem colSpan={1}>
+            <Checkbox
+              className={styles['action-item__checkbox']}
+              onChange={(e) => props.onCheck(props.action.id, e.target.checked)}
+              defaultChecked={props.action.checked}
+            />
+          </GridItem>
+          <GridItem colSpan={8}>
+            <VStack align="stretch">
+              <Text fontSize="16px" fontWeight="bold">
+                {props.action.label}
+              </Text>
+              <Text fontSize="14px">{props.action.description}</Text>
+              {props.action.checked && (
+                <CardReductionEffect category={props.category} value={amount} />
+              )}
+              {isEnableOptions && (
+                <OptionsIntensityRate
+                  id={props.action.id}
+                  value={props.action.actionIntensityRate?.value}
+                  defaultValue={props.action.actionIntensityRate?.defaultValue}
+                  onChangeRate={props.onChangeActionRate}
+                />
+              )}
+            </VStack>
+          </GridItem>
+        </Grid>
       </Box>
-      <Accordion allowMultiple>
-        <AccordionItem className={styles['action-item__accordion-trigger']}>
-          <AccordionButton
-            _expanded={{ bg: 'none' }}
-            className={styles['action-item__accordion-btn']}
-          >
-            <Box flex="1" textAlign="left">
-              説明を見る
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-          <AccordionPanel pb={4}>{props.action.description}</AccordionPanel>
-        </AccordionItem>
-      </Accordion>
     </Box>
   )
 }

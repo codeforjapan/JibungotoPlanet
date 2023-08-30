@@ -1,14 +1,15 @@
-import { FC, useMemo } from 'react'
+import { FC, ReactNode, useMemo } from 'react'
 import Image from 'next/image'
 import { Box } from '@chakra-ui/react'
 
 type Props = {
   category?: Questions.QuestionCategory
-  title?: string
+  title?: string | ReactNode
 }
 
 const CategoryTitle: FC<Props> = ({ category, title }) => {
   const text = useMemo(() => {
+    //  todo parserを書いて改行に対応するようにする
     if (title) return title
     switch (category) {
       case 'mobility':
