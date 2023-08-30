@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
+import { useMemo } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Box } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
@@ -6,18 +7,30 @@ import CompletionContent from 'components/organisms/completion/CompletionContent
 import CompletionHeader from 'components/organisms/completion/CompletionHeader/CompletionHeader'
 import CompletionTransitions from 'components/organisms/completion/CompletionTransitions/CompletionTransitions'
 import QuestionContainer from 'components/organisms/questions/Container'
+import { useEmissionResult } from 'hooks/emission'
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory
 }
 
 const CompletionPage: NextPage<Params> = ({ category }) => {
+  const emission = useEmissionResult('all')
+
+  const answeredAllQuestion = useMemo(() => {
+    const mobility = emission.mobility.find((f) => f.key === 'total')?.value
+    const food = emission.food.find((f) => f.key === 'total')?.value
+    const housing = emission.housing.find((f) => f.key === 'total')?.value
+    const other = emission.other.find((f) => f.key === 'total')?.value
+
+    return Boolean(mobility && food && housing && other)
+  }, [emission])
+
   return (
     <QuestionContainer category={category}>
       <CompletionHeader category={category} />
       <CompletionContent category={category} />
       <Box pt={14}>
-        <CompletionTransitions />
+        <CompletionTransitions isCompleted={answeredAllQuestion} />
       </Box>
       <Box mt={6}>
         <DatasourceFooter />

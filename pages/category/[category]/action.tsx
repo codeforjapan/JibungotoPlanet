@@ -129,7 +129,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
                         fontWeight: 'bold'
                       }}
                     >
-                      質問カテゴリーへ戻る
+                      トップへ戻る
                     </h4>
                   </Link>
                 </Box>
