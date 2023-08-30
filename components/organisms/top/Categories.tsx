@@ -5,9 +5,11 @@ import BasicButton from 'components/atoms/buttons/Basic'
 import CategoryButton from 'components/atoms/buttons/Category'
 import Cloud from 'components/atoms/emissions/Cloud'
 import DatasourceFooter from 'components/DatasourceFooter'
+import ShareSNS from 'components/molecules/result/ShareSNS/ShareSNS'
 import CategoryModal from 'components/molecules/top/CategoryModal'
 import PieChart from 'components/molecules/top/PieChart'
 import { useEmissionResult } from 'hooks/emission'
+import { useProfile } from 'hooks/profile'
 
 const TopCategories: FC = () => {
   const router = useRouter()
@@ -16,6 +18,11 @@ const TopCategories: FC = () => {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const [modalCategory, setModalCategory] =
     useState<Questions.QuestionCategory>('mobility')
+
+  const { profile } = useProfile()
+  const additional_hashtag = process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG
+    ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}`
+    : ''
 
   const mobility = useMemo(() => {
     return emission.mobility.find((f) => f.key === 'total')?.value
@@ -47,6 +54,17 @@ const TopCategories: FC = () => {
     setModalCategory(category)
     onOpen()
   }
+
+  const twitterShareLink = useMemo(() => {
+    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}&text=わたしのカーボンフットプリント量&hashtags=じぶんごとプラネット${additional_hashtag}`
+  }, [])
+
+  const facebookShareLink = useMemo(() => {
+    return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}`
+  }, [])
+  const lineShareLink = useMemo(() => {
+    return `https://line.me/R/msg/text/?${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}`
+  }, [])
 
   return (
     <>
@@ -100,16 +118,14 @@ const TopCategories: FC = () => {
         </Text>
       )}
 
-      {housing || food || mobility || other ? (
+      {housing && food && mobility && other ? (
         <>
-          <Box mt={8}>
-            <BasicButton
-              isNext
-              onClick={() => router.push('/actions')}
-              width="full"
-            >
-              脱炭素アクションをみる
-            </BasicButton>
+          <Box my="50px">
+            <ShareSNS
+              facebook={facebookShareLink}
+              line={lineShareLink}
+              twitter={twitterShareLink}
+            />
           </Box>
           <Box mt={3}>
             <BasicButton
