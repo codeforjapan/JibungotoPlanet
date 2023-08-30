@@ -4,7 +4,7 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 type Props = {
   className?: string
   category: Actions.ActionCategory
-  value: number
+  value: number | string
 }
 
 const CardReductionEffect: FC<Props> = (props) => {
@@ -12,7 +12,7 @@ const CardReductionEffect: FC<Props> = (props) => {
     <Box
       w="100%"
       padding="4px 0"
-      bg={`${props.category}.200`}
+      bg={`${props.category}.600`}
       borderRadius="2px"
     >
       <Flex align="end" justify="center">
