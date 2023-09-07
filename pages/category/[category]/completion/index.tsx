@@ -3,34 +3,45 @@ import { useMemo } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Box } from '@chakra-ui/react'
 import DatasourceFooter from 'components/DatasourceFooter'
+import ShareSNS from 'components/molecules/result/ShareSNS/ShareSNS'
 import CompletionContent from 'components/organisms/completion/CompletionContent/CompletionContent'
 import CompletionHeader from 'components/organisms/completion/CompletionHeader/CompletionHeader'
 import CompletionTransitions from 'components/organisms/completion/CompletionTransitions/CompletionTransitions'
 import QuestionContainer from 'components/organisms/questions/Container'
-import { useEmissionResult } from 'hooks/emission'
+import { useProfile } from 'hooks/profile'
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory
 }
 
 const CompletionPage: NextPage<Params> = ({ category }) => {
-  const emission = useEmissionResult('all')
+  const { profile } = useProfile()
 
-  const answeredAllQuestion = useMemo(() => {
-    const mobility = emission.mobility.find((f) => f.key === 'total')?.value
-    const food = emission.food.find((f) => f.key === 'total')?.value
-    const housing = emission.housing.find((f) => f.key === 'total')?.value
-    const other = emission.other.find((f) => f.key === 'total')?.value
+  const additional_hashtag = process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}` : ''
 
-    return Boolean(mobility && food && housing && other)
-  }, [emission])
+  const twitterShareLink = useMemo(() => {
+    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}&text=わたしの脱炭素アクション&hashtags=じぶんごとプラネット${additional_hashtag}`
+  }, [profile, category])
+
+  const facebookShareLink = useMemo(() => {
+    return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}`
+  }, [profile, category])
+
+  const lineShareLink = useMemo(() => {
+    return `https://line.me/R/msg/text/?${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}`
+  }, [profile, category])
 
   return (
     <QuestionContainer category={category}>
       <CompletionHeader category={category} />
       <CompletionContent category={category} />
+      <ShareSNS
+        line={lineShareLink}
+        twitter={twitterShareLink}
+        facebook={facebookShareLink}
+      />
       <Box pt={14}>
-        <CompletionTransitions isCompleted={answeredAllQuestion} />
+        <CompletionTransitions />
       </Box>
       <Box mt={6}>
         <DatasourceFooter />
