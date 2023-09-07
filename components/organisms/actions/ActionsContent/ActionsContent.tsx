@@ -62,26 +62,24 @@ const ActionsContent: FC<Props> = (props) => {
         const selectedActions = getSelectedActions(category)
         return (
           <Box key={index} py={1}>
-            <Heading as="h3" fontSize="18px" mt={2} mb={4}>
-              {getCategoryTitle(category)}
-            </Heading>
-            <Box px={{ md: 16 }}>
-              {selectedActions.length ? (
-                selectedActions.map((action) => {
-                  return (
-                    <CompletionItem
-                      key={action.id}
-                      action={action}
-                      category={category}
-                    />
-                  )
-                })
-              ) : (
-                <Box fontSize="14px" textAlign="center">
-                  脱炭素アクションがまだ選択されていません。
+            {selectedActions.length > 0 && (
+              <>
+                <Heading as="h3" fontSize="18px" mt={2} mb={4}>
+                  {getCategoryTitle(category)}
+                </Heading>
+                <Box px={{ md: 16 }}>
+                  {selectedActions.map((action) => {
+                    return (
+                      <CompletionItem
+                        key={action.id}
+                        action={action}
+                        category={category}
+                      />
+                    )
+                  })}
                 </Box>
-              )}
-            </Box>
+              </>
+            )}
           </Box>
         )
       })}
