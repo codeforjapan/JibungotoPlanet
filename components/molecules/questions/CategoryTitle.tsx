@@ -9,7 +9,6 @@ type Props = {
 
 const CategoryTitle: FC<Props> = ({ category, title }) => {
   const text = useMemo(() => {
-    //  todo parserを書いて改行に対応するようにする
     if (title) return title
     switch (category) {
       case 'mobility':

@@ -1,22 +1,26 @@
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 
-type Props = {
-  isCompleted?: boolean
-}
-
-const CompletionTransitions: FC<Props> = ({ isCompleted }) => {
+const CompletionTransitions: FC = () => {
   const router = useRouter()
-  const text = useMemo(() => {
-    return isCompleted ? '最終結果を見る' : '次のカテゴリーを選ぶ'
-  }, [isCompleted])
 
   return (
     <Box>
       <BasicButton isNext onClick={() => router.push('/top')} width="full">
-        {text}
+        質問カテゴリーへ戻る
+      </BasicButton>
+      <BasicButton
+        isNext
+        onClick={() => router.push('/society')}
+        width="full"
+        mt={4}
+        variant="outline"
+        color="brandPrimary.400"
+        border="2px solid #009ACE!important"
+      >
+        社会へ働きかけるには
       </BasicButton>
     </Box>
   )

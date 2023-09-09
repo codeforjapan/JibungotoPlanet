@@ -59,10 +59,8 @@ const TopCategories: FC = () => {
             onChartClick={(c) => selectCategory(c)}
           />
         </Box>
-        <Text mt={5} mb={3} fontWeight="bold" textAlign="center">
-          質問に答えると
-          <br />
-          カーボンフットプリント量がわかる
+        <Text mt={5} mb={5} fontWeight="bold" textAlign="center" fontSize={18}>
+          カテゴリーを選んで質問に答えよう
         </Text>
         <Grid gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} gridGap={3}>
           <Box>
