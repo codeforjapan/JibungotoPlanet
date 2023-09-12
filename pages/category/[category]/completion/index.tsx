@@ -6,10 +6,10 @@ import DatasourceFooter from 'components/DatasourceFooter'
 import ShareSNS from 'components/molecules/result/ShareSNS/ShareSNS'
 import CompletionContent from 'components/organisms/completion/CompletionContent/CompletionContent'
 import CompletionHeader from 'components/organisms/completion/CompletionHeader/CompletionHeader'
+import CompletionJva from 'components/organisms/completion/CompletionJva/CompletionJva'
 import CompletionTransitions from 'components/organisms/completion/CompletionTransitions/CompletionTransitions'
 import QuestionContainer from 'components/organisms/questions/Container'
 import { useProfile } from 'hooks/profile'
-import CompletionJva from 'components/organisms/completion/CompletionJva/CompletionJva'
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory
