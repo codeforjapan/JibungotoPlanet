@@ -27,15 +27,15 @@ const CompletionPage: NextPage<Params> = ({ category }) => {
     : ''
 
   const twitterShareLink = useMemo(() => {
-    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}&text=${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
+    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}category/${category}/completion/${profile?.shareId}&text=${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
   }, [profile, category])
 
   const facebookShareLink = useMemo(() => {
-    return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}`
+    return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}category/${category}/completion/${profile?.shareId}`
   }, [profile, category])
 
   const lineShareLink = useMemo(() => {
-    return `https://line.me/R/msg/text/?${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/completion/${profile?.shareId}`
+    return `https://line.me/R/msg/text/?${process.env.NEXT_PUBLIC_CLIENT_URL}category/${category}/completion/${profile?.shareId}`
   }, [profile, category])
 
   return (
