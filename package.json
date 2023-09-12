@@ -9,7 +9,7 @@
     "test": "echo 'please write a test code'",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "yarn lint:fix && prettier -w ./{pages,components,styles}/**/*.{ts,tsx,css,scss}",
+    "format": "yarn lint:fix && yarn prettier -w ./{pages,components,styles}/**/*.{ts,tsx,css,scss}",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "husky install"

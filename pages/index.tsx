@@ -1,4 +1,5 @@
 import { FC, Fragment, useMemo, useState } from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import {
   Box,
@@ -115,6 +116,19 @@ const Home: FC = () => {
     </QuestionContainer>
   ) : (
     <>
+      <Box
+        backgroundColor="#EDF5E0"
+        position={'relative'}
+        maxHeight={170}
+        height={[90, 100, 120, 170]}
+      >
+        <Image
+          src={'/campaign/jva.png'}
+          objectFit={'contain'}
+          layout={'fill'}
+          alt={'日本代表選手と一緒に環境アクション じぶんごとプラネット'}
+        />
+      </Box>
       <HomeHeader sp={isMobile} />
       <Container
         maxW={maxW}
