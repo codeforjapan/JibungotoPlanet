@@ -39,11 +39,11 @@ export const MyResult: FC<Props> = ({ category }) => {
 
   const additional_message: string = process.env
     .NEXT_PUBLIC_TOP_TWITTER_SHARE_MESSAGE
-    ? ` %0a${process.env.NEXT_PUBLIC_TOP_TWITTER_SHARE_MESSAGE}`
+    ? ` ${process.env.NEXT_PUBLIC_TOP_TWITTER_SHARE_MESSAGE}`
     : ''
 
   const twitterShareLink = useMemo(() => {
-    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}&text=わたしのカーボンフットプリント量${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
+    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}&text=${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
   }, [profile, category])
 
   const facebookShareLink = useMemo(() => {
