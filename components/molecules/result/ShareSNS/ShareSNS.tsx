@@ -3,6 +3,7 @@ import { Box, IconButton } from '@chakra-ui/react'
 import FacebookIcon from 'components/atoms/icons/FaceBookIcon'
 import LineIcon from 'components/atoms/icons/LineIcon'
 import TwitterIcon from 'components/atoms/icons/TwitterIcon'
+import XIcon from "components/atoms/icons/XIcon";
 import styles from 'components/molecules/result/ShareSNS/ShareSNS.module.scss'
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 const disable_facebook = process.env.NEXT_PUBLIC_DISABLE_FACEBOOK == 'true'
 const disable_twitter = process.env.NEXT_PUBLIC_DISABLE_TWITTER == 'true'
 const disable_line = process.env.NEXT_PUBLIC_DISABLE_LINE == 'true'
+const use_x_logo = process.env.NEXT_PUBLIC_USE_X_LOGO == 'true'
 
 const ShareSNS: FC<Props> = ({ line, twitter, facebook }) => {
   if (disable_facebook && disable_twitter && disable_line) return <></>
@@ -38,7 +40,7 @@ const ShareSNS: FC<Props> = ({ line, twitter, facebook }) => {
               background="transparent"
               _hover={{ backgroud: 'transparent' }}
               aria-label="Share result on Twitter"
-              icon={<TwitterIcon />}
+              icon={ use_x_logo ?  <XIcon /> : <TwitterIcon />}
               mx={6}
             />
           </a>

@@ -15,8 +15,13 @@ const ActionsPage: NextPage = () => {
     ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}`
     : ''
 
+  const additional_message: string = process.env
+    .NEXT_PUBLIC_TOP_TWITTER_SHARE_MESSAGE
+    ? ` %0a${process.env.NEXT_PUBLIC_TOP_TWITTER_SHARE_MESSAGE}`
+    : ''
+
   const twitterShareLink = useMemo(() => {
-    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}&text=わたしの脱炭素アクション&hashtags=じぶんごとプラネット${additional_hashtag}`
+    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}&text=わたしの脱炭素アクション${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
   }, [profile])
 
   const facebookShareLink = useMemo(() => {
