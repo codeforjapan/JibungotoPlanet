@@ -6,7 +6,6 @@ import Average from 'components/atoms/emissions/Average'
 import Cloud from 'components/atoms/emissions/Cloud'
 import DatasourceFooter from 'components/DatasourceFooter'
 import QuestionResultGraph from 'components/molecules/result/ResultGraph'
-import ShareSNS from 'components/molecules/result/ShareSNS/ShareSNS'
 import { useEmissionResult } from 'hooks/emission'
 import { useProfile } from 'hooks/profile'
 
@@ -33,27 +32,6 @@ export const MyResult: FC<Props> = ({ category }) => {
     return r ? Math.round(r.find((m) => m.key === 'total')?.value || 0) : 0
   }, [result])
 
-  const additional_hashtag = process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG
-    ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}`
-    : ''
-
-  const additional_message: string = process.env
-    .NEXT_PUBLIC_TOP_TWITTER_SHARE_MESSAGE
-    ? ` %0a${process.env.NEXT_PUBLIC_TOP_TWITTER_SHARE_MESSAGE}`
-    : ''
-
-  const twitterShareLink = useMemo(() => {
-    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}&text=わたしのカーボンフットプリント量${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
-  }, [profile, category])
-
-  const facebookShareLink = useMemo(() => {
-    return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}`
-  }, [profile, category])
-
-  const lineShareLink = useMemo(() => {
-    return `https://line.me/R/msg/text/?${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}`
-  }, [profile, category])
-
   return (
     <>
       <Heading as="h2" fontSize="18px" textAlign="center" my={5}>
@@ -78,12 +56,6 @@ export const MyResult: FC<Props> = ({ category }) => {
       )}
 
       <QuestionResultGraph category={category} sortedResult={sortedResult} />
-
-      <ShareSNS
-        facebook={facebookShareLink}
-        line={lineShareLink}
-        twitter={twitterShareLink}
-      />
 
       <Text fontWeight="bold" textAlign="center" mt={10} mb={5}>
         カーボンフットプリント量を減らすために

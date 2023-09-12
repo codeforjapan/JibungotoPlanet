@@ -21,7 +21,11 @@ const CompletionPage: NextPage<Params> = ({ category, shareId }) => {
       <CompletionHeader category={category} />
       <CompletionContent category={category} shareId={shareId} />
       <Box pt={14}>
-        <BasicButton isNext onClick={() => router.push(process.env.NEXT_PUBLIC_SHARE_URL ?? '/')} width="full">
+        <BasicButton
+          isNext
+          onClick={() => router.push(process.env.NEXT_PUBLIC_SHARE_URL ?? '/')}
+          width="full"
+        >
           じぶんもやってみる
         </BasicButton>
       </Box>
