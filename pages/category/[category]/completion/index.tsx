@@ -9,6 +9,7 @@ import CompletionHeader from 'components/organisms/completion/CompletionHeader/C
 import CompletionTransitions from 'components/organisms/completion/CompletionTransitions/CompletionTransitions'
 import QuestionContainer from 'components/organisms/questions/Container'
 import { useProfile } from 'hooks/profile'
+import CompletionJva from 'components/organisms/completion/CompletionJva/CompletionJva'
 
 interface Params extends ParsedUrlQuery {
   category: Questions.QuestionCategory
@@ -42,6 +43,9 @@ const CompletionPage: NextPage<Params> = ({ category }) => {
     <QuestionContainer category={category}>
       <CompletionHeader category={category} />
       <CompletionContent category={category} />
+      <Box pb={6}>
+        <CompletionJva />
+      </Box>
       <ShareSNS
         line={lineShareLink}
         twitter={twitterShareLink}

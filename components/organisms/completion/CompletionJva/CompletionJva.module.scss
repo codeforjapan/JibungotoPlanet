@@ -1,0 +1,12 @@
+@import 'styles/vars';
+
+.list {
+  &::marker {
+    font-weight: 700 !important;
+    font-size: 24px !important;
+    color: #009ace !important;
+    @include sp {
+      font-size: 20px !important;
+    }
+  }
+}
