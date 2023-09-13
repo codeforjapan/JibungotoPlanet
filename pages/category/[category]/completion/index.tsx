@@ -6,6 +6,7 @@ import DatasourceFooter from 'components/DatasourceFooter'
 import ShareSNS from 'components/molecules/result/ShareSNS/ShareSNS'
 import CompletionContent from 'components/organisms/completion/CompletionContent/CompletionContent'
 import CompletionHeader from 'components/organisms/completion/CompletionHeader/CompletionHeader'
+import CompletionJva from 'components/organisms/completion/CompletionJva/CompletionJva'
 import CompletionTransitions from 'components/organisms/completion/CompletionTransitions/CompletionTransitions'
 import QuestionContainer from 'components/organisms/questions/Container'
 import { useProfile } from 'hooks/profile'
@@ -42,6 +43,9 @@ const CompletionPage: NextPage<Params> = ({ category }) => {
     <QuestionContainer category={category}>
       <CompletionHeader category={category} />
       <CompletionContent category={category} />
+      <Box pb={6}>
+        <CompletionJva />
+      </Box>
       <ShareSNS
         line={lineShareLink}
         twitter={twitterShareLink}
