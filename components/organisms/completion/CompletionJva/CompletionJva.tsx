@@ -24,14 +24,20 @@ const CompletionJva: FC = () => {
       <Heading
         as="h5"
         pb={6}
-        fontSize={isMobile ? '18px' : '20px'}
+        fontSize={isMobile ? '22px' : '26px'}
         textAlign={'center'}
       >
         限定画像をダウンロード！
       </Heading>
-      <Box display={'flex'}>
+      <Box display={'flex'} flexDirection={isMobile ? 'column' : 'inherit'}>
         {/* TODO: ダウンロードリンクの設定 */}
-        <Link href="/apple-touch-icon.png" download mr={5} width={'full'}>
+        <Link
+          href="/apple-touch-icon.png"
+          download
+          width={'full'}
+          marginBottom={{ base: 4 }}
+          marginRight={4}
+        >
           <BasicButton
             width="full"
             isNext
@@ -39,7 +45,7 @@ const CompletionJva: FC = () => {
             color="#333333"
             py={'13px'}
           >
-            女性選手
+            女性日本代表
           </BasicButton>
         </Link>
         {/* TODO: ダウンロードリンクの設定 */}
@@ -51,7 +57,7 @@ const CompletionJva: FC = () => {
             color="#333333"
             py={'13px'}
           >
-            男性選手
+            男性日本代表
           </BasicButton>
         </Link>
       </Box>
@@ -64,9 +70,9 @@ const CompletionJva: FC = () => {
           textAlign="center"
           mb={6}
         >
-          結果をシェアして日本代表選手サイン入り
+          結果をシェアして日本代表選手
           <br />
-          マイボトルを当てよう！
+          サイン入りタンブラーを当てよう！
         </Heading>
         <Box textAlign={'center'} pb={10}>
           <Image
@@ -101,7 +107,9 @@ const CompletionJva: FC = () => {
             fontWeight={400}
             fontSize={isMobile ? '16px' : ' 18px'}
           >
-            <Text>※複数アカウントの応募は無効</Text>
+            <Text>
+              ※複数アカウントの応募は無効。１つのテーマに回答すれば応募可能。
+            </Text>
             <Text pt={4}>
               抽選で10名の方に日本代表選手のサイン入りタンブラーをプレゼント
             </Text>

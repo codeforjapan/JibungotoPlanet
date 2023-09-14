@@ -65,6 +65,12 @@ const TopCategories: FC = () => {
           質問に答えると
           <br />
           カーボンフットプリント量がわかる
+          <br />
+          <span style={{ fontSize: '12px' }}>
+            ※１つのテーマに回答することで、
+            <br />
+            スマホ壁紙入手と抽選応募参加が可能
+          </span>
         </Text>
         <Grid gridTemplateColumns={{ base: '1fr', md: '1fr 1fr' }} gridGap={3}>
           <Box>
