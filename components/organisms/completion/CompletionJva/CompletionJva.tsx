@@ -42,7 +42,7 @@ const CompletionJva: FC = () => {
             color="#333333"
             py={'13px'}
           >
-            女性日本代表
+            女子日本代表
           </BasicButton>
         </Link>
         <Link href="/campaign/男子日本代表.png" download width={'full'}>
@@ -53,7 +53,7 @@ const CompletionJva: FC = () => {
             color="#333333"
             py={'13px'}
           >
-            男性日本代表
+            男子日本代表
           </BasicButton>
         </Link>
       </Box>
