@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import {
   Box,
   Divider,
@@ -16,7 +15,6 @@ import styles from './CompletionJva.module.scss'
 
 const CompletionJva: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 480px)')
-  const router = useRouter()
 
   return (
     <Box>
@@ -30,9 +28,8 @@ const CompletionJva: FC = () => {
         限定画像をダウンロード！
       </Heading>
       <Box display={'flex'} flexDirection={isMobile ? 'column' : 'inherit'}>
-        {/* TODO: ダウンロードリンクの設定 */}
         <Link
-          href="/apple-touch-icon.png"
+          href="/campaign/女子日本代表.png"
           download
           width={'full'}
           marginBottom={{ base: 4 }}
@@ -48,8 +45,7 @@ const CompletionJva: FC = () => {
             女性日本代表
           </BasicButton>
         </Link>
-        {/* TODO: ダウンロードリンクの設定 */}
-        <Link href="/apple-touch-icon.png" download width={'full'}>
+        <Link href="/campaign/男子日本代表.png" download width={'full'}>
           <BasicButton
             width="100%"
             isNext
