@@ -104,7 +104,7 @@ const CompletionJva: FC = () => {
             fontSize={isMobile ? '16px' : ' 18px'}
           >
             <Text>
-              ※複数アカウントの応募は無効。１つのテーマに回答すれば応募可能。
+              ※複数アカウントの応募は無効。
             </Text>
             <Text>※１つのテーマに回答すれば応募可能。</Text>
             <Text pt={4}>
