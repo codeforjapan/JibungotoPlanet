@@ -23,7 +23,14 @@ import QuestionContainer from 'components/organisms/questions/Container'
 import { termOfServices } from 'constants/termOfService'
 import styles from 'styles/Home.module.scss'
 
-const campaigns: (CampaignItem | never)[] = []
+const campaigns: (CampaignItem | never)[] = [
+  {
+    imgSrc: 'https://jibungoto-planet-images.s3.ap-northeast-1.amazonaws.com/Campaign/CP-jva.png',
+    description: '日本代表選手サイン入りタンブラーがもらえる！' + 'じぶんごとプラネットへの参加はコチラ',
+    alt: 'バレーワールドカップ',
+    url: 'https://jva-kankyo.jibungoto-planet.jp/?show_terms=true'
+  }
+]
 
 const Home: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 480px)')
