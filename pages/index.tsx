@@ -25,6 +25,12 @@ import styles from 'styles/Home.module.scss'
 
 const campaigns: (CampaignItem | never)[] = [
   {
+    imgSrc: 'https://jibungoto-planet-images.s3.ap-northeast-1.amazonaws.com/Campaign/bs-asahi-campaign.png',
+    description: 'BS朝日「地球クライシス」にてキャンペーン実施中！じぶんごとプラネットを活用して気候変動対策に取り組もう',
+    alt: 'BS朝日「地球クライシス」',
+    url: 'https://www.bs-asahi.co.jp/chikyunoashita2023/cp/\n'
+  },
+  {
     imgSrc: 'https://jibungoto-planet-images.s3.ap-northeast-1.amazonaws.com/Campaign/CP-jva.png',
     description: '日本代表選手サイン入りタンブラーがもらえる！' + 'じぶんごとプラネットへの参加はコチラ',
     alt: 'バレーワールドカップ',
