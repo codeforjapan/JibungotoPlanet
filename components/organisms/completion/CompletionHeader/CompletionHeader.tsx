@@ -5,11 +5,12 @@ import Cloud from 'components/atoms/emissions/Cloud'
 import { useEmissionResult } from 'hooks/emission'
 
 type Props = {
-  category: Questions.QuestionCategory
+  category: Questions.QuestionCategory,
+  shareId?: string
 }
 
 const CompletionHeader: FC<Props> = (props) => {
-  const result = useEmissionResult(props.category)
+  const result = useEmissionResult(props.category, props.shareId)
   const total = useMemo(() => {
     const r = result[props.category]
     return r ? Math.round(r.find((m) => m.key === 'total')?.value || 0) : 0
