@@ -18,7 +18,7 @@ const CompletionPage: NextPage<Params> = ({ category, shareId }) => {
 
   return (
     <QuestionContainer category={category}>
-      <CompletionHeader category={category} />
+      <CompletionHeader category={category} shareId={shareId} />
       <CompletionContent category={category} shareId={shareId} />
       <Box pt={14}>
         <BasicButton isNext onClick={() => router.push(process.env.NEXT_PUBLIC_SHARE_URL ?? '/')} width="full">
