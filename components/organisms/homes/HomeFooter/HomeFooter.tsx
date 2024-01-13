@@ -98,8 +98,11 @@ const HomeFooter: FC<Props> = (props) => {
           </Container>
         )}
 
+        <Text fontSize={14} mt={'auto'} pt={{ base: 10, md: 20 }}>
+          本アプリケーションは、日本財団の「グーグル基金」の支援金を受けて一部機能の追加を実施しました
+        </Text>
         <Text fontSize={14} mt={'auto'} pb={{ base: 0, md: 5 }}>
-          © 2023 Code for Japan
+          © Code for Japan
         </Text>
       </Box>
     </Box>
