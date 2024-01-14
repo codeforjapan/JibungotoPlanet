@@ -98,7 +98,7 @@ const HomeFooter: FC<Props> = (props) => {
           </Container>
         )}
 
-        <Text fontSize={14} mt={'auto'} pt={{ base: 10, md: 20 }}>
+        <Text fontSize={14} mt={'auto'} pt={{ base: 10, md: 20 }} mb={6}>
           本アプリケーションは、日本財団の「グーグル基金」の支援金を受けて一部機能の追加を実施しました
         </Text>
         <Text fontSize={14} mt={'auto'} pb={{ base: 0, md: 5 }}>
