@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 import Image from 'next/image'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { Box, Container, Grid, GridItem, Text } from '@chakra-ui/react'
+import {Box, Container, Grid, GridItem, Heading, Link, Text, VStack} from '@chakra-ui/react'
 import classNames from 'classnames'
 import BasicButton from 'components/atoms/buttons/Basic'
 import HomeContentCatchPhrase from 'components/molecules/homes/HomeContentCatchPhrase/HomeContentCatchPhrase'
@@ -97,6 +97,19 @@ const HomeFooter: FC<Props> = (props) => {
             </Grid>
           </Container>
         )}
+
+
+        <Container maxW="container.xl" bg="white" borderRadius="md" boxShadow="md" p={6} mt={10}>
+          <VStack spacing={4} alignItems={'left'}>
+            <Heading size="sm">Web APIを公開しました</Heading>
+            <Text>
+              国立環境研究所が発行している「国内52都市における脱炭素型ライフスタイルの選択肢：カーボンフットプリントと削減効果データブック」のデータをWeb APIで取得できるようになりました。これにより日本の地域別の温室効果ガス排出量（カーボンフットプリント）を活用することができます。<br/>
+              また、アプリ画面上で質問に答えカーボンフットプリント量を計算するのではなく、質問の回答を投げることで1年間、または1ヶ月のフットプリント量をAPIで取得できるようになりました。詳細については
+              <Link textDecoration={"underline"} href={'https://codeforjapan.github.io/JibungotoPlanet-API/swagger/'}>APIドキュメント</Link>
+              をご確認ください。
+            </Text>
+          </VStack>
+        </Container>
 
         <Text fontSize={14} mt={'auto'} pt={{ base: 10, md: 20 }} mb={6}>
           本アプリケーションは、日本財団の「グーグル基金」の支援金を受けて一部機能の追加を実施しました
