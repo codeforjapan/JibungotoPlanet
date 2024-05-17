@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Image from 'next/image'
-import { Flex, Box, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 
 import SocietyContentCatchPhrase from 'components/molecules/society/SocietyContentCatchPhrase/SocietyContentCatchPhrase'
 import SocietyContentTitle from 'components/molecules/society/SocietyContentTitle/SocietyContentTitle'
@@ -10,7 +10,7 @@ import styles from 'styles/Society.module.scss'
 const SocietySummarySection: FC = () => {
   return (
     <Box width={{ md: '80%' }}>
-      <Box background="white">
+      <Box background={'white'}>
         <Text
           fontWeight="bold"
           fontSize="16px"

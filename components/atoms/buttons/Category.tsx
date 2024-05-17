@@ -41,7 +41,7 @@ const CategoryButton: FC<Props> = ({ category, onClick }) => {
 
   return (
     <Button
-      background="white"
+      background={'white'}
       borderWidth="1px"
       borderColor="gray.200"
       height={{ base: '70px', md: '160px' }}

@@ -16,7 +16,7 @@ type Props = {
 
 const iconTooltip: Plugin = {
   id: 'iconTooltip',
-  afterDraw(chart, args, options) {
+  afterDraw(chart, _args, options) {
     const { ctx } = chart
     ctx.save()
     chart.data.datasets.forEach((dataset, i) => {
@@ -92,7 +92,7 @@ const PieChart: FC<Props> = ({
               color: 'white',
               font: { size: 26, weight: 'bold' },
               align: 'center',
-              formatter(value, context) {
+              formatter(value, _context) {
                 if (isNoAnswered) {
                   return '??'
                 } else if (value === 0) {
