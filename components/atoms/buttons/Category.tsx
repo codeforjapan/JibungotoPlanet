@@ -62,10 +62,13 @@ const CategoryButton: FC<Props> = ({ category, onClick }) => {
         >
           <Flex alignItems="center" flexWrap="wrap" justifyContent="center">
             <Image
-              width="40px"
-              height="40px"
+              width={40}
+              height={40}
               src={`/icons/${category}.svg`}
-              alt=""
+              alt={`${category} icons`}
+              style={{
+                height: 'auto'
+              }}
             />
             <Text
               ml={{ base: 3, md: 0 }}

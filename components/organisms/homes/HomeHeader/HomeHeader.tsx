@@ -38,17 +38,21 @@ const HomeHeader: FC<Props> = (props) => {
         <Box height="470px" style={{ position: 'relative' }}>
           <Image
             src={'/home/home-header--sp.png'}
-            layout="fill"
-            objectFit="contain"
+            fill
+            style={{
+              objectFit: 'contain'
+            }}
             alt="home-header"
           />
         </Box>
       ) : (
         <Image
           src={'/home/home-header.png'}
-          layout="fill"
+          fill
+          style={{
+            objectFit: 'cover'
+          }}
           alt="home-header"
-          objectFit="cover"
         />
       )}
     </Box>

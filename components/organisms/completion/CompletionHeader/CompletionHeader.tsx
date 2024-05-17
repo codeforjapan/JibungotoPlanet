@@ -5,7 +5,7 @@ import Cloud from 'components/atoms/emissions/Cloud'
 import { useEmissionResult } from 'hooks/emission'
 
 type Props = {
-  category: Questions.QuestionCategory,
+  category: Questions.QuestionCategory
   shareId?: string
 }
 

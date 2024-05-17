@@ -24,8 +24,10 @@ const HomeChangeSection: FC<Props> = (props) => {
         <Image
           src={'/home/home-content-change.png'}
           alt={'変えるセクション'}
-          objectFit={'contain'}
-          layout={'fill'}
+          fill
+          style={{
+            objectFit: 'contain'
+          }}
         />
       </Box>
       <Box px={{ base: 0, md: 5 }}>

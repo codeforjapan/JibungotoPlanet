@@ -33,7 +33,11 @@ const SocietySummarySection: FC = () => {
         <Image
           src={'/society/society-venn-diagram.png'}
           alt={'自分から動きかける方法'}
-          layout={'responsive'}
+          sizes="100vw"
+          style={{
+            width: '100%',
+            height: 'auto'
+          }}
           width={1200}
           height={872}
         />

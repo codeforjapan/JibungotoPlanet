@@ -1,3 +1,5 @@
+'use client'
+
 import '../styles/globals.css'
 import { useEffect } from 'react'
 import type { AppProps } from 'next/app'

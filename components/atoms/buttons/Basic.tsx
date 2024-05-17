@@ -1,6 +1,5 @@
 import { FC, ReactNode, useMemo } from 'react'
 import { ChevronRightIcon } from '@chakra-ui/icons'
-// eslint-disable-next-line import/named
 import { Box, Button, ButtonProps, Spinner } from '@chakra-ui/react'
 
 type Props = {
