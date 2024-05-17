@@ -29,7 +29,7 @@ const RadioGroups: FC<Props> = ({
       {options.map((option, index) => (
         <Box className={style.radio} key={index} mb={4}>
           <Radio
-            value={option.value}
+            value={option.value.toString()}
             flexDirection="row-reverse"
             justifyContent="space-between"
             display="flex"

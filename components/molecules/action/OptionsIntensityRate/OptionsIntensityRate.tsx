@@ -31,8 +31,8 @@ const rates = [
 const OptionsIntensityRate: FC<Props> = (props) => {
   return (
     <RadioGroup
-      value={props.value}
-      defaultValue={props.defaultValue}
+      value={props.value?.toString()}
+      defaultValue={props.defaultValue?.toString()}
       onChange={(nextValue: string) => {
         props.onChangeRate(props.id, Number(nextValue))
       }}
@@ -41,7 +41,7 @@ const OptionsIntensityRate: FC<Props> = (props) => {
       <VStack alignItems="start" spacing="16px" className={styles.stack}>
         {rates.map((rate, index) => (
           <Radio
-            value={rate.value}
+            value={rate.value.toString()}
             key={index}
             className={styles.radio}
             spacing="10px"
