@@ -27,7 +27,7 @@ const ShareSNS: FC<Props> = ({ line, twitter, facebook }) => {
         {!disable_facebook && (
           <a href={facebook} target="_blank" rel="noreferrer">
             <IconButton
-              background={"transparent"}
+              background={'transparent'}
               _hover={{ backgroud: 'transparent' }}
               aria-label="Share result on Facebook"
               icon={<FacebookIcon />}
@@ -37,7 +37,7 @@ const ShareSNS: FC<Props> = ({ line, twitter, facebook }) => {
         {!disable_twitter && (
           <a href={twitter} target="_blank" rel="noreferrer">
             <IconButton
-              background={"transparent"}
+              background={'transparent'}
               _hover={{ backgroud: 'transparent' }}
               aria-label="Share result on Twitter"
               icon={use_x_logo ? <XIcon /> : <TwitterIcon />}
@@ -48,7 +48,7 @@ const ShareSNS: FC<Props> = ({ line, twitter, facebook }) => {
         {!disable_line && (
           <a href={line} target="_blank" rel="noreferrer">
             <IconButton
-              background={"transparent"}
+              background={'transparent'}
               _hover={{ backgroud: 'transparent' }}
               aria-label="Share result on Line"
               icon={<LineIcon />}
