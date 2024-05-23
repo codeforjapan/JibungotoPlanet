@@ -1,28 +1,30 @@
 const path = require("path");
 
 module.exports = {
-  stories: [
-    "../components/**/*.stories.mdx",
-    "../components/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
+  stories: ["../components/**/*.stories.@(js|jsx|ts|tsx)"],
+
   addons: [
-    "@storybook/storybook-addon-next",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "@chakra-ui/storybook-addon"
+    "@chakra-ui/storybook-addon",
   ],
-  framework: "@storybook/react",
-  core: {
-    "builder": "@storybook/builder-webpack5"
+
+  framework: {
+    name: "@storybook/nextjs",
+    options: {}
   },
+
   typescript: {
     reactDocgen: false,
   },
+
   features: {
     emotionAlias: false,
   },
+
   staticDirs: ['../public', '../styles'],
+
   webpackFinal: async (config) => {
     // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
     // You can change the configuration based on that.
@@ -43,4 +45,6 @@ module.exports = {
     // Return the altered config
     return config;
   },
+
+  docs: {}
 }
