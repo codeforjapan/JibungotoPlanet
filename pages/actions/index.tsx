@@ -22,7 +22,7 @@ const ActionsPage: NextPage = () => {
 
   const twitterShareLink = useMemo(() => {
     return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}&text=わたしの脱炭素アクション${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
-  }, [profile])
+  }, [additional_hashtag, additional_message, profile?.shareId])
 
   const facebookShareLink = useMemo(() => {
     return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}`

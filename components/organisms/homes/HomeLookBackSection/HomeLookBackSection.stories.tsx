@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/named
+// @ts-ignore
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react'
 import HomeLookBackSection from './HomeLookBackSection'
 

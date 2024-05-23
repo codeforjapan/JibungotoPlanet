@@ -9,14 +9,12 @@
       width: 32px;
       height: 32px;
       color: black;
-      background-color: #99D9EF !important;
-
+      background-color: #99d9ef !important;
     }
 
     .radio[data-checked]::before {
       width: 12px;
       height: 12px;
-
     }
   }
 }

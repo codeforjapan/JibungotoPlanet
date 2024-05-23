@@ -5,7 +5,6 @@ import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { Pie } from 'react-chartjs-2'
 import { roundCo2Amount } from 'utils/calculate'
 import type { Plugin } from 'chart.js'
-Chart.register(ArcElement)
 
 type Props = {
   mobility?: number
@@ -15,6 +14,49 @@ type Props = {
   onChartClick: (category: Questions.QuestionCategory) => void
 }
 
+const iconTooltip: Plugin = {
+  id: 'iconTooltip',
+  afterDraw(chart, _args, options) {
+    const { ctx } = chart
+    ctx.save()
+    chart.data.datasets.forEach((dataset, i) => {
+      chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
+        const canvasWidth = Number(
+          document.getElementById('piechart')?.clientWidth
+        )
+        const categoryEmission = Number(dataset.data[index])
+        if (categoryEmission > 0) {
+          const img = new Image()
+          switch (index) {
+            case 0:
+              img.src = '/icons/mobilitytooltip.png'
+              break
+            case 1:
+              img.src = '/icons/housingtooltip.png'
+              break
+            case 2:
+              img.src = '/icons/foodtooltip.png'
+              break
+            case 3:
+              img.src = '/icons/othertooltip.png'
+              break
+            default:
+              break
+          }
+          const { x, y } = datapoint.tooltipPosition(true)
+          const tan = (y - canvasWidth / 2) / (x - canvasWidth / 2)
+          const cy = tan * (x - canvasWidth / 2) * 1.85 + canvasWidth / 2 - 35
+          const cx = (x - canvasWidth / 2) * 1.85 + canvasWidth / 2 - 35
+
+          ctx.drawImage(img, cx, cy, 70, 70)
+        }
+      })
+    })
+  }
+}
+
+Chart.register([ArcElement, ChartDataLabels, iconTooltip])
+
 const PieChart: FC<Props> = ({
   mobility,
   food,
@@ -22,47 +64,6 @@ const PieChart: FC<Props> = ({
   other,
   onChartClick
 }) => {
-  const iconTooltip: Plugin = {
-    id: 'iconTooltip',
-    afterDraw(chart, args, options) {
-      const { ctx } = chart
-      ctx.save()
-      chart.data.datasets.forEach((dataset, i) => {
-        chart.getDatasetMeta(i).data.forEach((datapoint, index) => {
-          const canvasWidth = Number(
-            document.getElementById('piechart')?.clientWidth
-          )
-          const categoryEmission = Number(dataset.data[index])
-          if (categoryEmission > 0) {
-            const img = new Image()
-            switch (index) {
-              case 0:
-                img.src = '/icons/mobilitytooltip.png'
-                break
-              case 1:
-                img.src = '/icons/housingtooltip.png'
-                break
-              case 2:
-                img.src = '/icons/foodtooltip.png'
-                break
-              case 3:
-                img.src = '/icons/othertooltip.png'
-                break
-              default:
-                break
-            }
-            const { x, y } = datapoint.tooltipPosition()
-            const tan = (y - canvasWidth / 2) / (x - canvasWidth / 2)
-            const cy = tan * (x - canvasWidth / 2) * 1.85 + canvasWidth / 2 - 35
-            const cx = (x - canvasWidth / 2) * 1.85 + canvasWidth / 2 - 35
-
-            ctx.drawImage(img, cx, cy, 70, 70)
-          }
-        })
-      })
-    }
-  }
-
   const isNoAnswered = useMemo(() => {
     return mobility === 0 && housing === 0 && food === 0 && other === 0
   }, [mobility, housing, food, other])
@@ -84,7 +85,6 @@ const PieChart: FC<Props> = ({
     <Box maxWidth="450" mx="auto">
       <Pie
         id="piechart"
-        plugins={[ChartDataLabels, iconTooltip]}
         options={{
           plugins: {
             tooltip: { enabled: false },
@@ -92,12 +92,12 @@ const PieChart: FC<Props> = ({
               color: 'white',
               font: { size: 26, weight: 'bold' },
               align: 'center',
-              formatter(value, context) {
+              formatter(value, _context) {
                 if (isNoAnswered) {
                   return '??'
                 } else if (value === 0) {
                   return ''
-                } else if (value !== NaN) {
+                } else if (!Number.isNaN(value)) {
                   return Math.round(Number(value)).toLocaleString()
                 } else {
                   return '??'

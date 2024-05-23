@@ -14,7 +14,7 @@ type Props = {
   category: Questions.QuestionCategory
 }
 
-export const MyResult: FC<Props> = ({ category }) => {
+const MyResult: FC<Props> = ({ category }) => {
   const router = useRouter()
   const result = useEmissionResult(category)
   const { profile } = useProfile()

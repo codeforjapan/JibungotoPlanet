@@ -1,6 +1,6 @@
 import { FC, ReactNode, useMemo } from 'react'
 import Image from 'next/image'
-import { Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 
 type Props = {
   category?: Questions.QuestionCategory
@@ -39,7 +39,14 @@ const CategoryTitle: FC<Props> = ({ category, title }) => {
       pt={3}
     >
       {category && (
-        <Image src={`/icons/${category}.svg`} width="70px" height="70px" />
+        <Flex alignItems="center" flexWrap="wrap" justifyContent="center">
+          <Image
+            src={`/icons/${category}.svg`}
+            width={70}
+            height={70}
+            alt={`${category} icons`}
+          />
+        </Flex>
       )}
       <p>{text}</p>
     </Box>

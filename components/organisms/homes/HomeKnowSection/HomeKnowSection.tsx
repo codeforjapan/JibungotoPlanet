@@ -26,8 +26,10 @@ const HomeKnowSection: FC<Props> = (props) => {
         <Image
           src={'/home/home-content-know.png'}
           alt={'知るセクション'}
-          objectFit={'contain'}
-          layout={'fill'}
+          fill
+          style={{
+            objectFit: 'contain'
+          }}
         />
       </Box>
       <Box px={{ base: 0, md: 5 }}>

@@ -24,8 +24,10 @@ const HomeLookBackSection: FC<Props> = (props) => {
             <Image
               src={'/home/home-content-look-back.png'}
               alt={'見直すセクション'}
-              objectFit={'contain'}
-              layout={'fill'}
+              fill
+              style={{
+                objectFit: 'contain'
+              }}
             />
           </Box>
         )}
@@ -53,8 +55,10 @@ const HomeLookBackSection: FC<Props> = (props) => {
           <Image
             src={'/home/home-content-look-back.png'}
             alt={'見直すセクション'}
-            objectFit={'contain'}
-            layout={'fill'}
+            fill
+            style={{
+              objectFit: 'contain'
+            }}
           />
         </Box>
       )}
