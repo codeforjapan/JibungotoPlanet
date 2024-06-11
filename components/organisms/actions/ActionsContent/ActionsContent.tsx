@@ -1,13 +1,18 @@
 import { FC, useMemo } from 'react'
-import { router } from 'next/client'
+import router from 'next/router'
 import { Box, Heading, Spinner } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import CompletionItem from 'components/molecules/completion/CompletionActionItem/CompletionActionItem'
 import { useActions } from 'hooks/actions'
-import { useEmissionResult } from '../../../../hooks/emission'
 
 type Props = {
   shareId?: string
+  emission: {
+    mobility: { key: string; value: number }[]
+    food: { key: string; value: number }[]
+    other: { key: string; value: number }[]
+    housing: { key: string; value: number }[]
+  }
 }
 
 const categories: Questions.QuestionCategory[] = [
@@ -34,23 +39,22 @@ const getCategoryTitle = (category: Questions.QuestionCategory) => {
 
 const ActionsContent: FC<Props> = (props) => {
   const actions = useActions(props.shareId)
-  const emission = useEmissionResult('all')
 
   const mobility = useMemo(() => {
-    return emission.mobility.find((f) => f.key === 'total')?.value
-  }, [emission])
+    return props.emission.mobility.find((f) => f.key === 'total')?.value
+  }, [props.emission])
 
   const food = useMemo(() => {
-    return emission.food.find((f) => f.key === 'total')?.value
-  }, [emission])
+    return props.emission.food.find((f) => f.key === 'total')?.value
+  }, [props.emission])
 
   const housing = useMemo(() => {
-    return emission.housing.find((f) => f.key === 'total')?.value
-  }, [emission])
+    return props.emission.housing.find((f) => f.key === 'total')?.value
+  }, [props.emission])
 
   const other = useMemo(() => {
-    return emission.other.find((f) => f.key === 'total')?.value
-  }, [emission])
+    return props.emission.other.find((f) => f.key === 'total')?.value
+  }, [props.emission])
 
   const getSelectedActions = (category: Questions.QuestionCategory) => {
     let selectedActions: Actions.Action[] = []

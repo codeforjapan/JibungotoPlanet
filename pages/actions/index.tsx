@@ -6,10 +6,10 @@ import ShareSNS from 'components/molecules/result/ShareSNS/ShareSNS'
 import ActionsContent from 'components/organisms/actions/ActionsContent/ActionsContent'
 import CompletionTransitions from 'components/organisms/completion/CompletionTransitions/CompletionTransitions'
 import QuestionContainer from 'components/organisms/questions/Container'
-import { useProfile } from 'hooks/profile'
+import { useEmissionResult } from 'hooks/emission'
 
 const ActionsPage: NextPage = () => {
-  const { profile } = useProfile()
+  const emission = useEmissionResult('all')
 
   const additional_hashtag = process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG
     ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}`
@@ -21,20 +21,20 @@ const ActionsPage: NextPage = () => {
     : ''
 
   const twitterShareLink = useMemo(() => {
-    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}&text=わたしの脱炭素アクション${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
-  }, [additional_hashtag, additional_message, profile?.shareId])
+    return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${emission.profile?.shareId}&text=わたしの脱炭素アクション${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
+  }, [additional_hashtag, additional_message, emission.profile?.shareId])
 
   const facebookShareLink = useMemo(() => {
-    return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}`
-  }, [profile])
+    return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${emission.profile?.shareId}`
+  }, [emission.profile])
 
   const lineShareLink = useMemo(() => {
-    return `https://line.me/R/msg/text/?${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${profile?.shareId}`
-  }, [profile])
+    return `https://line.me/R/msg/text/?${process.env.NEXT_PUBLIC_CLIENT_URL}/actions/${emission.profile?.shareId}`
+  }, [emission.profile])
 
   return (
     <QuestionContainer title="あなたの脱炭素アクション">
-      <ActionsContent />
+      <ActionsContent emission={emission} />
       <ShareSNS
         line={lineShareLink}
         twitter={twitterShareLink}

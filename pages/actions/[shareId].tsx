@@ -6,6 +6,7 @@ import BasicButton from 'components/atoms/buttons/Basic'
 import DatasourceFooter from 'components/DatasourceFooter'
 import ActionsContent from 'components/organisms/actions/ActionsContent/ActionsContent'
 import QuestionContainer from 'components/organisms/questions/Container'
+import {useEmissionResult} from "../../hooks/emission";
 
 interface Params extends ParsedUrlQuery {
   shareId: string
@@ -13,10 +14,11 @@ interface Params extends ParsedUrlQuery {
 
 const ActionsSharePage: NextPage<Params> = ({ shareId }) => {
   const router = useRouter()
+  const emission = useEmissionResult('all', shareId)
 
   return (
     <QuestionContainer title="わたしの脱炭素アクション">
-      <ActionsContent shareId={shareId} />
+      <ActionsContent shareId={shareId} emission={emission} />
       <Box pt={8}>
         <BasicButton
           isNext
