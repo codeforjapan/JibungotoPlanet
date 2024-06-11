@@ -6,7 +6,7 @@ import BasicButton from 'components/atoms/buttons/Basic'
 import DatasourceFooter from 'components/DatasourceFooter'
 import ActionsContent from 'components/organisms/actions/ActionsContent/ActionsContent'
 import QuestionContainer from 'components/organisms/questions/Container'
-import {useEmissionResult} from "../../hooks/emission";
+import { useEmissionResult } from '../../hooks/emission'
 
 interface Params extends ParsedUrlQuery {
   shareId: string
