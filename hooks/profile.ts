@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import {useSearchParams} from "next/navigation";
 import { useRecoilState } from 'recoil'
 import { PROFILE_ID, USERINFO_SKIP } from 'constants/localstorageKeys'
 import { profileAtom, sharedProfileAtom } from 'store/profile'
@@ -7,6 +8,7 @@ import api from '../utils/api'
 export const useProfile = () => {
   const [profile, setProfile] = useRecoilState(profileAtom)
   const [userInfoDone, setUserInfoDone] = useState(false)
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -14,7 +16,14 @@ export const useProfile = () => {
       try {
         const profileId = localStorage.getItem(PROFILE_ID)
         if (!profileId) {
-          const { data } = await api.post('/profiles', { estimate: true })
+          const { data } = await api.post('/profiles', {
+            estimate: true,
+            additional_info: {
+              monitorId: searchParams.get('monitorId'),
+              ResponseID: searchParams.get('ResponseID'),
+              enqId: searchParams.get('enqId')
+            }
+          })
           setProfile(data)
           localStorage.setItem(PROFILE_ID, data.id)
         } else {

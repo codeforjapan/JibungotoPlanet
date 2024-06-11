@@ -20,6 +20,19 @@ const SocietySummarySection: FC = () => {
           じぶんごとプラネット
         </Text>
       </Box>
+      <Box
+        fontWeight="bold"
+        textAlign="center"
+        textColor="red"
+        fontSize={16}
+        mt={4}
+        mb={4}
+      >
+        この画面をよくご覧になってください。
+        <br />
+        アプリの利用を終えるには、「アンケートに戻る」を選択してください。
+        <br />
+      </Box>
       <Box mt={10}>
         <SocietyContentTitle className={styles['society__section__item-title']}>
           じぶんから働きかける

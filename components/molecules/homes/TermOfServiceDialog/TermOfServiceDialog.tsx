@@ -1,4 +1,5 @@
 import { FC, Fragment, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { Box, Checkbox, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
@@ -19,6 +20,7 @@ const serviceName = 'じぶんごとプラネット'
 const TermOfServiceDialog: FC<Props> = (props) => {
   const router = useRouter()
   const [checked, setChecked] = useState<boolean>(false)
+  const searchParams = useSearchParams()
 
   return (
     <ModalBase
@@ -73,7 +75,16 @@ const TermOfServiceDialog: FC<Props> = (props) => {
             width="70%"
             textAlign={'center'}
             disabled={!checked}
-            onClick={() => router.push('/top')}
+            onClick={() =>
+              router.push({
+                pathname: '/top',
+                query: {
+                  monitorId: searchParams.get('monitorId'),
+                  ResponseID: searchParams.get('ResponseID'),
+                  enqId: searchParams.get('enqId')
+                }
+              })
+            }
           >
             サービスを開始する
           </BasicButton>

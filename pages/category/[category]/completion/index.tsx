@@ -40,6 +40,11 @@ const CompletionPage: NextPage<Params> = ({ category }) => {
 
   return (
     <QuestionContainer category={category}>
+      <Box fontWeight="bold" textAlign="center" textColor="red" fontSize={16} mt={4} mb={4}>
+          「質問カテゴリーへ戻る」を選択して、
+          <br />
+          アプリの利用を続けてください。
+      </Box>
       <CompletionHeader category={category} />
       <CompletionContent category={category} />
       <ShareSNS

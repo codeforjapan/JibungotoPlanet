@@ -15,6 +15,7 @@ declare namespace Profile {
     gender?: string
     age?: string
     region?: string
+    additional_info?: any
   }
 
   interface EmissionItem {

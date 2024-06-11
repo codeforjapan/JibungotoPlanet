@@ -1,4 +1,4 @@
-import { FC, useMemo, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Box, Grid, Text, useDisclosure } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
@@ -12,6 +12,7 @@ import { useEmissionResult } from 'hooks/emission'
 const TopCategories: FC = () => {
   const router = useRouter()
   const emission = useEmissionResult('all')
+  const [emissionCount, setEmissionCount] = useState(0)
 
   const { isOpen, onClose, onOpen } = useDisclosure()
   const [modalCategory, setModalCategory] =
@@ -43,14 +44,81 @@ const TopCategories: FC = () => {
     }
   }, [emission])
 
+  useEffect(() => {
+    let count = 0
+    if (food) count += 1
+    if (mobility) count += 1
+    if (housing) count += 1
+    if (other) count += 1
+    console.log(count)
+    setEmissionCount(count)
+  }, [food, mobility, housing, other])
+
   const selectCategory = (category: Questions.QuestionCategory) => {
     setModalCategory(category)
     onOpen()
   }
 
+  const EmissionCountComponent: FC = () => {
+    if (emissionCount >= 2) {
+      return (
+        <Text
+          mt={5}
+          mb={3}
+          fontWeight="bold"
+          textAlign="center"
+          textColor="red"
+          fontSize={16}
+        >
+          ほかの分野についても、
+          <br />
+          よろしければご利用ください。
+          <br />
+          アプリの利用を終了するには
+          <br />
+          「脱炭素アクションをみる」
+          <br />
+          を選んでください。
+        </Text>
+      )
+    } else if (emissionCount == 1) {
+      return (
+        <Text
+          mt={5}
+          mb={3}
+          fontWeight="bold"
+          textAlign="center"
+          textColor="red"
+          fontSize={16}
+        >
+          2つめの分野を選んで、
+          <br />
+          アプリの利用を続けてください。
+        </Text>
+      )
+    } else {
+      return (
+        <Text
+          mt={5}
+          mb={3}
+          fontWeight="bold"
+          textAlign="center"
+          textColor="red"
+          fontSize={16}
+        >
+          1つめの分野を選んで、
+          <br />
+          アプリの利用を始めてください。
+        </Text>
+      )
+    }
+  }
+
   return (
     <>
       <Box mt={5}>
+        <EmissionCountComponent />
+
         <Cloud amount={totalEmission} />
         <Box pb={3}>
           <PieChart
@@ -109,18 +177,6 @@ const TopCategories: FC = () => {
               width="full"
             >
               脱炭素アクションをみる
-            </BasicButton>
-          </Box>
-          <Box mt={3}>
-            <BasicButton
-              isNext
-              onClick={() => router.push('/society')}
-              width="full"
-              variant="outline"
-              color="brandPrimary.400"
-              border="2px solid #009ACE!important"
-            >
-              社会へ働きかけるには
             </BasicButton>
           </Box>
         </>

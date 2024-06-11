@@ -9,6 +9,7 @@ import SocietyContentCategory from 'components/molecules/society/SocietyContentC
 import SocietyContentCategoryItem from 'components/molecules/society/SocietyContentCategoryItem/SocietyContentCategoryItem'
 import SocietyContentTitle from 'components/molecules/society/SocietyContentTitle/SocietyContentTitle'
 
+import { useProfile } from 'hooks/profile'
 import styles from 'styles/Society.module.scss'
 
 type Props = {
@@ -18,10 +19,7 @@ type Props = {
 const SocietyDetailedSection: FC<Props> = (props) => {
   // Uncomment the below lines to have the event handler associated to the button
   const router = useRouter()
-
-  const handleButtonClick = () => {
-    router.back()
-  }
+  const { profile } = useProfile()
 
   return (
     <Flex direction={'column'} alignItems="center" width={{ md: '80%' }}>
@@ -149,9 +147,20 @@ const SocietyDetailedSection: FC<Props> = (props) => {
       </Grid>
       <BasicButton
         width={'min(400px, 80%)'}
-        onClick={() => handleButtonClick()}
+        onClick={() =>
+          router.push({
+            pathname: 'https://nies.qualtrics.com/jfe/form/SV_agamBh0GkgP6cho',
+            query: {
+              ResponseID: profile?.additional_info.ResponseID,
+              monitorId: profile?.additional_info.monitorId,
+              enqId: profile?.additional_info.enqId,
+              appComp: 1,
+              shareId: profile?.shareId
+            }
+          })
+        }
       >
-        戻る
+        アンケートに戻る
       </BasicButton>
       <Text fontSize={14} mt={'5em'} pb={5}>
         © 2023 Code for Japan

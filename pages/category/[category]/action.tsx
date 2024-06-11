@@ -93,6 +93,11 @@ const ActionPage: NextPage<Params> = ({ category }) => {
     <QuestionContainer category={category}>
       <Box padding="40px 12px 0 12px">
         <ActionHeader actions={categorizeActions} category={category} />
+        <Box fontWeight="bold" textAlign="center" textColor="red" fontSize={16} mt={4} mb={4}>
+          あなたの暮らしや考え方にあった
+          <br />
+          脱炭素アクションを1つ以上、いくつでも選んでください。
+        </Box>
         {loading ? (
           <Box
             py={10}
