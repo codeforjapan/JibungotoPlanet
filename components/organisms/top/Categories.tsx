@@ -50,7 +50,6 @@ const TopCategories: FC = () => {
     if (mobility) count += 1
     if (housing) count += 1
     if (other) count += 1
-    console.log(count)
     setEmissionCount(count)
   }, [food, mobility, housing, other])
 
@@ -168,7 +167,7 @@ const TopCategories: FC = () => {
         </Text>
       )}
 
-      {housing || food || mobility || other ? (
+      {emissionCount >= 2 ? (
         <>
           <Box mt={8}>
             <BasicButton
