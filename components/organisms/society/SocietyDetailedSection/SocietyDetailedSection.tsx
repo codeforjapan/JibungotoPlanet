@@ -149,11 +149,13 @@ const SocietyDetailedSection: FC<Props> = (props) => {
         width={'min(400px, 80%)'}
         onClick={() =>
           router.push({
-            pathname: 'https://nies.qualtrics.com/jfe/form/SV_agamBh0GkgP6cho',
+            pathname: 'https://nies.qualtrics.com/jfe/form/SV_d0Yk8zdhHeR8yhM',
             query: {
               ResponseID: profile?.additional_info.ResponseID,
               monitorId: profile?.additional_info.monitorId,
               enqId: profile?.additional_info.enqId,
+              Q_R: profile?.additional_info.ResponseID,
+              Q_R_DEL: 1,
               appComp: 1,
               shareId: profile?.shareId
             }
