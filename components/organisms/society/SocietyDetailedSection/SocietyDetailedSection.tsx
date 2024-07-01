@@ -155,7 +155,6 @@ const SocietyDetailedSection: FC<Props> = (props) => {
               monitorId: profile?.additional_info.monitorId,
               enqId: profile?.additional_info.enqId,
               Q_R: profile?.additional_info.ResponseID,
-              Q_R_DEL: 1,
               appComp: 1,
               shareId: profile?.shareId
             }
