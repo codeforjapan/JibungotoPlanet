@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react'
 import Link from 'next/link'
-import { Box, Text } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import Average from 'components/atoms/emissions/Average'
 import Cloud from 'components/atoms/emissions/Cloud'

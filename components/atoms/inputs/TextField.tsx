@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react'
-import { Box, Flex, Grid, Heading, Input, Text } from '@chakra-ui/react'
+import { Box, Grid, Input, Text } from '@chakra-ui/react'
 
 type Props = {
   type: 'text' | 'numeric'
