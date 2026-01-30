@@ -26,7 +26,7 @@ const TextField: FC<Props> = ({
       default:
         return
     }
-  }, [])
+  }, [type])
 
   const handleOnChange = (v: string) => {
     switch (type) {

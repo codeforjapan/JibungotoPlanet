@@ -47,13 +47,13 @@ const UserinfoForm: FC = () => {
         console.log(error)
       }
     },
-    [category, profile]
+    [category, profile, router, setProfile]
   )
 
   const skip = useCallback(() => {
     localStorage.setItem(USERINFO_SKIP, 'true')
     router.push(`/category/${category}/result`)
-  }, [category])
+  }, [category, router])
 
   return (
     <Box pt={5}>

@@ -29,17 +29,15 @@ const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
     return Number(selectedCategoryResult?.find((r) => r.key === 'total')?.value)
   }, [selectedCategoryResult])
 
-  const EstimatedResult: FC = () => {
-    return (
-      <>
-        <Cloud category={modalCategory} amount={Math.round(totalEmission)} />
-        <Average category={modalCategory} amount={totalEmission} />
-      </>
-    )
-  }
-
   const categoryQuestionDesc = useMemo(() => {
-    if (isEstimated) return <EstimatedResult />
+    if (isEstimated) {
+      return (
+        <>
+          <Cloud category={modalCategory} amount={Math.round(totalEmission)} />
+          <Average category={modalCategory} amount={totalEmission} />
+        </>
+      )
+    }
 
     switch (modalCategory) {
       case 'food':
@@ -82,7 +80,7 @@ const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
       default:
         return ''
     }
-  }, [modalCategory, EstimatedResult])
+  }, [modalCategory, isEstimated, totalEmission])
 
   const linkPath = useMemo(() => {
     switch (modalCategory) {
