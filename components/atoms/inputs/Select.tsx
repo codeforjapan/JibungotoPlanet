@@ -35,6 +35,8 @@ const SelectBox: FC<Props> = ({
       bg="white"
       size="lg"
       fontSize="16px"
+      w="full"
+      cursor="pointer"
       onChange={(e) => handleChange(e.target.value)}
       defaultValue={defaultValue}
       disabled={disabled}

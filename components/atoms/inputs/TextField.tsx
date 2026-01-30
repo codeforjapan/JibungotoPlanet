@@ -52,10 +52,11 @@ const TextField: FC<Props> = ({
           type="text"
           inputMode={type}
           onChange={(e) => handleOnChange(e.target.value)}
-          value={value}
+          value={value ?? ''}
           placeholder={placeholder}
           disabled={disabled}
           pattern={inputPattern}
+          w="full"
         />
         <Text pl={3} wordBreak="keep-all">
           {unitText}

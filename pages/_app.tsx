@@ -3,10 +3,15 @@ import { useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 import TagManager from 'react-gtm-module'
-import { RecoilRoot } from 'recoil'
+import { RecoilRoot, RecoilEnv } from 'recoil'
 import HeadElm from 'components/HeadElm'
 import Cookie from 'components/molecules/homes/Cookie/Cookie'
 import { chakraTheme } from 'utils/chakratheme'
+
+// Suppress Recoil duplicate atom key warning in development (HMR)
+if (process.env.NODE_ENV === 'development') {
+  RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {

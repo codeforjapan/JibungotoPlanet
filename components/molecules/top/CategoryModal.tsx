@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react'
 import Link from 'next/link'
-import { Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import BasicButton from 'components/atoms/buttons/Basic'
 import Average from 'components/atoms/emissions/Average'
 import Cloud from 'components/atoms/emissions/Cloud'
@@ -102,7 +102,7 @@ const CategoryModal: FC<Props> = ({ isOpen, onClose, modalCategory }) => {
   return (
     <ModalBase isOpen={isOpen} onClose={onClose}>
       <CategoryTitle category={modalCategory} />
-      <Text my={6}>{categoryQuestionDesc}</Text>
+      <Box my={6}>{categoryQuestionDesc}</Box>
       <Link href={linkPath}>
         <BasicButton width="full">
           {isEstimated ? 'もう一度やり直す' : '質問をはじめる'}

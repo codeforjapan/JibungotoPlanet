@@ -44,6 +44,7 @@ const iconTooltip: Plugin = {
               break
           }
           const { x, y } = datapoint.tooltipPosition(true)
+          if (x === null || y === null) return
           const tan = (y - canvasWidth / 2) / (x - canvasWidth / 2)
           const cy = tan * (x - canvasWidth / 2) * 1.85 + canvasWidth / 2 - 35
           const cx = (x - canvasWidth / 2) * 1.85 + canvasWidth / 2 - 35
