@@ -1,4 +1,4 @@
-@import 'styles/vars';
+@use 'styles/vars' as *;
 
 .completion-action-item {
   &__amount-container {

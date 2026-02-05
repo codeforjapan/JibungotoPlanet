@@ -6,7 +6,14 @@
     "plugin:import/recommended",
     "plugin:import/warnings"
   ],
+  "settings": {
+    "import/resolver": {
+      "typescript": true,
+      "node": true
+    }
+  },
   "rules": {
+    "import/named": "off",
     "import/order": [
       "error",
       {

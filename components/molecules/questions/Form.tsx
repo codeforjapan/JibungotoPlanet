@@ -90,6 +90,19 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
     }
   }, [questionPage.category])
 
+  const nextQuestionUid = useCallback(
+    (data: { [key: string]: string | number }) => {
+      let questionValue = toBoolean(data[questionKeys[0]])
+      const answeredNextPageUid = questionPage.questions[0].options?.find(
+        (qo) => qo.value === questionValue
+      )
+      const uid =
+        answeredNextPageUid?.nextPageUid || questionPage.defaultNextPageUid
+      return uid
+    },
+    [questionKeys, questionPage]
+  )
+
   const sendData = useCallback(
     async (data: any) => {
       let nextPageUid = nextQuestionUid(data)
@@ -106,18 +119,8 @@ const QuestionForm: FC<Props> = ({ questionPage }) => {
         console.log(error)
       }
     },
-    [profile, questionPage]
+    [profile, questionPage, nextQuestionUid, sendDataParamsKey, setProfile]
   )
-
-  const nextQuestionUid = (data: { [key: string]: string | number }) => {
-    let questionValue = toBoolean(data[questionKeys[0]])
-    const answeredNextPageUid = questionPage.questions[0].options?.find(
-      (qo) => qo.value === questionValue
-    )
-    const uid =
-      answeredNextPageUid?.nextPageUid || questionPage.defaultNextPageUid
-    return uid
-  }
 
   const skipQuestion = async () => {
     const nextPageUid = questionPage.skipToPageUid
