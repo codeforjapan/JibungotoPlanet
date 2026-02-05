@@ -1,4 +1,4 @@
-@import 'styles/vars';
+@use 'styles/vars' as *;
 
 .action-complete-btn {
   position: fixed;

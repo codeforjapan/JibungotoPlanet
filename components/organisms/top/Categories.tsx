@@ -41,7 +41,7 @@ const TopCategories: FC = () => {
         Number(food) + Number(mobility) + Number(housing) + Number(other)
       )
     }
-  }, [emission])
+  }, [food, mobility, housing, other])
 
   const selectCategory = (category: Questions.QuestionCategory) => {
     setModalCategory(category)

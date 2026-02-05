@@ -21,7 +21,7 @@ const RadioGroups: FC<Props> = ({
   }
 
   const convertedValue = useMemo(() => {
-    return String(value)
+    return value !== undefined ? String(value) : undefined
   }, [value])
 
   return (
@@ -35,6 +35,8 @@ const RadioGroups: FC<Props> = ({
             display="flex"
             size="lg"
             disabled={disabled}
+            w="full"
+            cursor="pointer"
           >
             <Text fontSize="18px" fontWeight="bold" marginLeft="-0.5rem">
               {option.label}

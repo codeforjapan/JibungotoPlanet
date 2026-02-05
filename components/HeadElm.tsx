@@ -21,7 +21,7 @@ const HeadElm: FC = () => {
         ` https://www.jibungoto-planet.jp/ogp.jpg`
       )
     }
-  }, [])
+  }, [asPath])
 
   return (
     <Head>

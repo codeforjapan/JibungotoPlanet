@@ -26,12 +26,12 @@ const SharedResult: NextPage<Params> = ({ category, shareId }) => {
           .filter((v) => v.key !== 'total' && v.value !== 0)
           .sort((a, b) => b.value - a.value)
       : []
-  }, [result])
+  }, [result, category])
 
   const total = useMemo(() => {
     const r = result[category]
     return r ? Math.round(r.find((m) => m.key === 'total')?.value || 0) : 0
-  }, [result])
+  }, [result, category])
 
   return (
     <>

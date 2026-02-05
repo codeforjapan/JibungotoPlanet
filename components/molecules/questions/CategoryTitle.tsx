@@ -28,7 +28,7 @@ const CategoryTitle: FC<Props> = ({ category, title }) => {
           </>
         )
     }
-  }, [category])
+  }, [category, title])
 
   return (
     <Box
