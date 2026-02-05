@@ -26,12 +26,12 @@ const MyResult: FC<Props> = ({ category }) => {
           .filter((v) => v.key !== 'total' && v.value !== 0)
           .sort((a, b) => b.value - a.value)
       : []
-  }, [result])
+  }, [result, category])
 
   const total = useMemo(() => {
     const r = result[category]
     return r ? Math.round(r.find((m) => m.key === 'total')?.value || 0) : 0
-  }, [result])
+  }, [result, category])
 
   const additional_hashtag = process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG
     ? `,${process.env.NEXT_PUBLIC_TWITTER_SHARE_TAG}`
@@ -44,7 +44,7 @@ const MyResult: FC<Props> = ({ category }) => {
 
   const twitterShareLink = useMemo(() => {
     return `https://twitter.com/share?url=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}&text=わたしのカーボンフットプリント量${additional_message}&hashtags=じぶんごとプラネット${additional_hashtag}`
-  }, [profile, category])
+  }, [profile, category, additional_message, additional_hashtag])
 
   const facebookShareLink = useMemo(() => {
     return `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_CLIENT_URL}/category/${category}/result/${profile?.shareId}`

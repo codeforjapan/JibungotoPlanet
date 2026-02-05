@@ -37,7 +37,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
     const actionIntensityRates = categorizeActions.map(
       (action) => action.actionIntensityRate
     )
-    if (profile || !actionIntensityRates.includes(null)) {
+    if (profile) {
       const newProfile = Object.assign({}, profile)
       // @ts-ignore
       newProfile.actionIntensityRates = actionIntensityRates
@@ -143,9 +143,7 @@ const ActionPage: NextPage<Params> = ({ category }) => {
         </Box>
         <ActionCompleteBtn
           onClick={completeActions}
-          disabled={
-            !categorizeActions.find((action) => action.checked) || loading
-          }
+          disabled={loading}
         />
       </Box>
     </QuestionContainer>

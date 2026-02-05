@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react'
-import { Box, Flex, Grid, Heading, Input, Text } from '@chakra-ui/react'
+import { Box, Grid, Input, Text } from '@chakra-ui/react'
 
 type Props = {
   type: 'text' | 'numeric'
@@ -26,7 +26,7 @@ const TextField: FC<Props> = ({
       default:
         return
     }
-  }, [])
+  }, [type])
 
   const handleOnChange = (v: string) => {
     switch (type) {
@@ -52,10 +52,11 @@ const TextField: FC<Props> = ({
           type="text"
           inputMode={type}
           onChange={(e) => handleOnChange(e.target.value)}
-          value={value}
+          value={value ?? ''}
           placeholder={placeholder}
           disabled={disabled}
           pattern={inputPattern}
+          w="full"
         />
         <Text pl={3} wordBreak="keep-all">
           {unitText}

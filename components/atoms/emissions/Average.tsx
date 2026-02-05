@@ -8,13 +8,14 @@ type Props = {
   amount: number
 }
 
+const japaneseAverage = {
+  food: 1728,
+  housing: 2147,
+  mobility: 1379,
+  other: 1862
+}
+
 const Average: FC<Props> = ({ category, amount }) => {
-  const japaneseAverage = {
-    food: 1728,
-    housing: 2147,
-    mobility: 1379,
-    other: 1862
-  }
   const compareAverage = useMemo(() => {
     const diff = Math.round((amount / japaneseAverage[category]) * 100 - 100)
     const isOver = diff >= 0

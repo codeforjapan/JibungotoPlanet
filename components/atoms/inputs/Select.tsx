@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react'
-import { Box, Heading, Select } from '@chakra-ui/react'
+import { Select } from '@chakra-ui/react'
 
 type Props = {
   options: { value: string | number; label: string }[]
@@ -35,6 +35,8 @@ const SelectBox: FC<Props> = ({
       bg="white"
       size="lg"
       fontSize="16px"
+      w="full"
+      cursor="pointer"
       onChange={(e) => handleChange(e.target.value)}
       defaultValue={defaultValue}
       disabled={disabled}
