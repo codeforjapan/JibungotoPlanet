@@ -36,3 +36,6 @@ yarn-error.log*
 
 # node version
 .nvmrc
+
+# local env files
+.env
