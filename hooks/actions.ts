@@ -63,8 +63,10 @@ const combinedActionData = (actions: Actions.Action[], profile: Profile.Profile)
 }
 
 export const useActions = (shareId?: string) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { profile } = shareId ? useSharedProfile(shareId) : useProfile()
+  // フックは条件分岐させずに両方呼ぶ。シェアページでは自分のプロフィールを取得しない
+  const sharedProfile = useSharedProfile(shareId).profile
+  const ownProfile = useProfile(!shareId).profile
+  const profile = shareId ? sharedProfile : ownProfile
   const [mobility, setMobilityActions] = useState<Actions.Action[]>([])
   const [food, setFoodActions] = useState<Actions.Action[]>([])
   const [housing, setHousingActions] = useState<Actions.Action[]>([])

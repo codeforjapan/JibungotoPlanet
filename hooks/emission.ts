@@ -6,7 +6,10 @@ export const useEmissionResult = (
   category: Questions.QuestionCategory | 'all',
   shareId?: string
 ) => {
-  const { profile } = shareId ? useSharedProfile(shareId) : useProfile()
+  // フックは条件分岐させずに両方呼ぶ。シェアページでは自分のプロフィールを取得しない
+  const sharedProfile = useSharedProfile(shareId).profile
+  const ownProfile = useProfile(!shareId).profile
+  const profile = shareId ? sharedProfile : ownProfile
   const [loading, setLoading] = useState(true)
   const [mobility, setMobility] = useState<{ key: string; value: number }[]>([])
   const [food, setFood] = useState<{ key: string; value: number }[]>([])
@@ -115,7 +118,7 @@ export const useEmissionResult = (
       }
       setLoading(false)
     }
-  }, [profile, category])
+  }, [profile, category, calcEmission])
 
   return { mobility, food, housing, other, loading, profile }
 }

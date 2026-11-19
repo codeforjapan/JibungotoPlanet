@@ -10,7 +10,22 @@ const compat = new FlatCompat({ baseDirectory: __dirname })
 
 const eslintConfig = [
   {
-    ignores: ['src/models/**']
+    // ESLint 9 は .gitignore を読まず、既定で除外するのは node_modules と .git だけなので、
+    // .gitignore にあるビルド成果物などを明示的に除外する。
+    // src/ は削除済みの Amplify バックエンドの名残で、手元にだけ残っていることがある
+    ignores: [
+      '.next/**',
+      'out/**',
+      'build/**',
+      'coverage/**',
+      '.vercel/**',
+      'next-env.d.ts',
+      'src/**'
+    ]
+  },
+  {
+    // flat config では、files に含まれない拡張子は検査されないため明示する
+    files: ['**/*.{js,jsx,mjs,ts,tsx}']
   },
   ...compat.config({
     extends: [
