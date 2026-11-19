@@ -1,0 +1,81 @@
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { FlatCompat } from '@eslint/eslintrc'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+// eslint-config-next 15 は旧形式（.eslintrc）の設定しか提供していないため、
+// FlatCompat で読み込む。Next 16 に上げたら eslint-config-next の flat config に置き換える
+const compat = new FlatCompat({ baseDirectory: __dirname })
+
+const eslintConfig = [
+  {
+    ignores: ['src/models/**']
+  },
+  ...compat.config({
+    extends: [
+      'next/core-web-vitals',
+      'prettier',
+      'plugin:import/recommended',
+      'plugin:import/warnings'
+    ],
+    settings: {
+      'import/resolver': {
+        typescript: true,
+        node: true
+      }
+    },
+    rules: {
+      'import/named': 'off',
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin', // 1. fsや path などの node "builtin" のモジュール
+            'external', // 2. npm install したパッケージ
+            'internal', // 3. webpack などでパス設定したモジュール
+            ['parent', 'sibling'], // 4. 親階層と小階層のファイル
+            'object', // object"-imports
+            'type', // 型だけをインポートする type imports
+            'index' // 同階層のファイル
+          ],
+          alphabetize: { order: 'asc', caseInsensitive: true },
+          pathGroups: [
+            // react, next 関連を external より前にする
+            {
+              pattern: 'react',
+              group: 'builtin',
+              position: 'after'
+            },
+            {
+              pattern: '{next,next/**}',
+              group: 'external',
+              position: 'before'
+            },
+            // `@/app`, `@/features/`, `@/libs` の import をひとグループにして internal の前に
+            {
+              pattern: '{@/app/**,@/features/**,@/libs/**}',
+              group: 'internal',
+              position: 'before'
+            },
+            // `@/components`, `@/pages` の import をグルーピング. aliasの設定いつかやるマン
+            {
+              pattern: '{@/components/**,@/pages/**}',
+              group: 'internal',
+              position: 'before'
+            },
+            // CSS module を一番最後に
+            {
+              pattern: './**.module.css',
+              group: 'index',
+              position: 'after'
+            }
+          ],
+          pathGroupsExcludedImportTypes: ['react']
+        }
+      ]
+    }
+  })
+]
+
+export default eslintConfig
