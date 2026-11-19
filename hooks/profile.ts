@@ -25,13 +25,14 @@ const fetchOrCreateProfile = (): Promise<Profile.Profile> => {
   return pendingProfile
 }
 
-export const useProfile = () => {
+// enabled が false のときは、自分のプロフィールを取得・作成しない（シェアページ用）
+export const useProfile = (enabled = true) => {
   const [profile, setProfile] = useRecoilState(profileAtom)
   const [userInfoDone, setUserInfoDone] = useState(false)
 
   useEffect(() => {
     const fetchProfile = async () => {
-      if (profile) return
+      if (!enabled || profile) return
       try {
         const data = await fetchOrCreateProfile()
         setProfile(data)
@@ -41,6 +42,10 @@ export const useProfile = () => {
       }
     }
     fetchProfile()
+    // マウント時に1回だけ取得する意図のため、依存は空にしている。
+    // enabled はマウント中に変わらず（シェアページでは最初から false）、
+    // 取得済みかどうかは関数の中で profile を見て判断している
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -55,7 +60,7 @@ export const useProfile = () => {
   return { profile, setProfile, userInfoDone }
 }
 
-export const useSharedProfile = (shareId: string) => {
+export const useSharedProfile = (shareId?: string) => {
   const [profile, setProfile] = useRecoilState(sharedProfileAtom)
 
   useEffect(() => {
@@ -70,7 +75,7 @@ export const useSharedProfile = (shareId: string) => {
       }
     }
     fetchProfile()
-  }, [shareId])
+  }, [shareId, setProfile])
 
   return { profile }
 }

@@ -7,10 +7,13 @@
     "build": "next build",
     "start": "next start",
     "test": "echo 'please write a test code'",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "yarn lint:fix && prettier -w ./components/**/*.{tsx,scss} ./styles/**/*.{css,scss} ./pages/**/*.{ts,tsx}",
     "prepare": "husky install"
+  },
+  "engines": {
+    "node": "24.x"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.2.6",
@@ -34,13 +37,14 @@
     "sass": "1.97.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "3.3.7",
     "@types/lodash": "4.17.25",
-    "@types/node": "20.19.30",
+    "@types/node": "24.19.2",
     "@types/react": "18.3.27",
     "@types/react-dom": "18.3.7",
     "@types/react-gtm-module": "2.0.4",
-    "eslint": "8.57.1",
-    "eslint-config-next": "15.5.11",
+    "eslint": "9.39.5",
+    "eslint-config-next": "15.5.29",
     "eslint-config-prettier": "9.1.2",
     "husky": "9.1.7",
     "prettier": "3.8.1",

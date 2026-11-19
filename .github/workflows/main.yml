@@ -23,11 +23,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
+
+      # Node のバージョンは package.json の engines.node（Vercel と同じ）に合わせる
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+          cache: yarn
 
       - name: Build app
         run: |
-          yarn install --immutable --immutable-cache --check-cache
+          yarn install --frozen-lockfile
           yarn build
 
       - name: Deploy to production server
