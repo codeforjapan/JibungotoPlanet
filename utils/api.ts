@@ -6,13 +6,13 @@ import { Request } from '../../utils/request'
 
 */
 
-import axios from 'axios'
+import { create } from 'axios'
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 
 class Api {
   private axiosInstance() {
-    return axios.create({
+    return create({
       baseURL
     })
   }
@@ -54,4 +54,6 @@ class Api {
   }
 }
 
-export default new Api()
+const api = new Api()
+
+export default api
