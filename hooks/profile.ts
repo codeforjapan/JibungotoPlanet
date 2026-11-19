@@ -4,6 +4,27 @@ import { PROFILE_ID, USERINFO_SKIP } from 'constants/localstorageKeys'
 import { profileAtom, sharedProfileAtom } from 'store/profile'
 import api from '../utils/api'
 
+// 同じ画面で複数のコンポーネントが useProfile を使うため、
+// 取得中のリクエストを共有してプロフィールの重複作成を防ぐ
+let pendingProfile: Promise<Profile.Profile> | null = null
+
+const fetchOrCreateProfile = (): Promise<Profile.Profile> => {
+  if (!pendingProfile) {
+    pendingProfile = (async () => {
+      const profileId = localStorage.getItem(PROFILE_ID)
+      if (!profileId) {
+        const { data } = await api.post('/profiles', { estimate: true })
+        localStorage.setItem(PROFILE_ID, data.id)
+        return data
+      }
+      return await api.get(`/profiles/${profileId}`)
+    })().finally(() => {
+      pendingProfile = null
+    })
+  }
+  return pendingProfile
+}
+
 export const useProfile = () => {
   const [profile, setProfile] = useRecoilState(profileAtom)
   const [userInfoDone, setUserInfoDone] = useState(false)
@@ -12,15 +33,8 @@ export const useProfile = () => {
     const fetchProfile = async () => {
       if (profile) return
       try {
-        const profileId = localStorage.getItem(PROFILE_ID)
-        if (!profileId) {
-          const { data } = await api.post('/profiles', { estimate: true })
-          setProfile(data)
-          localStorage.setItem(PROFILE_ID, data.id)
-        } else {
-          const data = await api.get(`/profiles/${profileId}`)
-          setProfile(data)
-        }
+        const data = await fetchOrCreateProfile()
+        setProfile(data)
       } catch (error) {
         setProfile(null)
         return
