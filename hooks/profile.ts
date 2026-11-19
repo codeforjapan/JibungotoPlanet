@@ -42,8 +42,9 @@ export const useProfile = (enabled = true) => {
       }
     }
     fetchProfile()
-    // マウント時に1回だけ取得する。profile を依存に入れると、取得に失敗して
-    // null になったときに再取得を繰り返すため、意図的に空にしている
+    // マウント時に1回だけ取得する意図のため、依存は空にしている。
+    // enabled はマウント中に変わらず（シェアページでは最初から false）、
+    // 取得済みかどうかは関数の中で profile を見て判断している
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
