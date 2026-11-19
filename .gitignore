@@ -33,6 +33,8 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+# Next.js が管理するファイル（Next 16 の公式ドキュメントで gitignore が推奨されている）
+next-env.d.ts
 
 # node version
 .nvmrc

@@ -16,11 +16,11 @@
     "node": "24.x"
   },
   "browserslist": [
-    "chrome 64",
+    "chrome 71",
     "edge 79",
     "firefox 67",
-    "opera 51",
-    "safari 12"
+    "opera 58",
+    "safari 12.1"
   ],
   "dependencies": {
     "@chakra-ui/icons": "2.2.6",
