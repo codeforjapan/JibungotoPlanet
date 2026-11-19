@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import { useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
+import { getCookieConsentValue } from 'react-cookie-consent'
 import TagManager from 'react-gtm-module'
 import { RecoilRoot, RecoilEnv } from 'recoil'
 import HeadElm from 'components/HeadElm'
@@ -15,21 +16,12 @@ if (process.env.NODE_ENV === 'development') {
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    if (document.cookie) {
-      const cookies = document.cookie
-      const array = cookies.split(';')
-
-      const CookieConcent = array.filter((value) => {
-        const content = value.split('=')
-        return content[0] === 'CookieConsent' && content[1] === 'true'
-      })
-      if (!!CookieConcent.length) {
-        // 許諾済み
-        process.env.NEXT_PUBLIC_GTMID &&
-          TagManager.initialize({
-            gtmId: String(process.env.NEXT_PUBLIC_GTMID)
-          })
-      }
+    if (getCookieConsentValue() === 'true') {
+      // 許諾済み
+      process.env.NEXT_PUBLIC_GTMID &&
+        TagManager.initialize({
+          gtmId: String(process.env.NEXT_PUBLIC_GTMID)
+        })
     }
   }, [])
 
