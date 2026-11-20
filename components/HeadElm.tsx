@@ -18,7 +18,7 @@ const HeadElm: FC = () => {
     } else {
       return (
         process.env.NEXT_PUBLIC_OGP_IMAGE_PATH ??
-        ` https://www.jibungoto-planet.jp/ogp.jpg`
+        `https://www.jibungoto-planet.jp/ogp.jpg`
       )
     }
   }, [asPath])
@@ -27,7 +27,7 @@ const HeadElm: FC = () => {
     <Head>
       <title>じぶんごとプラネット</title>
       <meta
-        property="description"
+        name="description"
         content="脱炭素で持続可能な未来のために、ひとりひとりが今の生活スタイルの気候変動への影響を知り、小さなことから一つずつアクションを起こす。こうして「じぶんごと」の輪が広がっていきます。"
         key="description"
       />
