@@ -1,5 +1,5 @@
 .radio {
-  :global .chakra-radio__control[data-checked] {
+  :global(.chakra-radio__control[data-checked]) {
     background-color: #99d9ef !important;
     border-color: #99d9ef !important;
   }
