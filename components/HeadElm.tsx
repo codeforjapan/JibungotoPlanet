@@ -18,7 +18,7 @@ const HeadElm: FC = () => {
     } else {
       return (
         process.env.NEXT_PUBLIC_OGP_IMAGE_PATH ??
-        ` https://www.jibungoto-planet.jp/ogp.jpg`
+        `https://www.jibungoto-planet.jp/ogp.jpg`
       )
     }
   }, [asPath])
